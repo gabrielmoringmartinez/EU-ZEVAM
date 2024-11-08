@@ -9,11 +9,11 @@ def calculate_registrations(historical_registrations, eu_countries_and_norway, c
     projected_registrations = calculate_projected_registrations(country_registration_shares,
                                                                 registrations_eu_cam_scenario)
     absolute_registrations = pd.concat([historical_registrations, projected_registrations], ignore_index=True)
-    absolute_registrations.to_csv(f'outputs/absolute_registrations.csv', sep=';', index=False, decimal=',')
+    absolute_registrations.to_csv(f'outputs/1_1_absolute_registrations.csv', sep=';', index=False, decimal=',')
     registrations_by_powertrain = combine_shares_and_absolute_registrations(absolute_registrations,
                                                                             registration_shares_by_cluster, clusters,
                                                                             'scenario_test')
-    registrations_by_powertrain.to_csv(f'outputs/registrations_by_powertrain.csv', sep=';', index=False, decimal=',')
+    registrations_by_powertrain.to_csv(f'outputs/1_2_registrations_by_powertrain.csv', sep=';', index=False, decimal=',')
     return registrations_by_powertrain
 
 def preprocess_historical_registrations(historical_registrations, countries_to_keep, country_labels):
