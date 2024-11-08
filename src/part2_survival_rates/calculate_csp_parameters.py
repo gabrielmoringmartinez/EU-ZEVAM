@@ -14,7 +14,7 @@ def calculate_csp_parameters(survival_rates, year):
         Returns:
             DataFrame: Optimized CSP parameters per country.
         """
-    bounds_weibull = [(5, 50), (1, 6)]
+    bounds_weibull = [(5, 40), (2, 6)]
     k = [2, 100]
     mu = [5, 30]
     sigma = [5, 30]
