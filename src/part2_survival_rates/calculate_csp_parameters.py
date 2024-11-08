@@ -1,5 +1,6 @@
 from src.part2_survival_rates.csp_parameters_optimization_algorithms import run_diff_evol_algorithm_weibull, \
     run_diff_evol_algorithm_weibull_gaussian
+from src.part2_survival_rates.select_optimal_type_of_distribution import select_optimal_type_of_distribution
 
 
 def calculate_csp_parameters(survival_rates, year):
@@ -24,5 +25,10 @@ def calculate_csp_parameters(survival_rates, year):
     optimum_parameters_weibull_gaussian = run_diff_evol_algorithm_weibull_gaussian(bounds_gaussian, country_names,
                                                                                    survival_rates,
                                                                                    optimum_parameters_weibull)
+    optimum_parameters_weibull_gaussian = select_optimal_type_of_distribution(optimum_parameters_weibull_gaussian)
+
     optimum_parameters_weibull_gaussian.to_csv(f'outputs/2_1_optimum_parameters_csp_curves.csv', sep=';', index=False, decimal=',')
     return optimum_parameters_weibull_gaussian
+
+
+
