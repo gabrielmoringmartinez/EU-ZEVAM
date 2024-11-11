@@ -11,8 +11,5 @@ from src.part2_survival_rates.plot_survival_rates.graph_inputs import config_all
 registrations = calculate_registrations(historical_registrations, eu_countries_and_norway, country_labels,
                                         registrations_eu_cam_scenario, clusters, registration_shares_by_cluster)
 optimum_parameters_wg = calculate_csp_parameters(survival_rates_2021, 2021)
-
-
-
-
 get_csp_plots(survival_rates_2021, optimum_parameters_wg, config_all, config_group)
+

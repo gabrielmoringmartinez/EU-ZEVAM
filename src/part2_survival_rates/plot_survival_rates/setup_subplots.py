@@ -4,12 +4,31 @@ import matplotlib.pyplot as plt
 
 
 def get_number_rows_and_columns(number_of_countries):
+    """
+        Determines the optimal number of rows and columns for plotting based on the number of countries.
+
+        Parameters:
+        - number_of_countries (int): Total number of countries to be plotted.
+
+        Returns:
+        - (int, int): Number of rows and columns for the plot grid.
+        """
     country_rows = math.ceil(np.sqrt(number_of_countries))  # Rows and columns are defined
     country_columns = country_rows
     return country_rows, country_columns
 
 
 def setup_subplot_figure(plot_params):
+    """
+        Configures and sets up a subplot figure with the specified parameters.
+
+        Parameters:
+        - plot_params (dict): Dictionary containing the settings for the subplot, including font sizes,
+                              spacing, figure size, and titles.
+
+        Returns:
+        - fig (plt.Figure): Matplotlib figure object for the subplot.
+        """
     plt.rc('xtick', labelsize=plot_params["tick_fontsize"])
     plt.rc('ytick', labelsize=plot_params["tick_fontsize"])
     fig = plt.figure()

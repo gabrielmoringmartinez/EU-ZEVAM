@@ -15,6 +15,25 @@ from src.part2_survival_rates.plot_survival_rates.save_figure import save_figure
 
 def plot_csp_countries(survival_rates, country_names, pdf_parameters, plot_params, file_info,
                        activate_weibull=1, activate_weibull_and_normal=1):
+    """
+       Plots cumulative survival probability (CSP) curves for the specified countries with optional Weibull
+       and/or Weibull-Gaussian fits.
+
+       Parameters:
+       - survival_rates (pd.DataFrame): Data containing survival rates for each country.
+       - country_names (list): List of country names to be plotted.
+       - pdf_parameters (pd.DataFrame): DataFrame containing the parameters for the Weibull and Gaussian distributions.
+       - plot_params (dict): Dictionary containing the settings for the subplot, including font sizes,
+                              spacing, figure size, and titles.
+       - file_info (dict): Dictionary containing file information, such as file name and save options.
+       - activate_weibull (int): If 1, includes Weibull fit in the plot; 0 excludes it.
+       - activate_weibull_and_normal (int): If 1, includes Weibull-Gaussian fit in the plot; 0 excludes it.
+
+       Returns:
+       - survival_rates_weibull (pd.DataFrame): Updated DataFrame with fitted Weibull distribution data.
+       - survival_rates_weibull_and_normal (pd.DataFrame): Updated DataFrame with fitted Weibull-Gaussian
+        distribution data.
+       """
     country_rows, country_columns = get_number_rows_and_columns(len(country_names))
     fig = setup_subplot_figure(plot_params)
 
