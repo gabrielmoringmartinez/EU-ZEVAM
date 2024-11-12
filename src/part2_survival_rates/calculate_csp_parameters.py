@@ -8,7 +8,7 @@ def calculate_csp_parameters(survival_rates, year):
         Calculates optimal CSP parameters for country-specific Weibull and Weibull-Gaussian survival curves. Bounds
         selected for the optimization based on the conclusion extracted in Held, 2021 and described in Appendix F
 
-        Args:
+        Parameters:
             survival_rates (DataFrame): Contains 'country label' and 'survival rate' columns.
             year (int): The year of the data of empirical survival rates.
 

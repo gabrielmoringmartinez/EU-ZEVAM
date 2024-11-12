@@ -6,7 +6,7 @@ def append_optimum_parameters_weibull(result, optimum_gamma_per_country, optimum
     """
         Appends optimal Weibull parameters from the result of the differential evolution algorithm.
 
-        Args:
+        Parameters:
             result (OptimizeResult): Optimization result containing Weibull parameters [gamma, beta].
             optimum_gamma_per_country (list): List of gamma parameters for each country.
             optimum_beta_per_country (list): List of beta parameters for each country.
@@ -26,7 +26,7 @@ def append_optimum_parameters_gaussian(result, optimum_k_per_country, optimum_mu
     """
       Appends optimal Gaussian parameters from the result of the differential evolution algorithm.
 
-      Args:
+      Parameters:
           result (OptimizeResult): Optimization result containing Gaussian parameters [k, mu, sigma].
           Lists to store Gaussian parameters (k, mu, sigma, delta, r-squared) per country.
 

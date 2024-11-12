@@ -11,5 +11,5 @@ registrations = calculate_registrations(historical_registrations, eu_countries_a
                                         registrations_eu_cam_scenario, clusters, registration_shares_by_cluster)
 optimum_parameters_wg = calculate_csp_parameters(survival_rates_2021, 2021)
 fitted_csp_values = get_fitted_csp_values(survival_rates_2021, optimum_parameters_wg)
-get_csp_plots(survival_rates_2021, optimum_parameters_wg, config_all, config_group)
+get_csp_plots(survival_rates_2021, fitted_csp_values, optimum_parameters_wg, config_all, config_group)
 

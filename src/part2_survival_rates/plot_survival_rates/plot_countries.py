@@ -1,7 +1,7 @@
 from src.part2_survival_rates.plot_survival_rates.plot_csp_countries import plot_csp_countries
 
 
-def plot_all_countries(pdf_parameters, survival_rates, config, own_calculation=False, activate_weibull=1,
+def plot_all_countries(pdf_parameters, survival_rates, fitted_csp_values, config, own_calculation=False, activate_weibull=1,
                        activate_weibull_and_normal=1):
     """
        Plots cumulative survival probability (CSP) data for all countries, optionally with Weibull and/or
@@ -22,14 +22,12 @@ def plot_all_countries(pdf_parameters, survival_rates, config, own_calculation=F
     plot_params = config["plot_params"]
     file_info = config["file_info"]
     country_names = survival_rates['country label'].unique()
-    number_of_countries = len(country_names)  # Number of countries is defined
-    survival_rates_weibull, survival_rates_weibull_and_normal = \
-        plot_csp_countries(survival_rates, country_names, pdf_parameters, plot_params, file_info,
-                           activate_weibull, activate_weibull_and_normal)
+    plot_csp_countries(survival_rates, fitted_csp_values, country_names, pdf_parameters, plot_params, file_info,
+                       activate_weibull, activate_weibull_and_normal)
     return
 
 
-def plot_group_of_countries(pdf_parameters, survival_rates, group_of_countries, config, own_calculation=False,
+def plot_group_of_countries(pdf_parameters, survival_rates, fitted_csp_values, group_of_countries, config, own_calculation=False,
                             activate_weibull=1, activate_weibull_and_normal=1):
     """
       Plots CSP data for a specified group of countries, optionally with Weibull and/or Weibull-Gaussian fits.
@@ -54,6 +52,6 @@ def plot_group_of_countries(pdf_parameters, survival_rates, group_of_countries, 
     else:
         country_names = country_names[plot_params["number_of_countries_group"]:len(country_names)]
     file_info["group_info"] = f'group{group_of_countries}_'
-    plot_csp_countries(survival_rates, country_names, pdf_parameters, plot_params, file_info,
+    plot_csp_countries(survival_rates, fitted_csp_values, country_names, pdf_parameters, plot_params, file_info,
                        activate_weibull, activate_weibull_and_normal)
     return

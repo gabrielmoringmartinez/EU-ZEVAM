@@ -8,7 +8,7 @@ def loss_function_weibull(x : list, *args) -> float:
     and the actual survival rate data. The error is computed using normalized mean squared error (NMSE),
     which indicates how well the Weibull model fits the observed data.
 
-    Args:
+    Parameters:
         x (list): Parameters for the Weibull distribution.
             - x[0] (float): gamma (scale parameter) – defines the scale parameter of the weibull or the
                             weibull average lifespan.
@@ -33,7 +33,7 @@ def loss_function_weibull_and_normal(x: list, *args) -> float:
     normalized mean squared error (NMSE), showing how well this composite model fits
     the observed data.
 
-    Args:
+    Parameters:
         x (list): Parameters for the Gaussian (normal) component.
             - x[0] (float): k – scales the Gaussian component.
             - x[1] (float): mu – mean of the Gaussian distribution (controls the location).

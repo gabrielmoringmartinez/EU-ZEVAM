@@ -11,7 +11,7 @@ def run_diff_evol_algorithm_weibull(bounds: list, country_names_number: np.ndarr
     """
         Runs the differential evolution algorithm to fit Weibull parameters per country.
 
-        Args:
+        Parameters:
             bounds (list): Bounds for the Weibull distribution parameters [gamma, beta].
             country_names_number (np.ndarray): List of unique country labels.
             survival_rates (DataFrame): Survival rates per country.
@@ -38,7 +38,7 @@ def run_diff_evol_algorithm_weibull_gaussian(bounds, country_names_number, survi
     """
        Runs the differential evolution algorithm to fit Weibull-Gaussian parameters per country.
 
-       Args:
+       Parameters:
            bounds (list): Bounds for the Gaussian distribution parameters [k, mu, sigma].
            country_names_number (np.ndarray): List of unique country labels.
            survival_rates (DataFrame): Survival rates per country.
@@ -73,7 +73,7 @@ def get_value_countries(survival_rates, country_name):
     """
         Retrieves survival rates for a specified country.
 
-        Args:
+        Parameters:
             survival_rates (DataFrame): Contains survival rate data.
             country_name (str): Name of the country.
 

@@ -6,7 +6,7 @@ def save_optimum_parameters_weibull(optimum_gamma_per_country, optimum_beta_per_
     """
         Compiles the optimized Weibull parameters into a DataFrame.
 
-        Args:
+        Parameters:
             Lists of optimized Weibull parameters per country and country labels.
 
         Returns:
@@ -24,7 +24,7 @@ def save_optimum_parameters_gaussian(optimum_parameters_diff_evol_algorithm, par
     """
     Compiles optimized Weibull-Gaussian parameters into a DataFrame.
 
-    Args:
+    Parameters:
         optimum_parameters_diff_evol_algorithm (DataFrame): Contains the optimized Weibull parameters.
         parameters (list): Lists of Gaussian parameters (k, mu, sigma, delta, r-squared) per country.
 

@@ -1,7 +1,7 @@
 from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries, plot_group_of_countries
 
 
-def get_csp_plots(survival_rates, pdf_parameters, config_all, config_group):
+def get_csp_plots(survival_rates, fitted_csp_values, pdf_parameters, config_all, config_group):
     """
     Generates and displays CSP curves plots for all countries and specific groups of countries.
 
@@ -15,10 +15,10 @@ def get_csp_plots(survival_rates, pdf_parameters, config_all, config_group):
     Returns:
     - None
     """
-    plot_all_countries(pdf_parameters, survival_rates, config_all)
+    plot_all_countries(pdf_parameters, survival_rates, fitted_csp_values, config_all)
     country_group = 1
-    plot_group_of_countries(pdf_parameters, survival_rates, country_group, config_group)
+    plot_group_of_countries(pdf_parameters, survival_rates, fitted_csp_values, country_group, config_group)
     country_group = 2
-    plot_group_of_countries(pdf_parameters, survival_rates, country_group, config_group)
-    plot_all_countries(pdf_parameters, survival_rates, config_all, activate_weibull=1, activate_weibull_and_normal=0)
-    plot_all_countries(pdf_parameters, survival_rates, config_all, activate_weibull=0, activate_weibull_and_normal=1)
+    plot_group_of_countries(pdf_parameters, survival_rates, fitted_csp_values, country_group, config_group)
+    plot_all_countries(pdf_parameters, survival_rates, fitted_csp_values, config_all, activate_weibull=1, activate_weibull_and_normal=0)
+    plot_all_countries(pdf_parameters, survival_rates, fitted_csp_values, config_all, activate_weibull=0, activate_weibull_and_normal=1)
