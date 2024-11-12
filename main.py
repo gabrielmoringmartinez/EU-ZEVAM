@@ -7,9 +7,11 @@ from src.part2_survival_rates.plot_survival_rates.get_csp_plots import get_csp_p
 from src.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
 
 
-registrations = calculate_registrations(historical_registrations, eu_countries_and_norway, country_labels,
+registrations = calculate_registrations(historical_registrations, eu_countries_and_norway,
                                         registrations_eu_cam_scenario, clusters, registration_shares_by_cluster)
 optimum_parameters_wg = calculate_csp_parameters(survival_rates_2021, 2021)
 fitted_csp_values = get_fitted_csp_values(survival_rates_2021, optimum_parameters_wg)
 get_csp_plots(survival_rates_2021, fitted_csp_values, optimum_parameters_wg, config_all, config_group)
 
+print(registrations.columns)
+print(fitted_csp_values.columns)

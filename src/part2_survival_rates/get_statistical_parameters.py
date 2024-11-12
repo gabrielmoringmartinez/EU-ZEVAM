@@ -12,11 +12,11 @@ def get_statistical_parameters(pdf_parameters):
        - mu (pd.DataFrame): Extracted mu values for the Gaussian distribution.
        - sigma (pd.DataFrame): Extracted sigma values for the Gaussian distribution.
        """
-    gamma_variable = pdf_parameters[["gamma (Weibull)", "country label"]]
-    beta_variable = pdf_parameters[["beta (Weibull)", "country label"]]
-    k_variable = pdf_parameters[["k (Import-Gaussian)", "country label"]]
-    mu_variable = pdf_parameters[["mu (Import-Gaussian)", "country label"]]
-    sigma_variable = pdf_parameters[["sigma (Import-Gaussian)", "country label"]]
+    gamma_variable = pdf_parameters[["gamma (Weibull)", "geo country"]]
+    beta_variable = pdf_parameters[["beta (Weibull)", "geo country"]]
+    k_variable = pdf_parameters[["k (Import-Gaussian)", "geo country"]]
+    mu_variable = pdf_parameters[["mu (Import-Gaussian)", "geo country"]]
+    sigma_variable = pdf_parameters[["sigma (Import-Gaussian)", "geo country"]]
     return gamma_variable, beta_variable, k_variable, mu_variable, sigma_variable
 
 
@@ -38,9 +38,9 @@ def get_statistical_parameters_of_each_country(gamma, beta, k, mu, sigma, countr
        - mu_country (float): The mu parameter for the specified country.
        - sigma_country (float): The sigma parameter for the specified country.
        """
-    gamma_country = gamma[gamma["country label"] == country_name]["gamma (Weibull)"]
-    beta_country = beta[beta["country label"] == country_name]["beta (Weibull)"]
-    k_country = k[k["country label"] == country_name]["k (Import-Gaussian)"]
-    mu_country = mu[mu["country label"] == country_name]["mu (Import-Gaussian)"]
-    sigma_country = sigma[sigma["country label"] == country_name]["sigma (Import-Gaussian)"]
+    gamma_country = gamma[gamma["geo country"] == country_name]["gamma (Weibull)"]
+    beta_country = beta[beta["geo country"] == country_name]["beta (Weibull)"]
+    k_country = k[k["geo country"] == country_name]["k (Import-Gaussian)"]
+    mu_country = mu[mu["geo country"] == country_name]["mu (Import-Gaussian)"]
+    sigma_country = sigma[sigma["geo country"] == country_name]["sigma (Import-Gaussian)"]
     return gamma_country, beta_country, k_country, mu_country, sigma_country

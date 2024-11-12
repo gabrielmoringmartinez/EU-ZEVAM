@@ -27,8 +27,8 @@ def plot_csp_countries(survival_rates, fitted_csp_values, country_names, pdf_par
     i = 1
     for country_name in country_names:
         ax = fig.add_subplot(country_rows, country_columns, i)
-        survival_rates_country = survival_rates[survival_rates["country label"] == country_name]
-        fitted_csp_values_country = fitted_csp_values[fitted_csp_values["country label"] == country_name]
+        survival_rates_country = survival_rates[survival_rates["geo country"] == country_name]
+        fitted_csp_values_country = fitted_csp_values[fitted_csp_values["geo country"] == country_name]
         weibull_values = list(fitted_csp_values_country['survival rate Weibull'])
         wg_values = list(fitted_csp_values_country['survival rate WG'])
         plot_survival_rate_country(ax, "Data points", survival_rates_country[plot_params["x_column"]],

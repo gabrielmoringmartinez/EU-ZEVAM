@@ -18,16 +18,18 @@ def get_fitted_csp_values(survival_rates, pdf_parameters):
     - pd.DataFrame: DataFrame containing fitted CSP values for each country by vehicle age, distribution model (Weibull
      and Weibull Gaussian), and distribution type.
     """
-    country_names = survival_rates['country label'].unique()
+    country_names = survival_rates['geo country'].unique()
     weibull_results = pd.DataFrame()
     wg_results = pd.DataFrame()
     for country_name in country_names:
-        survival_rates_country = survival_rates[survival_rates["country label"] == country_name]
+        survival_rates_country = survival_rates[survival_rates["geo country"] == country_name]
         weibull_results, wg_results = calculate_country_fitted_values(country_name, survival_rates_country,
                                                                       pdf_parameters, weibull_results, wg_results)
-    fitted_csp_values = pd.merge(weibull_results, wg_results, on=['country label', 'vehicle age'],
+    fitted_csp_values = pd.merge(weibull_results, wg_results, on=['geo country', 'vehicle age'],
                                  suffixes=(' Weibull', ' WG'), how='inner')
-    fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[['country label', 'distribution']], on ='country label')
+    print(fitted_csp_values)
+    print(pdf_parameters)
+    fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[['geo country', 'distribution']], on = 'geo country')
     fitted_csp_values.to_csv(f'outputs/2_2_fitted_CSP_curves.csv', sep=';', index=False, decimal=',')
     return fitted_csp_values
 
@@ -44,7 +46,7 @@ def calculate_country_fitted_values(country_name, survival_rates, pdf_parameters
     Returns:
     - tuple: Two lists of dictionaries for Weibull and Weibull-Gaussian CSP values.
     """
-    survival_rates_country = survival_rates[survival_rates["country label"] == country_name]
+    survival_rates_country = survival_rates[survival_rates["geo country"] == country_name]
     gamma, beta, k, mu, sigma = get_statistical_parameters(pdf_parameters)
     gamma_country, beta_country, k_country, mu_country, sigma_country = \
         get_statistical_parameters_of_each_country(gamma, beta, k, mu, sigma, country_name)

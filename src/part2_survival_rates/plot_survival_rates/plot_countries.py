@@ -21,7 +21,7 @@ def plot_all_countries(pdf_parameters, survival_rates, fitted_csp_values, config
        """
     plot_params = config["plot_params"]
     file_info = config["file_info"]
-    country_names = survival_rates['country label'].unique()
+    country_names = survival_rates['geo country'].unique()
     plot_csp_countries(survival_rates, fitted_csp_values, country_names, pdf_parameters, plot_params, file_info,
                        activate_weibull, activate_weibull_and_normal)
     return
@@ -46,7 +46,7 @@ def plot_group_of_countries(pdf_parameters, survival_rates, fitted_csp_values, g
       """
     plot_params = config["plot_params"]
     file_info = config["file_info"].copy()
-    country_names = survival_rates['country label'].unique()
+    country_names = survival_rates['geo country'].unique()
     if group_of_countries == 1:
         country_names = country_names[0:plot_params["number_of_countries_group"]]
     else:

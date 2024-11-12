@@ -1,7 +1,9 @@
 import pandas as pd
+
 time_dim = 'time'
 
-def calculate_registrations(historical_registrations, eu_countries_and_norway, country_labels,
+
+def calculate_registrations(historical_registrations, eu_countries_and_norway,
                             registrations_eu_cam_scenario, clusters, registration_shares_by_cluster):
     """
         Calculates and saves the absolute and powertrain-specific vehicle registrations for each country.
@@ -10,7 +12,6 @@ def calculate_registrations(historical_registrations, eu_countries_and_norway, c
         Parameters:
         - historical_registrations (pd.DataFrame): Historical vehicle registration data for EU countries.
         - eu_countries_and_norway (list): List of country labels (e.g., countries in the EU and Norway).
-        - country_labels (pd.DataFrame): DataFrame containing country labels.
         - registrations_eu_cam_scenario (pd.DataFrame): Projected vehicle registrations scenario data
         for the EU countries.
         - clusters (pd.DataFrame): DataFrame containing clusters for each country (Möring et al., 2024).
@@ -20,8 +21,7 @@ def calculate_registrations(historical_registrations, eu_countries_and_norway, c
         - pd.DataFrame: A DataFrame with vehicle registrations by powertrain, including historical and projected data.
         Absolute sales and sales share is obtained.
         """
-    historical_registrations = preprocess_historical_registrations(historical_registrations, eu_countries_and_norway,
-                                                                   country_labels)
+    historical_registrations = preprocess_historical_registrations(historical_registrations, eu_countries_and_norway)
     country_registration_shares = calculate_country_shares(historical_registrations, 2021)
     projected_registrations = calculate_projected_registrations(country_registration_shares,
                                                                 registrations_eu_cam_scenario)
@@ -30,17 +30,18 @@ def calculate_registrations(historical_registrations, eu_countries_and_norway, c
     registrations_by_powertrain = combine_shares_and_absolute_registrations(absolute_registrations,
                                                                             registration_shares_by_cluster, clusters,
                                                                             'scenario_ref')
-    registrations_by_powertrain.to_csv(f'outputs/1_2_registrations_by_powertrain.csv', sep=';', index=False, decimal=',')
+    registrations_by_powertrain.to_csv(f'outputs/1_2_registrations_by_powertrain.csv', sep=';', index=False,
+                                       decimal=',')
     return registrations_by_powertrain
 
-def preprocess_historical_registrations(historical_registrations, countries_to_keep, country_labels):
+
+def preprocess_historical_registrations(historical_registrations, countries_to_keep):
     """
         Preprocesses the historical vehicle registration data by filtering, merging, and cleaning the data.
 
         Parameters:
         - historical_registrations (pd.DataFrame): DataFrame containing historical registration data.
         - countries_to_keep (list): List of countries to retain in the dataset.
-        - country_labels (pd.DataFrame): DataFrame containing country labels.
 
         Returns:
         - pd.DataFrame: The cleaned and processed historical registration data.
@@ -49,12 +50,7 @@ def preprocess_historical_registrations(historical_registrations, countries_to_k
     historical_registrations = historical_registrations[historical_registrations[time_dim] != 2022]
     # Step 2: Filter data for the countries in `eu_countries_and_norway`
     historical_registrations = historical_registrations[
-        historical_registrations['country label'].isin(countries_to_keep)]
-    # Step 3: Merge with country labels
-    historical_registrations = pd.merge(country_labels, historical_registrations, how='left')
-    # Step 4: Drop the 'country label' column
-    historical_registrations = historical_registrations.drop(columns=['country label'])
-    # Return the processed DataFrame
+        historical_registrations['geo country'].isin(countries_to_keep)]
     return historical_registrations
 
 
@@ -106,7 +102,8 @@ def calculate_projected_registrations(country_registration_shares, registrations
     return projected_registrations
 
 
-def combine_shares_and_absolute_registrations(country_registrations, powertrain_share_registrations, clusters, scenario):
+def combine_shares_and_absolute_registrations(country_registrations, powertrain_share_registrations, clusters,
+                                              scenario):
     """
         Combines the country-level vehicle registrations with the powertrain-specific share data, and calculates
         the registrations by powertrain for each country.

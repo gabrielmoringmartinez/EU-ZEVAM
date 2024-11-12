@@ -13,7 +13,7 @@ def save_optimum_parameters_weibull(optimum_gamma_per_country, optimum_beta_per_
             DataFrame: DataFrame with optimized Weibull parameters per country.
     """
     optimum_parameters_diff_evol_algorithm = pd.DataFrame()
-    optimum_parameters_diff_evol_algorithm['country label'] = country_names
+    optimum_parameters_diff_evol_algorithm['geo country'] = country_names
     optimum_parameters_diff_evol_algorithm["gamma (Weibull)"]= optimum_gamma_per_country
     optimum_parameters_diff_evol_algorithm["beta (Weibull)"] = optimum_beta_per_country
     optimum_parameters_diff_evol_algorithm["r squared (Weibull)"] = max_rsquared_per_country

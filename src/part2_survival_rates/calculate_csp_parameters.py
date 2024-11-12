@@ -20,7 +20,7 @@ def calculate_csp_parameters(survival_rates, year):
     mu = [5, 30]
     sigma = [5, 30]
     bounds_gaussian = [k, mu, sigma]
-    country_names = survival_rates['country label'].unique()
+    country_names = survival_rates['geo country'].unique()
     optimum_parameters_weibull = run_diff_evol_algorithm_weibull(bounds_weibull, country_names, survival_rates)
     optimum_parameters_weibull_gaussian = run_diff_evol_algorithm_weibull_gaussian(bounds_gaussian, country_names,
                                                                                    survival_rates,

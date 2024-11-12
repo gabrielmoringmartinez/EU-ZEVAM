@@ -57,7 +57,7 @@ def run_diff_evol_algorithm_weibull_gaussian(bounds, country_names_number, survi
     for j in country_names_number:
         survival_rates_country = get_value_countries(survival_rates, j)
         optimum_parameters_weibull_country = optimum_parameters_weibull[
-            optimum_parameters_weibull["country label"] == j]
+            optimum_parameters_weibull["geo country"] == j]
         gamma_country = optimum_parameters_weibull_country["gamma (Weibull)"].to_numpy()
         beta_country = optimum_parameters_weibull_country["beta (Weibull)"].to_numpy()
         args = (gamma_country, beta_country, survival_rates_country)
@@ -80,6 +80,6 @@ def get_value_countries(survival_rates, country_name):
         Returns:
             Series: Survival rates for the specified country.
     """
-    values_country = survival_rates[survival_rates["country label"] == country_name]
+    values_country = survival_rates[survival_rates["geo country"] == country_name]
     survival_rates_country = values_country["survival rate"]
     return survival_rates_country
