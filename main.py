@@ -22,12 +22,9 @@ def repeat_data_for_years(original_df, stock_years):
     # Unpack the stock_years array to get the initial and end years
     initial_year, end_year = stock_years
     # Create the initial DataFrame with the constant year (initial_year)
-    original_df_with_year = original_df.assign(stock_year=initial_year)
-    # Create a list of DataFrames with different years
-    years_range = range(initial_year, end_year + 1)
-    data_frames_list = [original_df_with_year.assign(stock_year=year) for year in years_range]
-    # Concatenate the DataFrames together
-    result_df = pd.concat(data_frames_list, ignore_index=True)
+    years = pd.DataFrame({'stock_year': range(initial_year, end_year)})
+    # Use a cross join to duplicate original_df for each year
+    result_df = original_df.merge(years, how='cross')
     return result_df
 
 
@@ -45,10 +42,7 @@ stock_years = [2014, 2050]
 time_dim = 'time'
 registrations_dim = 'registrations by powertrain'
 
-import time
-start_time = time.time()  # Record the start time
 survival_rates = repeat_data_for_years(fitted_csp_values, stock_years)
-end_time = time.time()  # Record the end time
 survival_rates_ = survival_rates.copy()
 # Time represents the year of registration of the vehicle
 survival_rates_[time_dim] = survival_rates_['stock_year'] - survival_rates_['vehicle age'] + 1
@@ -61,9 +55,5 @@ stock_data['stock_wg'] = stock_data['survival rate WG'] * stock_data[registratio
 # Stock based on the optimum distribution is obtained
 stock_data['stock'] = stock_data.apply(select_column, axis=1, optimal_distribution_dict=optimal_distribution_dict)
 stock_data = stock_data.rename(columns={time_dim: "year of first registration"})
-
-survival_rates_.to_csv(f'outputs/survival_rates_.csv', sep=';', index=False, decimal=',')
+stock_data = stock_data.drop(columns=['survival rate Weibull', 'survival rate WG', 'distribution', 'cluster', 'stock_weibull', 'stock_wg', 'new vehicle registrations', 'relative sales', registrations_dim])
 stock_data.to_csv(f'outputs/stock_data_.csv', sep=';', index=False, decimal=',')
-
-elapsed_time = end_time - start_time  # Calculate the elapsed time
-print(f"Execution time: {elapsed_time:.4f} seconds")
