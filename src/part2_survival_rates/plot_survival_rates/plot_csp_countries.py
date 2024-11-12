@@ -4,11 +4,11 @@ import pandas as pd
 from src.part2_survival_rates.plot_survival_rates.setup_subplots import get_number_rows_and_columns, \
     setup_subplot_figure
 from src.part2_survival_rates.plot_survival_rates.plot_subplot import plot_survival_rate_country
-from src.part2_survival_rates.plot_survival_rates.get_statistical_parameters import get_statistical_parameters, \
+from src.part2_survival_rates.get_statistical_parameters import get_statistical_parameters, \
     get_statistical_parameters_of_each_country
-from src.part2_survival_rates.plot_survival_rates.get_function_values import get_weibull_function, \
+from src.part2_survival_rates.get_function_values import get_weibull_function, \
     get_weibull_and_normal_function
-from src.part2_survival_rates.plot_survival_rates.get_distribution_function_discrete_points import \
+from src.part2_survival_rates.get_distribution_function_discrete_points import \
     get_distribution_function_discrete_points
 from src.part2_survival_rates.plot_survival_rates.save_figure import save_figure
 

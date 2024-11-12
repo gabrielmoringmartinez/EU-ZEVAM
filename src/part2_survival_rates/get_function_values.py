@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import pandas as pd
 
 
 def get_weibull_function(gamma_variable, beta_variable):
@@ -13,12 +14,16 @@ def get_weibull_function(gamma_variable, beta_variable):
         Returns:
         - csp (list): A list of cumulative survival probability values for ages 1 to 45.
         """
+    # Extract scalar values if they are single-element Series
+    if isinstance(gamma_variable, pd.Series):
+        gamma_variable = gamma_variable.iloc[0]
+    if isinstance(beta_variable, pd.Series):
+        beta_variable = beta_variable.iloc[0]
     year_a = np.linspace(1, 45, 45)
     csp = []
     for x in year_a:
-        csp_value = np.exp(
-            -(x / gamma_variable) ** beta_variable * (math.gamma(1 + 1 / beta_variable)) ** beta_variable)
-        csp.append(float(csp_value))
+        csp_value = float(np.exp(-(x / gamma_variable) ** beta_variable * (math.gamma(1 + 1 / beta_variable)) ** beta_variable))
+        csp.append(csp_value)
     return csp
 
 
@@ -37,6 +42,16 @@ def get_weibull_and_normal_function(gamma_variable, beta_variable, k, mu, sigma)
        - csp (list): A list of cumulative survival probability values from the combined fitted
        Weibull and Gaussian distributions.
        """
+    if isinstance(gamma_variable, pd.Series):
+        gamma_variable = gamma_variable.iloc[0]
+    if isinstance(beta_variable, pd.Series):
+        beta_variable = beta_variable.iloc[0]
+    if isinstance(k, pd.Series):
+        k = k.iloc[0]
+    if isinstance(mu, pd.Series):
+        mu = mu.iloc[0]
+    if isinstance(sigma, pd.Series):
+        sigma = sigma.iloc[0]
     year_a = np.linspace(1, 45, 45)
     csp = []
     for x in year_a:
@@ -44,5 +59,5 @@ def get_weibull_and_normal_function(gamma_variable, beta_variable, k, mu, sigma)
         delta = k / (np.sqrt(np.pi * 2) * sigma)
         normal = delta * np.exp(-0.5 * ((x - mu) / sigma) ** 2)
         csp_value = weibull + normal
-        csp.append(float(csp_value))
+        csp.append(csp_value)
     return csp

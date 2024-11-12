@@ -71,7 +71,7 @@ def calculate_country_shares(data, year):
         - pd.DataFrame: A DataFrame with country labels and their respective shares of vehicle registrations.
         """
     # Step 1: Filter for the given year
-    data_year = data[data[time_dim] == year]
+    data_year = data[data[time_dim] == year].copy()
     # Step 2: Calculate the total registrations for the given year
     total_registrations_year = data_year['new vehicle registrations'].sum()
     # Step 3: Calculate the share of each country
