@@ -13,7 +13,11 @@ def calculate_csp_parameters(survival_rates, year):
             year (int): The year of the data of empirical survival rates.
 
         Returns:
-            DataFrame: Optimized CSP parameters per country.
+            tuple:
+                - DataFrame: Optimized CSP parameters per country, including the best-fit parameters and distribution
+                  type.
+                - dict: A dictionary where keys are distribution types ('Weibull' or 'WG'), and values are lists of
+                  countries.
         """
     bounds_weibull = [(5, 40), (2, 6)]
     k = [2, 100]
@@ -26,9 +30,8 @@ def calculate_csp_parameters(survival_rates, year):
                                                                                    survival_rates,
                                                                                    optimum_parameters_weibull)
     optimum_parameters_weibull_gaussian = select_optimal_type_of_distribution(optimum_parameters_weibull_gaussian)
-
-    optimum_parameters_weibull_gaussian.to_csv(f'outputs/2_1_optimum_parameters_csp_curves.csv', sep=';', index=False, decimal=',')
-    return optimum_parameters_weibull_gaussian
-
-
-
+    optimum_parameters_weibull_gaussian.to_csv(f'outputs/2_1_optimum_parameters_csp_curves.csv', sep=';', index=False,
+                                               decimal=',')
+    country_opt_dist_dict = {dist: optimum_parameters_weibull_gaussian.loc[optimum_parameters_weibull_gaussian['distribution'] == dist, 'geo country'].tolist()
+                             for dist in optimum_parameters_weibull_gaussian['distribution'].unique()}
+    return optimum_parameters_weibull_gaussian, country_opt_dist_dict
