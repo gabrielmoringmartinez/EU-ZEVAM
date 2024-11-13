@@ -4,7 +4,7 @@ from src.part3_stock_calculation.merge_survival_rates_with_registrations import 
 from src.part3_stock_calculation.compute_stock_data import compute_stock_values
 from src.part3_stock_calculation.select_optimum_distribution import select_optimum_distribution
 from src.part3_stock_calculation.cleanup_stock_data import cleanup_stock_data
-
+from src.part3_stock_calculation.compute_stock_shares import compute_stock_shares
 time_dim = 'time'
 registrations_dim = 'registrations by powertrain'
 merge_keys = ['geo country', time_dim]
@@ -45,11 +45,16 @@ def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_
     stock_data['stock'] = stock_data.apply(select_optimum_distribution, axis=1, optimal_distribution_dict=optimal_distribution_dict)
     stock_data = stock_data.rename(columns={time_dim: "year of first registration"})
 
-    # Step 6: Clean up unnecessary columns and save to CSV
+    # Step 6: Clean up unnecessary columns
     #stock_data.to_csv(f'outputs/stock_data_with_calculation_columns.csv', sep=';', index=False, decimal=',')
     stock_data = cleanup_stock_data(stock_data, columns_to_drop)
-    stock_data.to_csv(f'outputs/3_1_stock_data.csv', sep=';', index=False, decimal=',')
-    return stock_data
+
+    # Step 7:     Computes the share of stock for each powertrain by country and year.
+    stock_shares = compute_stock_shares(stock_data)
+
+    stock_data.to_csv(f'outputs/3_1_stock_data_including_vehicle_age.csv', sep=';', index=False, decimal=',')
+    stock_shares.to_csv(f'outputs/3_2_stock_shares.csv', sep=';', index=False, decimal=',')
+    return stock_data, stock_shares
 
 
 

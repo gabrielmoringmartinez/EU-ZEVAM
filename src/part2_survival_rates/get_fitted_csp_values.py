@@ -27,8 +27,6 @@ def get_fitted_csp_values(survival_rates, pdf_parameters):
                                                                       pdf_parameters, weibull_results, wg_results)
     fitted_csp_values = pd.merge(weibull_results, wg_results, on=['geo country', 'vehicle age'],
                                  suffixes=(' Weibull', ' WG'), how='inner')
-    print(fitted_csp_values)
-    print(pdf_parameters)
     fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[['geo country', 'distribution']], on = 'geo country')
     fitted_csp_values.to_csv(f'outputs/2_2_fitted_CSP_curves.csv', sep=';', index=False, decimal=',')
     return fitted_csp_values
