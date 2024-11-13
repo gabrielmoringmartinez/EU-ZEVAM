@@ -7,3 +7,4 @@ historical_registrations = pd.read_csv('inputs/1_2_A_2_new_registrations_data_pa
 registrations_eu_cam_scenario = pd.read_csv('inputs/1_3_new_registrations_2022_2050_cam_scenario.csv', delimiter=';', decimal=',')
 survival_rates_2021 = pd.read_csv('inputs/2_1_A_3_empirical_survival_rates_eu_countries_2021.csv', delimiter=';', decimal=',')
 stock_year = pd.read_csv('inputs/2_2_A_1_stock_year.csv', delimiter=';', decimal=',')
+actual_bev_registration_shares = pd.read_csv('inputs/4_eafo_bev_new_registration_shares_2000_2023.csv', delimiter=';', decimal=',')
