@@ -14,7 +14,7 @@ columns_to_drop = ['survival rate Weibull', 'survival rate WG', 'distribution', 
                    'stock_wg', 'new vehicle registrations', 'relative sales', registrations_dim]
 
 
-def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_years, historical_csp):
+def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_years, historical_csp, save_options=None):
     """
     Calculates stock data for each country over a specified range of years.
 
@@ -41,9 +41,11 @@ def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_
     stock_data = cleanup_stock_data(stock_data, columns_to_drop)
     stock_shares = compute_stock_shares(stock_data)
     stock_shares = calculate_eu_share(stock_shares, historical_csp, 'share')
-    stock_data.to_csv(f'outputs/3_1_stock_data_including_vehicle_age.csv', sep=';', index=False, decimal=',')
-    stock_shares.to_csv(f'outputs/3_2_stock_shares.csv', sep=';', index=False, decimal=',')
+    if save_options:
+        save_outputs(stock_data, stock_shares, save_options)
     return stock_data, stock_shares
+
+
 
 
 

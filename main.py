@@ -6,7 +6,7 @@ from src.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
 from src.part2_survival_rates.plot_survival_rates.get_csp_plots import get_csp_plots
 from src.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
 from src.part3_stock_calculation.calculate_stock import calculate_stock
-from src.part3_stock_calculation.input_data import stock_years, historical_csp
+from src.part3_stock_calculation.input_data import stock_years, historical_csp, save_options_stock
 from src.part4_validate_model.use_bev_actual_registrations import use_bev_actual_registrations
 
 registrations = calculate_registrations(historical_registrations, eu_countries_and_norway,
@@ -15,7 +15,7 @@ optimum_parameters_wg, optimal_distribution_dict = calculate_csp_parameters(surv
 fitted_csp_values = get_fitted_csp_values(survival_rates_2021, optimum_parameters_wg)
 get_csp_plots(survival_rates_2021, fitted_csp_values, optimum_parameters_wg, config_all, config_group)
 stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict, stock_years,
-                                             historical_csp)
+                                             historical_csp, save_options_stock)
 registrations_with_real_bev_shares = use_bev_actual_registrations(registrations, actual_bev_registration_shares)
 stock_values_real, stock_shares_real = calculate_stock(registrations_with_real_bev_shares, fitted_csp_values,
                                                        optimal_distribution_dict, stock_years, historical_csp)
