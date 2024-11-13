@@ -1,4 +1,9 @@
-import pandas as pd
+from src.part3_stock_calculation.repeat_csp_data_for_all_years import repeat_csp_data_for_all_years
+from src.part3_stock_calculation.calculate_year_of_first_registration import calculate_year_of_first_registration
+from src.part3_stock_calculation.merge_survival_rates_with_registrations import merge_survival_rates_with_registrations
+from src.part3_stock_calculation.compute_stock_data import compute_stock_values
+from src.part3_stock_calculation.select_optimum_distribution import select_optimum_distribution
+from src.part3_stock_calculation.cleanup_stock_data import cleanup_stock_data
 
 time_dim = 'time'
 registrations_dim = 'registrations by powertrain'
@@ -8,66 +13,52 @@ columns_to_drop = ['survival rate Weibull', 'survival rate WG', 'distribution', 
 
 
 def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_years):
-    survival_rates = repeat_data_for_years(csp_values, stock_years)
-    survival_rates = calculate_registration_year(survival_rates, time_dim)
+    """
+    Calculates stock data for each country over a specified range of years.
+
+    Parameters:
+        registrations (DataFrame): A DataFrame with vehicle registrations by powertrain, including historical
+        and projected data.
+        csp_values (DataFrame): DataFrame containing fitted CSP values for each country by vehicle age,
+        distribution model (Weibull and Weibull Gaussian), and distribution type.
+        optimal_distribution_dict (dict): Dictionary specifying the optimal distribution type per country.
+        stock_years (list): List with start and end year, specifying the range of years to expand data.
+
+    Returns:
+        DataFrame: Final stock data by country, powertrain and vehicle age with
+         calculation columns (unnecessary) columns removed.
+    """
+
+    # Step 1: Expand CSP data for all years in the specified range
+    survival_rates = repeat_csp_data_for_all_years(csp_values, stock_years)
+
+    # Step 2: Calculate the year of first registration
+    survival_rates = calculate_year_of_first_registration(survival_rates, time_dim)
+
+    # Step 3: Merge survival rates with registrations data
     stock_data = merge_survival_rates_with_registrations(survival_rates, registrations, merge_keys)
-    # Compute stock values based on Weibull and Weibull-Gaussian CSP values
+
+    # Step 4: Compute stock values based on Weibull and Weibull-Gaussian parameters
     stock_data = compute_stock_values(stock_data, registrations_dim)
-    # Stock based on the optimum distribution is obtained
-    stock_data['stock'] = stock_data.apply(select_column, axis=1, optimal_distribution_dict=optimal_distribution_dict)
+
+    # Step 5: Select the optimal distribution and assign it to the 'stock' column
+    stock_data['stock'] = stock_data.apply(select_optimum_distribution, axis=1, optimal_distribution_dict=optimal_distribution_dict)
     stock_data = stock_data.rename(columns={time_dim: "year of first registration"})
-    # Cleanup calculation columns before saving
+
+    # Step 6: Clean up unnecessary columns and save to CSV
     #stock_data.to_csv(f'outputs/stock_data_with_calculation_columns.csv', sep=';', index=False, decimal=',')
     stock_data = cleanup_stock_data(stock_data, columns_to_drop)
     stock_data.to_csv(f'outputs/3_1_stock_data.csv', sep=';', index=False, decimal=',')
+    return stock_data
 
 
-def repeat_data_for_years(original_df, stock_years):
-    """
-    Expands the original DataFrame to include each year in the specified range.
-    """
-    start_year, end_year = stock_years
-    years = pd.DataFrame({'stock_year': range(start_year, end_year + 1)})
-    result_df = original_df.merge(years, how='cross')
-    return result_df
 
 
-def select_column(row, **kwargs):
-    optimal_distribution_dict = kwargs.get('optimal_distribution_dict', {})  # Retrieve the opt_dist_dict from kwargs
-    if row['geo country'] in optimal_distribution_dict.get('Weibull', {}):
-        return row['stock_weibull']
-    elif row['geo country'] in optimal_distribution_dict.get('WG', {}):
-        return row['stock_wg']
-    else:
-        return None  # You can handle the case when the country is not in any key
 
 
-def calculate_registration_year(survival_rates, time_dimension, stock_year_col='stock_year', age_col='vehicle age'):
-    """
-    Calculates the registration year for each entry based on stock year and vehicle age.
-    """
-    survival_rates[time_dimension] = survival_rates[stock_year_col] - survival_rates[age_col] + 1
-    return survival_rates
 
 
-def merge_survival_rates_with_registrations(survival_rates_df, registrations_df, merge_keys):
-    """
-    Merges survival rates with vehicle registrations on specified keys.
-    """
-    return pd.merge(survival_rates_df, registrations_df, on=merge_keys, how='inner')
 
 
-def compute_stock_values(stock_df, registrations_dimension):
-    """
-    Computes stock values for Weibull and Weibull-Gaussian distributions.
-    """
-    stock_df['stock_weibull'] = stock_df['survival rate Weibull'] * stock_df[registrations_dimension]
-    stock_df['stock_wg'] = stock_df['survival rate WG'] * stock_df[registrations_dimension]
-    return stock_df
 
 
-def cleanup_stock_data(stock_data, drop_columns):
-    """
-    Drops unnecessary columns from the stock data.
-    """
-    return stock_data.drop(columns=drop_columns)
