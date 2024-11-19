@@ -1,8 +1,7 @@
 from src.part2_survival_rates.plot_survival_rates.plot_csp_countries import plot_csp_countries
 
 
-def plot_all_countries(pdf_parameters, survival_rates, fitted_csp_values, config, own_calculation=False, activate_weibull=1,
-                       activate_weibull_and_normal=1):
+def plot_all_countries(merged_df, config, columns_to_plot_dict, distribution_type):
     """
        Plots cumulative survival probability (CSP) data for all countries, optionally with Weibull and/or
        Weibull-Gaussian fits.
@@ -21,14 +20,12 @@ def plot_all_countries(pdf_parameters, survival_rates, fitted_csp_values, config
        """
     plot_params = config["plot_params"]
     file_info = config["file_info"]
-    country_names = survival_rates['geo country'].unique()
-    plot_csp_countries(survival_rates, fitted_csp_values, country_names, pdf_parameters, plot_params, file_info,
-                       activate_weibull, activate_weibull_and_normal)
+    country_names = merged_df['geo country'].unique()
+    plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type)
     return
 
 
-def plot_group_of_countries(pdf_parameters, survival_rates, fitted_csp_values, group_of_countries, config, own_calculation=False,
-                            activate_weibull=1, activate_weibull_and_normal=1):
+def plot_group_of_countries(merged_df, country_group, config, columns_to_plot_dict, distribution_type):
     """
       Plots CSP data for a specified group of countries, optionally with Weibull and/or Weibull-Gaussian fits.
 
@@ -46,12 +43,26 @@ def plot_group_of_countries(pdf_parameters, survival_rates, fitted_csp_values, g
       """
     plot_params = config["plot_params"]
     file_info = config["file_info"].copy()
-    country_names = survival_rates['geo country'].unique()
-    if group_of_countries == 1:
-        country_names = country_names[0:plot_params["number_of_countries_group"]]
-    else:
-        country_names = country_names[plot_params["number_of_countries_group"]:len(country_names)]
-    file_info["group_info"] = f'group{group_of_countries}_'
-    plot_csp_countries(survival_rates, fitted_csp_values, country_names, pdf_parameters, plot_params, file_info,
-                       activate_weibull, activate_weibull_and_normal)
+    country_names = merged_df['geo country'].unique()
+    country_names = get_country_group_names(country_names, country_group, plot_params["number_of_countries_group"])
+    file_info["group_info"] = f'group{country_group}_'
+    plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type)
     return
+
+
+def get_country_group_names(country_names, group_number, number_of_countries_group):
+    """
+    Selects country names based on the group number.
+
+    Parameters:
+    - merged_df (pd.DataFrame): The merged data frame containing country information.
+    - group_number (int): The group number (1 or 2).
+    - number_of_countries_group (int): Number of countries per group.
+
+    Returns:
+    - list: List of country names for the specified group.
+    """
+    if group_number == 1:
+        return country_names[:number_of_countries_group]
+    else:
+        return country_names[number_of_countries_group:]

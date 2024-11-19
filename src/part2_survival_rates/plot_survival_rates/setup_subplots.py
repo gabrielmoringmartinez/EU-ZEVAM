@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def get_number_rows_and_columns(number_of_countries):
+def get_number_rows_and_columns(number_of_countries, plot_params):
     """
         Determines the optimal number of rows and columns for plotting based on the number of countries.
 
@@ -13,8 +13,13 @@ def get_number_rows_and_columns(number_of_countries):
         Returns:
         - (int, int): Number of rows and columns for the plot grid.
         """
-    country_rows = math.ceil(np.sqrt(number_of_countries))  # Rows and columns are defined
-    country_columns = country_rows
+    default_num_rows = None
+    default_num_columns = None
+    country_rows = plot_params.get('num_rows', default_num_rows)  # Replace default_num_rows with a sensible default, e.g., 1
+    country_columns = plot_params.get('num_columns', default_num_columns)  # Replace default_num_columns with a sensible default, e.g., 1
+    if country_rows==None and country_columns==None:
+        country_rows = math.ceil(np.sqrt(number_of_countries))  # Rows and columns are defined
+        country_columns = country_rows
     return country_rows, country_columns
 
 
@@ -35,10 +40,11 @@ def setup_subplot_figure(plot_params):
     fig.subplots_adjust(hspace=plot_params["space_between_plots"], wspace=plot_params["space_between_plots"])
     fig.set_figheight(plot_params["figure_height"])
     fig.set_figwidth(plot_params["figure_width"])
-    plt.suptitle("Empirical cumulative survival probability (CSP) curves of year 2021",
-                 fontsize=plot_params["title_font"], fontweight="bold", y=plot_params["title_vertical_position"])
-    fig.text(0.5, plot_params["axis_title_vertical_position"], plot_params["x_label"], ha='center',
+    plt.suptitle(plot_params["title"], fontsize=plot_params["title_font"], fontweight="bold",
+                 y=plot_params["title_vertical_position"])
+    fig.text(0.5, plot_params["x_axis_title_vertical_position"], plot_params["x_label"], ha='center',
              fontsize=plot_params["axis_title_font"], fontweight="bold")
-    fig.text(plot_params["axis_title_vertical_position"], 0.5, plot_params["y_label"], va='center',
+    fig.text(plot_params["y_axis_title_horizontal_position"], 0.5, plot_params["y_label"], va='center',
              rotation='vertical', fontsize=plot_params["axis_title_font"], fontweight="bold")
+
     return fig

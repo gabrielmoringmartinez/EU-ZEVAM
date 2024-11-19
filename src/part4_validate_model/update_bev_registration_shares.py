@@ -1,0 +1,8 @@
+from src.part4_validate_model.use_bev_actual_values import use_bev_actual_values
+from src.part4_validate_model.update_other_powertrain_shares import update_other_powertrain_shares
+
+
+def update_bev_registration_shares_to_real_values(registrations, actual_bev_registration_shares):
+    registrations_with_real_bev_shares = use_bev_actual_values(registrations, actual_bev_registration_shares)
+    registrations_with_real_bev_shares = update_other_powertrain_shares(registrations_with_real_bev_shares)
+    return registrations_with_real_bev_shares

@@ -20,15 +20,13 @@ def plot_survival_rate_country(ax, label, x, y, country_name, plot_params, i):
         - None
         """
     ax.plot(x, y, '-o', markersize=plot_params["marker_size"], linewidth=plot_params["line_width"], label=label)
-    if i == 2:
-        ax.legend(fontsize=plot_params["legend_fontsize"])
     ax.set_title(country_name, fontsize=plot_params["title_fontsize"])
     plt.style.use('seaborn-v0_8-white')
     ax = plt.gca()
-    customize_axes(ax, plot_params["show_grid"])
+    customize_axes(ax, plot_params)
 
 
-def customize_axes(ax, show_grid):
+def customize_axes(ax, plot_params):
     """
     Customizes the grid, limits, and ticks for a given plot axis.
 
@@ -39,11 +37,17 @@ def customize_axes(ax, show_grid):
     Returns:
     - ax (plt.Axes): Customized axis object.
     """
-    ax.grid(show_grid)
-    ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1f'))
-    ax.set_xlim(0, 45)
-    ax.set_ylim(0, None)
+    ax.grid(plot_params["show_grid"])
+    if "share" in plot_params:
+        ax.yaxis.set_major_formatter(ticker.PercentFormatter(xmax=1, decimals=2))
+    else:
+        ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1f'))
+
+    ax.set_xlim(plot_params["x_lim"])
+    ax.set_ylim(plot_params["y_lim"])
     y_ticks = ax.get_yticks()
     ax.set_yticks([0] + y_ticks[y_ticks != 0])
     x_ticks = ax.get_xticks()
+    if "x_ticks" in plot_params:
+        plt.xticks(ticks=plot_params["x_ticks"])
     return ax

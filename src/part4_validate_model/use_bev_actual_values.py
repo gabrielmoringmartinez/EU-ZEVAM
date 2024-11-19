@@ -1,4 +1,4 @@
-def use_bev_actual_registrations(registrations, actual_bev_registrations, keys = ['geo country', 'time', 'powertrain'],
+def use_bev_actual_values(registrations, actual_bev_registrations, keys = ['geo country', 'time', 'powertrain'],
                                  column_to_update = 'relative sales'):
     """
     Updates the registrations with actual BEV registration values where rows match on the specified keys.
