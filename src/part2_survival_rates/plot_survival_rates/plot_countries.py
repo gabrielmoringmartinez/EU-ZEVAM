@@ -3,17 +3,13 @@ from src.part2_survival_rates.plot_survival_rates.plot_csp_countries import plot
 
 def plot_all_countries(merged_df, config, columns_to_plot_dict, distribution_type):
     """
-       Plots cumulative survival probability (CSP) data for all countries, optionally with Weibull and/or
-       Weibull-Gaussian fits.
+       Plots data for all countries, optionally with Weibull and/or Weibull-Gaussian fits.
 
        Parameters:
-       - pdf_parameters (pd.DataFrame): DataFrame containing the parameters for the Weibull and Gaussian distributions.
-        and Weibull Gaussian curves.
-       - survival_rates (pd.DataFrame): Data containing survival rates for each country.
+       - merged_df (pd.DataFrame): DataFrame containing columns to plot for all countries
        - config (dict): Dictionary containing configuration settings for the plot.
-       - own_calculation (bool): If True, indicates user calculation.
-       - activate_weibull (int): If 1, includes Weibull fit in the plot; 0 excludes it.
-       - activate_weibull_and_normal (int): If 1, includes Weibull-Gaussian fit in the plot; 0 excludes it.
+       - columns_to_plot_dict (dict): Name of the columns to be plot and its corresponding name in the legend graph
+       - distribution_type (string): It indicates the distribution type which is plot (None, Weibull, WG)
 
        Returns:
        - None
@@ -27,16 +23,14 @@ def plot_all_countries(merged_df, config, columns_to_plot_dict, distribution_typ
 
 def plot_group_of_countries(merged_df, country_group, config, columns_to_plot_dict, distribution_type):
     """
-      Plots CSP data for a specified group of countries, optionally with Weibull and/or Weibull-Gaussian fits.
+      Plots data for a specified group of countries, optionally with Weibull and/or Weibull-Gaussian fits.
 
       Parameters:
-      - pdf_parameters (pd.DataFrame): PDataFrame containing the parameters for the Weibull and Gaussian distributions.
-      - survival_rates (pd.DataFrame): Data containing survival rates for each country.
-      - group_of_countries (int): Group number of countries to be plotted (e.g., 1 or 2).
-      - config (dict): Dictionary containing configuration settings for the plot.
-      - own_calculation (bool): If True, indicates user calculation.
-      - activate_weibull (int): If 1, includes Weibull fit in the plot; 0 excludes it.
-      - activate_weibull_and_normal (int): If 1, includes Weibull-Gaussian fit in the plot; 0 excludes it.
+       - merged_df (pd.DataFrame): DataFrame containing columns to plot for all countries
+       - country_group (int): Group number of countries to be plotted (e.g., 1 or 2).
+       - config (dict): Dictionary containing configuration settings for the plot.
+       - columns_to_plot_dict (dict): Name of the columns to be plotted and its corresponding name in the legend graph
+       - distribution_type (string): It indicates the distribution type which is plot (None, Weibull, WG)
 
       Returns:
       - None
@@ -52,12 +46,12 @@ def plot_group_of_countries(merged_df, country_group, config, columns_to_plot_di
 
 def get_country_group_names(country_names, group_number, number_of_countries_group):
     """
-    Selects country names based on the group number.
+    Returns a subset of country names based on the specified group number.
 
-    Parameters:
-    - merged_df (pd.DataFrame): The merged data frame containing country information.
-    - group_number (int): The group number (1 or 2).
-    - number_of_countries_group (int): Number of countries per group.
+    Args:
+        country_names (list): A list of all country names.
+        group_number (int): The group number to select. Valid values are `1` (first group) or `2` (second group).
+        number_of_countries_group (int): The number of countries per group.
 
     Returns:
     - list: List of country names for the specified group.

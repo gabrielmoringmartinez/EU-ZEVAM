@@ -10,15 +10,14 @@ def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns
        and/or Weibull-Gaussian fits.
 
        Parameters:
-       - survival_rates (pd.DataFrame): Data containing survival rates for each country.
-       - fitted_csp_values (pd.DataFrame): DataFrame containing fitted CSP values for each country by vehicle age,
-       distribution model (Weibull and Weibull Gaussian), and distribution type.
-       - country_names (list): List of country names to be plotted.
-       - plot_params (dict): Dictionary containing the settings for the subplot, including font sizes,
+        - merged_df (pd.DataFrame): DataFrame containing columns to plot for all countries
+        - country_names (list): List of country names to be plotted.
+        - plot_params (dict): Dictionary containing the settings for the subplot, including font sizes,
                               spacing, figure size, and titles.
-       - file_info (dict): Dictionary containing file information, such as file name and save options.
-       - activate_weibull (int): If 1, includes Weibull fit in the plot; 0 excludes it.
-       - activate_weibull_and_normal (int): If 1, includes Weibull-Gaussian fit in the plot; 0 excludes it.
+        - file_info (dict): Dictionary containing file information, such as file name and save options.
+       - columns_to_plot_dict (dict): Name of the columns to be plotted and its corresponding name in the legend graph
+       - distribution_type (string): It indicates the distribution type which is plot (None, Weibull, WG)
+
        """
     country_rows, country_columns = get_number_rows_and_columns(len(country_names), plot_params)
     fig = setup_subplot_figure(plot_params)

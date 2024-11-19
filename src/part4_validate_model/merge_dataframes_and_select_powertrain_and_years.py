@@ -3,15 +3,16 @@ import pandas as pd
 
 def merge_dataframes_and_select_powertrain_and_years(df1, df2, powertrain=["BEV"], years=(2014, 2023)):
     """
-    Filters two DataFrames for specific conditions, merges them on their first three identical columns,
-    drops the 'stock' column, and renames 'share' in the second DataFrame to 'actual share'.
+    Filters two DataFrames by powertrain and year range, merges them on common columns,
+    and prepares the resulting DataFrame.
 
     Args:
-        df1 (pd.DataFrame): The first DataFrame containing vehicle data.
-        df2 (pd.DataFrame): The second DataFrame containing vehicle data.
+        df1 (pd.DataFrame): The first DataFrame containing model-generated data.
+        df2 (pd.DataFrame): The second DataFrame containing actual observed data.
 
     Returns:
-        pd.DataFrame: A merged DataFrame with the specified adjustments.
+        pd.DataFrame: merged and filtered DataFrame that includes both model and actual data
+                      for the specified powertrain and year range.
     """
     # Apply filtering conditions to both DataFrames
     df1 = df1[df1['powertrain'].isin(powertrain)]

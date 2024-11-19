@@ -6,13 +6,13 @@ def update_other_powertrain_shares(df):
     1. Setting 'relative sales' to 0 for excluded powertrains.
     2. Calculating the fraction of BEV and PHEV sales by 'geo country' and 'time'.
     3. Updating 'relative sales' for gasoline powertrain.
-    4. Calculating 'registrations by powertrain' based on updated 'relative sales'.
+    4. Calculating 'registrations by powertrain' absolute value based on updated 'relative sales'.
 
     Parameters:
-    - df (pd.DataFrame): The input DataFrame.
+    - df (pd.DataFrame): The registrations DataFrame.
 
     Returns:
-    - pd.DataFrame: Processed DataFrame.
+    - pd.DataFrame: Processed registrations DataFrame.
     """
     excluded_powertrains = ["CNG", "D-HEV", "Diesel", "FCEV", "G-HEV", "LPG"]
     # Step 1: Set 'relative sales' to 0 for excluded powertrains
