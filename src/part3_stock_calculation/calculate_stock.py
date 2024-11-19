@@ -6,6 +6,7 @@ from src.part3_stock_calculation.select_optimum_distribution import select_optim
 from src.part3_stock_calculation.cleanup_stock_data import cleanup_stock_data
 from src.part3_stock_calculation.compute_stock_shares import compute_stock_shares
 from src.part3_stock_calculation.calculate_eu_share.calculate_eu_share import calculate_eu_share
+from src.part3_stock_calculation.save_outputs import save_outputs
 
 time_dim = 'time'
 registrations_dim = 'registrations by powertrain'
