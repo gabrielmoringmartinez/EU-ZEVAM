@@ -5,7 +5,8 @@ from src.part4_validate_model.merge_dataframes_and_select_powertrain_and_years i
     merge_dataframes_and_select_powertrain_and_years
 from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
 from src.part4_validate_model.graph_inputs import config_validation_step1, config_validation_step2
-
+from src.part4_validate_model.calculate_rmse import calculate_rmse
+from src.part4_validate_model.rmse_inputs import config_rmse_validation_step1, config_rmse_validation_step2
 
 def compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_registration_shares,
                                            actual_bev_stock_shares, fitted_csp_values, optimal_distribution_dict,
@@ -42,4 +43,11 @@ def compare_model_and_actual_stock_results(registrations, stock_shares, actual_b
     # Validation Step 2: Compare original stock shares
     validation_step2_df = merge_dataframes_and_select_powertrain_and_years(stock_shares, actual_stock_shares_2014_2023)
     plot_all_countries(validation_step2_df, config_validation_step2, columns_to_plot, None)
+    calculate_rmse(validation_step1_df, config_rmse_validation_step1)
+    calculate_rmse(validation_step2_df, config_rmse_validation_step2)
     return
+
+
+
+
+
