@@ -26,5 +26,64 @@ compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_r
                                        actual_bev_stock_shares, fitted_csp_values, optimal_distribution_dict,
                                        stock_years, historical_csp)
 
+print(fitted_csp_values)
+
+
+import ast
+
+
+def replace_survival_rates_with_country(survival_rates, country_label):
+    # Selecting rows for the specific country label
+    country_data = survival_rates[survival_rates['geo country'] == country_label]
+    # Selecting survival rates for the specified country
+    country_survival_rates = country_data[['vehicle age', 'survival rate Weibull', 'survival rate WG', 'distribution']]
+    # Merge survival rates of the specified country with the original DataFrame for all countries
+    survival_rates_merged = pd.merge(survival_rates, country_survival_rates, on='vehicle age', suffixes=(f'_{country_label}', ''))
+    # Drop redundant columns
+    survival_rates_merged.drop(columns=[f'survival rate Weibull_{country_label}', f'survival rate WG_{country_label}', f'distribution_{country_label}'], inplace=True)
+
+    return survival_rates_merged
+
+
+def update_opt_dist(country, opt_dist):
+    weibull_countries = opt_dist['Weibull']
+    wg_countries = opt_dist['WG']
+    # Parse the string representations into lists
+    #weibull_countries = ast.literal_eval(weibull_countries)
+    #wg_countries = ast.literal_eval(wg_countries)
+    # Checking if the provided country is present in weibull_countries and wg_countries
+    if country in weibull_countries:
+        weibull_countries.extend(wg_countries)
+        wg_countries = []
+    elif country in wg_countries:
+        wg_countries.extend(weibull_countries)
+        weibull_countries = []
+    else:
+        weibull_countries = []
+        wg_countries = []
+
+    # Combine the two lists into a single dictionary variable
+    combined_countries = {
+        'Weibull': weibull_countries,
+        'WG': wg_countries
+    }
+
+    return combined_countries
+
+
+stock_shares_dict = {}
+
+countries_selected = ["Bulgaria", "Poland", "Italy", "Netherlands", "Germany", "Luxembourg"]
+for country in countries_selected:
+    updated_survival_rates = replace_survival_rates_with_country(fitted_csp_values.copy(), country)
+    updated_survival_rates.to_csv(f'outputs/updated_survival_rates{country}.csv', sep=';', index=False, decimal=',')
+    updated_opt_dist_dict = update_opt_dist(country, optimal_distribution_dict)
+    stock_values, stock_shares = calculate_stock(registrations, updated_survival_rates, updated_opt_dist_dict,
+                                                 stock_years, historical_csp)
+    print(stock_shares)
+    stock_shares_dict[country] = stock_shares
+
+print(stock_shares_dict)
+
 
 
