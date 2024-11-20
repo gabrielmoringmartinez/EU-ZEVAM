@@ -1,0 +1,12 @@
+geo country;gamma (Weibull);beta (Weibull);r squared (Weibull);delta (Import-Gaussian);mu (Import-Gaussian);sigma (Import-Gaussian);k (Import-Gaussian);r squared (Weibull and Import-Gaussian);distribution
+Austria;15,4;4,2;0,98;-1;-1;-1;-1;0;Weibull
+Denmark;16,7;3,5;0,9;-1;-1;-1;-1;0;Weibull
+Finland;22;2,9;0,99;-1;-1;-1;-1;0;Weibull
+France;15,2;4,2;0,99;-1;-1;-1;-1;0;Weibull
+Germany;13,7;3,1;0,89;-1;-1;-1;-1;0;Weibull
+Ireland;13;4;0,95;-1;-1;-1;-1;0;Weibull
+Italy;14,1;4;0,99;-1;-1;-1;-1;0;Weibull
+Netherlands;15,1;3,7;0,99;-1;-1;-1;-1;0;Weibull
+Spain;18;4,7;0,92;-1;-1;-1;-1;0;Weibull
+Switzerland;14,1;3,4;0,98;-1;-1;-1;-1;0;Weibull
+United Kingdom;13,5;3,9;0,96;-1;-1;-1;-1;0;Weibull

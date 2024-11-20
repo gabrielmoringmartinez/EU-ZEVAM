@@ -10,3 +10,5 @@ survival_rates_2021 = pd.read_csv('inputs/2_1_A_3_empirical_survival_rates_eu_co
 stock_year = pd.read_csv('inputs/2_2_A_1_stock_year.csv', delimiter=';', decimal=',')
 actual_bev_registration_shares = pd.read_csv('inputs/4_1_eafo_ev_new_registration_shares.csv', delimiter=';', decimal=',')
 actual_bev_stock_shares = pd.read_csv('inputs/4_2_eafo_ev_stock_shares.csv', delimiter=';', decimal=',')
+optimum_parameters_2008 = pd.read_csv('inputs/5_1_oguchi_2008_survival_rate_parameters.csv', delimiter=';', decimal=',')
+survival_rates_2016 = pd.read_csv('inputs/5_2_held_2016_survival_rates.csv', delimiter=';', decimal=',')

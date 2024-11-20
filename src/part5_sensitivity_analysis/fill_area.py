@@ -1,6 +1,4 @@
 def fill_area(ax, df, x_label, y_label):
-    print(x_label)
-    print(y_label)
     ax.fill_between(
         df[x_label], df[y_label[0]], df[y_label[1]], where=(df[y_label[0]] > df[y_label[1]]),
         interpolate=True, color="red", alpha=0.25)
