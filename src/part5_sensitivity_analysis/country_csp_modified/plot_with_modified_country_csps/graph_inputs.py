@@ -28,7 +28,7 @@ historical_csp ='No'
 file_info = {
     "save_figure": True,
     "folder": "outputs/figures/",
-    "main title": "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scemario",
+    "main title": "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_country_csps",
     "additional_info": '',
     "group_info": '',  # Can update this dynamically if needed
     "comparison_type": '',  # Optional: e.g., 'comparison' for side-by-side analyses
@@ -64,10 +64,11 @@ base_plot_params = {
     "x_axis_title_vertical_position": X_AXIS_TITLE_VERTICAL_POSITION,
     "y_axis_title_horizontal_position": Y_AXIS_TITLE_HORIZONTAL_POSITION,
     # Legend parameters
-    "legend_show": False,
+    "legend_show": True,
     "legend_loc": "lower right",
-    "legend_bbox_to_anchor": (0.91, 0.235),  # Adjust to place the legend outside the figure
+    "legend_bbox_to_anchor": (0.97, 0.20),  # Adjust to place the legend outside the figure
     "legend_fontsize": 40,
+    "fill_between": True,
 }
 
 # Configurations for "all countries" and "grouped countries"

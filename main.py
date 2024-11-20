@@ -13,7 +13,7 @@ from src.part3_stock_calculation.plot_stock.plot_bev_stock_share import plot_bev
 from src.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
 from src.part4_validate_model.compare_model_and_actual_stock_results import compare_model_and_actual_stock_results
 from src.part5_sensitivity_analysis.country_csp_modified.plot_with_modified_country_csps.graph_inputs import config_sensitivity_1
-from src.part5_sensitivity_analysis.country_csp_modified.do_sensitivity_anaylsis_with_modified_country_csps import do_sensitivity_analysis_with_modfied_country_csps
+from src.part5_sensitivity_analysis.country_csp_modified.do_sensitivity_anaylsis_with_modified_country_csps import do_sensitivity_analysis_with_modified_country_csps
 registrations = calculate_registrations(historical_registrations, eu_countries_and_norway,
                                         registrations_eu_cam_scenario, clusters, registration_shares_by_cluster)
 optimum_parameters_wg, optimal_distribution_dict = calculate_csp_parameters(survival_rates_2021, 2021)
@@ -26,7 +26,7 @@ plot_bev_stock_shares(stock_shares, config_bev_reference_scenario)
 compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_registration_shares,
                                        actual_bev_stock_shares, fitted_csp_values, optimal_distribution_dict,
                                        stock_years, historical_csp)
-do_sensitivity_analysis_with_modfied_country_csps(registrations, stock_shares, fitted_csp_values,
+do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, fitted_csp_values,
                                                   optimal_distribution_dict, config_sensitivity_1)
 
 

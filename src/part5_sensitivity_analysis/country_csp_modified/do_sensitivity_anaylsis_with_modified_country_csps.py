@@ -1,5 +1,4 @@
 from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
-from src.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
 from src.part3_stock_calculation.calculate_stock import calculate_stock
 from src.part5_sensitivity_analysis.country_adjectives import country_adjectives
 from src.part5_sensitivity_analysis.country_csp_modified.replace_survival_rates_with_country_specific_csp import replace_survival_rates_with_country_specific_csp
@@ -7,7 +6,7 @@ from src.part5_sensitivity_analysis.country_csp_modified.update_optimal_distribu
 from src.part5_sensitivity_analysis.country_csp_modified.generate_columns_to_plot import generate_columns_to_plot
 
 
-def do_sensitivity_analysis_with_modfied_country_csps(registrations, stock_shares, survival_rates,
+def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, survival_rates,
                                                       optimal_distribution_dict, config):
     plot_params = config["plot_params"]
     columns_to_plot = {"share": "Share"}
@@ -27,4 +26,4 @@ def do_sensitivity_analysis_with_modfied_country_csps(registrations, stock_share
                                                 how='outer')
         columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params["countries_selected"], country_adjectives)
     bev_stock_shares = all_shares_df[all_shares_df['powertrain'] == 'BEV']
-    plot_all_countries(bev_stock_shares, config_bev_reference_scenario, columns_to_plot, None)
+    plot_all_countries(bev_stock_shares, config, columns_to_plot, None)

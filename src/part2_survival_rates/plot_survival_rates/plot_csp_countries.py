@@ -2,7 +2,7 @@ from src.part2_survival_rates.plot_survival_rates.setup_subplots import get_numb
     setup_subplot_figure
 from src.part2_survival_rates.plot_survival_rates.plot_subplot import plot_survival_rate_country
 from src.part2_survival_rates.plot_survival_rates.save_figure import save_figure
-
+from src.part5_sensitivity_analysis.fill_area import fill_area
 
 def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type):
     """
@@ -28,6 +28,8 @@ def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns
         for column, legend in columns_to_plot_dict.items():
             plot_survival_rate_country(ax, legend, merged_df_country[plot_params["x_column"]],
                                        merged_df_country[column], country_name, plot_params, i)
+        if plot_params["fill_between"]:
+            ax = fill_area(ax, merged_df_country, plot_params["x_column"], list(columns_to_plot_dict.keys()))
 
         i = i + 1
 
