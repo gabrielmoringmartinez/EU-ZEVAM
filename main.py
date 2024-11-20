@@ -29,7 +29,8 @@ compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_r
 print(fitted_csp_values)
 
 
-import ast
+from src.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
+from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
 
 
 def replace_survival_rates_with_country(survival_rates, country_label):
@@ -71,19 +72,32 @@ def update_opt_dist(country, opt_dist):
     return combined_countries
 
 
-stock_shares_dict = {}
-
+all_shares_df = stock_shares
+columns_to_plot = {"share": "Share"}
 countries_selected = ["Bulgaria", "Poland", "Italy", "Netherlands", "Germany", "Luxembourg"]
+from src.part5_sensitivity_analysis.country_adjectives import country_adjectives
 for country in countries_selected:
     updated_survival_rates = replace_survival_rates_with_country(fitted_csp_values.copy(), country)
-    updated_survival_rates.to_csv(f'outputs/updated_survival_rates{country}.csv', sep=';', index=False, decimal=',')
     updated_opt_dist_dict = update_opt_dist(country, optimal_distribution_dict)
     stock_values, stock_shares = calculate_stock(registrations, updated_survival_rates, updated_opt_dist_dict,
                                                  stock_years, historical_csp)
-    print(stock_shares)
-    stock_shares_dict[country] = stock_shares
+    stock_shares_country = stock_shares.copy()
+    stock_shares_country = stock_shares_country[['geo country', 'stock_year', 'powertrain', 'share']]
+    stock_shares_country.rename(columns={'share': f'share_{country}'}, inplace=True)
 
-print(stock_shares_dict)
+    # Merge with the main DataFrame
+    if all_shares_df is None:
+        all_shares_df = stock_shares_country
+    else:
+        all_shares_df = all_shares_df.merge(stock_shares_country,
+                                            on=['geo country', 'stock_year', 'powertrain'],
+                                            how='outer')
+    column_name = f"share_{country}"
+    columns_to_plot[column_name] = f"Share with {country_adjectives[country]} CSP"
 
-
+all_shares_df.to_csv('outputs/combined_stock_shares.csv', sep=';', index=False, decimal=',')
+print(all_shares_df)
+print(columns_to_plot)
+bev_stock_shares = all_shares_df[all_shares_df['powertrain'] == 'BEV']
+plot_all_countries(bev_stock_shares, config_bev_reference_scenario, columns_to_plot, None)
 
