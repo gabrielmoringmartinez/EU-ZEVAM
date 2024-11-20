@@ -39,7 +39,7 @@ def customize_axes(ax, plot_params):
     """
     ax.grid(plot_params["show_grid"])
     if "share" in plot_params:
-        ax.yaxis.set_major_formatter(ticker.PercentFormatter(xmax=1, decimals=2))
+        ax.yaxis.set_major_formatter(ticker.PercentFormatter(xmax=1, decimals=plot_params["number_of_decimals"]))
     else:
         ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%.1f'))
 

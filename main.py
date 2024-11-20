@@ -9,6 +9,8 @@ from src.part2_survival_rates.plot_survival_rates.get_csp_plots import get_csp_p
 from src.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
 from src.part3_stock_calculation.calculate_stock import calculate_stock
 from src.part3_stock_calculation.input_data import stock_years, historical_csp, save_options_stock
+from src.part3_stock_calculation.plot_stock.plot_bev_stock_share import plot_bev_stock_shares
+from src.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
 from src.part4_validate_model.compare_model_and_actual_stock_results import compare_model_and_actual_stock_results
 
 registrations = calculate_registrations(historical_registrations, eu_countries_and_norway,
@@ -19,6 +21,7 @@ fitted_csp_values = get_fitted_csp_values(survival_rates_2021, optimum_parameter
 get_csp_plots(survival_rates_2021, fitted_csp_values, optimum_parameters_wg, config_all, config_group)
 stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict, stock_years,
                                              historical_csp, save_options_stock)
+plot_bev_stock_shares(stock_shares, config_bev_reference_scenario)
 compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_registration_shares,
                                        actual_bev_stock_shares, fitted_csp_values, optimal_distribution_dict,
                                        stock_years, historical_csp)

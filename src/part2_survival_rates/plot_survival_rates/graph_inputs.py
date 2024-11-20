@@ -1,7 +1,6 @@
 # Define your configuration dictionary
 TITLE = "Empirical cumulative survival probability (CSP) curves of year 2021"
 X_COLUMN = "vehicle age"
-Y_COLUMN = "survival rate"
 X_LABEL = "Vehicle age"
 Y_LABEL = "Cumulative Survival Probability (CSP)"
 X_LIM = (0, 45)
@@ -41,7 +40,6 @@ base_plot_params = {
     "show_grid": True,
     "title": TITLE,
     "x_column": X_COLUMN,
-    "y_column": Y_COLUMN,
     "x_label": X_LABEL,
     "y_label": Y_LABEL,
     "x_lim": X_LIM,
