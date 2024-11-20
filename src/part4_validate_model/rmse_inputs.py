@@ -1,7 +1,7 @@
 POWERTRAINS = [["BEV"]]
 TIMEFRAMES = [[2014, 2023]]
-title_step1 = "validation_step_1_actual_new_bev_registrations_and_empirical_csp_curves_all_countries"
-title_step2 = "validation_step_2_estimated_new_bev_registrations_and_empirical_csp_curves_all_countries"
+title_step1 = "4_1_rmse_validation_step_1_actual_new_bev_registrations_and_empirical_csp_curves_all_countries"
+title_step2 = "4_2_rmse_validation_step_2_estimated_new_bev_registrations_and_empirical_csp_curves_all_countries"
 # First dictionary for STEP1
 config_rmse_validation_step1 = {
     "powertrains": POWERTRAINS,
