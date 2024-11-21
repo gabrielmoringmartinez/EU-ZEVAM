@@ -66,8 +66,8 @@ base_plot_params = {
     # Legend parameters
     "legend_show": True,
     "legend_loc": "lower right",
-    "legend_bbox_to_anchor": (0.97, 0.20),  # Adjust to place the legend outside the figure
-    "legend_fontsize": 40,
+    "legend_bbox_to_anchor": (0.97, 0.197),  # Adjust to place the legend outside the figure
+    "legend_fontsize": 38,
     "fill_between": 'country csp',
 }
 
