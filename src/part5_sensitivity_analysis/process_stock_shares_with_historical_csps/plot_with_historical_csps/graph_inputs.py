@@ -65,9 +65,9 @@ base_plot_params = {
     # Legend parameters
     "legend_show": True,
     "legend_loc": "lower center",
-    "legend_bbox_to_anchor": (0.5, 0.15),  # Adjust to place the legend outside the figure
+    "legend_bbox_to_anchor": (0.5, 0.12),  # Adjust to place the legend outside the figure
     "legend_fontsize": 40,
-    "fill_between": True,
+    "fill_between": 'historical csp',
 }
 
 # Configurations for "all countries" and "grouped countries"
