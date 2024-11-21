@@ -1,6 +1,6 @@
 from src.part3_stock_calculation.compute_csp_values_and_compute_stock import compute_csp_values_and_compute_stock
-from src.part5_sensitivity_analysis.process_stock_shares_with_historical_csps.calculate_2008_survival_rates import calculate_2008_survival_rates
-from src.part5_sensitivity_analysis.process_stock_shares_with_historical_csps.merge_stock_shares import merge_stock_shares
+from src.part5_sensitivity_analysis.historical_csp_modified.calculate_2008_survival_rates import calculate_2008_survival_rates
+from src.part5_sensitivity_analysis.historical_csp_modified.merge_stock_shares import merge_stock_shares
 
 
 def process_stock_shares_with_historical_csps(registrations, survival_rates_2021, survival_rates_2016, stock_years,
@@ -25,8 +25,8 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
     stock_shares_2008.rename(columns={'share': f'share_{2008}'}, inplace=True)
 
     # Merge all stock shares into one DataFrame
-    all_shares_df = None
+    stock_shares_df = None
     for stock_shares in [stock_shares_2021, stock_shares_2016, stock_shares_2008]:
-        all_shares_df = merge_stock_shares(all_shares_df, stock_shares)
+        stock_shares_df = merge_stock_shares(stock_shares_df, stock_shares)
 
-    return all_shares_df
+    return stock_shares_df

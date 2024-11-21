@@ -25,7 +25,10 @@ def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns
     for country_name in country_names:
         ax = fig.add_subplot(country_rows, country_columns, i)
         merged_df_country = merged_df[merged_df["geo country"] == country_name]
+        print(merged_df_country.columns)
+        print(merged_df_country)
         for column, legend in columns_to_plot_dict.items():
+            print(column)
             plot_survival_rate_country(ax, legend, merged_df_country[plot_params["x_column"]],
                                        merged_df_country[column], country_name, plot_params, i)
         if plot_params["fill_between"] == 'country csp':
