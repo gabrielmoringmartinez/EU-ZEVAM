@@ -28,8 +28,6 @@ compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_r
                                        stock_years, historical_csp)
 do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates_2021, stock_years,
                                                       optimum_parameters_wg, optimal_distribution_dict)
-print('FINISH')
-
 do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, fitted_csp_values,
                                                    optimal_distribution_dict, config_sensitivity_1)
 do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021, survival_rates_2016,
