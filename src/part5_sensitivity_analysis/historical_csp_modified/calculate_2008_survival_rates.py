@@ -1,6 +1,6 @@
 from src.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
-from src.part3_stock_calculation.calculate_stock import calculate_stock
-from src.part3_stock_calculation.input_data import stock_years, historical_csp, save_options_stock
+from src.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
+from src.part3_stock_calculation.calculate_stock.input_data import stock_years, historical_csp
 
 
 def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, optimal_distribution_dict, registrations):

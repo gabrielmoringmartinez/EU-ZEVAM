@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from src.part3_stock_calculation.input_data import eu_country_groups
+from src.part3_stock_calculation.calculate_stock.input_data import eu_country_groups
 
 
 def add_eu_stock_share(stock_share, share_label, eu_region):

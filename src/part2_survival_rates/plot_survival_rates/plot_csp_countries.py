@@ -2,7 +2,7 @@ from src.part2_survival_rates.plot_survival_rates.setup_subplots import get_numb
     setup_subplot_figure
 from src.part2_survival_rates.plot_survival_rates.plot_subplot import plot_survival_rate_country
 from src.part2_survival_rates.plot_survival_rates.save_figure import save_figure
-from src.part5_sensitivity_analysis.fill_area import fill_area, fill_area_historical_values, fill_area_increase_decrease
+from src.part2_survival_rates.plot_survival_rates.fill_area import fill_area, fill_area_historical_values, fill_area_increase_decrease
 
 def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type):
     """

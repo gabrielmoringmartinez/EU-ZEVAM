@@ -1,5 +1,5 @@
 from src.part4_validate_model.update_bev_registration_shares import update_bev_registration_shares_with_real_values
-from src.part3_stock_calculation.calculate_stock import calculate_stock
+from src.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
 from src.part4_validate_model.use_bev_actual_values import use_bev_actual_values
 from src.part4_validate_model.merge_dataframes_and_select_powertrain_and_years import \
     merge_dataframes_and_select_powertrain_and_years
@@ -7,10 +7,9 @@ from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all
 from src.part4_validate_model.graph_inputs import config_validation_step1, config_validation_step2
 from src.part4_validate_model.calculate_rmse import calculate_rmse
 from src.part4_validate_model.rmse_inputs import config_rmse_validation_step1, config_rmse_validation_step2
+from src.part3_stock_calculation.calculate_stock.input_data import stock_years, historical_csp
 
-def compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_registration_shares,
-                                           actual_bev_stock_shares, fitted_csp_values, optimal_distribution_dict,
-                                           stock_years, historical_csp):
+def compare_model_and_actual_stock_results(data, calculated_data):
     """
         Compares model results with actual stock results and plots the comparison.
 
@@ -26,6 +25,13 @@ def compare_model_and_actual_stock_results(registrations, stock_shares, actual_b
             stock_years (list): List with start and end year, specifying the range of years to expand data.
             historical_csp (string): It indicates if 2021 csp data is used or a certain older year
     """
+    registrations = calculated_data["registrations"]
+    stock_shares = calculated_data["stock_shares"]
+    fitted_csp_values = calculated_data["fitted_csp_values"]
+    optimal_distribution_dict = calculated_data["optimal_distribution_dict"]
+    actual_bev_registration_shares = data["actual_bev_registration_shares"]
+    actual_bev_stock_shares = data["actual_bev_stock_shares"]
+
     registrations_with_real_bev_shares = update_bev_registration_shares_with_real_values(registrations,
                                                                                        actual_bev_registration_shares)
     stock_values_with_real_registrations, stock_shares_with_real_registrations = calculate_stock\
