@@ -6,6 +6,7 @@ from src.part5_sensitivity_analysis.country_csp_modified.update_optimal_distribu
 from src.part5_sensitivity_analysis.country_csp_modified.generate_columns_to_plot import generate_columns_to_plot
 from src.part5_sensitivity_analysis.update_stock_shares import update_stock_shares
 
+
 def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, survival_rates,
                                                       optimal_distribution_dict, config):
     plot_params = config["plot_params"]
@@ -18,5 +19,5 @@ def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shar
                                                      plot_params["stock_years"], plot_params["historical_csp"])
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, country)
         columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params["countries_selected"], country_adjectives)
-    bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == 'BEV']
+    bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == plot_params["powertrain_to_plot"]]
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)

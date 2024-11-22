@@ -10,12 +10,13 @@ from src.part3_stock_calculation.input_data import stock_years, historical_csp, 
 from src.part3_stock_calculation.plot_stock.plot_bev_stock_share import plot_bev_stock_shares
 from src.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
 from src.part4_validate_model.compare_model_and_actual_stock_results import compare_model_and_actual_stock_results
-from src.part5_sensitivity_analysis.country_csp_modified.plot_with_modified_country_csps.graph_inputs import config_sensitivity_1
 from src.part5_sensitivity_analysis.country_csp_modified.do_sensitivity_anaylsis_with_modified_country_csps import do_sensitivity_analysis_with_modified_country_csps
 from src.part5_sensitivity_analysis.historical_csp_modified.do_sensitivity_analysis_with_historical_country_csps import do_sensitivity_analysis_with_historical_country_csps
 from src.part5_sensitivity_analysis.relative_increase_decrease_csp_modified.do_sensitivity_analysis_with_increased_decreased_csps import do_sensitivity_analysis_with_increased_decreased_csps
-from src.part5_sensitivity_analysis.country_registrations_modified.plot_with_modified_registrations.graph_inputs import config_sensitivity_4
 from src.part5_sensitivity_analysis.country_registrations_modified.do_sensitivity_analysis_with_modified_country_registrations import do_sensitivity_analysis_with_modified_country_registrations
+from src.part5_sensitivity_analysis.graph_inputs import config_sensitivity_1, config_sensitivity_2, config_sensitivity_3, config_sensitivity_4
+
+
 registrations = calculate_registrations(historical_registrations, eu_countries_and_norway,
                                         registrations_eu_cam_scenario, clusters, registration_shares_by_cluster)
 survival_rates_2021 = calculate_empirical_survival_rates(stock_by_age_2021, historical_registrations, stock_year)
@@ -30,8 +31,8 @@ compare_model_and_actual_stock_results(registrations, stock_shares, actual_bev_r
 do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, fitted_csp_values,
                                                    optimal_distribution_dict, config_sensitivity_1)
 do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021, survival_rates_2016,
-                                                     stock_years, optimum_parameters_2008, optimal_distribution_dict)
+                                                     stock_years, optimum_parameters_2008, optimal_distribution_dict, config_sensitivity_2)
 do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates_2021, stock_years,
-                                                      optimum_parameters_wg, optimal_distribution_dict)
+                                                      optimum_parameters_wg, optimal_distribution_dict, config_sensitivity_3)
 do_sensitivity_analysis_with_modified_country_registrations(registrations, stock_shares, fitted_csp_values,
                                                             optimal_distribution_dict, config_sensitivity_4)

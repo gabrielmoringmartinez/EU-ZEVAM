@@ -17,5 +17,5 @@ def do_sensitivity_analysis_with_modified_country_registrations(registrations, s
                                                      plot_params["stock_years"], plot_params["historical_csp"])
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, country)
         columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params["countries_selected"], country_adjectives)
-    bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == 'BEV']
+    bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == plot_params["powertrain_to_plot"]]
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)
