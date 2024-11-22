@@ -8,11 +8,11 @@ def do_sensitivity_analysis_with_historical_country_csps(registrations, survival
                                                          stock_years, optimum_parameters_2008,
                                                          optimal_distribution_dict, config):
     plot_params = config["plot_params"]
+    columns_to_plot = {}
     stock_shares_df = process_stock_shares_with_historical_csps(registrations, survival_rates_2021, survival_rates_2016,
                                                               stock_years, optimum_parameters_2008,
                                                               optimal_distribution_dict)
     bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == plot_params["powertrain_to_plot"]]
-    columns_to_plot = {}
     columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params["years_selected"])
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)
 

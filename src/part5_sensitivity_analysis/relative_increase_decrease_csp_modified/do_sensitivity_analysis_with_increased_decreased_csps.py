@@ -7,18 +7,33 @@ from src.part5_sensitivity_analysis.update_stock_shares import update_stock_shar
 
 def do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates, stock_years, optimum_parameters_wg, optimal_distribution_dict, config):
     plot_params = config["plot_params"]
+    columns_to_plot = {}
     stock_shares_df = None
     for percentage in plot_params["percentages_selected"]:
-        optimum_parameters = optimum_parameters_wg.copy()
-        percentage_value = 1 + percentage
-        optimum_parameters["gamma (Weibull)"] = optimum_parameters["gamma (Weibull)"] * percentage_value
-        optimum_parameters["mu (Import-Gaussian)"] = optimum_parameters["mu (Import-Gaussian)"] * percentage_value
-        fitted_csp_values = get_fitted_csp_values(survival_rates, optimum_parameters, True)
+        adjusted_parameters = modify_csps(optimum_parameters_wg, percentage)
+        fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, True)
         stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict,
                                                      stock_years, 'non-historical_csp')
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, percentage)
     bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == plot_params["powertrain_to_plot"]]
-    columns_to_plot = {}
     columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params["percentages_selected"])
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)
     return
+
+
+def modify_csps(optimum_parameters, percentage):
+    """
+    Adjusts the optimum parameters based on the given percentage.
+
+    Args:
+        base_parameters (dict): A dictionary containing the base optimum parameters.
+        percentage (float): The percentage adjustment (e.g., -0.2 for a 20% decrease).
+
+    Returns:
+        dict: A copy of the adjusted optimum parameters.
+    """
+    adjusted_parameters = optimum_parameters.copy()
+    percentage_value = 1 + percentage
+    adjusted_parameters["gamma (Weibull)"] *= percentage_value
+    adjusted_parameters["mu (Import-Gaussian)"] *= percentage_value
+    return adjusted_parameters

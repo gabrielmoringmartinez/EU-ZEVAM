@@ -13,7 +13,7 @@ def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shar
     columns_to_plot = {"share": "Share"}
     stock_shares_df = stock_shares
     for country in plot_params["countries_selected"]:
-        updated_survival_rates = replace_survival_rates_with_country_specific_csp(survival_rates.copy(), country)
+        updated_survival_rates = replace_survival_rates_with_country_specific_csp(survival_rates, country)
         updated_opt_dist_dict = update_optimal_distribution_based_on_country_csp(country, optimal_distribution_dict)
         stock_values, stock_shares = calculate_stock(registrations, updated_survival_rates, updated_opt_dist_dict,
                                                      plot_params["stock_years"], plot_params["historical_csp"])
