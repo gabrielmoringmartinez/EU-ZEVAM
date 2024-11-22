@@ -1,6 +1,6 @@
 from src.part3_stock_calculation.compute_csp_values_and_compute_stock import compute_csp_values_and_compute_stock
 from src.part5_sensitivity_analysis.historical_csp_modified.calculate_2008_survival_rates import calculate_2008_survival_rates
-from src.part5_sensitivity_analysis.historical_csp_modified.merge_stock_shares import merge_stock_shares
+from src.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
 
 
 def process_stock_shares_with_historical_csps(registrations, survival_rates_2021, survival_rates_2016, stock_years,

@@ -11,8 +11,8 @@ def merge_stock_shares(all_shares_df, stock_shares):
         pd.DataFrame: Updated DataFrame containing merged stock shares.
     """
     # Ensure stock_shares only contains relevant columns
-    stock_shares = stock_shares.drop(columns=['stock'])
-
+    if 'stock' in stock_shares.columns:
+        stock_shares = stock_shares.drop(columns=['stock'])
     # If all_shares_df is None, initialize it with stock_shares
     if all_shares_df is None:
         all_shares_df = stock_shares
