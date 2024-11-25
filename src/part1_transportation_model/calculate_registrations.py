@@ -124,10 +124,10 @@ def combine_shares_and_absolute_registrations(country_registrations, powertrain_
                                       on='geo country', how='left')
     # The absolute registrations for all EU countries and the powertrain shares estimated for each cluster are combined
     registrations = pd.merge(absolute_registrations, powertrain_share_registrations
-    [['time', 'cluster', 'powertrain', 'relative sales']], on=['time', 'cluster'], how='left')
+    [[time_dim, 'cluster', 'powertrain', 'relative sales']], on=[time_dim, 'cluster'], how='left')
     # Sales by powertrain, vehicle size, year and country are obtained
     registrations['registrations by powertrain'] = (registrations['new vehicle registrations']
                                                     * registrations['relative sales'])
     # Sales are saved and defined by scenario
-    registrations = registrations.sort_values(by=['geo country', 'time', 'powertrain'])
+    registrations = registrations.sort_values(by=['geo country', time_dim, 'powertrain'])
     return registrations

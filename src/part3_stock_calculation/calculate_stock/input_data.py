@@ -10,6 +10,7 @@ eu_country_groups = {
 }
 
 stock_years = [2014, 2050]
+csp_data_ref_year = 2021
 historical_csp ='No'
 
 save_options_stock = {

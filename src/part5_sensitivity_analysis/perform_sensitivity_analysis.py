@@ -1,6 +1,3 @@
-# Inputs
-from src.part5_sensitivity_analysis.graph_inputs import config_sensitivity_1, config_sensitivity_2, \
-    config_sensitivity_3, config_sensitivity_4
 # Functions
 from src.part5_sensitivity_analysis.country_csp_modified import do_sensitivity_analysis_with_modified_country_csps
 from src.part5_sensitivity_analysis.country_registrations_modified import do_sensitivity_analysis_with_modified_country_registrations
@@ -8,7 +5,7 @@ from src.part5_sensitivity_analysis.historical_csp_modified import do_sensitivit
 from src.part5_sensitivity_analysis.relative_increase_decrease_csp_modified import do_sensitivity_analysis_with_increased_decreased_csps
 from src.part3_stock_calculation.calculate_stock.input_data import stock_years
 
-def perform_sensitivity_analysis(data, calculated_data):
+def perform_sensitivity_analysis(data, calculated_data, inputs):
     # Extract the values from the calculated_data dictionary
     registrations = calculated_data["registrations"]
     stock_shares = calculated_data["stock_shares"]
@@ -17,12 +14,12 @@ def perform_sensitivity_analysis(data, calculated_data):
     optimum_parameters_wg = calculated_data["optimum_parameters_wg"]
     survival_rates_2021 = calculated_data["survival_rates_2021"]
     do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, fitted_csp_values,
-                                                       optimal_distribution_dict, config_sensitivity_1)
+                                                       optimal_distribution_dict, inputs["config_sensitivity_1"])
     do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021,  data["survival_rates_2016"],
                                                          stock_years, data["optimum_parameters_2008"],
-                                                         optimal_distribution_dict, config_sensitivity_2)
+                                                         optimal_distribution_dict, inputs["config_sensitivity_2"])
     do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates_2021, stock_years,
                                                           optimum_parameters_wg, optimal_distribution_dict,
-                                                          config_sensitivity_3)
+                                                          inputs["config_sensitivity_3"])
     do_sensitivity_analysis_with_modified_country_registrations(registrations, stock_shares, fitted_csp_values,
-                                                                optimal_distribution_dict, config_sensitivity_4)
+                                                                optimal_distribution_dict, inputs["config_sensitivity_4"])
