@@ -1,5 +1,9 @@
 import numpy as np
 import math
+"""
+- csp_available_years (int): Number of years (vehicle ages) for which CSP values are calculated.
+"""
+from src.part3_stock_calculation.calculate_stock.input_data import csp_available_years
 
 
 def loss_function_weibull(x : list, *args) -> float:
@@ -20,7 +24,7 @@ def loss_function_weibull(x : list, *args) -> float:
         float: Normalized mean squared error (NMSE), where lower values indicate a better fit
                between the Weibull model and the actual data.
     """
-    year = np.linspace(1, 45, 45)
+    year = np.linspace(1, csp_available_years, csp_available_years)
     predict = np.exp(-(year/x[0])**x[1]*(math.gamma(1+1/x[1]))**x[1])
     actual = args
     return sum((predict-actual)**2)/sum((actual-np.average(actual))**2)
@@ -49,7 +53,7 @@ def loss_function_weibull_and_normal(x: list, *args) -> float:
     """
     gamma_country = args[0]
     beta_country = args[1]
-    year = np.linspace(1, 45, 45)
+    year = np.linspace(1, csp_available_years, csp_available_years)
     weibull = np.exp(-(year/gamma_country)**beta_country*(math.gamma(1+1/beta_country))**beta_country)
     delta = x[0]/(np.sqrt(np.pi*2)*x[2])
     normal = delta*np.exp(-0.5*((year-x[1])/x[2])**2)

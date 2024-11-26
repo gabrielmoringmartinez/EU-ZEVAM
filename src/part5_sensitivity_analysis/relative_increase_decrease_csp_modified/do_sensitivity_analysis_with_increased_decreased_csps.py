@@ -5,13 +5,14 @@ from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all
 from src.part5_sensitivity_analysis.update_stock_shares import update_stock_shares
 
 
-def do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates, stock_years, optimum_parameters_wg, optimal_distribution_dict, config):
+def do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates, stock_years, optimum_parameters_wg,
+                                                          optimal_distribution_dict, config, csp_available_years):
     plot_params = config["plot_params"]
     columns_to_plot = {}
     stock_shares_df = None
     for percentage in plot_params["percentages_selected"]:
         adjusted_parameters = modify_csps(optimum_parameters_wg, percentage)
-        fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, True)
+        fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, True, csp_available_years)
         stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict,
                                                      stock_years, 'non-historical_csp')
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, percentage)

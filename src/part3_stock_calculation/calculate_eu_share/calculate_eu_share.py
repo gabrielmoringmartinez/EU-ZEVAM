@@ -1,5 +1,6 @@
 from src.part3_stock_calculation.calculate_eu_share.filter_calculate_and_add_eu_share import add_eu_stock_share
 
+from src.load_data_and_prepare_inputs.dimension_names import *
 
 def calculate_eu_share(stock_share, historical_csp, share_label):
     """
@@ -16,7 +17,7 @@ def calculate_eu_share(stock_share, historical_csp, share_label):
     - pd.DataFrame: DataFrame containing the original stock share data along with the calculated EU region shares.
     """
     stock_share_eu = add_eu_stock_share(stock_share, share_label, 'EU-27+Norway')
-    if historical_csp == 'historical CSP':
+    if historical_csp == historical_csp_label:
         stock_share_eu_9 = add_eu_stock_share(stock_share, share_label, 'EU-9')
         stock_share_eu_26 = add_eu_stock_share(stock_share_eu_9, share_label, 'EU-26+Norway')
         return stock_share_eu_26

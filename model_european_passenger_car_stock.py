@@ -7,14 +7,18 @@ from src.part5_sensitivity_analysis import perform_sensitivity_analysis
 
 def model_european_bev_stock_shares_using_csp_curves():
     """
-    Main function to model European BEV stock shares using CSP curves, compare the model to actual shares from 2014 to
-    2023 and perform a sensitivity analysis modifying different variable parameters.
+    Main function to model the European Battery Electric Vehicle (BEV) stock shares using Cumulative Survival
+    Probability (CSP) curves. This function compares the modeled results to actual BEV stock shares from 2014 to 2023
+    and performs a sensitivity analysis by modifying various input parameters.
 
     Steps:
-    1. Load data.
-    2. Calculate and plot CSPs and stock.
-    3. Compare model results with actual stock results.
-    4. Perform sensitivity analysis.
+    1. Load data and creates a dictionary for the user inputs.
+    2. Calculates and plots CSPs and the stock share of BEVs across European countries.
+    3. Compares the modeled results with actual BEV stock shares to evaluate the model's accuracy.
+    4. Conducts a sensitivity analysis to explore how changes in input variables affect the model's results.
+
+    Returns:
+        None: This function performs the analysis and saves .csv and .pdf results to the 'outputs' folder.
     """
     # Step 1: Load data
     data, inputs = load_data_and_prepare_inputs()

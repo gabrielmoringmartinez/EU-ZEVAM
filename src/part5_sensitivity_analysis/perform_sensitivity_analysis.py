@@ -17,9 +17,10 @@ def perform_sensitivity_analysis(data, calculated_data, inputs):
                                                        optimal_distribution_dict, inputs["config_sensitivity_1"])
     do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021,  data["survival_rates_2016"],
                                                          stock_years, data["optimum_parameters_2008"],
-                                                         optimal_distribution_dict, inputs["config_sensitivity_2"])
+                                                         optimal_distribution_dict, inputs["config_sensitivity_2"],
+                                                         inputs['distribution_bounds'], inputs["csp_available_years"])
     do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates_2021, stock_years,
                                                           optimum_parameters_wg, optimal_distribution_dict,
-                                                          inputs["config_sensitivity_3"])
+                                                          inputs["config_sensitivity_3"], inputs["csp_available_years"])
     do_sensitivity_analysis_with_modified_country_registrations(registrations, stock_shares, fitted_csp_values,
                                                                 optimal_distribution_dict, inputs["config_sensitivity_4"])

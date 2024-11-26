@@ -2,9 +2,11 @@ from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_
 from src.part5_sensitivity_analysis.historical_csp_modified.calculate_2008_survival_rates import calculate_2008_survival_rates
 from src.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
 
+from src.load_data_and_prepare_inputs.dimension_names import *
 
 def process_stock_shares_with_historical_csps(registrations, survival_rates_2021, survival_rates_2016, stock_years,
-                                              optimum_parameters_2008, optimal_distribution_dict):
+                                              optimum_parameters_2008, optimal_distribution_dict, bound_distributions,
+                                              csp_available_years):
     """
     Compute stock shares for different years and merge them into a single DataFrame.
 
@@ -13,11 +15,13 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
     """
     # Compute stock shares for different years
     stock_values_2021, stock_shares_2021, *_ = compute_csp_values_and_compute_stock(survival_rates_2021, registrations,
-                                                                                    2021, stock_years, 'historical CSP')
+                                                                                    stock_years, bound_distributions,
+                                                                                    historical_csp_label, csp_available_years)
     stock_values_2016, stock_shares_2016, *_ = compute_csp_values_and_compute_stock(survival_rates_2016, registrations,
-                                                                                    2016, stock_years, 'historical CSP')
+                                                                                    stock_years, bound_distributions,
+                                                                                    historical_csp_label, csp_available_years)
     stock_shares_2008 = calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021,
-                                                      optimal_distribution_dict, registrations)
+                                                      optimal_distribution_dict, registrations, csp_available_years)
 
     # Rename columns to match the year-specific share columns
     stock_shares_2021.rename(columns={'share': f'share_{2021}'}, inplace=True)

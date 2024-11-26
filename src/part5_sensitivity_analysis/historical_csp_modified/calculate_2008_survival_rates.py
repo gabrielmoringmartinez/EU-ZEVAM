@@ -3,10 +3,11 @@ from src.part3_stock_calculation.calculate_stock.calculate_stock import calculat
 from src.part3_stock_calculation.calculate_stock.input_data import stock_years, historical_csp
 
 
-def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, optimal_distribution_dict, registrations):
+def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, optimal_distribution_dict,
+                                  registrations, csp_available_years):
     country_names = optimum_parameters_2008['geo country'].unique()
     filtered_survival_rates_2021 = survival_rates_2021[survival_rates_2021['geo country'].isin(country_names)]
-    fitted_csp_values_2008 = get_fitted_csp_values(filtered_survival_rates_2021, optimum_parameters_2008, False)
+    fitted_csp_values_2008 = get_fitted_csp_values(filtered_survival_rates_2021, optimum_parameters_2008, False, csp_available_years)
     optimal_distribution_dict_2008 = prepare_optimal_distribution_dict(optimal_distribution_dict)
     stock_values_2008, stock_shares_2008 = calculate_stock(registrations, fitted_csp_values_2008,
                                                            optimal_distribution_dict_2008, stock_years, historical_csp)

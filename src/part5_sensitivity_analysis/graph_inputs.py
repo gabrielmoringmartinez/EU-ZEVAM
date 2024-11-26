@@ -1,3 +1,5 @@
+from src.load_data_and_prepare_inputs.dimension_names import *
+
 # Define a base configuration for all cases
 base_config = {
     "x_column": "stock_year",
@@ -45,7 +47,7 @@ config_sensitivity_1 = {
         **base_config,
         "title": "BEV stock shares modifying country CSPs for all EU-27 countries and Norway",
         "countries_selected": ["Bulgaria", "Poland", "Italy", "Netherlands", "Germany", "Luxembourg"],
-        "fill_between": 'country csp',
+        "fill_between": country_csp_label,
         "legend_loc": "lower right",
         "legend_bbox_to_anchor": (0.97, 0.197),
         "legend_fontsize": 38,
@@ -61,8 +63,8 @@ config_sensitivity_2 = {
         **base_config,
         "title": "BEV stock shares using empirical CSP curves from 2008, 2016 and 2021 for all EU-27 countries and Norway",
         "years_selected": [2021, 2016, 2008],
-        "historical_csp": 'historical CSP',
-        "fill_between": 'historical csp',
+        "historical_csp": historical_csp_label,
+        "fill_between": historical_csp_label,
         "legend_loc": "lower center",
         "legend_bbox_to_anchor": (0.5, 0.12),
         "legend_fontsize": 40,
@@ -78,7 +80,7 @@ config_sensitivity_3 = {
         **base_config,
         "title": "BEV stock shares in relation to different Weibull average lifespans, γ, and different normal Gaussian distributions, µ, for high-importing countries",
         "percentages_selected": [-0.4, -0.2, 0, 0.2, 0.4],
-        "fill_between": 'increased or decreased csp',
+        "fill_between": increase_decrease_csp_label,
         "legend_loc": "lower right",
         "legend_bbox_to_anchor": (0.95, 0.22),
         "legend_fontsize": 40,
@@ -94,7 +96,7 @@ config_sensitivity_4 = {
         **base_config,
         "title": "BEV stock shares modifying country registrations for all EU-27 countries and Norway",
         "countries_selected": ["Poland", "France", "Norway"],
-        "fill_between": 'country csp',
+        "fill_between": country_csp_label,
         "legend_loc": "lower right",
         "legend_bbox_to_anchor": (0.93, 0.227),
         "legend_fontsize": 38,

@@ -2,7 +2,11 @@ from src.part2_survival_rates.plot_survival_rates.setup_subplots import get_numb
     setup_subplot_figure
 from src.part2_survival_rates.plot_survival_rates.plot_subplot import plot_survival_rate_country
 from src.part2_survival_rates.plot_survival_rates.save_figure import save_figure
-from src.part2_survival_rates.plot_survival_rates.fill_area import fill_area, fill_area_historical_values, fill_area_increase_decrease
+from src.part2_survival_rates.plot_survival_rates.fill_area import fill_area, fill_area_historical_values, \
+    fill_area_increase_decrease
+
+from src.load_data_and_prepare_inputs.dimension_names import *
+
 
 def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type):
     """
@@ -24,23 +28,28 @@ def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns
     i = 1
     for country_name in country_names:
         ax = fig.add_subplot(country_rows, country_columns, i)
-        merged_df_country = merged_df[merged_df["geo country"] == country_name]
+        merged_df_country = merged_df[merged_df[country_dim] == country_name]
         for column, legend in columns_to_plot_dict.items():
-            plot_survival_rate_country(ax, legend, merged_df_country[plot_params["x_column"]],
+            plot_survival_rate_country(ax, legend, merged_df_country[plot_params[x_column_dim]],
                                        merged_df_country[column], country_name, plot_params, i)
-        if plot_params["fill_between"] == 'country csp':
-            ax = fill_area(ax, merged_df_country, plot_params["x_column"], list(columns_to_plot_dict.keys()))
-        elif plot_params["fill_between"] == 'historical csp':
-            ax = fill_area_historical_values(ax, merged_df_country, plot_params["x_column"], list(columns_to_plot_dict.keys()))
 
-        elif plot_params["fill_between"] == 'increased or decreased csp':
-            ax = fill_area_increase_decrease(ax, merged_df_country, plot_params["x_column"], list(columns_to_plot_dict.keys()))
+        if plot_params[fill_between_dim] == country_csp_label:
+            ax = fill_area(ax, merged_df_country, plot_params[x_column_dim], list(columns_to_plot_dict.keys()))
+        elif plot_params[fill_between_dim] == historical_csp_label:
+            ax = fill_area_historical_values(ax, merged_df_country, plot_params[x_column_dim],
+                                             list(columns_to_plot_dict.keys()))
+
+        elif plot_params[fill_between_dim] == increase_decrease_csp_label:
+            ax = fill_area_increase_decrease(ax, merged_df_country, plot_params[x_column_dim],
+                                             list(columns_to_plot_dict.keys()))
+
         i = i + 1
 
-    if plot_params.get("legend_show", True):
+    if plot_params.get(legend_show_dim, True):
         handles, labels = ax.get_legend_handles_labels()
-        fig.legend(handles, labels, loc=plot_params.get("legend_loc", "center right"),  bbox_to_anchor=
-                   plot_params.get("legend_bbox_to_anchor", (1.2, 0.5)), fontsize=plot_params.get("legend_fontsize", 14))
+        fig.legend(handles, labels, loc=plot_params.get(legend_loc_dim, "center right"),
+                   bbox_to_anchor= plot_params.get(legend_bbox_to_anchor_dim, (1.2, 0.5)),
+                   fontsize=plot_params.get(legend_fontsize_dim, 14))
 
     save_figure(fig, file_info, distribution_type)
     return

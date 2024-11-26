@@ -1,9 +1,11 @@
 from src.part2_survival_rates.plot_survival_rates.plot_csp_countries import plot_csp_countries
 
+from src.load_data_and_prepare_inputs.dimension_names import *
+
 
 def plot_all_countries(merged_df, config, columns_to_plot_dict, distribution_type):
     """
-       Plots data for all countries, optionally with Weibull and/or Weibull-Gaussian fits.
+       Plots data for all countries. When printing CSPs, optionally with Weibull and/or Weibull-Gaussian fits.
 
        Parameters:
        - merged_df (pd.DataFrame): DataFrame containing columns to plot for all countries
@@ -14,16 +16,17 @@ def plot_all_countries(merged_df, config, columns_to_plot_dict, distribution_typ
        Returns:
        - None
        """
-    plot_params = config["plot_params"]
-    file_info = config["file_info"]
-    country_names = merged_df['geo country'].unique()
+    plot_params = config[plot_params_dim]
+    file_info = config[file_info_dim]
+    country_names = merged_df[country_dim].unique()
     plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type)
     return
 
 
 def plot_group_of_countries(merged_df, country_group, config, columns_to_plot_dict, distribution_type):
     """
-      Plots data for a specified group of countries, optionally with Weibull and/or Weibull-Gaussian fits.
+      Plots data for a specified group of countries. When printing CSPs,
+      optionally with Weibull and/or Weibull-Gaussian fits.
 
       Parameters:
        - merged_df (pd.DataFrame): DataFrame containing columns to plot for all countries
@@ -35,11 +38,11 @@ def plot_group_of_countries(merged_df, country_group, config, columns_to_plot_di
       Returns:
       - None
       """
-    plot_params = config["plot_params"]
-    file_info = config["file_info"].copy()
-    country_names = merged_df['geo country'].unique()
-    country_names = get_country_group_names(country_names, country_group, plot_params["number_of_countries_group"])
-    file_info["group_info"] = f'group{country_group}_'
+    plot_params = config[plot_params_dim]
+    file_info = config[file_info_dim].copy()
+    country_names = merged_df[country_dim].unique()
+    country_names = get_country_group_names(country_names, country_group, plot_params[number_of_countries_group_dim])
+    file_info[group_info_dim] = f'{group_suffix_for_saving_output}{country_group}_'
     plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type)
     return
 

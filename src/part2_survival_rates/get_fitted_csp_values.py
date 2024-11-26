@@ -5,35 +5,42 @@ from src.part2_survival_rates.get_function_values import get_weibull_function, g
 from src.part2_survival_rates.get_distribution_function_discrete_points import get_distribution_function_discrete_points
 
 
-def get_fitted_csp_values(survival_rates, pdf_parameters, save_options):
+from src.load_data_and_prepare_inputs.dimension_names import *
+
+
+def get_fitted_csp_values(survival_rates, pdf_parameters, save_options, csp_available_years):
     """
-    Calculates fitted cumulative survival probability (CSP) values using Weibull and Weibull-Gaussian
-    distribution optimum fitted parameters.
+    Calculates fitted Cumulative Survival Probability (CSP) values for each country using Weibull and
+    Weibull-Gaussian (WG) distribution parameters.
 
     Parameters:
-    - survival_rates (pd.DataFrame): Data containing survival rates for each country.
-    - pdf_parameters (pd.DataFrame): DataFrame containing the parameters for the Weibull and Gaussian distributions.
-        and Weibull Gaussian curves.
+    - survival_rates (pd.DataFrame): DataFrame containing survival rates by country and vehicle age.
+    - pdf_parameters (pd.DataFrame): Parameters of Weibull and WG distributions for each country.
+    - save_options (bool): If `True`, saves the fitted CSP values to a CSV file.
+    - csp_available_years (int): Number of years (vehicle ages) for which CSP values are calculated.
+
     Returns:
     - pd.DataFrame: DataFrame containing fitted CSP values for each country by vehicle age, distribution model (Weibull
-     and Weibull Gaussian), and distribution type.
+     and Weibull Gaussian), and the selected distribution type.
     """
-    country_names = survival_rates['geo country'].unique()
+    country_names = survival_rates[country_dim].unique()
     weibull_results = pd.DataFrame()
     wg_results = pd.DataFrame()
     for country_name in country_names:
-        survival_rates_country = survival_rates[survival_rates["geo country"] == country_name]
+        survival_rates_country = survival_rates[survival_rates[country_dim] == country_name]
         weibull_results, wg_results = calculate_country_fitted_values(country_name, survival_rates_country,
-                                                                      pdf_parameters, weibull_results, wg_results)
-    fitted_csp_values = pd.merge(weibull_results, wg_results, on=['geo country', 'vehicle age'],
-                                 suffixes=(' Weibull', ' WG'), how='inner')
-    fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[['geo country', 'distribution']], on = 'geo country')
+                                                                      pdf_parameters, weibull_results, wg_results,
+                                                                      csp_available_years)
+    fitted_csp_values = pd.merge(weibull_results, wg_results, on=[country_dim, age_dim],
+                                 suffixes=(f' {weibull_suffix}', f' {weibull_gaussian_suffix}'), how='inner')
+    fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[[country_dim, distribution_dim]], on=country_dim)
     if save_options:
         fitted_csp_values.to_csv(f'outputs/2_3_fitted_CSP_curves.csv', sep=';', index=False, decimal=',')
     return fitted_csp_values
 
 
-def calculate_country_fitted_values(country_name, survival_rates, pdf_parameters, weibull_results, wg_results):
+def calculate_country_fitted_values(country_name, survival_rates, pdf_parameters, weibull_results, wg_results,
+                                    csp_available_years):
     """
     Helper function to calculate Weibull and Weibull-Gaussian fitted CSP values for a single country.
 
@@ -41,18 +48,23 @@ def calculate_country_fitted_values(country_name, survival_rates, pdf_parameters
     - country_name (str): Name of the country to calculate fitted values for.
     - survival_rates (pd.DataFrame): DataFrame with survival rates.
     - pdf_parameters (pd.DataFrame): DataFrame with distribution parameters.
+    - weibull_results (pd.DataFrame): DataFrame to store Weibull CSP results.
+    - wg_results (pd.DataFrame): DataFrame to store WG CSP results.
+    - csp_available_years (int): Number of years (vehicle ages) for which CSP values are calculated.
 
     Returns:
-    - tuple: Two lists of dictionaries for Weibull and Weibull-Gaussian CSP values.
+    - tuple:
+        - pd.DataFrame: Updated `weibull_results` with calculated Weibull CSP values.
+        - pd.DataFrame: Updated `wg_results` with calculated WG CSP values.
     """
-    survival_rates_country = survival_rates[survival_rates["geo country"] == country_name]
+    survival_rates_country = survival_rates[survival_rates[country_dim] == country_name]
     gamma, beta, k, mu, sigma = get_statistical_parameters(pdf_parameters)
     gamma_country, beta_country, k_country, mu_country, sigma_country = \
         get_statistical_parameters_of_each_country(gamma, beta, k, mu, sigma, country_name)
 
-    predicted_weibull_value = get_weibull_function(gamma_country, beta_country)
+    predicted_weibull_value = get_weibull_function(gamma_country, beta_country, csp_available_years)
     predicted_weibull_and_normal_value = get_weibull_and_normal_function(gamma_country, beta_country, k_country,
-                                                                         mu_country, sigma_country)
+                                                                         mu_country, sigma_country, csp_available_years)
     weibull_results = get_distribution_function_discrete_points(weibull_results, survival_rates_country,
                                                                 predicted_weibull_value)
 
