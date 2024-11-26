@@ -35,6 +35,6 @@ def get_distribution_type(row):
         str: The optimal distribution type, either 'Weibull' or 'WG' (Weibull-Gaussian).
     """
     if row[r_squared_weibull_dim] + 0.025 > row[r_squared_weibull_gaussian_dim]:
-        return weibull_suffix
+        return weibull_label
     else:
-        return weibull_gaussian_suffix
+        return weibull_gaussian_label

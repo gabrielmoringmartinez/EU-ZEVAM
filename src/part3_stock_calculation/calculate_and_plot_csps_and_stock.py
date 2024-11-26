@@ -67,8 +67,7 @@ def calculate_and_plot_csps_and_stock(data, inputs):
                                              inputs["distribution_bounds"], inputs["historical_csp"],
                                              inputs["csp_available_years"], inputs["save_options_stock"], )
 
-    get_csp_plots(survival_rates_2021, fitted_csp_values, optimum_parameters_wg, inputs["config_all"],
-                  inputs["config_group"])
+    get_csp_plots(survival_rates_2021, fitted_csp_values, inputs["config_all"], inputs["config_group"])
     plot_bev_stock_shares(stock_shares, inputs["config_bev_reference_scenario"])
 
     return {

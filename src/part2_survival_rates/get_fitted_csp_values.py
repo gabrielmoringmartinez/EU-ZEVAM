@@ -32,7 +32,7 @@ def get_fitted_csp_values(survival_rates, pdf_parameters, save_options, csp_avai
                                                                       pdf_parameters, weibull_results, wg_results,
                                                                       csp_available_years)
     fitted_csp_values = pd.merge(weibull_results, wg_results, on=[country_dim, age_dim],
-                                 suffixes=(f' {weibull_suffix}', f' {weibull_gaussian_suffix}'), how='inner')
+                                 suffixes=(f' {weibull_label}', f' {weibull_gaussian_label}'), how='inner')
     fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[[country_dim, distribution_dim]], on=country_dim)
     if save_options:
         fitted_csp_values.to_csv(f'outputs/2_3_fitted_CSP_curves.csv', sep=';', index=False, decimal=',')

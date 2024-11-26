@@ -21,8 +21,13 @@ sigma_weibull_gaussian_dim = "sigma (Import-Gaussian)"
 delta_weibull_gaussian_dim = "delta (Import-Gaussian)"
 r_squared_weibull_gaussian_dim = "r squared (Weibull and Import-Gaussian)"
 
-weibull_suffix = "Weibull"
-weibull_gaussian_suffix = "WG"
+weibull_label = "Weibull"
+weibull_gaussian_label = "WG"
+survival_rate_weibull_dim = f"{survival_rate_dim} {weibull_label}"
+survival_rate_weibull_gaussian_dim = f"{survival_rate_dim} {weibull_gaussian_label}"
+weibull_plot_label = 'Weibull fit'
+weibull_gaussian_plot_label = 'WG fit'
+data_points_plot_label = 'data points'
 
 # Define dimensions for dictionary keys
 plot_params_dim = 'plot_params'
@@ -53,6 +58,7 @@ x_label_dim = "x_label"
 y_label_dim = "y_label"
 x_lim_dim = "x_lim"
 y_lim_dim = "y_lim"
+x_ticks_dim = "x_ticks"
 number_of_countries_group_dim = "number_of_countries_group"
 title_font_dim = "title_font"
 title_vertical_position_dim = "title_vertical_position"
