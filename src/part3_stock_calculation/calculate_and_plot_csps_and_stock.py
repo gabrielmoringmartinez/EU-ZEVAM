@@ -4,13 +4,15 @@ from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_
 from src.part2_survival_rates.plot_survival_rates import get_csp_plots
 from src.part3_stock_calculation.plot_stock import plot_bev_stock_shares
 
+from src.load_data_and_prepare_inputs.dimension_names import optimal_distribution_dict_label
+
 
 def calculate_and_plot_csps_and_stock(data, inputs):
     """
      Calculate and plot CSP curves and BEV stock shares.
 
-     This function processes input data and configurations to compute and plot the cumulative survival probability (CSP) curves,
-     vehicle stock values by country, stock year, vehicle age and powertrain, and BEV stock shares.
+     This function processes input data and configurations to compute and plot the cumulative survival probability
+     (CSP) curves, vehicle stock values by country, stock year, vehicle age and powertrain, and BEV stock shares.
      It also generates plots for CSP distributions and BEV stock shares over time.
 
      Steps:
@@ -26,14 +28,14 @@ def calculate_and_plot_csps_and_stock(data, inputs):
              - "stock_by_age_2021" (pd.DataFrame): Vehicle stock data by age for 2021.
              - "registrations_eu_cam_scenario" (pd.DataFrame): EU projected vehicle registration scenario data.
              - "clusters" (pd.DataFrame): Clustering labels for countries based on shared characteristics.
-             - "registration_shares_by_cluster" (pd.DataFrame): Registration shares for each cluster and powertrain.
+             - "registration_shares_by_cluster" (pd.DataFrame): Registration shares for each cluster.
              - "stock_year" (pd.DataFrame): Stock year information for each country.
 
          inputs (dict): Dictionary containing simulation parameters and plot configuration settings, such as:
              - "eu_countries_and_norway" (list): List of EU countries and Norway.
              - "csp_data_ref_year" (int): Reference year for CSP data (e.g., 2021).
              - "stock_years" (list[int]): List of years for which stock data is computed.
-             - "historical_csp" (pd.DataFrame): Historical CSP data for validation.
+             - historical_csp (str): File path or identifier for the historical CSP data used for validation.
              - "save_options_stock" (dict): Options for saving computed stock data.
              - "config_all" (dict): Configuration for plotting CSP distributions across all countries.
              - "config_group" (dict): Configuration for plotting CSP distributions for specific groups.
@@ -76,6 +78,6 @@ def calculate_and_plot_csps_and_stock(data, inputs):
         "stock_values": stock_values,
         "stock_shares": stock_shares,
         "optimum_parameters_wg": optimum_parameters_wg,
-        "optimal_distribution_dict": optimal_distribution_dict,
+        optimal_distribution_dict_label: optimal_distribution_dict,
         "fitted_csp_values": fitted_csp_values
     }

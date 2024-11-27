@@ -1,7 +1,7 @@
 from src.load_data_and_prepare_inputs.dimension_names import *
 
 TITLE = "Estimated Battery Electric Vehicle (BEV) stock shares for EU-27+Norway up to 2050"
-X_COLUMN = "stock_year"
+X_COLUMN = stock_year_dim
 X_LABEL = "year"
 Y_LABEL = "Battery Electric Vehicle (BEV) stock share (in %)"
 X_LIM = (2014, 2050)

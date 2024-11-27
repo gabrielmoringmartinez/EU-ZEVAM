@@ -2,6 +2,8 @@ import pandas as pd
 from itertools import islice
 import numpy as np
 
+from src.load_data_and_prepare_inputs.dimension_names import *
+
 
 def calculate_rmse(df, config):
     """
@@ -19,17 +21,17 @@ def calculate_rmse(df, config):
     df['squared_error'] = df['error'] ** 2
     # Collect RMSE results for each group
     rows_rmse = []
-    countries = df['geo country'].unique()
+    countries = df[country_dim].unique()
 
     for powertrain in config['powertrains']:
-        filtered_powertrain_df = df[df['powertrain'].isin(powertrain)]
+        filtered_powertrain_df = df[df[powertrain_dim].isin(powertrain)]
 
         for timeframe in config['timeframes']:
-            filtered_timeframe_df = filtered_powertrain_df[filtered_powertrain_df['stock_year'].between(timeframe[0], timeframe[1])]
+            filtered_timeframe_df = filtered_powertrain_df[filtered_powertrain_df[stock_year_dim].between(timeframe[0], timeframe[1])]
             m = (timeframe[1] - timeframe[0])+1
 
             for country in countries:
-                filtered_country_df = filtered_timeframe_df[filtered_timeframe_df['geo country'] == country]
+                filtered_country_df = filtered_timeframe_df[filtered_timeframe_df[country_dim] == country]
                 sum_squared_errors = filtered_country_df['squared_error'].sum()
                 rmse = np.sqrt((1 / m) * sum_squared_errors)
                 append_values(rows_rmse, country, timeframe, powertrain, 'real values', rmse)

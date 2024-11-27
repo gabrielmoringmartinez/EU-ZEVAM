@@ -1,16 +1,14 @@
-def calculate_year_of_first_registration(survival_rates, time_dimension, stock_year_col='stock_year',
-                                         age_col='vehicle age'):
+from src.load_data_and_prepare_inputs.dimension_names import stock_year_dim, age_dim, time_dim
+
+
+def calculate_year_of_first_registration(survival_rates):
     """
         Calculates the year of first registration for each entry in the DataFrame based on stock year and vehicle age.
 
         Parameters:
             survival_rates (DataFrame): Data containing stock year and vehicle age.
-            time_dimension (str): Column name to store the calculated year of first registration.
-            stock_year_col (str): Column name representing the year of stock (default: 'stock_year').
-            age_col (str): Column name representing vehicle age (default: 'vehicle age').
-
         Returns:
             DataFrame: Updated DataFrame with calculated year of first registration.
         """
-    survival_rates[time_dimension] = survival_rates[stock_year_col] - survival_rates[age_col] + 1
+    survival_rates[time_dim] = survival_rates[stock_year_dim] - survival_rates[age_dim] + 1
     return survival_rates

@@ -1,4 +1,4 @@
-geo country;stock_year;powertrain;share
+geo country;stock year;powertrain;share
 Austria;2008;BEV;0
 Austria;2009;BEV;0,0001
 Austria;2010;BEV;0,0001

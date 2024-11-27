@@ -2,7 +2,7 @@ from src.part2_survival_rates.csp_parameters_optimization_algorithms import run_
     run_diff_evol_algorithm_weibull_gaussian
 from src.part2_survival_rates.select_optimal_type_of_distribution import select_optimal_type_of_distribution
 
-from src.load_data_and_prepare_inputs.dimension_names import country_dim, distribution_dim
+from src.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_csp_parameters(survival_rates, bounds):
@@ -19,9 +19,9 @@ def calculate_csp_parameters(survival_rates, bounds):
     5. Return the optimized parameters and a dictionary mapping countries to their selected distribution types.
 
     Parameters:
-        survival_rates (DataFrame): Contains survival rate data by country with columns including country_dime and
+        survival_rates (DataFrame): Contains survival rate data by country with columns including country and
         survival rates.
-        bounds (dict): Dictionary defining optimization bounds for 'weibull' and 'gaussian' distributions.
+        bounds (dict): Dictionary defining optimization parameter bounds for 'weibull' and 'gaussian' distributions.
     Returns:
         tuple:
             - DataFrame: Optimized CSP parameters for each country, including distribution type.
@@ -29,9 +29,10 @@ def calculate_csp_parameters(survival_rates, bounds):
                     are lists of countries categorized by their optimal distribution type.
     """
     # Extract bounds for Weibull and Gaussian distributions
-    bounds_weibull = bounds['weibull']
-    bounds_gaussian = bounds['gaussian']
-    bounds_gaussian = [bounds_gaussian['k'], bounds_gaussian['mu'], bounds_gaussian['sigma']]
+    bounds_weibull = bounds[weibull_label]
+    bounds_gaussian = bounds[weibull_gaussian_label]
+    bounds_gaussian = [bounds_gaussian[k_weibull_gaussian_dim], bounds_gaussian[mu_weibull_gaussian_dim],
+                       bounds_gaussian[sigma_weibull_gaussian_dim]]
     # Get the unique country names from the survival rates
     country_names = survival_rates[country_dim].unique()
     # Run the differential evolution algorithm to optimize the Weibull parameters for each country

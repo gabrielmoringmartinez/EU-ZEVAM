@@ -2,7 +2,7 @@ from src.load_data_and_prepare_inputs.dimension_names import *
 
 # Define a base configuration for all cases
 base_config = {
-    "x_column": "stock_year",
+    "x_column": stock_year_dim,
     "x_label": "year",
     "y_label": "Battery Electric Vehicle (BEV) stock share (in %)",
     "powertrain_to_plot": "BEV",
@@ -98,8 +98,8 @@ config_sensitivity_4 = {
         "countries_selected": ["Poland", "France", "Norway"],
         "fill_between": country_csp_label,
         "legend_loc": "lower right",
-        "legend_bbox_to_anchor": (0.93, 0.227),
-        "legend_fontsize": 38,
+        "legend_bbox_to_anchor": (1, 0.234),
+        "legend_fontsize": 36,
     },
     "file_info": {
         **base_config["file_info"],

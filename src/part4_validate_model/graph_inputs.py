@@ -2,7 +2,7 @@ from src.load_data_and_prepare_inputs.dimension_names import *
 
 # Define your configuration dictionary
 TITLE = "Actual BEV stock shares compared to estimated BEV shares using 2021 CSP curves and actual new BEV registrations"
-X_COLUMN = "stock_year"
+X_COLUMN = stock_year_dim
 X_LABEL = "year"
 Y_LABEL = "Battery Electric Vehicle (BEV) stock share (in %)"
 X_LIM = (2014, 2023)

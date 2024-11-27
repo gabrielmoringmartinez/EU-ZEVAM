@@ -1,12 +1,16 @@
 from src.part1_transportation_model.input_data import eu_countries_and_norway
+from src.load_data_and_prepare_inputs.dimension_names import eu_9_label, eu_26_plus_norway_label, \
+    eu_27_plus_norway_label
+
+
 eu_9 = ['Austria', 'Denmark', 'Finland', 'France', 'Germany', 'Ireland', 'Italy', 'Netherlands', 'Spain']
 eu_26_and_norway = eu_countries_and_norway.copy()
 eu_26_and_norway.remove('Bulgaria')
 
 eu_country_groups = {
-    'EU-9': eu_9,
-    'EU-26+Norway': eu_26_and_norway,
-    'EU-27+Norway': eu_countries_and_norway # Assuming this is the full set
+    eu_9_label: eu_9,
+    eu_26_plus_norway_label: eu_26_and_norway,
+    eu_27_plus_norway_label: eu_countries_and_norway # Assuming this is the full set
 }
 
 stock_years = [2014, 2050]

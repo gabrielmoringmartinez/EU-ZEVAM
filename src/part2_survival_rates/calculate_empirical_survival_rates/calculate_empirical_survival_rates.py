@@ -57,7 +57,7 @@ def prepare_registrations_data(registrations, stock_year):
     # Merge to get stock year, calculate vehicle age, and filter
     registrations = pd.merge(registrations, stock_year, on=country_dim, how='left')
     # Calculates the vehicle age in a certain stock year based on the new registrations year
-    registrations[age_dim] = registrations[stock_year_dim] - registrations[time_dim] + 1
+    registrations[age_dim] = registrations[stock_year_empirical_csp_data_dim] - registrations[time_dim] + 1
     # Keeps only values between 1 and 45
     registrations = filter_vehicle_age(registrations)
     return registrations

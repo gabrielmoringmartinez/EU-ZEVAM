@@ -1,12 +1,14 @@
 import pandas as pd
 
+from src.load_data_and_prepare_inputs.dimension_names import *
+
 
 def compute_stock_shares(stock_df):
     """
     Computes the share of stock for each powertrain by country and year.
 
     Parameters:
-        stock_df (DataFrame): Input DataFrame containing 'geo country', 'stock_year', 'vehicle age', 'powertrain',
+        stock_df (DataFrame): Input DataFrame containing 'geo country', 'stock year', 'vehicle age', 'powertrain',
         and 'stock' columns.
 
     Returns:
@@ -14,15 +16,15 @@ def compute_stock_shares(stock_df):
                   'share' columns.
     """
     # Step 1: Aggregate stock by country, year, and powertrain
-    stock_grouped = stock_df.groupby(['geo country', 'stock_year', 'powertrain']).sum().reset_index()
+    stock_grouped = stock_df.groupby([country_dim, stock_year_dim, powertrain_dim]).sum().reset_index()
 
     # Step 2: Calculate the total stock by country and year
-    stock_by_country_year = stock_grouped.groupby(['geo country', 'stock_year']).stock.sum().reset_index()
+    stock_by_country_year = stock_grouped.groupby([country_dim, stock_year_dim]).stock.sum().reset_index()
 
     # Step 3: Merge total stock back with the grouped data to calculate share per powertrain
-    stock_merged = pd.merge(stock_grouped, stock_by_country_year, on=['geo country', 'stock_year'], suffixes=('', '_total'))
-    stock_merged['share'] = stock_merged['stock'] / stock_merged['stock_total']
+    stock_merged = pd.merge(stock_grouped, stock_by_country_year, on=[country_dim, stock_year_dim], suffixes=('', '_total'))
+    stock_merged[share_dim] = stock_merged[stock_dim] / stock_merged[f'{stock_dim}_total']
 
     # Step 4: Select relevant columns for output
-    stock_share = stock_merged[['geo country', 'stock_year', 'powertrain', 'stock', 'share']]
+    stock_share = stock_merged[[country_dim, stock_year_dim, powertrain_dim, stock_dim, share_dim]]
     return stock_share

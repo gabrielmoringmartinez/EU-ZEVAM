@@ -1,6 +1,9 @@
 time_dim = 'time'
+year_of_first_registration_dim = "year of first registration"
 age_dim = 'vehicle age'
 stock_year_dim = 'stock year'
+stock_year_empirical_csp_data_dim = 'stock year of empirical csp data'
+
 country_dim = 'geo country'
 cluster_dim = 'cluster'
 powertrain_dim = 'powertrain'
@@ -25,9 +28,16 @@ weibull_label = "Weibull"
 weibull_gaussian_label = "WG"
 survival_rate_weibull_dim = f"{survival_rate_dim} {weibull_label}"
 survival_rate_weibull_gaussian_dim = f"{survival_rate_dim} {weibull_gaussian_label}"
+stock_dim = 'stock'
+stock_weibull_dim = f'{stock_dim}_{weibull_label}'
+stock_wg_dim = f'{stock_dim}_{weibull_gaussian_label}'
 weibull_plot_label = 'Weibull fit'
 weibull_gaussian_plot_label = 'WG fit'
 data_points_plot_label = 'data points'
+
+eu_9_label = 'EU-9'
+eu_26_plus_norway_label = 'EU-26+Norway'
+eu_27_plus_norway_label = 'EU-27+Norway'
 
 # Define dimensions for dictionary keys
 plot_params_dim = 'plot_params'
@@ -77,3 +87,7 @@ country_csp_label = 'country csp'
 historical_csp_label = 'historical csp'
 increase_decrease_csp_label = 'increased or decreased csp'
 
+# Defined internally-through a calculation the values of this column
+optimal_distribution_dict_label = 'optimal_distribution_dict'
+stock_data_filename_label = 'stock_data_filename'
+stock_shares_filename_label = 'stock_shares_filename'

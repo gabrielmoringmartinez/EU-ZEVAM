@@ -116,7 +116,6 @@ def combine_shares_and_absolute_registrations(country_registrations, powertrain_
         - powertrain_share_registrations (pd.DataFrame): DataFrame containing the share of registrations for different
         powertrains for each cluster.
         - clusters (pd.DataFrame): DataFrame containing clusters assigned to each country.
-        - scenario (str): The scenario for which the data is being calculated (e.g., 'scenario_ref').
 
         Returns:
         - pd.DataFrame: A DataFrame with the historical and projected registrations by powertrain

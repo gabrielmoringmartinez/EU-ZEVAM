@@ -8,6 +8,9 @@ from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all
 from src.part4_validate_model.calculate_rmse import calculate_rmse
 
 
+from src.load_data_and_prepare_inputs.dimension_names import *
+
+
 def compare_model_and_actual_stock_results(data, calculated_data, inputs):
     """
         Compares model results with actual stock results and plots the comparison.
@@ -27,7 +30,7 @@ def compare_model_and_actual_stock_results(data, calculated_data, inputs):
     registrations = calculated_data["registrations"]
     stock_shares = calculated_data["stock_shares"]
     fitted_csp_values = calculated_data["fitted_csp_values"]
-    optimal_distribution_dict = calculated_data["optimal_distribution_dict"]
+    optimal_distribution_dict = calculated_data[optimal_distribution_dict_label]
     actual_bev_registration_shares = data["actual_bev_registration_shares"]
     actual_bev_stock_shares = data["actual_bev_stock_shares"]
 
@@ -35,7 +38,7 @@ def compare_model_and_actual_stock_results(data, calculated_data, inputs):
                                                                                          actual_bev_registration_shares)
     stock_values_with_real_registrations, stock_shares_with_real_registrations = calculate_stock\
         (registrations_with_real_bev_shares, fitted_csp_values, optimal_distribution_dict, inputs["stock_years"], inputs["historical_csp"])
-    keys_columns_stock = ['geo country', 'stock_year', 'powertrain']
+    keys_columns_stock = [country_dim, stock_year_dim, powertrain_dim]
     column_to_update_stock = 'share'
     # Update stock shares with actual BEV values
     actual_stock_shares_2014_2023 = use_bev_actual_values(stock_shares_with_real_registrations, actual_bev_stock_shares,
