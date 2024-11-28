@@ -1,1 +1,14 @@
+# Ignore Python specific temporarily created files
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# Ignore automatically created files by Jetbrains as PyCharm, IntelliJ
+.idea/
+# Ignore everything in the inputs directory
+inputs/**
+# Allow tracking of CSV files in the inputs directory and subdirectories
+!inputs/**/*.csv
+# Do not track the ouputs folder
 outputs/
+
