@@ -21,7 +21,7 @@ def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_ye
         - stock_years (list): List of years over which to compute stock values.
         - bounds_distributions (dict): Dictionary defining the bounds for the distribution fitting process.
         - historical_csp (str): identifier for activating the historical CSP data.
-        - csp_available_years (list): List of years for which CSP values are available or need to be computed.
+        - csp_available_years (int): Number of years for which CSP values are available or need to be computed.
         - save_options (dict, optional): Dictionary containing options for saving the results, such as file paths or flags. Default is None.
 
     Returns:

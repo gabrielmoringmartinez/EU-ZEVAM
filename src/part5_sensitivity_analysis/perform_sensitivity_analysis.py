@@ -39,7 +39,7 @@ def perform_sensitivity_analysis(data, calculated_data, inputs):
             - `config_sensitivity_3_label` (dict): Config for increased/decreased CSPs analysis.
             - `config_sensitivity_4_label` (dict): Config for modified country registrations analysis.
             - `distribution_bounds_label` (tuple): Bounds for CSP parameter distribution.
-            - `csp_available_years_label` (list): List of years for which CSP data is available (e.g 45 years).
+            - `csp_available_years_label` (int): Number of years for which CSP data is available (e.g 45 years).
 
     Returns:
         - None: Outputs plots comparing results with different CSP values and registrations
@@ -67,7 +67,9 @@ def perform_sensitivity_analysis(data, calculated_data, inputs):
                                                          data[survival_rates_2016_label],
                                                          data[optimum_parameters_2008_label],
                                                          optimal_distribution_dict,
-                                                         inputs[config_sensitivity_2_label])
+                                                         inputs[config_sensitivity_2_label],
+                                                         inputs[distribution_bounds_label],
+                                                         inputs[csp_available_years_label])
     do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates_2021, optimum_parameters_wg,
                                                           optimal_distribution_dict, inputs[config_sensitivity_3_label],
                                                           inputs[csp_available_years_label])

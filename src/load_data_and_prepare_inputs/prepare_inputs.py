@@ -14,16 +14,16 @@ from src.load_data_and_prepare_inputs.dimension_names import *
 
 def prepare_inputs():
     """
-        Prepares the simulation-related parameters and plot configurations required for the modeling process.
+    Prepares the simulation-related parameters and plot configurations required for the modeling process.
 
-        Organizes and combines simulation-related parameters (e.g., reference years, bounds distributions) and plot
-        configuration parameters (e.g., settings for CSP and stock-related graphs).
+    Organizes and combines simulation-related parameters (e.g., reference years, bounds distributions) and plot
+    configuration parameters (e.g., settings for CSP and stock-related graphs).
 
-        Returns:
-            dict: A consolidated dictionary containing:
-                - Simulation parameters (e.g., `eu_countries_and_norway`, `stock_years`, `bounds_distributions`).
-                - Plot configuration settings for various steps of the analysis.
-        """
+    Returns:
+        dict: A consolidated dictionary containing:
+            - Simulation parameters (e.g., `eu_countries_and_norway`, `stock_years`, `bounds_distributions`).
+            - Plot configuration settings for various steps of the analysis.
+    """
     # Simulation-related parameters
     inputs_simulation = {
         eu_countries_and_norway_label: eu_countries_and_norway,

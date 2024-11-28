@@ -22,7 +22,7 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
         - optimal_distribution_dict (dict): Dictionary specifying the optimal distribution (Weibull or Weibull-Gaussian)
           for each country.
         - bound_distributions (dict): Bounds for the parameters of the CSP distributions used in the analysis.
-        - csp_available_years (list of int): List of years for which country-specific CSP data is available
+        - csp_available_years (int): Number of years for which country-specific CSP data is available
         (e.g., [45] years).
 
     Returns:

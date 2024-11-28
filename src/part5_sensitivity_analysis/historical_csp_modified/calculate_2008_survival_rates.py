@@ -16,7 +16,7 @@ def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, 
         - optimal_distribution_dict (dict): A dictionary specifying the optimal distribution per country
           (Weibull or Weibull-Gaussian).
         - registrations (pd.DataFrame): Registration data by year, powertrain, and country.
-        - csp_available_years (list of int): List of years for which CSP data is available (e.g., 45 years).
+        - csp_available_years (int): Number of years for which CSP data is available (e.g., 45 years).
 
     Returns:
         pd.DataFrame: Stock shares DataFrame for the year 2008
