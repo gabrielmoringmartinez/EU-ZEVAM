@@ -11,5 +11,5 @@ inputs/**
 !inputs/**/*.csv
 
 # Ignore everything in the outputs folder
-outputs/*
+outputs/
 
