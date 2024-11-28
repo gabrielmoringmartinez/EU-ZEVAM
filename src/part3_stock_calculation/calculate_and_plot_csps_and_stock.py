@@ -45,13 +45,14 @@ def calculate_and_plot_csps_and_stock(data, inputs):
      Returns:
          dict: A dictionary containing calculated outputs, including:
              - "registrations" (pd.DataFrame): Calculated vehicle registrations by year, powertrain and country.
-             - "survival_rates_2021" (pd.DataFrame): Empirical survival rates for vehicles by country.
+             - "survival_rates_2021" (pd.DataFrame): 2021 empirical survival rates for vehicles by country.
              - "stock_values" (pd.DataFrame): Calculated stock values over time by country, vehicle age and powertrain.
              - "stock_shares" (pd.DataFrame): Calculated stock shares over time.
-             - "optimum_parameters_wg" (pd.DataFrame): Optimal parameters for Weibull-Gaussian curves.
-             - "optimal_distribution_dict" (dict): Distribution of CSP values for countries.
-             - "fitted_csp_values" (pd.DataFrame): Fitted CSP values for validation.
-
+             - "optimum_parameters_wg" (pd.DataFrame): Optimized CSP parameters for each country, including
+                distribution type.
+             - "optimal_distribution_dict" (dict): Dictionary specifying the optimal distribution per country (Weibull
+                or Weibull Gaussian).
+             - "fitted_csp_values" (pd.DataFrame): Fitted CSP values for each country and vehicle age.
      Raises:
          KeyError: If required keys are missing in the `data` or `inputs` dictionaries.
          ValueError: If the provided data dimensions or formats are invalid.

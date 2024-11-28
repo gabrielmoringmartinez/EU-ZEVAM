@@ -28,13 +28,15 @@ def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_ye
         - tuple: A tuple containing the following values:
             1. stock_values (pd.DataFrame): DataFrame with the computed stock values for each country and year.
             2. stock_shares (pd.DataFrame): DataFrame with the computed stock shares for each country and year.
-            3. optimum_parameters_wg (dict): Dictionary containing the optimal parameters for the Weibull-Gaussian
-                                            distribution.
-            4. optimal_distribution_dict (dict): Dictionary with the distribution parameters used for fitting the CSP values.
+            3. optimum_parameters_wg (pd.DataFrame): Optimized CSP parameters for each country, including
+            distribution type.
+            4. optimal_distribution_dict (dict): Dictionary with the distribution parameters used for fitting the
+            CSP values.
             5. fitted_csp_values (pd.DataFrame): DataFrame with the fitted CSP values for each country and year.
 
     Notes:
-        - If `save_options` is provided, the results (such as stock values or fitted CSP values) will be saved according to the specified options.
+        - If `save_options` is provided, the results (such as stock values or fitted CSP values) will be saved according
+         to the specified options.
     """
     optimum_parameters_wg, optimal_distribution_dict = calculate_csp_parameters(survival_rates, bounds_distributions)
     fitted_csp_values = get_fitted_csp_values(survival_rates, optimum_parameters_wg, True, csp_available_years)

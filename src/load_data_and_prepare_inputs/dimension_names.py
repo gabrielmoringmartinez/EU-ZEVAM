@@ -135,5 +135,11 @@ optimal_distribution_dict_label = 'optimal_distribution_dict'
 stock_data_filename_label = 'stock_data_filename'
 stock_shares_filename_label = 'stock_shares_filename'
 
+# Labels of graph_inputs of sensitivity analysis
 powertrains_rmse_label = "powertrains"
 timeframes_rmse_label = "timeframes"
+countries_selected_label = "countries_selected"
+years_selected_label = "years_selected"
+percentages_selected_label = "percentages_selected"
+powertrain_to_plot_label = "powertrain_to_plot"
+year_to_modify_registrations_label = "year_to_modify_registrations"

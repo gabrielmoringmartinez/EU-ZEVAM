@@ -1,5 +1,6 @@
 from src.load_data_and_prepare_inputs.dimension_names import *
 
+
 def merge_stock_shares(all_shares_df, stock_shares):
     """
     Merge the provided stock_shares DataFrame into all_shares_df on specified columns.
@@ -11,6 +12,13 @@ def merge_stock_shares(all_shares_df, stock_shares):
 
     Returns:
         pd.DataFrame: Updated DataFrame containing merged stock shares.
+
+    Notes:
+        - If `all_shares_df` is `None`, it is initialized to be the same as `stock_shares`.
+        - The function merges the DataFrames using an outer join on the columns `country_dim`, `stock_year_dim`, and
+        `powertrain_dim`.
+        - The `stock_dim` column is dropped from the `stock_shares` DataFrame before merging if it exists, ensuring no
+        redundant columns remain.
     """
     # Ensure stock_shares only contains relevant columns
     if stock_dim in stock_shares.columns:
