@@ -11,22 +11,23 @@ def calculate_rmse(df, config):
 
        Parameters:
            df (pd.DataFrame): DataFrame containing the predicted and actual share values.
-           config (dict): Configuration dictionary containing powertrains, timeframes, and title.
+           config (dict): Configuration dictionary containing powertrains, timeframes, and title. Config can be edited
+           in rmse_inputs.py
 
        Returns:
            None: Outputs the RMSE results to a CSV file.
        """
     df = df.copy()
-    df['error'] = df['share'] - df['actual share']
+    df['error'] = df[share_dim] - df[f'actual {share_dim}']
     df['squared_error'] = df['error'] ** 2
     # Collect RMSE results for each group
     rows_rmse = []
     countries = df[country_dim].unique()
 
-    for powertrain in config['powertrains']:
+    for powertrain in config[powertrains_rmse_label]:
         filtered_powertrain_df = df[df[powertrain_dim].isin(powertrain)]
 
-        for timeframe in config['timeframes']:
+        for timeframe in config[timeframes_rmse_label]:
             filtered_timeframe_df = filtered_powertrain_df[filtered_powertrain_df[stock_year_dim].between(timeframe[0], timeframe[1])]
             m = (timeframe[1] - timeframe[0])+1
 
@@ -37,7 +38,7 @@ def calculate_rmse(df, config):
                 append_values(rows_rmse, country, timeframe, powertrain, 'real values', rmse)
 
     rmse_df = pd.DataFrame(rows_rmse)
-    rmse_df.to_csv(f'outputs/{config["title"]}.csv', sep=';', index=False, decimal=',')
+    rmse_df.to_csv(f'outputs/{config[title_dim]}.csv', sep=';', index=False, decimal=',')
     return
 
 

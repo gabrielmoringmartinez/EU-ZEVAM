@@ -1,11 +1,15 @@
-def use_bev_actual_values(df_model, df_actual, keys = ['geo country', 'time', 'powertrain'],
-                                 column_to_update = 'relative sales'):
+from src.load_data_and_prepare_inputs.dimension_names import *
+
+
+def use_bev_and_phev_actual_values(df_model, df_actual, keys=[country_dim, time_dim, powertrain_dim],
+                          column_to_update=relative_sales_dim):
     """
-    Updates the registrations with actual BEV registration values where rows match on the specified keys.
+    Updates the registrations with actual BEV and PHEV registration values where rows match on the specified keys.
 
     Parameters:
     df_model (pd.DataFrame): The main DataFrame to update.
-    df_actual (pd.DataFrame): The DataFrame with actual values that are used for updating.
+    df_actual (pd.DataFrame): The DataFrame with actual values that are used for updating. This includes BEV and PHEV
+    data.
     keys (list): List of columns to match between the two DataFrames.
     column_to_update (str): The name of the column in df_model to update.
 

@@ -13,7 +13,7 @@ eu_country_groups = {
     eu_27_plus_norway_label: eu_countries_and_norway # Assuming this is the full set
 }
 
-stock_years = [2014, 2050]
+simulation_stock_years = [2014, 2050]
 csp_data_ref_year = 2021
 csp_available_years = 45
 historical_csp ='No'

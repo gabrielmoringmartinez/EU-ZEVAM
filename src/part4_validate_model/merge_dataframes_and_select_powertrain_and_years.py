@@ -6,15 +6,17 @@ from src.load_data_and_prepare_inputs.dimension_names import *
 def merge_dataframes_and_select_powertrain_and_years(df1, df2, powertrain=["BEV"], years=(2014, 2023)):
     """
     Filters two DataFrames by powertrain and year range, merges them on common columns,
-    and prepares the resulting DataFrame.
+    and prepares the resulting DataFrame for analysis.
 
-    Args:
-        df1 (pd.DataFrame): The first DataFrame containing model-generated data.
-        df2 (pd.DataFrame): The second DataFrame containing actual observed data.
+    Parameters:
+       - df1 (pd.DataFrame): The first DataFrame containing model-generated data (e.g., stock shares).
+       - df2 (pd.DataFrame): The second DataFrame containing actual observed data (e.g., actual stock shares).
+       - powertrain (list, optional): List of powertrain types to filter by. Default is ["BEV"].
+       - years (tuple, optional): A tuple specifying the start and end years for filtering. Default is (2014, 2023).
 
     Returns:
-        pd.DataFrame: merged and filtered DataFrame that includes both model and actual data
-                      for the specified powertrain and year range.
+        pd.DataFrame: A merged and filtered DataFrame containing both model-generated and actual data for the specified
+         powertrain and year range.
     """
     # Apply filtering conditions to both DataFrames
     df1 = df1[df1[powertrain_dim].isin(powertrain)]
@@ -31,7 +33,7 @@ def merge_dataframes_and_select_powertrain_and_years(df1, df2, powertrain=["BEV"
     df2 = df2.drop(columns=[stock_dim], errors='ignore')
 
     # Rename 'share' column in df2 to 'actual share'
-    df2 = df2.rename(columns={'share': 'actual share'})
+    df2 = df2.rename(columns={share_dim: f'actual {share_dim}'})
 
     # Merge the DataFrames on the first three columns
     merged_df = pd.merge(df1, df2, on=merge_columns, how='inner')

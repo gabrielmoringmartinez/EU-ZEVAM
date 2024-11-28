@@ -4,7 +4,7 @@ from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_
 from src.part2_survival_rates.plot_survival_rates import get_csp_plots
 from src.part3_stock_calculation.plot_stock import plot_bev_stock_shares
 
-from src.load_data_and_prepare_inputs.dimension_names import optimal_distribution_dict_label
+from src.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_and_plot_csps_and_stock(data, inputs):
@@ -56,28 +56,28 @@ def calculate_and_plot_csps_and_stock(data, inputs):
          KeyError: If required keys are missing in the `data` or `inputs` dictionaries.
          ValueError: If the provided data dimensions or formats are invalid.
      """
-    registrations = calculate_registrations(data["historical_registrations"], inputs["eu_countries_and_norway"],
-                                            data["registrations_eu_cam_scenario"], data["clusters"],
-                                            data["registration_shares_by_cluster"], inputs["csp_data_ref_year"])
+    registrations = calculate_registrations(data[historical_registrations_label], inputs[eu_countries_and_norway_label],
+                                            data[registrations_eu_cam_scenario_label], data[clusters_label],
+                                            data[registration_shares_by_cluster_label], inputs[csp_data_ref_year_label])
 
-    survival_rates_2021 = calculate_empirical_survival_rates(data["stock_by_age_2021"],
-                                                             data["historical_registrations"],
-                                                             data["stock_year"])
+    survival_rates_2021 = calculate_empirical_survival_rates(data[stock_by_age_2021_label],
+                                                             data[historical_registrations_label],
+                                                             data[stock_year_label])
 
     stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values = \
-        compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs["stock_years"],
-                                             inputs["distribution_bounds"], inputs["historical_csp"],
-                                             inputs["csp_available_years"], inputs["save_options_stock"], )
+        compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs[simulation_stock_years_label],
+                                             inputs[distribution_bounds_label], inputs[historical_csp_label],
+                                             inputs[csp_available_years_label], inputs[save_options_stock_label], )
 
-    get_csp_plots(survival_rates_2021, fitted_csp_values, inputs["config_all"], inputs["config_group"])
-    plot_bev_stock_shares(stock_shares, inputs["config_bev_reference_scenario"])
+    get_csp_plots(survival_rates_2021, fitted_csp_values, inputs[config_all_label], inputs[config_group_label])
+    plot_bev_stock_shares(stock_shares, inputs[config_bev_reference_scenario_label])
 
     return {
-        "registrations": registrations,
-        "survival_rates_2021": survival_rates_2021,
-        "stock_values": stock_values,
-        "stock_shares": stock_shares,
-        "optimum_parameters_wg": optimum_parameters_wg,
+        registrations_label: registrations,
+        survival_rates_2021_label: survival_rates_2021,
+        stock_values_label: stock_values,
+        stock_shares_label: stock_shares,
+        optimum_parameters_wg_label: optimum_parameters_wg,
         optimal_distribution_dict_label: optimal_distribution_dict,
-        "fitted_csp_values": fitted_csp_values
+        fitted_csp_values_label: fitted_csp_values
     }

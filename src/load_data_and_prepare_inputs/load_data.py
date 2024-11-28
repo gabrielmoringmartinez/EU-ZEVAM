@@ -1,5 +1,6 @@
 import pandas as pd
 
+from src.load_data_and_prepare_inputs.dimension_names import *
 
 def load_data():
     """
@@ -27,18 +28,18 @@ def load_data():
     survival_rates_2016 = pd.read_csv('inputs/5_2_held_2016_survival_rates.csv', delimiter=';', decimal=',')
     # Return all the loaded data as a dictionary or as separate variables if needed
     data = {
-        "country_labels": country_labels,
-        "clusters": clusters,
-        "registration_shares_by_cluster": registration_shares_by_cluster,
-        "historical_registrations": historical_registrations,
-        "registrations_eu_cam_scenario": registrations_eu_cam_scenario,
-        "stock_by_age_2021": stock_by_age_2021,
-        "survival_rates_2021": survival_rates_2021,
-        "stock_year": stock_year,
-        "actual_bev_registration_shares": actual_bev_registration_shares,
-        "actual_bev_stock_shares": actual_bev_stock_shares,
-        "optimum_parameters_2008": optimum_parameters_2008,
-        "survival_rates_2016": survival_rates_2016
+        country_labels_label: country_labels,
+        clusters_label: clusters,
+        registration_shares_by_cluster_label: registration_shares_by_cluster,
+        historical_registrations_label: historical_registrations,
+        registrations_eu_cam_scenario_label: registrations_eu_cam_scenario,
+        stock_by_age_2021_label: stock_by_age_2021,
+        survival_rates_2021_label: survival_rates_2021,
+        stock_year_label: stock_year,
+        actual_bev_registration_shares_label: actual_bev_registration_shares,
+        actual_bev_stock_shares_label: actual_bev_stock_shares,
+        optimum_parameters_2008_label: optimum_parameters_2008,
+        survival_rates_2016_label: survival_rates_2016
     }
 
     return data
