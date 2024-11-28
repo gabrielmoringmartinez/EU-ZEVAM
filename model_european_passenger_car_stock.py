@@ -1,4 +1,5 @@
 # Import required modules
+import os
 from src.load_data_and_prepare_inputs import load_data_and_prepare_inputs
 from src.part3_stock_calculation import calculate_and_plot_csps_and_stock
 from src.part4_validate_model import compare_model_and_actual_stock_results
@@ -20,6 +21,10 @@ def model_european_bev_stock_shares_using_csp_curves():
     Returns:
         None: This function performs the analysis and saves .csv and .pdf results to the 'outputs' folder.
     """
+    # Ensure the 'outputs' folder exists
+    if not os.path.exists('outputs'):
+        os.makedirs('outputs')
+
     # Step 1: Load data
     data, inputs = load_data_and_prepare_inputs()
 
