@@ -11,6 +11,6 @@ inputs/**
 !inputs/**/*.csv
 
 # Ignore everything in the outputs folder
-outputs/
+outputs/*
 # Except the specific PDF in the 'outputs/figures/' folder
-!outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scemario_.pdf
+!outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario_.pdf

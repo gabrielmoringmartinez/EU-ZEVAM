@@ -26,7 +26,7 @@ SHARE = True
 file_info = {
     save_figure_dim: True,
     folder_dim: "outputs/figures/",
-    main_title_dim: "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scemario",
+    main_title_dim: "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario",
     additional_info_dim: '',
     group_info_dim: '',  # Can update this dynamically if needed
     comparison_type_dim: '',  # Optional: e.g., 'comparison' for side-by-side analyses
