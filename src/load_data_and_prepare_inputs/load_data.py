@@ -7,7 +7,8 @@ def load_data():
     Loads datasets required for modeling European BEV stock shares and performing CSP-based simulations.
 
     This function reads data from several CSV files stored in the `inputs` folder. The datasets include country labels,
-    historical and projected vehicle registrations, survival rates, and other related parameters.
+    historical and projected vehicle registrations, survival rates, and other related parameters. If additional files
+    should be loaded, it can be added a new csv file with data, and define in the dictionary a label for this data.
 
     Returns:
         dict: A dictionary containing all loaded datasets, where:

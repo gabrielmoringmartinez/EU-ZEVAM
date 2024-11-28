@@ -1,3 +1,4 @@
+# Main Dimension Names
 time_dim = 'time'
 year_of_first_registration_dim = "year of first registration"
 age_dim = 'vehicle age'
@@ -14,7 +15,7 @@ survival_rate_dim = "survival rate"
 number_registered_vehicles_dim = "number of registered vehicles"
 distribution_dim = 'distribution'
 stock_dim = 'stock'
-
+# Statistical Parameters Dimension Names
 gamma_weibull_dim = "gamma (Weibull)"
 beta_weibull_dim = "beta (Weibull)"
 r_squared_weibull_dim = "r squared (Weibull)"
@@ -23,8 +24,7 @@ mu_weibull_gaussian_dim = "mu (Import-Gaussian)"
 sigma_weibull_gaussian_dim = "sigma (Import-Gaussian)"
 delta_weibull_gaussian_dim = "delta (Import-Gaussian)"
 r_squared_weibull_gaussian_dim = "r squared (Weibull and Import-Gaussian)"
-
-
+# Statistical Parameters Labels
 weibull_label = "Weibull"
 weibull_gaussian_label = "WG"
 survival_rate_weibull_dim = f"{survival_rate_dim} {weibull_label}"
@@ -34,12 +34,11 @@ stock_wg_dim = f'{stock_dim}_{weibull_gaussian_label}'
 weibull_plot_label = 'Weibull fit'
 weibull_gaussian_plot_label = 'WG fit'
 data_points_plot_label = 'data points'
-
+# Geographical Labels
 eu_9_label = 'EU-9'
 eu_26_plus_norway_label = 'EU-26+Norway'
 eu_27_plus_norway_label = 'EU-27+Norway'
-
-# Define dimensions for dictionary keys
+# Plot Dictionary Keys Labels/Dimensions
 plot_params_dim = 'plot_params'
 file_info_dim = 'file_info'
 group_info_dim = 'group_info'
@@ -52,7 +51,6 @@ group_info_dim = "group_info"
 comparison_type_dim = "comparison_type"
 own_calculation_dim = "own_calculation"
 file_extension_dim = "file_extension"
-
 tick_fontsize_dim = "tick_fontsize"
 legend_fontsize_dim = "legend_fontsize"
 title_fontsize_dim = "title_fontsize"
@@ -82,14 +80,10 @@ fill_between_dim = "fill_between"
 number_of_decimals_dim = "number_of_decimals"
 num_rows_dim = "num_rows"
 num_columns_dim = "num_columns"
-
 country_csp_label = 'country csp'
 historical_csp_label = 'historical csp'
 increase_decrease_csp_label = 'increased or decreased csp'
-
-
-
-# CSV data labels
+# CSV Input Data labels
 country_labels_label = "country_labels"
 clusters_label = "clusters"
 registration_shares_by_cluster_label = "registration_shares_by_cluster"
@@ -102,7 +96,7 @@ actual_bev_registration_shares_label = "actual_bev_registration_shares"
 actual_bev_stock_shares_label = "actual_bev_stock_shares"
 optimum_parameters_2008_label = "optimum_parameters_2008"
 survival_rates_2016_label = "survival_rates_2016"
-# inputs labels
+# Python Input Labels
 eu_countries_and_norway_label = "eu_countries_and_norway"
 simulation_stock_years_label = "stock_years"
 csp_data_ref_year_label = "csp_data_ref_year"
@@ -110,7 +104,7 @@ csp_available_years_label = "csp_available_years"
 historical_csp_label = "historical_csp"
 save_options_stock_label = "save_options_stock"
 distribution_bounds_label = "distribution_bounds"
-# Inputs for plot configuration labels
+# Python Plot Inputs for Plot Configuration Labels
 config_all_label = "config_all"
 config_group_label = "config_group"
 config_bev_reference_scenario_label = "config_bev_reference_scenario"
@@ -122,20 +116,17 @@ config_sensitivity_1_label = "config_sensitivity_1"
 config_sensitivity_2_label = "config_sensitivity_2"
 config_sensitivity_3_label = "config_sensitivity_3"
 config_sensitivity_4_label = "config_sensitivity_4"
-
-# Output labels of step2: calculate_and_plot_csps_and_stock.py
+# Output labels of Step2: calculate_and_plot_csps_and_stock.py
 registrations_label = "registrations"
 stock_values_label = "stock_values"
 stock_shares_label = "stock_shares"
 optimum_parameters_wg_label = "optimum_parameters_wg"
 fitted_csp_values_label = "fitted_csp_values"
 optimal_distribution_dict_label = 'optimal_distribution_dict'
-
-
+# File Output Name Labels
 stock_data_filename_label = 'stock_data_filename'
 stock_shares_filename_label = 'stock_shares_filename'
-
-# Labels of graph_inputs of sensitivity analysis
+# Sensitivity Analysis Input labels
 powertrains_rmse_label = "powertrains"
 timeframes_rmse_label = "timeframes"
 countries_selected_label = "countries_selected"

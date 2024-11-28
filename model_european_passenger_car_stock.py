@@ -37,10 +37,4 @@ def model_european_bev_stock_shares_using_csp_curves():
 if __name__ == "__main__":
     model_european_bev_stock_shares_using_csp_curves()
 
-"""
-TO IMPROVE:
-- There are input variables passed directly to the main functions called here. Should they be passed from the main
-- The data and calculated dictionaries. Check this to be consistent
-"""
-
 
