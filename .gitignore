@@ -9,6 +9,7 @@ __pycache__/
 inputs/**
 # Allow tracking of CSV files in the inputs directory and subdirectories
 !inputs/**/*.csv
-# Do not track the ouputs folder
-outputs/
+
+# Ignore everything in the outputs folder
+outputs/*
 
