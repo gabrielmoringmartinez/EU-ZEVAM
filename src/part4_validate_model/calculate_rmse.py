@@ -1,7 +1,6 @@
 import pandas as pd
-from itertools import islice
 import numpy as np
-
+from src.part4_validate_model.append_values import append_values
 from src.load_data_and_prepare_inputs.dimension_names import *
 
 
@@ -28,7 +27,8 @@ def calculate_rmse(df, config):
         filtered_powertrain_df = df[df[powertrain_dim].isin(powertrain)]
 
         for timeframe in config[timeframes_rmse_label]:
-            filtered_timeframe_df = filtered_powertrain_df[filtered_powertrain_df[stock_year_dim].between(timeframe[0], timeframe[1])]
+            filtered_timeframe_df = filtered_powertrain_df[filtered_powertrain_df[stock_year_dim].between(timeframe[0],
+                                                                                                          timeframe[1])]
             m = (timeframe[1] - timeframe[0])+1
 
             for country in countries:
@@ -42,26 +42,3 @@ def calculate_rmse(df, config):
     return
 
 
-def append_values(rmse_rows, country, timeframe, powertrain, i, rmse):
-    """
-        Appends the RMSE result for a specific country, timeframe, and powertrain to the results list.
-
-        Parameters:
-            rmse_rows (list): The list to append the RMSE result to.
-            country (str): The country name.
-            timeframe (list): The timeframe (start year, end year).
-            powertrain (str): The powertrain type.
-            scenario (str): The scenario name (e.g., 'real values').
-            rmse (float): The calculated RMSE value.
-
-        Returns:
-            None
-        """
-    rmse_rows.append({
-        'Country': country,
-        'Timeframe': timeframe,
-        'Powertrain': powertrain,
-        'Scenario': i,
-        'RMSE': rmse,
-    })
-    return rmse_rows

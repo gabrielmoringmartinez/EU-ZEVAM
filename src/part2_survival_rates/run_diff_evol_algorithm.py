@@ -6,6 +6,7 @@ from src.part2_survival_rates.append_optimum_parameters import append_optimum_pa
     append_optimum_parameters_gaussian
 from src.part2_survival_rates.save_optimum_parameters import save_optimum_parameters_weibull, \
     save_optimum_parameters_gaussian
+from src.part2_survival_rates.get_value_countries import get_value_countries
 
 
 from src.load_data_and_prepare_inputs.dimension_names import *
@@ -34,8 +35,9 @@ def run_diff_evol_algorithm_weibull(bounds: list, country_names_number: np.ndarr
     for j in country_names_number:
         survival_rates_country = get_value_countries(survival_rates, j)
         result = differential_evolution(loss_function_weibull, bounds, survival_rates_country)
-        optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country = append_optimum_parameters_weibull \
-            (result, optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country)
+        optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country = \
+            append_optimum_parameters_weibull(result, optimum_gamma_per_country, optimum_beta_per_country,
+                                              max_rsquared_per_country)
     optimum_parameters_diff_evol_algorithm = save_optimum_parameters_weibull(optimum_gamma_per_country,
                                                                              optimum_beta_per_country,
                                                                              max_rsquared_per_country,
@@ -85,20 +87,4 @@ def run_diff_evol_algorithm_weibull_gaussian(bounds, country_names_number, survi
     return optimum_parameters_diff_evol_algorithm
 
 
-def get_value_countries(survival_rates, country_name):
-    """
-    Retrieves survival rates for a specified country.
 
-    This function filters the `survival_rates` DataFrame to extract survival rate values corresponding
-    to the specified country.
-
-    Parameters:
-        survival_rates (DataFrame): Contains survival rate data.
-        country_name (str): The name or label of the country for which to retrieve survival rates.
-
-    Returns:
-        Series: Survival rates for the specified country.
-    """
-    values_country = survival_rates[survival_rates[country_dim] == country_name]
-    survival_rates_country = values_country[survival_rate_dim]
-    return survival_rates_country

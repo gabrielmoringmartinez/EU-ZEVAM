@@ -2,6 +2,7 @@ import pandas as pd
 
 from src.load_data_and_prepare_inputs.dimension_names import *
 
+
 def replace_powertrain_share_registrations_with_country(registrations, country, plot_params):
     """
     Modifies the powertrain-specific share of vehicle registrations for a specified country from a given year onward.
@@ -35,7 +36,7 @@ def replace_powertrain_share_registrations_with_country(registrations, country, 
 
     # Merge survival rates from 2024 onwards with the original DataFrame for all countries
     registrations_merged = pd.merge(registrations, country_registrations_share_from_2024,
-        on=[time_dim, powertrain_dim], suffixes=('', f'_{country}'), how='left')
+                                    on=[time_dim, powertrain_dim], suffixes=('', f'_{country}'), how='left')
 
     # Replace values from 2024 onwards
     registrations_merged.loc[registrations_merged[time_dim] >= year_country_replied, relative_sales_dim] = \

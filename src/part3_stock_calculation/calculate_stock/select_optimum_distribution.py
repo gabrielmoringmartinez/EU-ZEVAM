@@ -13,7 +13,7 @@ def select_optimum_distribution(row, **kwargs):
     Returns:
         float: Stock value based on the optimal distribution, or None if no match is found.
     """
-    optimal_distribution_dict = kwargs.get(optimal_distribution_dict_label, {})  # Retrieve the opt_dist_dict from kwargs
+    optimal_distribution_dict = kwargs.get(optimal_distribution_dict_label, {}) # Retrieve the opt_dist_dict from kwargs
     if row[country_dim] in optimal_distribution_dict.get(weibull_label, {}):
         return row[stock_weibull_dim]
     elif row[country_dim] in optimal_distribution_dict.get(weibull_gaussian_label, {}):

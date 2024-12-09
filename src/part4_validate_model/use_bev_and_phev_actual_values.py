@@ -2,7 +2,7 @@ from src.load_data_and_prepare_inputs.dimension_names import *
 
 
 def use_bev_and_phev_actual_values(df_model, df_actual, keys=[country_dim, time_dim, powertrain_dim],
-                          column_to_update=relative_sales_dim):
+                                   column_to_update=relative_sales_dim):
     """
     Updates the registrations with actual BEV and PHEV registration values where rows match on the specified keys.
 

@@ -22,7 +22,8 @@ def compute_stock_shares(stock_df):
     stock_by_country_year = stock_grouped.groupby([country_dim, stock_year_dim]).stock.sum().reset_index()
 
     # Step 3: Merge total stock back with the grouped data to calculate share per powertrain
-    stock_merged = pd.merge(stock_grouped, stock_by_country_year, on=[country_dim, stock_year_dim], suffixes=('', '_total'))
+    stock_merged = pd.merge(stock_grouped, stock_by_country_year, on=[country_dim, stock_year_dim],
+                            suffixes=('', '_total'))
     stock_merged[share_dim] = stock_merged[stock_dim] / stock_merged[f'{stock_dim}_total']
 
     # Step 4: Select relevant columns for output

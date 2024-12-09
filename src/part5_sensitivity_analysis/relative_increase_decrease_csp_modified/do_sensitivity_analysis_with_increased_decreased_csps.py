@@ -3,7 +3,7 @@ from src.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
 from src.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
 from src.part5_sensitivity_analysis.relative_increase_decrease_csp_modified.generate_columns_to_plot import \
     generate_columns_to_plot
-from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
+from src.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 from src.part5_sensitivity_analysis.update_stock_shares import update_stock_shares
 
 from src.load_data_and_prepare_inputs.dimension_names import *
@@ -59,7 +59,7 @@ def do_sensitivity_analysis_with_increased_decreased_csps(registrations, surviva
     stock_shares_df = None
     for percentage in plot_params[percentages_selected_label]:
         adjusted_parameters = modify_csps(optimum_parameters_wg, percentage)
-        fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, True, csp_available_years)
+        fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, csp_available_years, False)
         stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict,
                                                      plot_params[simulation_stock_years_label], 'non-historical_csp')
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, percentage)

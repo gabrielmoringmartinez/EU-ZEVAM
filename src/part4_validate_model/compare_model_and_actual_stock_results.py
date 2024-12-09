@@ -4,7 +4,7 @@ from src.part3_stock_calculation.calculate_stock.calculate_stock import calculat
 from src.part4_validate_model.use_bev_and_phev_actual_values import use_bev_and_phev_actual_values
 from src.part4_validate_model.merge_dataframes_and_select_powertrain_and_years import \
     merge_dataframes_and_select_powertrain_and_years
-from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
+from src.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 from src.part4_validate_model.calculate_rmse import calculate_rmse
 
 

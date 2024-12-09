@@ -1,7 +1,7 @@
 from src.part1_transportation_model.input_data import eu_countries_and_norway
 from src.part2_survival_rates.input_data import distribution_bounds
 from src.part3_stock_calculation.calculate_stock.input_data import simulation_stock_years, historical_csp, \
-    save_options_stock, csp_data_ref_year, csp_available_years
+    save_options_stock, csp_data_ref_year, csp_available_years, save_fitted_csp_values
 from src.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
 from src.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
 from src.part4_validate_model.graph_inputs import config_validation_step1, config_validation_step2
@@ -32,6 +32,7 @@ def prepare_inputs():
         csp_available_years_label: csp_available_years,
         historical_csp_label: historical_csp,
         save_options_stock_label: save_options_stock,
+        save_fitted_csp_values_label: save_fitted_csp_values,
         distribution_bounds_label: distribution_bounds
     }
     # Plot configuration parameters

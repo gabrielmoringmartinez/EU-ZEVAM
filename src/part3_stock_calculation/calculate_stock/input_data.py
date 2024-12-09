@@ -25,3 +25,4 @@ save_options_stock = {
     "stock_data_filename": "3_1_stock_data_including_vehicle_age.csv",
     "stock_shares_filename": "3_2_stock_shares.csv"
 }
+save_fitted_csp_values = True

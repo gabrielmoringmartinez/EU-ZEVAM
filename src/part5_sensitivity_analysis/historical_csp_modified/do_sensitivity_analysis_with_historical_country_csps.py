@@ -1,6 +1,7 @@
-from src.part5_sensitivity_analysis.historical_csp_modified.process_historical_csp import process_stock_shares_with_historical_csps
+from src.part5_sensitivity_analysis.historical_csp_modified.process_historical_csp import \
+    process_stock_shares_with_historical_csps
 from src.part5_sensitivity_analysis.historical_csp_modified.generate_columns_to_plot import generate_columns_to_plot
-from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
+from src.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 
 from src.load_data_and_prepare_inputs.dimension_names import *
 

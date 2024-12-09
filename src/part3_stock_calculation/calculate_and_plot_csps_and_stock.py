@@ -1,6 +1,7 @@
 from src.part1_transportation_model import calculate_registrations
 from src.part2_survival_rates.calculate_empirical_survival_rates import calculate_empirical_survival_rates
-from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import compute_csp_values_and_compute_stock
+from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import \
+    compute_csp_values_and_compute_stock
 from src.part2_survival_rates.plot_survival_rates import get_csp_plots
 from src.part3_stock_calculation.plot_stock import plot_bev_stock_shares
 
@@ -68,7 +69,8 @@ def calculate_and_plot_csps_and_stock(data, inputs):
     stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values = \
         compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs[simulation_stock_years_label],
                                              inputs[distribution_bounds_label], inputs[historical_csp_label],
-                                             inputs[csp_available_years_label], inputs[save_options_stock_label], )
+                                             inputs[csp_available_years_label], inputs[save_options_stock_label],
+                                             inputs[save_fitted_csp_values_label])
 
     get_csp_plots(survival_rates_2021, fitted_csp_values, inputs[config_all_label], inputs[config_group_label])
     plot_bev_stock_shares(stock_shares, inputs[config_bev_reference_scenario_label])

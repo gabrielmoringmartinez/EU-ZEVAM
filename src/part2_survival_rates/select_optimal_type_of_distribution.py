@@ -1,4 +1,5 @@
-from src.load_data_and_prepare_inputs.dimension_names import *
+from src.load_data_and_prepare_inputs.dimension_names import distribution_dim
+from src.part2_survival_rates.get_distribution_type import get_distribution_type
 
 
 def select_optimal_type_of_distribution(optimal_parameters):
@@ -17,24 +18,3 @@ def select_optimal_type_of_distribution(optimal_parameters):
      """
     optimal_parameters[distribution_dim] = optimal_parameters.apply(get_distribution_type, axis=1)
     return optimal_parameters
-
-
-def get_distribution_type(row):
-    """
-    Determines the optimal distribution type for a row based on the comparison
-    between R-squared values of the Weibull and Weibull-Gaussian models.
-
-    If the R-squared value of the Weibull model is within 0.025 of the
-    Weibull-Gaussian model's R-squared value, it selects Weibull; otherwise, it selects Weibull Gaussian.
-
-    Parameters:
-        row (pd.Series): A row from the DataFrame containing 'r squared (Weibull)' and
-                         'r squared (Weibull and Import-Gaussian)' columns.
-
-    Returns:
-        str: The optimal distribution type, either 'Weibull' or 'WG' (Weibull-Gaussian).
-    """
-    if row[r_squared_weibull_dim] + 0.025 > row[r_squared_weibull_gaussian_dim]:
-        return weibull_label
-    else:
-        return weibull_gaussian_label

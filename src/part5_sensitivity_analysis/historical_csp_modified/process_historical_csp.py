@@ -1,5 +1,7 @@
-from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import compute_csp_values_and_compute_stock
-from src.part5_sensitivity_analysis.historical_csp_modified.calculate_2008_survival_rates import calculate_2008_survival_rates
+from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import \
+    compute_csp_values_and_compute_stock
+from src.part5_sensitivity_analysis.historical_csp_modified.calculate_2008_survival_rates import \
+    calculate_2008_survival_rates
 from src.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
 
 from src.load_data_and_prepare_inputs.dimension_names import *

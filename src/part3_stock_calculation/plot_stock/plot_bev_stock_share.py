@@ -1,4 +1,4 @@
-from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
+from src.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 
 
 def plot_bev_stock_shares(stock_shares, config_scenario):

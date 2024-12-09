@@ -4,7 +4,7 @@ from src.part3_stock_calculation.calculate_stock.calculate_stock import calculat
 
 
 def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_years, bounds_distributions,
-                                         historical_csp, csp_available_years, save_options=None):
+                                         historical_csp, csp_available_years, save_options=None, save_csp=False):
     """
     Computes the Cumulative Survival Probability (CSP) values and stock estimates for a given set of survival rates,
     vehicle registrations, and other relevant parameters.
@@ -23,7 +23,7 @@ def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_ye
         - historical_csp (str): identifier for activating the historical CSP data.
         - csp_available_years (int): Number of years for which CSP values are available or need to be computed.
         - save_options (dict, optional): Dictionary containing options for saving the results, such as file paths or flags. Default is None.
-
+        - save_csp (bool, optional): Bool defining if results should be saved or not
     Returns:
         - tuple: A tuple containing the following values:
             1. stock_values (pd.DataFrame): DataFrame with the computed stock values for each country and year.
@@ -38,8 +38,9 @@ def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_ye
         - If `save_options` is provided, the results (such as stock values or fitted CSP values) will be saved according
          to the specified options.
     """
-    optimum_parameters_wg, optimal_distribution_dict = calculate_csp_parameters(survival_rates, bounds_distributions)
-    fitted_csp_values = get_fitted_csp_values(survival_rates, optimum_parameters_wg, True, csp_available_years)
+    optimum_parameters_wg, optimal_distribution_dict = calculate_csp_parameters(survival_rates, bounds_distributions,
+                                                                                save_csp)
+    fitted_csp_values = get_fitted_csp_values(survival_rates, optimum_parameters_wg, csp_available_years, save_csp)
     stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict,
                                                  stock_years, historical_csp, save_options)
     return stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values

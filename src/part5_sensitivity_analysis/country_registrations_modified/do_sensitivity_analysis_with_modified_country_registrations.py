@@ -1,4 +1,4 @@
-from src.part2_survival_rates.plot_survival_rates.plot_countries import plot_all_countries
+from src.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 from src.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
 from src.part5_sensitivity_analysis.country_adjectives import country_adjectives
 from src.part5_sensitivity_analysis.country_registrations_modified.generate_columns_to_plot import \
@@ -69,4 +69,3 @@ def do_sensitivity_analysis_with_modified_country_registrations(registrations, s
                                                    country_adjectives)
     bev_stock_shares = stock_shares_df[stock_shares_df[powertrain_dim] == plot_params[powertrain_to_plot_label]]
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)
-

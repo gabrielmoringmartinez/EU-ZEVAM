@@ -1,8 +1,6 @@
 import numpy as np
 import math
-"""
-- csp_available_years (int): Number of years (vehicle ages) for which CSP values are calculated.
-"""
+
 from src.part3_stock_calculation.calculate_stock.input_data import csp_available_years
 
 

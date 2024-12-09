@@ -2,9 +2,9 @@ import pandas as pd
 
 from src.load_data_and_prepare_inputs.dimension_names import *
 
-def save_optimum_parameters_weibull(optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country,
-                                      country_names):
 
+def save_optimum_parameters_weibull(optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country,
+                                    country_names):
     """
     Compiles the optimized Weibull distribution parameters for each country into a DataFrame.
 
@@ -54,7 +54,7 @@ def save_optimum_parameters_gaussian(optimum_parameters_diff_evol_algorithm, par
         """
     optimum_parameters_diff_evol_algorithm[k_weibull_gaussian_dim] = parameters[0]
     optimum_parameters_diff_evol_algorithm[mu_weibull_gaussian_dim] = parameters[1]
-    optimum_parameters_diff_evol_algorithm[sigma_weibull_gaussian_dim]= parameters[2]
-    optimum_parameters_diff_evol_algorithm[delta_weibull_gaussian_dim]= parameters[3]
+    optimum_parameters_diff_evol_algorithm[sigma_weibull_gaussian_dim] = parameters[2]
+    optimum_parameters_diff_evol_algorithm[delta_weibull_gaussian_dim] = parameters[3]
     optimum_parameters_diff_evol_algorithm[r_squared_weibull_gaussian_dim] = parameters[4]
     return optimum_parameters_diff_evol_algorithm

@@ -23,7 +23,8 @@ def get_weibull_function(gamma_variable, beta_variable, csp_available_years):
     year_a = np.linspace(1, csp_available_years, csp_available_years)
     csp = []
     for x in year_a:
-        csp_value = float(np.exp(-(x / gamma_variable) ** beta_variable * (math.gamma(1 + 1 / beta_variable)) ** beta_variable))
+        csp_value = float(np.exp(-(x / gamma_variable) ** beta_variable *
+                                 (math.gamma(1 + 1 / beta_variable)) ** beta_variable))
         csp.append(csp_value)
     return csp
 

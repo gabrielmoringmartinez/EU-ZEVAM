@@ -103,6 +103,7 @@ csp_data_ref_year_label = "csp_data_ref_year"
 csp_available_years_label = "csp_available_years"
 historical_csp_label = "historical_csp"
 save_options_stock_label = "save_options_stock"
+save_fitted_csp_values_label = "save_fitted_csp_values"
 distribution_bounds_label = "distribution_bounds"
 # Python Plot Inputs for Plot Configuration Labels
 config_all_label = "config_all"
