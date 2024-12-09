@@ -5,6 +5,7 @@ The model allows to project the future European passenger car fleet composition 
 ## Table of Contents
 - [About](#-about)
 - [Statement of need](#-statement-of-need)
+- [Recommended skills](#-recommended-skills)
 - [Installation](#-installation)
 - [How to Build](#-how-to-build)
 - [Documentation](#-documentation)
@@ -51,6 +52,9 @@ The model does not optimize fleet composition but instead explores the effects o
 
 In doing so, the model serves as a valuable tool for decision-making, enabling stakeholders to anticipate and plan for the future of passenger transportation systems across Europe.
 
+## 🔧 Recommended skills
+
+The European Passenger Car Stock Model is implemented in Python. While no programming skills are strictly required to configure and run the model, experience with transportation modeling and Python is beneficial. Developers wishing to modify the model's functionality or enhance its capabilities should have at least a basic understanding of Python.
 
 ## 📦 Installation
 
