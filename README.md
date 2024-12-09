@@ -4,7 +4,7 @@ The model allows to project the future European passenger car fleet composition 
 
 ## Table of Contents
 - [About](#-about)
-- [Certification](#-certification)
+- [Installation](#-installation)
 - [How to Build](#-how-to-build)
 - [Documentation](#-documentation)
 - [Feedback and Contributions](#-feedback-and-contributions)
@@ -20,22 +20,35 @@ This repository presents a European passenger car stock model. It is based on th
   <p style="margin-top: 0;"><b>Figure 1:</b> Estimated BEV stock shares for EU-27+Norway up to 2050 using [(Möring-Martínez et al., 2024)](https://doi.org/10.1016/j.trd.2024.104372) and 2021 country-specific empirical survival rates .</p>
 </div>
 
-## Getting started
+## Installation
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+In order to run the model, proceed with the following steps:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
+1. Clone the project in the folder you want to store it
 ```
-cd existing_repo
-git remote add origin https://codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model.git
-git branch -M main
-git push -uf origin main
+git clone https://gitlab.dlr.de/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper.git
+```
+2. Change your working directory  to the folder where the repository was cloned
+```
+cd eu-stock-model-paper
+```
+3. Create a virtual environment
+```
+python -m venv venv
+```
+4. Activate the virtual environment.
+
+- On Windows (Only tested on Windows)
+```
+venv\Scripts\activate
+```
+- On macOS/Linux:
+```
+venv\Scripts\activate
+```
+5. Install dependencies (libraries):
+```
+pip install -r stock_model_requirements.txt
 ```
 
 ## Integrate with your tools
