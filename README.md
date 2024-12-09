@@ -1,4 +1,17 @@
-# European passenger car stock model
+# 🚗 European passenger car stock model
+
+The model allows to project the future European passenger car fleet composition by powertrain up to 2050.
+
+## Table of Contents
+- [About](#-about)
+- [Certification](#-certification)
+- [How to Build](#-how-to-build)
+- [Documentation](#-documentation)
+- [Feedback and Contributions](#-feedback-and-contributions)
+- [License](#-license)
+- [Contacts](#%EF%B8%8F-contacts)
+
+## 🔋 About
 
 This repository presents a European passenger car stock model. It is based on the EU clustering model presented in [(Möring-Martínez et al., 2024)](https://doi.org/10.1016/j.trd.2024.104372) and in the empirical survivality rates approach presented in [(Held et al., 2021)](https://doi.org/10.1186/s12544-020-00464-0). This code is used to analyze the European BEV stock fleet up to 2050 in the publication: (Möring-Martínez et al., 2025 - under review).
 
