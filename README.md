@@ -4,6 +4,7 @@ The model allows to project the future European passenger car fleet composition 
 
 ## Table of Contents
 - [About](#-about)
+- [Statement of need](#-statement-of-need)
 - [Installation](#-installation)
 - [How to Build](#-how-to-build)
 - [Documentation](#-documentation)
@@ -20,7 +21,38 @@ This repository presents a European passenger car stock model. It is based on th
   <p style="margin-top: 0;"><b>Figure 1:</b> Estimated BEV stock shares for EU-27+Norway up to 2050 using [(Möring-Martínez et al., 2024)](https://doi.org/10.1016/j.trd.2024.104372) and 2021 country-specific empirical survival rates .</p>
 </div>
 
-## Installation
+## 📜 Statement of need
+
+The European Passenger Car Stock Model is a model designed to project the composition of the passenger car fleet by powertrain type up to the year 2050 or later if desired, using the projection of new vehicle registrations and empirical survival rates as inputs. Built on country-specific data from 2021, the model enables researchers and policymakers to project future fleet compositions under varying new vehicle registration scenarios and/or varying empirical survival rates.
+
+**Core features**
+
+- **Scenario Exploration:**
+Users can provide as input different new vehicle registration secenarios or modify the survival rates. Different new vehicle registration scenarios can have:
+  - Technology advancements
+  - Current and progressive policy implementations
+  - Changes in energy prices
+
+  Different survival rates can define:
+  - Restrictions on vehicle drivability after a certain age based on survival rates.
+  - Dynamic survival rates analyzing the effect of slower or faster stock turnover rates.
+
+- **Survival Rate Analysis:**
+The model incorporates historical survival rates from 2008, 2016, and 2021, allowing for detailed exploration of how changing lifespans influence fleet dynamics. Alternatively, assumptions about using other countries' survival rates can be used also to assess the impact.
+
+**Contribution to the state of the art**
+
+Unlike most existing tools in the field, which are proprietary, the European Passenger Car Stock Model is an open-source contribution, enabling transparency and accessibility. It offers the flexibility to integrate external transportation models, such as those described by [(Domarchi and Cherchi, 2023)](https://doi.org/10.1080/01441647.2023.2195687), to enhance the accuracy and applicability of fleet projections.
+
+**Explorative, not prescriptive**
+
+
+The model does not optimize fleet composition but instead explores the effects of different assumptions and scenarios. This allows users to study the emerging impacts of policy, technology, and economic changes on the European passenger car market.
+
+In doing so, the model serves as a valuable tool for decision-making, enabling stakeholders to anticipate and plan for the future of passenger transportation systems across Europe.
+
+
+## 📦 Installation
 
 In order to run the model, proceed with the following steps:
 
@@ -50,6 +82,10 @@ venv\Scripts\activate
 ```
 pip install -r stock_model_requirements.txt
 ```
+
+
+
+
 
 ## Integrate with your tools
 
