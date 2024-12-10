@@ -88,6 +88,11 @@ venv\Scripts\activate
 ```
 pip install -r stock_model_requirements.txt
 ```
+6. Run the model:
+```
+python model_european_passenger_car_stock.py
+
+```
 
 ## 🤝 Acknowledgements
 
