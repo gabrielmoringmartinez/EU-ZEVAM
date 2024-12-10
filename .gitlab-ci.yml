@@ -1,0 +1,13 @@
+# Testing automatically if code is running and outputs expected are generated
+test:
+  image: python:3.10
+  stage: test
+  script:
+    - cd src
+    - ./test.sh
+  artifacts:
+    reports:
+      junit: code/pytest.xml
+      codequality: code/ruff.json
+
+
