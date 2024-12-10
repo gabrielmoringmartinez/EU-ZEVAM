@@ -1,3 +1,4 @@
+![European Passenger Car Stock Model Banner](fk_eu_stock_model_banner.png)
 # 🚗 European passenger car stock model
 
 The model allows to project the future European passenger car fleet composition by powertrain up to 2050.
