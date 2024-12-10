@@ -8,7 +8,7 @@ The model allows to project the future European passenger car fleet composition 
 - [Recommended skills](#-recommended-skills)
 - [Installation](#-installation)
 - [Acknowledgements](#-acknowledgements)
-- [Authorship](#-acknowledgements)
+- [Authorship](#-authorship)
 - [License](#-license)
 - [Contacts](#%EF%B8%8F-contacts)
 - [How to Build](#-how-to-build)
