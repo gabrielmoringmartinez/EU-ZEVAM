@@ -1,4 +1,4 @@
-# Import the required modules
+# Import required modules
 import os
 from src.load_data_and_prepare_inputs import load_data_and_prepare_inputs
 from src.part3_stock_calculation import calculate_and_plot_csps_and_stock
