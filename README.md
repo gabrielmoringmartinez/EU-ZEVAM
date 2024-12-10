@@ -7,6 +7,7 @@ The model allows to project the future European passenger car fleet composition 
 - [Statement of need](#-statement-of-need)
 - [Recommended skills](#-recommended-skills)
 - [Installation](#-installation)
+- [Acknowledgments](#-acknowledgements)
 - [How to Build](#-how-to-build)
 - [Documentation](#-documentation)
 - [Feedback and Contributions](#-feedback-and-contributions)
@@ -87,9 +88,9 @@ venv\Scripts\activate
 pip install -r stock_model_requirements.txt
 ```
 
+## 🤝 Acknowledgments
 
-
-
+Development of the European passenger car stock model was funded by the NDC ASPECTS project. It received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 101003866.  Additional funding for this research was provided by the MoDa project of the German Aerospace Center (DLR). We express our gratitude to all contributors.
 
 ## Integrate with your tools
 
