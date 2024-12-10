@@ -8,6 +8,7 @@ The model allows to project the future European passenger car fleet composition 
 - [Recommended skills](#-recommended-skills)
 - [Installation](#-installation)
 - [Acknowledgments](#-acknowledgements)
+- [Authorship](#-acknowledgements)
 - [License](#-license)
 - [Contacts](#%EF%B8%8F-contacts)
 - [How to Build](#-how-to-build)
@@ -94,7 +95,7 @@ Development of the European passenger car stock model was funded by the NDC ASPE
 
 ## ✍️ Authorship
 
-This model is developed by [Gabriel Möring-Martínez](https://orcid.org/0009-0003-4380-3081) in the DLR's Institute of Vehicle concepts. Special thanks to the DLR members [Stephan Schmid](https://orcid.org/0000-0002-3081-8749), Isheeka Dasgupta, [Murat Senzeybek](https://orcid.org/0000-0003-1769-3539) and [Samuel Hasselwander](https://orcid.org/0000-0002-0805-9061) which helped in the model conceptualization.
+This model is developed by [Gabriel Möring-Martínez](https://orcid.org/0009-0003-4380-3081) in the DLR's Institute of Vehicle concepts. Special thanks to the DLR members [Stephan Schmid](https://orcid.org/0000-0002-3081-8749), [Isheeka Dasgupta](https://www.linkedin.com/in/isheeka644/), [Murat Senzeybek](https://orcid.org/0000-0003-1769-3539) and [Samuel Hasselwander](https://orcid.org/0000-0002-0805-9061) which helped in the model conceptualization.
 
 ## 📃 License
 
