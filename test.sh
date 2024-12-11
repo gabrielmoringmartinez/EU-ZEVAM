@@ -27,5 +27,4 @@ echo "Successfully created the plots"
 #ruff check --select ALL --ignore PTH,T,PLR,ANN,D205 --output-file=ruff.json --output-format=gitlab model_european_passenger_car_stock.py
 #echo "Successfully ran ruff checks"
 # Check that copyright and license information for all files is available
-reuse --root ../ lint
-
+reuse lint
