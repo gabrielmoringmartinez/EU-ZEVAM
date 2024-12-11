@@ -5,11 +5,8 @@ test:
   script:
     - cd src
     - echo "Current working directory is: $(pwd)"
-    - pwd > current_folder.txt
     - ./test.sh
   artifacts:
-    paths:
-      - current_folder.txt       # Include the saved path in the artifacts
     reports:
       junit: pytest.xml
       codequality: ruff.json
