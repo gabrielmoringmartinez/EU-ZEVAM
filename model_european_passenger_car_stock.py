@@ -22,8 +22,8 @@ def model_european_bev_stock_shares_using_csp_curves():
         None: This function performs the analysis and saves .csv and .pdf results to the 'outputs' folder.
     """
     # Ensure the 'outputs' folder exists
-    if not os.path.exists('../outputs'):
-        os.makedirs('../outputs')
+    if not os.path.exists('outputs'):
+        os.makedirs('outputs')
 
     # Step 1: Load data
     data, inputs = load_data_and_prepare_inputs()
