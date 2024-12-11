@@ -6,9 +6,9 @@ test:
     - cd src
     - ./test.sh
 
-  artifacts:
-    reports:
+  #artifacts:
+  #  reports:
       #junit: src/pytest.xml
-      codequality: C:/Users/moer_ga/Gitlab-Runner/builds/9ff2XYXUZ/0/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/src/ruff.json
+  #    codequality: C:/Users/moer_ga/Gitlab-Runner/builds/9ff2XYXUZ/0/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/src/ruff.json
 
 
