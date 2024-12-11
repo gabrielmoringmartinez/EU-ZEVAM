@@ -4,7 +4,10 @@ test:
   stage: test
   script:
     - cd src
+    - pwd
     - ./test.sh
+
+
   artifacts:
     reports:
       junit: pytest.xml
