@@ -11,12 +11,20 @@ echo "Successfully installed required packages"
 pytest model_european_passenger_car_stock_test.py --junitxml=pytest.xml
 echo "Successfully ran tests"
 
+# List directory contents to confirm the location of pytest.xml
+dir src
 
 # Check the code using the ruff linter
 ruff check --select ALL --ignore PTH,T,PLR,ANN,D205 --output-file=ruff.json --output-format=gitlab model_european_passenger_car_stock.py
 echo "Successfully ran ruff checks"
+
+# List directory contents to confirm the location of pytest.xml
+dir src
+
 # Check that copyright and license information for all files is available
 reuse --root ../ lint
+
+
 
 # Check that the script is basically working and creating the same results
 python model_european_passenger_car_stock.py
