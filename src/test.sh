@@ -8,12 +8,12 @@ pip install -r stock_model_requirements.txt
 echo "Successfully installed required packages"
 
 # Run tests
-pytest model_european_passenger_car_stock_test.py --junitxml=src/pytest.xml
+pytest model_european_passenger_car_stock_test.py --junitxml=pytest.xml
 echo "Successfully ran tests"
 
 
 # Check the code using the ruff linter
-ruff check --select ALL --ignore PTH,T,PLR,ANN,D205 --output-file=src/ruff.json --output-format=gitlab model_european_passenger_car_stock.py
+ruff check --select ALL --ignore PTH,T,PLR,ANN,D205 --output-file=ruff.json --output-format=gitlab model_european_passenger_car_stock.py
 echo "Successfully ran ruff checks"
 # Check that copyright and license information for all files is available
 reuse --root ../ lint
