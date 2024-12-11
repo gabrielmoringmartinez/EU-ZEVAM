@@ -4,7 +4,7 @@ test:
   stage: test
   script:
     - dir
-    - bash test.sh
+    - ./test.sh
 
   #artifacts:
   #  reports:
