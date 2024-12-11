@@ -7,10 +7,9 @@ test:
     - dir
     - ./test.sh
 
-
   artifacts:
     reports:
-      junit: pytest.xml
-      codequality: ruff.json
+      junit: src/pytest.xml
+      codequality: src/ruff.json
 
 
