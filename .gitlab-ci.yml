@@ -4,7 +4,6 @@ test:
   stage: test
   script:
     - cd src
-    - dir
     - ./test.sh
 
   artifacts:
