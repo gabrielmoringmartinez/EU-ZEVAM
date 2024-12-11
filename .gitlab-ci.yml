@@ -7,7 +7,7 @@ test:
     - ./test.sh
   artifacts:
     reports:
-      junit: C:/Users/moer_ga/Gitlab-Runner/builds/9ff2XYXUZ/0/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/src/pytest.xml
-      codequality: C:/Users/moer_ga/Gitlab-Runner/builds/9ff2XYXUZ/0/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/src/ruff.json
+      junit: pytest.xml
+      codequality: ruff.json
 
 
