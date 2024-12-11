@@ -7,7 +7,7 @@ test:
     - ./test.sh
   artifacts:
     reports:
-      junit: code/pytest.xml
-      codequality: code/ruff.json
+      junit: src/pytest.xml
+      codequality: src/ruff.json
 
 
