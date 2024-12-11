@@ -4,8 +4,12 @@ test:
   stage: test
   script:
     - cd src
+    - echo "Current working directory is: $(pwd)"
     - ./test.sh
+    - pwd > current_folder.txt  # Save the folder path for inspection
   artifacts:
+    paths:
+      - current_folder.txt       # Include the saved path in the artifacts
     reports:
       junit: pytest.xml
       codequality: ruff.json
