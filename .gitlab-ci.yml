@@ -3,7 +3,7 @@ test:
   image: python:3.10
   stage: test
   script:
-    - ./test.sh
+    - test.sh
 
   #artifacts:
   #  reports:
