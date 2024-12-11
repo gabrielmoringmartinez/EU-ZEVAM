@@ -1,6 +1,6 @@
 # Testing automatically if code is running and outputs expected are generated
 test:
-  image: python:3.9
+  image: python:3.10
   stage: test
   script:
     - cd src
