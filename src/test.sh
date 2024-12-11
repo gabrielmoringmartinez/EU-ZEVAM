@@ -7,8 +7,15 @@ set -e
 pip install -r stock_model_requirements.txt
 echo "Successfully installed required packages"
 
-# Check the code using the flake8 linter
-flake8 --max-line-length 120 astronaut-analysis.py
+# Run tests
+#pytest model_european_passenger_car_stock_test.py --junitxml=pytest.xml
+#echo "Successfully ran tests"
+
+# Check the code using the ruff linter
+ruff check --select ALL --ignore PTH,T,PLR,ANN,D205 --output-file=ruff.json --output-format=gitlab model_european_passenger_car_stock.py
+echo "Successfully ran ruff checks"
+# Check that copyright and license information for all files is available
+reuse --root ../ lint
 
 # Check that the script is basically working and creating the same results
 python model_european_passenger_car_stock.py
