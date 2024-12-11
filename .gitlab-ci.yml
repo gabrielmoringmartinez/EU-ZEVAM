@@ -9,7 +9,7 @@ test:
 
   artifacts:
     reports:
-      junit: src/pytest.xml
+      #junit: src/pytest.xml
       codequality: src/ruff.json
 
 
