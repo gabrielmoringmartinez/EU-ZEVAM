@@ -9,5 +9,7 @@ test:
     reports:
       junit: code/pytest.xml
       codequality: code/ruff.json
+  tags:
+    - python-3.10
 
 
