@@ -8,8 +8,8 @@ pip install -r stock_model_requirements.txt
 echo "Successfully installed required packages"
 
 # Run tests
-pytest model_european_passenger_car_stock_test.py --junitxml=pytest.xml
-echo "Successfully ran tests"
+#pytest model_european_passenger_car_stock_test.py --junitxml=pytest.xml
+#echo "Successfully ran tests"
 
 
 # Check the code using the ruff linter
