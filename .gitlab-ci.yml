@@ -4,7 +4,7 @@ test:
   stage: test
   script:
     - cd src
-    - pwd
+    - echo "Current working directory:$(pwd)"
     - ./test.sh
 
 
