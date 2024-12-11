@@ -5,8 +5,8 @@ test:
   script:
     - cd src
     - echo "Current working directory is: $(pwd)"
+    - pwd > current_folder.txt
     - ./test.sh
-    - pwd > current_folder.txt  # Save the folder path for inspection
   artifacts:
     paths:
       - current_folder.txt       # Include the saved path in the artifacts
