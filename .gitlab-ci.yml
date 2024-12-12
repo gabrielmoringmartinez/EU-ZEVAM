@@ -3,11 +3,6 @@ test:
   stage: test
   image: python:3.10
   before_script:
-  - echo $PATH
-  - where python
-  - where py
-  - python --version
-  - pip --version
   - py -m pip install --upgrade pip
   script:
     - dir
