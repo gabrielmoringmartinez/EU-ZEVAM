@@ -3,6 +3,7 @@ test:
   stage: test
   image: python:3.10
   before_script:
+  - choco install python --version=3.10
   - py -m pip install --upgrade pip
   script:
     - dir
