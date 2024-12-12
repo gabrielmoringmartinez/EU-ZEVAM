@@ -3,7 +3,7 @@ test:
   stage: test
   image: python:3.10
   before_script:
-    - apt-get update && apt-get install make
+  - python -m pip install --upgrade pip
   script:
     - dir
     - ./test.sh
