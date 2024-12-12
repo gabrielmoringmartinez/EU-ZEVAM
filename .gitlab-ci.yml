@@ -1,10 +1,12 @@
 # Testing automatically if code is running and outputs expected are generated
 test:
-  image: python:3.10
   stage: test
+  image: python:3.10
   script:
-    - dir
+    - chmod +x ./test.sh
     - ./test.sh
+    - echo "Test script completed successfully"
+
 
   #artifacts:
   #  reports:
