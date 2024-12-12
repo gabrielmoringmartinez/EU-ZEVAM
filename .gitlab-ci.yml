@@ -3,7 +3,6 @@ test:
   stage: test
   image: python:3.10
   script:
-    - chmod +x ./test.sh
     - bash ./test.sh
 
   #artifacts:
