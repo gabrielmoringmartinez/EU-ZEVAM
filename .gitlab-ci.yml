@@ -1,4 +1,4 @@
-# Testing automatically if code is running and outputs expected are generated.
+# Testing automatically if code is running and outputs expected are generated
 test:
   stage: test
   image: python:3.10
