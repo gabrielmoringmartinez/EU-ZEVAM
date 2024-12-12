@@ -5,8 +5,6 @@ test:
   script:
     - chmod +x ./test.sh
     - ./test.sh
-    - echo "Test script completed successfully"
-
 
   #artifacts:
   #  reports:
