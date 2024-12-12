@@ -5,7 +5,6 @@ test:
   before_script:
   - py -m pip install --upgrade pip
   script:
-    - dir
     - ./test.sh
 
   #artifacts:
