@@ -5,7 +5,7 @@ test:
   before_script:
   - apt-get update && apt-get install bash
   script:
-    - ./test.sh
+    - bash ./test.sh
 
   #artifacts:
   #  reports:
