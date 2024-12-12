@@ -3,7 +3,7 @@ test:
   stage: test
   image: python:3.10
   before_script:
-  - python --version
+  - chmod +x ./test.sh
   script:
     - ./test.sh
 
