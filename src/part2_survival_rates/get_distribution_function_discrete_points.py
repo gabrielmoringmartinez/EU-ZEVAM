@@ -20,6 +20,19 @@ def get_distribution_function_discrete_points(survival_rate_distribution_functio
         """
     survival_rates_country = survival_rates_country.reset_index()  # for reseting the index
     survival_rates_country = survival_rates_country.drop(['index'], axis=1)  # deleting the new column of index
+    # Get the unique geo country
+    geo_country = survival_rates_country['geo country'].unique()[0]
+
+    # Create a new DataFrame with years until 60 and survival_rate as 0
+    data_extended = {
+        "geo country": [geo_country] * 60,
+        "vehicle age": list(range(1, 61)),
+        "survival rate": [0] * 60
+    }
+
+    # Create the extended DataFrame
+    survival_rates_country = pd.DataFrame(data_extended)
+
     survival_rates_country[survival_rate_dim] = predicted_function_value
     survival_rate_distribution_function = pd.concat([survival_rate_distribution_function, survival_rates_country],
                                                     ignore_index=True)

@@ -30,9 +30,9 @@ def calculate_country_fitted_values(country_name, survival_rates, pdf_parameters
     gamma_country, beta_country, k_country, mu_country, sigma_country = \
         get_statistical_parameters_of_each_country(gamma, beta, k, mu, sigma, country_name)
 
-    predicted_weibull_value = get_weibull_function(gamma_country, beta_country, csp_available_years)
+    predicted_weibull_value = get_weibull_function(gamma_country, beta_country, 60)
     predicted_weibull_and_normal_value = get_weibull_and_normal_function(gamma_country, beta_country, k_country,
-                                                                         mu_country, sigma_country, csp_available_years)
+                                                                         mu_country, sigma_country, 60)
     weibull_results = get_distribution_function_discrete_points(weibull_results, survival_rates_country,
                                                                 predicted_weibull_value)
 
