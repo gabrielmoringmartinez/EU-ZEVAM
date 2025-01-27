@@ -5,8 +5,11 @@ test:
   before_script:
   - python --version
   script:
-    - echo "hello world"
-
+    - python -m venv venv
+    - venv/Scripts/Activate.ps1 
+    - pip install -r stock_model_requirements.txt
+    - echo "Successfully installed required packages"
+    - python model_european_passenger_car_stock.py
   #artifacts:
   #  reports:
       #junit: src/pytest.xml
