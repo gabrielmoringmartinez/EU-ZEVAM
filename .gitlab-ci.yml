@@ -5,8 +5,8 @@ test:
   before_script:
   - python --version
   script:
-    - python -m venv venv2
-    - venv2/Scripts/Activate.ps1 
+    - python -m venv venv
+    - venv/Scripts/Activate.ps1 
     - pip install -r stock_model_requirements.txt
     - echo "Successfully installed required packages"
     - python model_european_passenger_car_stock.py
