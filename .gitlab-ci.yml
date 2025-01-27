@@ -10,13 +10,13 @@ test:
     - pip install -r stock_model_requirements.txt
     - echo "Successfully installed required packages"
     - python model_european_passenger_car_stock.py
-    - '[System.IO.File]:Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario_.pdf")'
-    - '[System.IO.File]:Exists("outputs/figures/validation_step_1_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.pdf")'
-    - '[System.IO.File]:Exists("outputs/figures/validation_step_2_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.pdf")'
-    - '[System.IO.File]:Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_country_csps_.pdf")'
-    - '[System.IO.File]:Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_historical_country_csps_.pdf")'
-    - '[System.IO.File]:Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_increased_decreased_country_csps_.pdf")'
-    - '[System.IO.File]:Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_registrations_.pdf")'
+    - '[System.IO.File]::Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario_.pdf")'
+    - '[System.IO.File]::Exists("outputs/figures/validation_step_1_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.pdf")'
+    - '[System.IO.File]::Exists("outputs/figures/validation_step_2_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.pdf")'
+    - '[System.IO.File]::Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_country_csps_.pdf")'
+    - '[System.IO.File]::Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_historical_country_csps_.pdf")'
+    - '[System.IO.File]::Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_increased_decreased_country_csps_.pdf")'
+    - '[System.IO.File]::Exists("outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_registrations_.pdf")'
     - echo "Successfully created the plots"
 
 
