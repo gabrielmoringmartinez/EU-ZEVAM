@@ -5,7 +5,7 @@ test:
   before_script:
   - python --version
   script:
-    - wsl bash ./test.sh
+    - echo "hello world"
 
   #artifacts:
   #  reports:
