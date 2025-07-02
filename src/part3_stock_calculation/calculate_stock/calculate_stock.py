@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part3_stock_calculation.calculate_stock.repeat_csp_data_for_all_years import repeat_csp_data_for_all_years
 from src.part3_stock_calculation.calculate_stock.calculate_year_of_first_registration import \
     calculate_year_of_first_registration

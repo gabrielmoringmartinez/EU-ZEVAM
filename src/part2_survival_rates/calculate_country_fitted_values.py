@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part2_survival_rates.get_statistical_parameters import get_statistical_parameters
 from src.part2_survival_rates.get_statistical_parameters_of_each_country import \
     get_statistical_parameters_of_each_country

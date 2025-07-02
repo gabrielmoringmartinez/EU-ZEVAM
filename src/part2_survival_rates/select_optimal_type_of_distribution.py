@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.load_data_and_prepare_inputs.dimension_names import distribution_dim
 from src.part2_survival_rates.get_distribution_type import get_distribution_type
 

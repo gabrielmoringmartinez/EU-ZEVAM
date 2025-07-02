@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 
 

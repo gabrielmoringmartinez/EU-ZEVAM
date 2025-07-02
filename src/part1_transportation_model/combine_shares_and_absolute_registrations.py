@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 import pandas as pd
 from src.load_data_and_prepare_inputs.dimension_names import country_dim, time_dim, cluster_dim, powertrain_dim, \
     relative_sales_dim, registrations_by_powertrain_dim, new_registrations_dim

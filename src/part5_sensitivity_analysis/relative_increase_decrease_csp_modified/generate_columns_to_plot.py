@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 def generate_columns_to_plot(columns_to_plot, increase_selected):
     """
     Updates and returns a dictionary mapping column names to their display labels for plot legends, based on the

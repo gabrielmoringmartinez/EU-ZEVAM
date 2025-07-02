@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 import numpy as np
 from src.load_data_and_prepare_inputs.dimension_names import share_dim, stock_dim, country_dim, powertrain_dim, \
     stock_year_dim

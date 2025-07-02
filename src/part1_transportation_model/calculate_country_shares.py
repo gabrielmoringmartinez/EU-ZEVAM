@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.load_data_and_prepare_inputs.dimension_names import time_dim, new_registrations_dim, share_dim, country_dim
 
 

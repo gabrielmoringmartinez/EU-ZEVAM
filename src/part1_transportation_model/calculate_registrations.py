@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 import pandas as pd
 
 from src.part1_transportation_model.preprocess_historical_registrations import preprocess_historical_registrations

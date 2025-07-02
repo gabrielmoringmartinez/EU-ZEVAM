@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part3_stock_calculation.calculate_eu_share.filter_eu_region import filter_eu_region
 from src.part3_stock_calculation.calculate_eu_share.calculate_total_stock_and_share import \
     calculate_total_stock_and_share

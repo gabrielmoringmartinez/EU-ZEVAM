@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part2_survival_rates.run_diff_evol_algorithm import run_diff_evol_algorithm_weibull, \
     run_diff_evol_algorithm_weibull_gaussian
 from src.part2_survival_rates.select_optimal_type_of_distribution import select_optimal_type_of_distribution

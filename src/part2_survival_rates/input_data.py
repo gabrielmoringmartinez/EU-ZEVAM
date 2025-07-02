@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 # distribution_bounds defines the parameter bounds for fitting Weibull and Gaussian distributions
 from src.load_data_and_prepare_inputs.dimension_names import *
 

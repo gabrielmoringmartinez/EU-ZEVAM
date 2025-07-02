@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 def generate_columns_to_plot(columns_to_plot, items_selected, general_legend_text):
     """
     Generates the columns_to_plot dictionary for the plot legend based on selected items

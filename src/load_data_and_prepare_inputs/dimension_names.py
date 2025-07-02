@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 # Main Dimension Names
 time_dim = 'time'
 year_of_first_registration_dim = "year of first registration"

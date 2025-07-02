@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 def get_country_group_names(country_names, group_number, number_of_countries_group):
     """
     Returns a subset of country names based on the specified group number.

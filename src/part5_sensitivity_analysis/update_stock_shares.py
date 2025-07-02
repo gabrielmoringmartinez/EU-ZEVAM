@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
 
 from src.load_data_and_prepare_inputs.dimension_names import *

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
 from src.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
 from src.part3_stock_calculation.calculate_stock.input_data import simulation_stock_years, historical_csp

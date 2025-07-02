@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.load_data_and_prepare_inputs.dimension_names import *
 
 TITLE = "Estimated Battery Electric Vehicle (BEV) stock shares for EU-27+Norway up to 2050"

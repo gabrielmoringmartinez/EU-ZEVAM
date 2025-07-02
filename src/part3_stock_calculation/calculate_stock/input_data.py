@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part1_transportation_model.input_data import eu_countries_and_norway
 from src.load_data_and_prepare_inputs.dimension_names import eu_9_label, eu_26_plus_norway_label, \
     eu_27_plus_norway_label

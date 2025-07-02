@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 import matplotlib.pyplot as plt
 from src.part2_survival_rates.plot_survival_rates.customize_axes import customize_axes
 from src.load_data_and_prepare_inputs.dimension_names import *

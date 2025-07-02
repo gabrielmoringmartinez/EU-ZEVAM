@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 import pandas as pd
 
 from src.part2_survival_rates.calculate_empirical_survival_rates.filter_vehicle_age import filter_vehicle_age

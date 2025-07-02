@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 def cleanup_stock_data(stock_data, drop_columns):
     """
     Removes calculation columns from the stock data.

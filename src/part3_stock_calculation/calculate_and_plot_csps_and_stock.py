@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part1_transportation_model import calculate_registrations
 from src.part2_survival_rates.calculate_empirical_survival_rates import calculate_empirical_survival_rates
 from src.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import \

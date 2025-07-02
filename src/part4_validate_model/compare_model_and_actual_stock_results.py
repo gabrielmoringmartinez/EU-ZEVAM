@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 # Functions
 from src.part4_validate_model.update_bev_registration_shares import update_bev_registration_shares_with_real_values
 from src.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock

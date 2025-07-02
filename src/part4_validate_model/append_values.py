@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 def append_values(rmse_rows, country, timeframe, powertrain, i, rmse):
     """
         Appends the RMSE result for a specific country, timeframe, and powertrain to the results list.

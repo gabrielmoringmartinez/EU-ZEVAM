@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 from src.part1_transportation_model.input_data import eu_countries_and_norway
 from src.part2_survival_rates.input_data import distribution_bounds
 from src.part3_stock_calculation.calculate_stock.input_data import simulation_stock_years, historical_csp, \
