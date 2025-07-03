@@ -111,9 +111,16 @@ This model is developed by [Gabriel Möring-Martínez](https://orcid.org/0009-00
 
 ## 📃 License
 
-WRITE HERE SOMETHING
+This project is licensed under multiple open licenses depending on content type:
 
-For non-commercial use, this product is available for free.
+- **Source Code**: [MIT License](LICENSES/MIT.txt)  
+- **Datasets**: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt)
+- **Documentation and Plots**: [CC BY 4.0](LICENSES/CC-BY-4.0.txt)  
+- **Minor Assets**: [CC0-1.0](LICENSES/CC0-1.0.txt)
+
+Some third-party data is excluded (see details below).
+
+For full licensing details and exceptions, see the [LICENSE.md](./LICENSE.md) file.
 
 ## 🗨️ Contacts
 
