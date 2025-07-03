@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 ![European Passenger Car Stock Model Banner](fk_eu_stock_model_banner.png)
 # 🚗 European passenger car stock model
 

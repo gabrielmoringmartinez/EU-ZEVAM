@@ -1,3 +1,5 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center
+# SPDX-License-Identifier: CC0-1.0
 #!/bin/bash
 
 # Exit when any command fails

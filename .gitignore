@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center
+#
+# SPDX-License-Identifier: CC0-1.0
+
 # Ignore Python specific temporarily created files
 # Byte-compiled / optimized / DLL files
 __pycache__/
