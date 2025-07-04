@@ -11,8 +11,10 @@ __pycache__/
 .idea/
 # Ignore everything in the inputs directory
 inputs/**
-# Allow tracking of CSV files in the inputs directory and subdirectories
+# Allow tracking of CSV files and .license files in the inputs directory and subdirectories
 !inputs/**/*.csv
+!inputs/**/*.license
+
 
 # Ignore everything in the outputs folder
 outputs/*

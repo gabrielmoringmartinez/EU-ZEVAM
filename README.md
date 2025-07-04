@@ -5,6 +5,10 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 
 ![European Passenger Car Stock Model Banner](fk_eu_stock_model_banner.png)
+
+[![REUSE status](https://api.reuse.software/badge/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)](https://api.reuse.software/info/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)
+
+
 # 🚗 European passenger car stock model
 
 The model allows to project the future European passenger car fleet composition by powertrain up to 2050.
@@ -122,7 +126,10 @@ Citation metadata is also available in the [CITATION.cff](./CITATION.cff) file f
 
 ## 📃 License
 
-This project is licensed under multiple open licenses depending on content type:
+[![REUSE status](https://api.reuse.software/badge/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)](https://api.reuse.software/info/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)
+
+
+This project is REUSE compliant and licensed under multiple open licenses depending on content type:
 
 - **Source Code**: [MIT License](LICENSES/MIT.txt)  
 - **Datasets**: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt)
