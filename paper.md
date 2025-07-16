@@ -1,5 +1,5 @@
 ---
-title: 'EU-ZEVAM: European Zero-Emission Vehicle Adoption Model'
+title: "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model"
 tags:
   - zero-emission vehicles
   - electric vehicles
@@ -10,7 +10,6 @@ tags:
 authors:
   - name: Gabriel Möring-Martínez
     orcid: 0009-0003-4380-3081
-    equal-contrib: true
     affiliation: 1 # (Multiple affiliations must be quoted)
 affiliations:
  - name: German Aerospace Center (DLR), Institute of Vehicle Concepts, Pfaffenwaldring 38-40, Stuttgart, 70569, Germany
