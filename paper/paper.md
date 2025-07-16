@@ -17,6 +17,7 @@ affiliations:
    ror: 04bwf3e34
 date: 16 July 2025
 bibliography: paper.bib
+csl: apa.csl
 ---
 
 # EU-ZEVAM: European Zero-Emission Vehicle Adoption Model
@@ -58,11 +59,11 @@ By providing open-source code and a modular structure, `EU-ZEVAM` facilitates re
 
 Zero-emission vehicle adoption is a key objective of the European Union. To this end, the EU has implemented binding CO$_2$ emission standards that manufacturers must meet to avoid financial penalties [@EuropeanCommision.2022]. In addition, individual EU Member States support the deployment of zero-emission vehicles through varying national policies, including tax incentives, infrastructure development, and other supportive measures [@Neshat.2023].
 
-Despite these EU-wide targets, most vehicle adoption models remain country-specific [@Maybury.2022]. Among the limited number of EU-wide models, several rely on strong simplifying assumptions—for example, applying Germany’s vehicle survival rates uniformly across all countries [@Ntziachristos]. However, multi-country analyses of future fleet compositions require country-specific survival modeling due to significant differences in used vehicle import and export dynamics [@Held.2021].
+Despite these EU-wide targets, most vehicle adoption models remain country-specific [@Maybury.2022]. Among the limited number of EU-wide models, several rely on strong simplifying assumptions—for example, applying Germany’s vehicle survival rates uniformly across all countries [@Ntziachristos.2008]. However, multi-country analyses of future fleet compositions require country-specific survival modeling due to significant differences in used vehicle import and export dynamics [@Held.2021].
 
 Furthermore, several studies have highlighted the lack of comprehensive datasets needed to compute country-specific cumulative survival probabilities. To address this, we present a country-level modeling framework using updated cumulative survival rates up to the year 2021. This builds upon earlier work by [@Held.2021] for 2016 and [@Oguchi.2015] for 2008.
 
-By adopting a country-level approach, EU-ZEVAM enables the estimation of electric vehicle adoption rates at both national and EU-wide levels (cf. Figure \ref{fig:stock-shares} ). It supports evaluation of whether fleet electrification and decarbonization targets are on track, while facilitating cross-country coordination and compliance planning. This is particularly relevant because scrappage schemes can accelerate fleet renewal [@Marin.2020b; @Svoboda.2023], while insufficient infrastructure or incentives may slow it down—leading to increased demand for second-hand internal combustion engine vehicles [@Maybury.2022].
+By adopting a country-level approach, EU-ZEVAM enables the estimation of electric vehicle adoption rates at both national and EU-wide levels (cf. Figure 2). It supports evaluation of whether fleet electrification and decarbonization targets are on track, while facilitating cross-country coordination and compliance planning. This is particularly relevant because scrappage schemes can accelerate fleet renewal [@Marin.2020b; @Svoboda.2023], while insufficient infrastructure or incentives may slow it down—leading to increased demand for second-hand internal combustion engine vehicles [@Maybury.2022].
 
 ![Battery electric passenger car fleet shares estimated using country-level empirical cumulative survival rate probability curves for all EU-27 countries and Norway. The sensitivity analysis varies the survival rates from 2008 and 2016 to illustrate how changes in vehicle lifespan assumptions affect fleet share projections. Figure extracted from [@MoringMartinez.2025b], licensed under CC BY 4.0.](sensitivity_analysis_with_historical_csp.jpg)
 *Figure 2: Battery electric passenger car fleet shares estimated using country-level empirical cumulative survival rate probability curves for all EU-27 countries and Norway. The sensitivity analysis varies the survival rates from 2008 and 2016 to illustrate how changes in vehicle lifespan assumptions affect fleet share projections. Figure extracted from [@MoringMartinez.2025b], licensed under CC BY 4.0.*
@@ -91,7 +92,7 @@ Citations to entries in paper.bib should be in
 format.
 
 If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
+citation) then you can do it with the example BibTeX entry below for.
 
 For a quick reference, the following citation commands can be used:
 - `@author:2001`  ->  "Author et al. (2001)"
