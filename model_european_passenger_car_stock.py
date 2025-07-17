@@ -28,6 +28,11 @@ def model_european_bev_stock_shares_using_csp_curves():
     if not os.path.exists('outputs'):
         os.makedirs('outputs')
 
+    # Ensure the 'outputs/figures' folder exists
+    figures_path = os.path.join('outputs', 'figures')
+    if not os.path.exists(figures_path):
+        os.makedirs(figures_path)
+
     # Step 1: Load data
     data, inputs = load_data_and_prepare_inputs()
 
