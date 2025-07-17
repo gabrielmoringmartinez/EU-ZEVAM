@@ -29,8 +29,6 @@ def load_data():
                                                 delimiter=';', decimal=',')
     stock_by_age_2021 = pd.read_csv('inputs/2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv',
                                     delimiter=';', decimal=',')
-    survival_rates_2021 = pd.read_csv('inputs/2_1_A_3_empirical_survival_rates_eu_countries_2021.csv', delimiter=';',
-                                      decimal=',')
     stock_year = pd.read_csv('inputs/2_2_A_1_stock_year.csv', delimiter=';', decimal=',')
     actual_bev_registration_shares = pd.read_csv('inputs/4_1_eafo_ev_new_registration_shares.csv', delimiter=';',
                                                  decimal=',')
@@ -46,7 +44,6 @@ def load_data():
         historical_registrations_label: historical_registrations,
         registrations_eu_cam_scenario_label: registrations_eu_cam_scenario,
         stock_by_age_2021_label: stock_by_age_2021,
-        survival_rates_2021_label: survival_rates_2021,
         stock_year_label: stock_year,
         actual_bev_registration_shares_label: actual_bev_registration_shares,
         actual_bev_stock_shares_label: actual_bev_stock_shares,
