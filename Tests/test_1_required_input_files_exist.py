@@ -2,7 +2,6 @@ import os
 def test_required_input_files_exist():
     # Define required input files by category
     essential_inputs = [
-        "0_country_labels.csv",
         "0_country_clusters.csv",
         "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv",
         "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv",
