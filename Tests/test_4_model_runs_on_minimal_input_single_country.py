@@ -8,7 +8,7 @@ from src.part5_sensitivity_analysis import perform_sensitivity_analysis
 
 
 
-input_dir = 'Tests/test_inputs'
+input_dir = 'Tests/test_inputs_single_country'
 
 
 def test_model_runs_on_minimal_input():
