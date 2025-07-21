@@ -42,14 +42,14 @@ def update_optimal_distribution_based_on_country_csp(country, opt_dist):
         #     weibull_gaussian_label: []
         # }
     """
-    weibull_countries = opt_dist[weibull_label]
-    wg_countries = opt_dist[weibull_gaussian_label]
+    weibull_countries = opt_dist.get(weibull_label, [])
+    wg_countries = opt_dist.get(weibull_gaussian_label, [])
     # Checking if the provided country is present in weibull_countries and wg_countries
     if country in weibull_countries:
-        weibull_countries.extend(wg_countries)
+        weibull_countries = weibull_countries + wg_countries
         wg_countries = []
     elif country in wg_countries:
-        wg_countries.extend(weibull_countries)
+        wg_countries = wg_countries + weibull_countries
         weibull_countries = []
     else:
         weibull_countries = []

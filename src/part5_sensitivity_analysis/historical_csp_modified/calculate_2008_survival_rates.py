@@ -63,6 +63,10 @@ def prepare_optimal_distribution_dict(distribution_dict):
     """
 
     updated_dict = distribution_dict.copy()
-    updated_dict[weibull_label] += updated_dict[weibull_gaussian_label]  # Add all elements from WG to Weibull
-    updated_dict[weibull_gaussian_label] = []  # Clear WG list
+
+    weibull_countries = updated_dict.get(weibull_label, [])
+    wg_countries = updated_dict.get(weibull_gaussian_label, [])
+
+    updated_dict[weibull_label] = weibull_countries + wg_countries # Add all elements from WG to Weibull
+    updated_dict[weibull_gaussian_label] = [] # Clear WG list
     return updated_dict
