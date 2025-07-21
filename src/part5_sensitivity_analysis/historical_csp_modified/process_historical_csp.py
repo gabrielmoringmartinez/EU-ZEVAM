@@ -12,7 +12,7 @@ from src.load_data_and_prepare_inputs.dimension_names import *
 
 def process_stock_shares_with_historical_csps(registrations, survival_rates_2021, survival_rates_2016, stock_years,
                                               optimum_parameters_2008, optimal_distribution_dict, bound_distributions,
-                                              csp_available_years):
+                                              csp_available_years, simulation_years):
     """
     Compute stock shares using different empirical survival rates (2008, 2016, 2021) and merge them into a
     single DataFrame for further analysis and plotting.
@@ -51,7 +51,8 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
                                                                                     historical_csp_label,
                                                                                     csp_available_years)
     stock_shares_2008 = calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021,
-                                                      optimal_distribution_dict, registrations, csp_available_years)
+                                                      optimal_distribution_dict, registrations, csp_available_years,
+                                                      simulation_years)
 
     # Rename columns to match the year-specific share columns
     stock_shares_2021.rename(columns={share_dim: f'{share_dim}_{2021}'}, inplace=True)

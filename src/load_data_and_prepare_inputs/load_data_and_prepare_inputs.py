@@ -18,6 +18,6 @@ def load_data_and_prepare_inputs(input_dir='inputs'):
             - `data` (dict): A dictionary containing loaded datasets with their names as keys.
             - `inputs` (dict): A dictionary containing simulation parameters and plot configurations.
     """
-    data = load_data(input_dir)
-    inputs = prepare_inputs()
+    data, max_year = load_data(input_dir)
+    inputs = prepare_inputs(max_year)
     return data, inputs

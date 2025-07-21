@@ -3,13 +3,13 @@
 
 from src.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
 from src.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
-from src.part3_stock_calculation.calculate_stock.input_data import simulation_stock_years, historical_csp
+from src.part3_stock_calculation.calculate_stock.input_data import historical_csp
 
 from src.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, optimal_distribution_dict,
-                                  registrations, csp_available_years):
+                                  registrations, csp_available_years, simulation_stock_years):
     """
     Calculate the stock shares for 2008 based on the CSP optimal parameters defining the survival rates from year 2008.
 

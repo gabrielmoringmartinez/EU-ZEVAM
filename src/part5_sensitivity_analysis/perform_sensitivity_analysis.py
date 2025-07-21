@@ -73,7 +73,8 @@ def perform_sensitivity_analysis(data, calculated_data, inputs):
                                                          optimal_distribution_dict,
                                                          inputs[config_sensitivity_2_label],
                                                          inputs[distribution_bounds_label],
-                                                         inputs[csp_available_years_label])
+                                                         inputs[csp_available_years_label],
+                                                         inputs[simulation_stock_years_label])
     do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates_2021, optimum_parameters_wg,
                                                           optimal_distribution_dict, inputs[config_sensitivity_3_label],
                                                           inputs[csp_available_years_label])

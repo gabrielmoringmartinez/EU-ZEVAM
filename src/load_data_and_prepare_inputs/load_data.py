@@ -26,6 +26,8 @@ def load_data(input_dir):
                                            '_countries_1970_2021.csv', delimiter=';', decimal=',')
     registrations_eu_cam_scenario = pd.read_csv(f'{input_dir}/1_3_new_registrations_2022_2050_cam_scenario.csv',
                                                 delimiter=';', decimal=',')
+    max_year = registrations_eu_cam_scenario['time'].max()
+
     stock_by_age_2021 = pd.read_csv(f'{input_dir}/2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv',
                                     delimiter=';', decimal=',')
     stock_year = pd.read_csv(f'{input_dir}/2_2_A_1_stock_year.csv', delimiter=';', decimal=',')
@@ -49,4 +51,4 @@ def load_data(input_dir):
         survival_rates_2016_label: survival_rates_2016
     }
 
-    return data
+    return data, max_year

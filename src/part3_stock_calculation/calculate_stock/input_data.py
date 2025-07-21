@@ -16,7 +16,7 @@ eu_country_groups = {
     eu_27_plus_norway_label: eu_countries_and_norway # Assuming this is the full set
 }
 # Initial and End year on which the stock is modelled
-simulation_stock_years = [2014, 2050]
+initial_simulation_stock_year = 2014
 # Year when the empirical CSP data is used
 csp_data_ref_year = 2021
 # Number of years which are considered. The vehicle age reaches a maximum of f.example, 45 years

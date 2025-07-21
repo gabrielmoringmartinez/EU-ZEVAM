@@ -4,6 +4,7 @@
 # Import required modules
 import os
 from src.load_data_and_prepare_inputs import load_data_and_prepare_inputs
+from src.load_data_and_prepare_inputs.ensure_clean_directory import ensure_clean_directory
 from src.part3_stock_calculation import calculate_and_plot_csps_and_stock
 from src.part4_validate_model import compare_model_and_actual_stock_results
 from src.part5_sensitivity_analysis import perform_sensitivity_analysis
@@ -24,14 +25,9 @@ def model_european_bev_stock_shares_using_csp_curves():
     Returns:
         None: This function performs the analysis and saves .csv and .pdf results to the 'outputs' folder.
     """
-    # Ensure the 'outputs' folder exists
-    if not os.path.exists('outputs'):
-        os.makedirs('outputs')
-
-    # Ensure the 'outputs/figures' folder exists
-    figures_path = os.path.join('outputs', 'figures')
-    if not os.path.exists(figures_path):
-        os.makedirs(figures_path)
+    # Clean and recreate 'outputs' and 'outputs/figures'
+    ensure_clean_directory('outputs')
+    ensure_clean_directory(os.path.join('outputs', 'figures'))
 
     # Step 1: Load data
     data, inputs = load_data_and_prepare_inputs()

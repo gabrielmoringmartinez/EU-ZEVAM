@@ -3,7 +3,7 @@
 
 from src.part1_transportation_model.input_data import eu_countries_and_norway
 from src.part2_survival_rates.input_data import distribution_bounds
-from src.part3_stock_calculation.calculate_stock.input_data import simulation_stock_years, historical_csp, \
+from src.part3_stock_calculation.calculate_stock.input_data import initial_simulation_stock_year, historical_csp, \
     save_options_stock, csp_data_ref_year, csp_available_years, save_fitted_csp_values
 from src.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
 from src.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
@@ -15,7 +15,7 @@ from src.part5_sensitivity_analysis.graph_inputs import config_sensitivity_1, co
 from src.load_data_and_prepare_inputs.dimension_names import *
 
 
-def prepare_inputs():
+def prepare_inputs(simulation_end_year):
     """
     Prepares the simulation-related parameters and plot configurations required for the modeling process.
 
@@ -27,6 +27,7 @@ def prepare_inputs():
             - Simulation parameters (e.g., `eu_countries_and_norway`, `stock_years`, `bounds_distributions`).
             - Plot configuration settings for various steps of the analysis.
     """
+    simulation_stock_years = [initial_simulation_stock_year, simulation_end_year]
     # Simulation-related parameters
     inputs_simulation = {
         eu_countries_and_norway_label: eu_countries_and_norway,
