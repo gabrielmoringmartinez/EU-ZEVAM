@@ -39,6 +39,7 @@ def get_csp_plots(survival_rates, fitted_csp_values, config_all, config_group):
     plot_all_countries(merged_df, config_all, columns_to_plot_all, None)
     plot_all_countries(merged_df, config_all, columns_to_plot_weibull, weibull_label)
     plot_all_countries(merged_df, config_all, columns_to_plot_wg, weibull_gaussian_label)
-    for country_group in [1, 2]:
-        plot_group_of_countries(merged_df, country_group, config_group, columns_to_plot_all, None)
+    if len(merged_df[country_dim].unique()) > 1:
+        for country_group in [1, 2]:
+            plot_group_of_countries(merged_df, country_group, config_group, columns_to_plot_all, None)
 
