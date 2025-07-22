@@ -10,14 +10,19 @@ def load_data(input_dir):
     """
     Loads datasets required for modeling European BEV stock shares and performing CSP-based simulations.
 
-    This function reads data from several CSV files stored in the `inputs` folder. The datasets include country labels,
+    This function reads data from several CSV files stored in the `inputs` folder. The datasets include cluster groups,
     historical and projected vehicle registrations, survival rates, and other related parameters. If additional files
     should be loaded, it can be added a new csv file with data, and define in the dictionary a label for this data.
 
+    Parameters:
+        input_dir (str): Path to the directory containing input CSV files.
+
     Returns:
-        dict: A dictionary containing all loaded datasets, where:
-            - Keys are descriptive dataset names (e.g., 'country_labels', 'historical_registrations').
-            - Values are pandas DataFrames containing the loaded data.
+        tuple:
+            - dict: A dictionary containing all loaded datasets, where:
+                - Keys are descriptive dataset names (e.g., 'clusters', 'historical_registrations').
+                - Values are pandas DataFrames containing the loaded data.
+            - int: The maximum year found in the 'registrations_eu_cam_scenario' dataset.
     """
     clusters = pd.read_csv(f'{input_dir}/0_country_clusters.csv', sep=';', decimal=',')
     registration_shares_by_cluster = pd.read_csv(f'{input_dir}/1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv',

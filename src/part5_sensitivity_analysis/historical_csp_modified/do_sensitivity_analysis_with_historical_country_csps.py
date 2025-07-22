@@ -34,6 +34,7 @@ def do_sensitivity_analysis_with_historical_country_csps(registrations, survival
             - powertrain_to_plot_label (str): Powertrain type (e.g., 'BEV') to plot.
         - bound_distributions (dict): Bounds for the parameters of the CSP distributions.
         - csp_available_years (int): Number of years for which CSP data is available (e.g 45 years)
+        - simulation_years (list of int): List of years for which the stock simulation is performed, e.g., [2014, 2050].
 
     Returns:
         None: Generates plots and updates dataframes as part of the sensitivity analysis.

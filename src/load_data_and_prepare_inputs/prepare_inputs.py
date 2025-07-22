@@ -22,6 +22,11 @@ def prepare_inputs(simulation_end_year):
     Organizes and combines simulation-related parameters (e.g., reference years, bounds distributions) and plot
     configuration parameters (e.g., settings for CSP and stock-related graphs).
 
+     Parameters:
+        simulation_end_year (int): The final year of the simulation period. Used together with a fixed initial year
+                                   to define the simulation stock years range. The simulation end year is determined
+                                    based on user inputs provided in CSV files.
+
     Returns:
         dict: A consolidated dictionary containing:
             - Simulation parameters (e.g., `eu_countries_and_norway`, `stock_years`, `bounds_distributions`).

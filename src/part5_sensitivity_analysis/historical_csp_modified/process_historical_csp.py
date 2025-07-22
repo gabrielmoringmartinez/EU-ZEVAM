@@ -29,6 +29,8 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
         - bound_distributions (dict): Bounds for the parameters of the CSP distributions used in the analysis.
         - csp_available_years (int): Number of years for which country-specific CSP data is available
         (e.g., [45] years).
+        - simulation_stock_years (list of int): List of years for which the stock simulation is performed,
+        e.g., [2014, 2050].
 
     Returns:
         pd.DataFrame: Merged DataFrame containing stock shares using CSP data from 2008, 2016, and 2021,

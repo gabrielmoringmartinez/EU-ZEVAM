@@ -20,6 +20,8 @@ def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, 
           (Weibull or Weibull-Gaussian).
         - registrations (pd.DataFrame): Registration data by year, powertrain, and country.
         - csp_available_years (int): Number of years for which CSP data is available (e.g., 45 years).
+        - simulation_stock_years (list of int): List of years for which the stock simulation is performed,
+        e.g., [2014, 2050].
 
     Returns:
         pd.DataFrame: Stock shares DataFrame for the year 2008

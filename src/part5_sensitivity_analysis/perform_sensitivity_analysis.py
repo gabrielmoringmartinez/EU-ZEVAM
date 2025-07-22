@@ -44,6 +44,7 @@ def perform_sensitivity_analysis(data, calculated_data, inputs):
             - `config_sensitivity_4_label` (dict): Config for modified country registrations analysis.
             - `distribution_bounds_label` (tuple): Bounds for CSP parameter distribution.
             - `csp_available_years_label` (int): Number of years for which CSP data is available (e.g 45 years).
+            - `simulation_stock_years_label` (list of int): List of years for which the stock simulation is performed.
 
     Returns:
         - None: Outputs plots comparing results with different CSP values and registrations
