@@ -13,6 +13,10 @@ def load_data_and_prepare_inputs(input_dir='inputs'):
     1. `load_data`: Loads all required datasets from CSV files.
     2. `prepare_inputs`: Prepares and organizes simulation-related parameters and plot configurations.
 
+
+    Parameters:
+        input_dir (str): Path to the directory containing input CSV files.
+
     Returns:
         tuple:
             - `data` (dict): A dictionary containing loaded datasets with their names as keys.
