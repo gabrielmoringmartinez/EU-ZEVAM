@@ -3,7 +3,18 @@ import shutil
 
 
 def ensure_clean_directory(path):
-    """Delete all contents of a directory and recreate it."""
+    """
+       Deletes all contents of the specified directory and recreates it as an empty directory.
+
+       This is useful to ensure a clean output folder before saving new results,
+       avoiding conflicts or mixing with previous data.
+
+       Parameters:
+           path (str): The file system path to the directory to be cleaned.
+
+       Returns:
+           None
+       """
     if os.path.exists(path):
         shutil.rmtree(path)
     os.makedirs(path)
