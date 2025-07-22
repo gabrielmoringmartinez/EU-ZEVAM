@@ -1,6 +1,9 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
+import matplotlib.pyplot as plt
+
+
 from src.part2_survival_rates.plot_survival_rates.setup_subplot_figure import setup_subplot_figure
 from src.part2_survival_rates.plot_survival_rates.plot_subplot import plot_survival_rate_country
 from src.part2_survival_rates.plot_survival_rates.save_figure import save_figure
@@ -42,6 +45,7 @@ def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns
         subplot_index = subplot_index + 1
     add_figure_legend(fig, ax, plot_params)
     save_figure(fig, file_info, distribution_type)
+    plt.close(fig)
     return
 
 
