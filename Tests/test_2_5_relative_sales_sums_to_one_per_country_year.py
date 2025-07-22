@@ -6,6 +6,19 @@ INPUT_DIR = "inputs"
 FILENAME = "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv"
 
 def test_relative_sales_sums_to_one_per_country_year():
+    """
+    Verify that 'relative sales' values sum to 1.00 per country and year in the input CSV.
+
+    This test reads the specified file and checks that for each combination of 'time' (year)
+    and 'geo country', the sum of the 'relative sales' column is approximately 1.00 (within ±0.01).
+
+    It also asserts that required columns are present and handles missing or non-numeric values
+    by excluding them from the sum calculation.
+
+    Raises:
+        AssertionError: If any country-year group’s relative sales sum differs from 1.00 by more than 0.01,
+                        or if required columns are missing.
+    """
     path = os.path.join(INPUT_DIR, FILENAME)
     df = pd.read_csv(path, delimiter=';', decimal=',')
 

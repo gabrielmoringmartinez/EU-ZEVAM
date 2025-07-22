@@ -1,19 +1,38 @@
 import pandas as pd
 import os
+import pytest
 
 
 from src.load_data_and_prepare_inputs import load_data_and_prepare_inputs
 from src.load_data_and_prepare_inputs.ensure_clean_directory import ensure_clean_directory
 from src.part3_stock_calculation import calculate_and_plot_csps_and_stock
 from src.part4_validate_model import compare_model_and_actual_stock_results
-from src.part5_sensitivity_analysis import perform_sensitivity_analysis
 
 
+@pytest.mark.parametrize("input_dir", [
+    "Tests/test_inputs_single_country",
+    "Tests/test_inputs_single_country_reduced_years"
+])
+def test_model_runs_on_minimal_input(input_dir):
+    """
+    Test that the full BEV stock modeling workflow runs successfully on minimal input datasets.
 
-input_dir = 'Tests/test_inputs_single_country'
+    This test is parameterized to run twice:
+    1. Using a dataset for a single country.
+    2. Using a dataset for a single country with a reduced year range.
 
+    For each case, the test:
+    - Clears the output directories.
+    - Loads data from the specified test input folder.
+    - Runs CSP curve generation and BEV stock calculation.
+    - Asserts that all output DataFrames are non-empty.
+    - Executes the model validation step to confirm it handles reduced input gracefully.
 
-def test_model_runs_on_minimal_input():
+    This ensures the model runs end-to-end without errors, even when working with small or simplified datasets.
+
+    Raises:
+        AssertionError: If any output DataFrame is unexpectedly empty.
+    """
     # Clean output directories before running test
     ensure_clean_directory('outputs')
     ensure_clean_directory(os.path.join('outputs', 'figures'))

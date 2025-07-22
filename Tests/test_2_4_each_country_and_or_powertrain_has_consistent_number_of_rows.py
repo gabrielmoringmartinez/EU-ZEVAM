@@ -13,6 +13,19 @@ GROUPED_FILES = {
 
 
 def test_each_country_or_country_powertrain_has_consistent_row_counts():
+    """
+        Check that the number of rows is consistent for each group of countries or country-powertrain pairs.
+
+        For each specified CSV file, the test groups rows by the given columns (e.g., "geo country", "powertrain"),
+        then counts how many rows are in each group. It asserts that all groups have the same number of rows,
+        indicating consistent data coverage (e.g., across years or fuel types).
+
+        If any group differs in row count, the test fails and reports which groups are inconsistent along
+        with their respective row counts.
+
+        Raises:
+            AssertionError: If inconsistent row counts are found across groups in any file.
+        """
     for filename, group_cols in GROUPED_FILES.items():
         path = os.path.join(INPUT_DIR, filename)
         df = pd.read_csv(path, delimiter=';', decimal=',')

@@ -4,6 +4,20 @@ from model_european_passenger_car_stock import model_european_bev_stock_shares_u
 
 
 def test_model_outputs_expected_files():
+    """
+    Test that the main BEV stock share model runs successfully and produces all expected output files.
+
+    This test:
+    - Removes any existing 'outputs' folder to ensure a clean run.
+    - Executes the main modeling function.
+    - Checks that the 'outputs' directory is created.
+    - Verifies that all expected CSV files are generated in 'outputs'.
+    - Verifies that all expected PDF files are generated in 'outputs/figures'.
+
+    Raises:
+        AssertionError: If the 'outputs' folder or 'outputs/figures' folder is missing,
+                        or if any expected output CSV or PDF files are not found.
+    """
     # Clean up any old outputs
     if os.path.exists('outputs'):
         shutil.rmtree('outputs')

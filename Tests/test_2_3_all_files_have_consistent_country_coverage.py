@@ -13,11 +13,33 @@ FILES_TO_CHECK = {
 
 
 def load_countries_from_file(file_path: str, column_name: str = "geo country") -> set:
+    """
+       Load unique country names from a specified CSV file and column.
+
+       Args:
+           file_path (str): Path to the CSV input file.
+           column_name (str): Name of the column containing country names (default "geo country").
+
+       Returns:
+           set: A set of unique country names (words) with spaces at the start and end removed.
+       """
     df = pd.read_csv(file_path, delimiter=';', decimal=',')
     return set(df[column_name].dropna().str.strip().unique())
 
 
 def test_countries_exist_in_reference():
+    """
+        Verify that all countries listed in specified input files exist in the reference country list.
+
+        This test loads country names from each file in FILES_TO_CHECK and compares them against the
+        official reference list of countries found in '0_country_clusters.csv'.
+
+        If any country appears in an input file but not in the reference file, the test fails and
+        reports which countries are unknown and in which files.
+
+        Raises:
+            AssertionError: If unknown countries are found in any of the input files.
+        """
     reference_countries = load_countries_from_file(REFERENCE_FILE)
 
     for label, filename in FILES_TO_CHECK.items():
@@ -32,6 +54,15 @@ def test_countries_exist_in_reference():
 
 
 def test_all_files_have_consistent_country_coverage():
+    """
+        Check that the same set of countries is consistently present across all specified input files.
+
+        This test ensures no country is missing from any of the input files listed in FILES_TO_CHECK.
+        It identifies and reports any inconsistencies where countries appear in some files but not all.
+
+        Raises:
+            AssertionError: If any countries are missing from one or more input files.
+        """
     country_sets = {}
     for label, filename in FILES_TO_CHECK.items():
         path = os.path.join(INPUT_DIR, filename)
