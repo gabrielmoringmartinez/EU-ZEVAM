@@ -1,5 +1,5 @@
 ---
-title: "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model-- Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition"
+title: "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python"
 tags:
   - zero-emission vehicles
   - electric vehicles
