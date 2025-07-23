@@ -9,7 +9,8 @@ SPDX-License-Identifier: CC-BY-4.0
 [![REUSE status](https://api.reuse.software/badge/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)](https://api.reuse.software/info/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)
 
 
-# 🚗 European passenger car stock model
+# 🚗 EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python
+ **Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition**
 
 The model allows to project the future European passenger car fleet composition by powertrain up to 2050.
 
@@ -18,6 +19,7 @@ The model allows to project the future European passenger car fleet composition 
 - [Statement of need](#-statement-of-need)
 - [Recommended skills](#-recommended-skills)
 - [Installation](#-installation)
+- [Testing](#-testing)
 - [Acknowledgements](#-acknowledgements)
 - [Authorship](#-authorship)
 - [Citation](#-citation)
@@ -32,7 +34,7 @@ The model allows to project the future European passenger car fleet composition 
 This repository presents a European passenger car stock model. It is based on the EU clustering model presented in [(Möring-Martínez et al., 2024)](https://doi.org/10.1016/j.trd.2024.104372) and in the empirical survivality rates approach presented in [(Held et al., 2021)](https://doi.org/10.1186/s12544-020-00464-0). This code is used to analyze the European BEV stock fleet up to 2050 in the publication: (Möring-Martínez et al., 2025 - under review).
 
 <div align="center">
-  <img src="outputs/figures/battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario_.png" alt="Process Diagram" width="600" style="margin-bottom: 5px;">
+  <img src="battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario_.png" alt="Process Diagram" width="600" style="margin-bottom: 5px;">
   <p style="margin-top: 0;"><b>Figure 1:</b> Estimated BEV stock shares for EU-27+Norway up to 2050 using [(Möring-Martínez et al., 2024)](https://doi.org/10.1016/j.trd.2024.104372) and 2021 country-specific empirical survival rates .</p>
 </div>
 
@@ -149,12 +151,41 @@ This model is developed by [Gabriel Möring-Martínez](https://orcid.org/0009-00
 ## 📝 Citation
 
 
-If you use this work in a research publication, please cite the following paper:
+For work involving the EU-ZEVAM model in your work, please cite the following:
 
-- Gabriel Möring-Martínez. (2025). European Passenger Car Stock Model. Journal of Open Source Software. DOI: 10.21105/joss.XXXX
+Möring-Martínez, Gabriel (2025). "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python." *Journal of Open Source Software*, XX(XXX), XXXX. [doi:XX.XXXXX/joss.XXXXX](doi:XX.XXXXX/joss.XXXXX), [https://doi:XX.XXXXX/joss.XXXXX](https://doi:XX.XXXXX/joss.XXXXX)
+```bibtex
+@article{MoringMartinez2025EUZEVAM,
+  author = {M{\"o}ring-Martínez, Gabriel and Senzeybek, Murat and Hasselwander, Samuel and Schmid, Stephan},
+  title = {{EU-ZEVAM}: {European} zero-emission vehicle adoption model in {Python}},
+  year = {2025},
+  doi = {10.21105/joss.XXXXX},
+  url = {https://doi.org/XX.XXXXX/joss.XXXXX},
+  journal = {Journal of Open Source Software},
+  volume = {X},
+  number = {X},
+  pages = {X},
+  publisher = {The Open Journal}
+}
+```
+Möring-Martínez, G., Senzeybek, M., Hasselwander, S., Schmid, S. (2025).  "Quantifying the impact of fleet turnover on electric vehicle uptake in Europe."  *Transportation Research Part D: Transport and Environment*, **135**, 104372. [https://doi.org/10.1016/j.trd.2024.104372](doi.org/10.1016/j.trd.2024.104372), [https://doi.org/10.1016/j.trd.2024.104372](https://doi.org/10.1016/j.trd.2024.104372)
 
-Citation metadata is also available in the [CITATION.cff](./CITATION.cff) file for use with citation tools.
+```bibtex
+@article{MoringMartinez2025Paper,
+   author={M{\"o}ring-Martínez, Gabriel and Senzeybek, Murat and Hasselwander, Samuel and Schmid, Stephan},
+   title={Quantifying the impact of fleet turnover on electric vehicle uptake in Europe},
+   journal={Transportation Research Part D: Transport and Environment},
+   volume={X},
+   number={X},
+   year={2025},
+   URL={https://doi.org/XX.XXXX/XXXXXX},
+   doi={XX.XXXX/XXXXXXXXX},
+   publisher={Elsevier}
+}
 
+```
+
+You can also find machine-readable citation metadata for the EU-ZEVAM Python model in the [CITATION.cff](./CITATION.cff) file for use with citation tools like GitHub’s citation button or Zotero.
 
 ## 📃 License
 
