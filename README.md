@@ -9,11 +9,18 @@ SPDX-License-Identifier: CC-BY-4.0
 [![REUSE status](https://api.reuse.software/badge/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)](https://api.reuse.software/info/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)
 
 <a href="https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model">
-  <img src="https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/blob/main/dlr_logo.png" align="right" height="120" width="120" alt="EU-ZEVAM logo" style="margin-top:-10px;" />
+  <img src="https://raw.githubusercontent.com/gabrielmoringmartinez/European-passenger-car-stock-model/main/dlr_logo.png"
+       align="right"
+       height="120"
+       width="120"
+       alt="EU-ZEVAM logo" />
 </a>
 
+<br>
+
 # 🚗 EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python
- **Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition**
+**Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition**
+
 
 The model allows to project the future European passenger car fleet composition by powertrain up to 2050.
 
