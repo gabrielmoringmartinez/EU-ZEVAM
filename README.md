@@ -8,6 +8,9 @@ SPDX-License-Identifier: CC-BY-4.0
 
 [![REUSE status](https://api.reuse.software/badge/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)](https://api.reuse.software/info/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)
 
+<a href="https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model">
+  <img src="https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/blob/main/dlr_logo.png" align="right" height="120" width="120" alt="EU-ZEVAM logo" />
+</a>
 
 # 🚗 EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python
  **Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition**
