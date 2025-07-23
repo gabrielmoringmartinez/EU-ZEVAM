@@ -23,17 +23,17 @@ There are several ways you can contribute to this project. If you want to know m
 
 Think EU-ZEVAM is useful? Let others discover it, by telling them in person, via Twitter or a blog post.
 
-Using EU-ZEVAM for a paper you are writing? Consider [citing it](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model#-citation).
+Using EU-ZEVAM for a paper you are writing? Consider [citing it](README.md#-citation).
 
 ### Ask a question ⁉️
 
-Using EU-ZEVAM and got stuck? Browse the [documentation](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model) to see if you can find a solution. Still stuck? Post your question as an [issue on GitHub][new_issue]. While we cannot offer user support, we'll try to do our best to address it, as questions often lead to better documentation or the discovery of bugs.
+Using EU-ZEVAM and got stuck? Browse the [documentation](README.md) to see if you can find a solution. Still stuck? Post your question as an [issue on GitHub][new_issue]. While we cannot offer user support, we'll try to do our best to address it, as questions often lead to better documentation or the discovery of bugs.
 
 Want to ask a question in private? Contact the model maintainer by <gabriel.moeringmartinez@dlr.de>.
 
 ### Propose an idea 💡
 
-Have an idea for a new medRCT feature? Take a look at the [documentation](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model) and [issue list][issues] to see if it isn't included or suggested yet. If not, suggest your idea as an [issue on GitHub][new_issue]. While we can't promise to implement your idea, it helps to:
+Have an idea for a new medRCT feature? Take a look at the [documentation](README.md) and [issue list][issues] to see if it isn't included or suggested yet. If not, suggest your idea as an [issue on GitHub][new_issue]. While we can't promise to implement your idea, it helps to:
 
 * Explain in detail how it would work.
 * Keep the scope as narrow as possible.
