@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 import os
 import shutil
 from model_european_passenger_car_stock import model_european_bev_stock_shares_using_csp_curves
