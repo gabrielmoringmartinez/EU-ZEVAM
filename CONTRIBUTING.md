@@ -58,12 +58,56 @@ Functions in this project are documented using standard Python docstrings, typic
 
 If you want to improve a function description:
 
-1. Go to the [src/](src)
- directory in the [code repository][repo].
+1. Go to the [src/](src) directory in the [code repository][repo].
 
 2. Open the relevant .py file that defines the function.
 
 3. Update the docstring directly beneath the function definition.
 
-4. Propose a file change with your improvements.
+4. [Propose a file change](https://docs.github.com/en/repositories/working-with-files/managing-files/editing-files) with your improvements.
 
+**Note:** Please follow the existing docstring style and conventions for consistency. 
+
+### Contribute code 📝
+
+Care to fix bugs, implement new functionality for EU-ZEVAM, update data to more recent years, or add new countries? Awesome! 👏 Have a look at the [issue list][issues] and leave a comment on the things you want to work on. See also the development guidelines below.
+
+## Development guidelines
+
+We try to follow the [GitHub flow](https://guides.github.com/introduction/flow/) for development.
+
+1. Fork [this repo][repo] and clone it to your computer. To learn more about this process, see [this guide](https://guides.github.com/activities/forking/).
+2. If you have forked and cloned the project before and it has been a while since you worked on it, [pull changes from the original repo](https://help.github.com/articles/merging-an-upstream-repository-into-your-fork/) to your clone by using `git pull upstream main`.
+3. Create and activate a Python virtual environment:
+
+    ```bash
+    python -m venv venv
+    ```
+
+    - Activate environment on Windows (Only tested on Windows)
+
+      ```bash
+      venv\Scripts\activate
+      ```
+
+    - Activate environment on macOS/Linux:
+
+      ```bash
+      source venv/bin/activate
+      ```
+4. Install dependencies:
+    ```bash
+    pip install -r stock_model_requirements.txt
+    ```
+
+5. Make your changes:
+    - Write your Python code inside the [src/](src) folder.
+    - Add or update tests in the [Tests/](Tests) folder.
+    - Document your code using Python docstrings (following the existing style).
+    - Run tests locally using:
+        ```bash
+        python run_tests.py
+        ```
+
+6. Commit and push your changes.
+7. Submit a [pull request](https://docs.github.com/de/get-started/exploring-projects-on-github/contributing-to-a-project#making-a-pull-request).
