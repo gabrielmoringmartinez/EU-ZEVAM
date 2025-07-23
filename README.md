@@ -75,37 +75,69 @@ The European Passenger Car Stock Model is implemented in Python. While no progra
 In order to run the model, proceed with the following steps:
 
 1. Clone the project in the folder you want to store it
-```
+```bash
 git clone https://gitlab.dlr.de/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper.git
 ```
 2. Change your working directory  to the folder where the repository was cloned
-```
+```bash
 cd eu-stock-model-paper
 ```
 3. Create a virtual environment
-```
+```bash
 python -m venv venv
 ```
 4. Activate the virtual environment.
 
 - On Windows (Only tested on Windows)
-```
+```bash
 venv\Scripts\activate
 ```
 - On macOS/Linux:
-```
+```bash
 venv\Scripts\activate
 ```
 5. Install dependencies (libraries):
-```
+```bash
 pip install -r stock_model_requirements.txt
 ```
 6. Run the model:
-```
+```bash
 python model_european_passenger_car_stock.py
-
 ```
 
+## 🧪 Testing
+
+This repository includes unit tests to ensure consistent and reliable behavior of the European passenger car stock model.
+
+To run all automated tests:
+
+```bash
+python run_tests.py
+```
+This will:
+
+- Discover and execute all tests in the tests/folder using pytest
+
+- Print outputs to the terminal (due to the -s flag in use) and save outputs in the outputs folder
+
+- Exit with a status code indicating test success or failure
+
+### Optional: Run a specific test
+
+To run an individual test instead, modify the run_tests.py script. For example:
+```
+# Uncomment and adapt one of the lines below in run_tests.py
+
+# Syntax:
+# sys.exit(pytest.main(["tests/test_file.py::test_function"]))
+
+# Example:
+# sys.exit(pytest.main(["tests/test_4_model_runs_on_minimal_input_single_country.py::test_model_runs_on_minimal_input"]))
+```
+**Note:** The tests assume the model environment is already set up. The tests assume the model environment is already set up. Make sure you’ve installed the required dependencies with:
+```bash
+pip install -r stock_model_requirements.txt.
+```
 ## 🤝 Acknowledgements
 
 Development of the European passenger car stock model was funded by the NDC ASPECTS project. It received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 101003866.  Additional funding for this research was provided by the MoDa project of the German Aerospace Center (DLR). We express our gratitude to all contributors.
