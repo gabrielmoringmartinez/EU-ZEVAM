@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-![European Passenger Car Stock Model Banner](fk_eu_stock_model_banner.png)
+![EU-ZEVAM Banner](fk_eu_stock_model_banner.png)
 
 [![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
@@ -87,11 +87,11 @@ In order to run the model, proceed with the following steps:
 
 1. Clone the project in the folder you want to store it
 ```bash
-git clone https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model.git
+git clone https://github.com/gabrielmoringmartinez/EU-ZEVAM.git
 ```
 2. Change your working directory  to the folder where the repository was cloned
 ```bash
-cd eu-stock-model-paper
+cd EU-ZEVAM
 ```
 3. Create a virtual environment
 ```bash
