@@ -39,9 +39,6 @@ The model allows to project the future European passenger car fleet composition 
 - [Citation](#-citation)
 - [License](#-license)
 - [Contacts](#%EF%B8%8F-contacts)
-- [How to Build](#-how-to-build)
-- [Documentation](#-documentation)
-- [Feedback and Contributions](#-feedback-and-contributions)
 
 ## 🔋 About
 
