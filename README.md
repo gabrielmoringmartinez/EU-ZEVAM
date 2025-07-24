@@ -9,6 +9,9 @@ SPDX-License-Identifier: CC-BY-4.0
 [![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
 [![Data License: CC BY-SA 4.0](https://img.shields.io/badge/data%20license-CC%20BY--SA%204.0-blue.svg)](LICENSES/CC-BY-SA-4.0.txt)
+[![CI](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml)
+[![codecov](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model)
+
 
 <a href="https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model">
   <img src="https://raw.githubusercontent.com/gabrielmoringmartinez/European-passenger-car-stock-model/main/dlr_logo.png"
