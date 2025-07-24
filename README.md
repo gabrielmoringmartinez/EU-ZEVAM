@@ -24,9 +24,7 @@ SPDX-License-Identifier: CC-BY-4.0
 # 🚗 EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python
 **Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition**
 
-
-
-The model allows to project the future European passenger car fleet composition by powertrain up to 2050.
+**The model allows to project the future European passenger car fleet composition by powertrain up to 2050.**
 
 ## Table of Contents
 - [About](#-about)
