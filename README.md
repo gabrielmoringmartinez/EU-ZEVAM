@@ -122,6 +122,8 @@ python model_european_passenger_car_stock.py
 ```
 
 ## 🧪 Testing
+[![CI](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml)
+[![codecov](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model)
 
 This repository includes unit tests to ensure consistent and reliable behavior of the European passenger car stock model.
 
