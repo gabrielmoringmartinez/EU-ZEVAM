@@ -1,23 +1,21 @@
 cff-version: 1.2.0
-title: EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python
+title: "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python"
 message: >
   If you use this software, please cite it using the
   metadata from this file.
 type: software
 authors:
-  - given-names: Gabriel
-    family-names: Möring-Martínez
+  - family-names: Möring-Martínez
+    given-names: Gabriel
     email: gabriel.moeringmartinez@dlr.de
     affiliation: DLR
-    orcid: 'https://orcid.org/0009-0003-4380-3081'
+    orcid: https://orcid.org/0009-0003-4380-3081
+repository-code: https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model
 identifiers:
   - type: url
     value: https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model
-    description: Repository
-repository-code: https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model
 abstract: >
   This repository presents a European passenger car stock model. It is based on the EU clustering model presented in Möring-Martínez et al. (2024) and on the empirical survival rates approach presented in Held et al. (2021). This code is used to analyze the European BEV stock fleet up to 2050 in the publication Möring-Martínez et al. (2025, under review).
-
 keywords:
   - passenger car stock
   - vehicle fleet
@@ -27,6 +25,6 @@ keywords:
   - survival rates
   - electric vehicles
 license: MIT
+version: "1.0.0"
 commit: 44cf21cb
-version: 1.0.0
-date-released: '2025-07-24'
+date-released: 2025-07-24
