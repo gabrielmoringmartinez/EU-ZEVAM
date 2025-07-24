@@ -87,7 +87,7 @@ In order to run the model, proceed with the following steps:
 
 1. Clone the project in the folder you want to store it
 ```bash
-git clone https://gitlab.dlr.de/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper.git
+git clone https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model.git
 ```
 2. Change your working directory  to the folder where the repository was cloned
 ```bash
