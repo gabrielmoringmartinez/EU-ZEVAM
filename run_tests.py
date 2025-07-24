@@ -4,6 +4,7 @@
 import pytest
 import sys
 
+
 def run_all_tests():
     """
     Main function to execute all unit tests in the 'tests' folder using pytest.
@@ -22,7 +23,12 @@ def run_all_tests():
         None: The script exits with the appropriate status code based on test outcomes.
     """
     # Run all tests in the 'tests' folder with stdout visible
-    sys.exit(pytest.main(["-s", "tests"]))
+    sys.exit(pytest.main([
+        "-s",  # Show print() output
+        "--cov=.",  # Measure coverage in current dir
+        "--cov-report=term-missing",  # Show missing lines
+        "tests"  # Folder with your tests
+    ]))
 
     # To run a specific test only, uncomment the line below and modify the test path as needed:
     # sys.exit(pytest.main(["tests/test_4_model_runs_on_minimal_input_single_country.py::test_model_runs_on_minimal_input"]))
