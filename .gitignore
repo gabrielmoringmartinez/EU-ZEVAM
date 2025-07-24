@@ -9,6 +9,8 @@ __pycache__/
 *$py.class
 # Ignore automatically created files by Jetbrains as PyCharm, IntelliJ
 .idea/
+# Ignore automatically created files by pytest-cov when you run tests with coverage enabled.
+.coverage
 # Ignore everything in the inputs directory
 inputs/**
 # Allow tracking of CSV files and .license files in the inputs directory and subdirectories
