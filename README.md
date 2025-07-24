@@ -6,7 +6,9 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ![European Passenger Car Stock Model Banner](fk_eu_stock_model_banner.png)
 
-[![REUSE status](https://api.reuse.software/badge/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)](https://api.reuse.software/info/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)
+[![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
+[![Data License: CC BY-SA 4.0](https://img.shields.io/badge/data%20license-CC%20BY--SA%204.0-blue.svg)](LICENSES/CC-BY-SA-4.0.txt)
 
 <a href="https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model">
   <img src="https://raw.githubusercontent.com/gabrielmoringmartinez/European-passenger-car-stock-model/main/dlr_logo.png"
@@ -16,10 +18,9 @@ SPDX-License-Identifier: CC-BY-4.0
        alt="EU-ZEVAM logo" />
 </a>
 
-<br>
-
 # 🚗 EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python
 **Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition**
+
 
 
 The model allows to project the future European passenger car fleet composition by powertrain up to 2050.
@@ -199,7 +200,10 @@ You can also find machine-readable citation metadata for the EU-ZEVAM Python mod
 
 ## 📃 License
 
-[![REUSE status](https://api.reuse.software/badge/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)](https://api.reuse.software/info/codebase.helmholtz.cloud/gabriel.moeringmartinez/european-passenger-car-stock-model)
+[![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
+[![Data License: CC BY-SA 4.0](https://img.shields.io/badge/data%20license-CC%20BY--SA%204.0-blue.svg)](LICENSES/CC-BY-SA-4.0.txt)
+
 
 
 This project is REUSE compliant and licensed under multiple open licenses depending on content type:
