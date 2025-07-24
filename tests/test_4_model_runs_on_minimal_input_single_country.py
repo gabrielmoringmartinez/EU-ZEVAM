@@ -13,8 +13,8 @@ from src.part4_validate_model import compare_model_and_actual_stock_results
 
 
 @pytest.mark.parametrize("input_dir", [
-    "Tests/test_inputs_single_country",
-    "Tests/test_inputs_single_country_reduced_years"
+    "tests/test_inputs_single_country",
+    "tests/test_inputs_single_country_reduced_years"
 ])
 def test_model_runs_on_minimal_input(input_dir):
     """

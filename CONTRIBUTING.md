@@ -102,7 +102,7 @@ We try to follow the [GitHub flow](https://guides.github.com/introduction/flow/)
 
 5. Make your changes:
     - Write your Python code inside the [src/](src) folder.
-    - Add or update tests in the [Tests/](Tests) folder.
+    - Add or update tests in the [tests/](tests) folder.
     - Document your code using Python docstrings (following the existing style).
     - Run tests locally using:
         ```bash
