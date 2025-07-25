@@ -25,7 +25,8 @@ def update_other_powertrain_shares(df):
     # Step 2: Calculate BEV and PHEV relative sales fraction by group
     bev_phev_sales_sum = (
         df.groupby([country_dim, time_dim])
-        .apply(lambda x: x.loc[x[powertrain_dim].isin(['BEV', 'G-PHEV']), relative_sales_dim].sum())
+        .apply(lambda x: x.loc[x[powertrain_dim].isin(['BEV', 'G-PHEV']), relative_sales_dim].sum(),
+               include_groups=False)
         .rename('bev_phev_sales_sum')
         .reset_index()
     )
