@@ -11,6 +11,14 @@ All notable changes to this project will be documented in this file, following [
 
 - Improvements, bug fixes or planned features will be listed here before the next release.
 
+
+## [1.1.2] – 2025-07-28
+
+### Added
+
+- Added GitHub Actions workflow `.github/workflows/draft-pdf.yml` to automatically build the paper PDF
+- Now fully compliant with all JOSS criteria for submission
+
 ## [1.1.1] – 2025-07-28
 
 ### Fixed
