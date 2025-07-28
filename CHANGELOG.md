@@ -11,6 +11,35 @@ All notable changes to this project will be documented in this file, following [
 
 - Improvements, bug fixes or planned features will be listed here before the next release.
 
+
+## [1.1.0] – 2025-07-28
+
+### Added
+
+- **Automated CI/CD testing** with `test.yml`, including:
+  - Scenario runs with minimal data (single country, fewer years)
+  - Checks for required inputs and expected outputs
+  - Other checks
+- **REUSE compliance improvements**:
+  - .license files added to input data, figures, and other files
+  - Compliance badge added
+- **JOSS-ready submission**:
+  - `paper.md` created, with summary, statement of need, references
+- **Citation metadata**:
+  - `citation.cff` added for standard citation support
+  - License section and license badges added to README
+- **Documentation improvements**:
+  - Updated installation instructions with tested `pyenv` and WSL flow
+  - Added `CONTRIBUTING.md` and `CODE_OF_CONDUCT.md`
+  - `.python-version` added for `pyenv` auto-switching
+- **Badges** for CI status, test coverage, and REUSE/license info
+
+### Changed
+
+- Minor code updates for compatibility with **Python 3.12.6**
+- Reduced future warnings during execution
+- Removed example output files from the repository for cleanliness
+
 ## [1.0.0] – 2025-07-04
 
 ### Added
@@ -30,3 +59,4 @@ All notable changes to this project will be documented in this file, following [
 
 [Unreleased]: https://gitlab.dlr.de/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/-/compare/main...HEAD
 [1.0.0]: https://gitlab.dlr.de/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/-/tags/1.0.0
+
