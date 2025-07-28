@@ -11,6 +11,12 @@ All notable changes to this project will be documented in this file, following [
 
 - Improvements, bug fixes or planned features will be listed here before the next release.
 
+## [1.1.1] – 2025-07-28
+
+### Fixed
+
+- Corrected changelog comparison links
+- Marked as JOSS-ready patch release
 
 ## [1.1.0] – 2025-07-28
 
@@ -60,4 +66,5 @@ All notable changes to this project will be documented in this file, following [
 [Unreleased]: https://github.com/gabrielmoringmartinez/EU-ZEVAM
 [1.0.0]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.0.0
 [1.1.0]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.1.0
+[1.1.1]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.1.1
 
