@@ -23,7 +23,10 @@ def use_bev_and_phev_actual_values(df_model, df_actual, keys=[country_dim, time_
     df2 = df_actual.copy()
 
     df1.set_index(keys, inplace=True)
+    df1.sort_index(inplace=True)
+
     df2.set_index(keys, inplace=True)
+    df2.sort_index(inplace=True)
 
     df1.update(df2[[column_to_update]])
     df1.reset_index(inplace=True)

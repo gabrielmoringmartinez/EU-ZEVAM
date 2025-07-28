@@ -83,7 +83,36 @@ The European Passenger Car Stock Model is implemented in Python. While no progra
 
 ## 📦 Installation
 
-In order to run the model, proceed with the following steps:
+⚠️ Note: This setup has been **tested only on Windows 10/11 using WSL2 (Ubuntu)**.
+The same steps should work on macOS and most Linux distributions, but have not been officially tested.
+
+To ensure consistent execution across systems, the model uses Python 3.12.6 managed by [pyenv](https://github.com/pyenv/pyenv) and isolated in a virtual environment via `venv`.
+
+### 🔧 Prerequisites
+**On Windows:**
+- WSL2 with Ubuntu installed (recommended version: Ubuntu 22.04 or later)
+- `git`, `build-essential`, `pyenv`, and `python-build` installed inside WSL
+
+Install pyenv following the official guide: https://github.com/pyenv/pyenv
+
+**On macOS/Linux:**
+- Xcode Command Line Tools (macOS) or `build-essential` (Linux)
+
+- `git`, `pyenv`, and required Python build dependencies installed
+
+See [pyenv wiki](https://github.com/pyenv/pyenv/wiki) for OS-specific setup instructions.
+
+### 📂 How to Open WSL in a Specific Folder (Windows only)
+If you're using Windows with WSL installed:
+
+Navigate to the folder in File Explorer (e.g., where you want to clone the project).
+
+Click the address bar, type `wsl`, and press Enter.
+This opens WSL directly in that folder.
+
+💡 macOS/Linux users: Open Terminal and use cd to move into the desired folder.
+
+### 🚀 Setup Steps
 
 1. Clone the project in the folder you want to store it
 ```bash
@@ -93,25 +122,28 @@ git clone https://github.com/gabrielmoringmartinez/EU-ZEVAM.git
 ```bash
 cd EU-ZEVAM
 ```
-3. Create a virtual environment
+3. Install Python 3.12.6 using `pyenv`
+```bash
+pyenv install 3.12.6
+```
+4. Set Python 3.12.6 as python in your environment
+```bash
+pyenv local 3.12.6
+```
+5. Create a virtual environment
 ```bash
 python -m venv venv
 ```
-4. Activate the virtual environment.
+6. Activate the virtual environment.
 
-- On Windows (Only tested on Windows)
 ```bash
-venv\Scripts\activate
+source venv/bin/activate
 ```
-- On macOS/Linux:
-```bash
-venv\Scripts\activate
-```
-5. Install dependencies (libraries):
+7. Install dependencies (libraries):
 ```bash
 pip install -r stock_model_requirements.txt
 ```
-6. Run the model:
+8. Run the model:
 ```bash
 python model_european_passenger_car_stock.py
 ```
