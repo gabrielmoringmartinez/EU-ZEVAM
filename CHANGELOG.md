@@ -75,4 +75,5 @@ All notable changes to this project will be documented in this file, following [
 [1.0.0]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.0.0
 [1.1.0]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.1.0
 [1.1.1]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.1.1
+[1.1.2]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.1.2
 
