@@ -21,5 +21,3 @@ inputs/**
 
 # Ignore everything in the outputs folder
 outputs/*
-# Except the specific PDF in the 'outputs/figures/' folder
-!outputs/figures/
