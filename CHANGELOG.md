@@ -57,6 +57,7 @@ All notable changes to this project will be documented in this file, following [
 
 ---
 
-[Unreleased]: https://gitlab.dlr.de/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/-/compare/main...HEAD
-[1.0.0]: https://gitlab.dlr.de/fk-tbs/personal-subgroups/gabriel-moring-martinez/eu-stock-model-paper/-/tags/1.0.0
+[Unreleased]: https://github.com/gabrielmoringmartinez/EU-ZEVAM
+[1.0.0]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.0.0
+[1.1.0]: https://github.com/gabrielmoringmartinez/EU-ZEVAM/tree/v1.1.0
 
