@@ -196,10 +196,10 @@ This model is developed by [Gabriel Möring-Martínez](https://orcid.org/0009-00
 
 For work involving the EU-ZEVAM model in your work, please cite the following:
 
-Möring-Martínez, Gabriel (2025). "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python." *Journal of Open Source Software*, XX(XXX), XXXX. [doi:XX.XXXXX/joss.XXXXX](doi:XX.XXXXX/joss.XXXXX), [https://doi:XX.XXXXX/joss.XXXXX](https://doi:XX.XXXXX/joss.XXXXX)
+Möring-Martínez, G. (2025). "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python." *Journal of Open Source Software*, XX(XXX), XXXX. [doi:XX.XXXXX/joss.XXXXX](doi:XX.XXXXX/joss.XXXXX), [https://doi:XX.XXXXX/joss.XXXXX](https://doi:XX.XXXXX/joss.XXXXX)
 ```bibtex
 @article{MoringMartinez2025EUZEVAM,
-  author = {M{\"o}ring-Martínez, Gabriel and Senzeybek, Murat and Hasselwander, Samuel and Schmid, Stephan},
+  author = {M{\"o}ring-Martínez, Gabriel},
   title = {{EU-ZEVAM}: {European} zero-emission vehicle adoption model in {Python}},
   year = {2025},
   doi = {10.21105/joss.XXXXX},
@@ -211,7 +211,7 @@ Möring-Martínez, Gabriel (2025). "EU-ZEVAM: European Zero-Emission Vehicle Ado
   publisher = {The Open Journal}
 }
 ```
-Möring-Martínez, G., Senzeybek, M., Hasselwander, S., Schmid, S. (2025).  "Quantifying the impact of fleet turnover on electric vehicle uptake in Europe."  *Transportation Research Part D: Transport and Environment*, **135**, 104372. [https://doi.org/10.1016/j.trd.2024.104372](doi.org/10.1016/j.trd.2024.104372), [https://doi.org/10.1016/j.trd.2024.104372](https://doi.org/10.1016/j.trd.2024.104372)
+Möring-Martínez, G., Senzeybek, M., Hasselwander, S., Schmid, S. (2025).  "Quantifying the impact of fleet turnover on electric vehicle uptake in Europe."  *Transportation Research Part D: Transport and Environment*, **XXX**, XXXXXX. [https://doi.org/10.1016/j.trd.2025.XXXXXX](doi.org/10.1016/j.trd.2025.XXXXXX), [https://doi.org/10.1016/j.trd.2025.XXXXXX](https://doi.org/10.1016/j.trd.2025.XXXXXX)
 
 ```bibtex
 @article{MoringMartinez2025Paper,
