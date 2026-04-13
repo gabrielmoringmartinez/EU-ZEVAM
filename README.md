@@ -145,7 +145,7 @@ pip install -r stock_model_requirements.txt
 ```
 8. Run the model:
 ```bash
-python model_european_passenger_car_stock.py
+python run_model.py
 ```
 
 ## 🧪 Testing

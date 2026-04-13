@@ -10,7 +10,7 @@ from src.part4_validate_model import compare_model_and_actual_stock_results
 from src.part5_sensitivity_analysis import perform_sensitivity_analysis
 
 
-def model_european_bev_stock_shares_using_csp_curves():
+def run_model(input_path="inputs", output_path="outputs"):
     """
     Main function to model the Battery Electric Vehicle (BEV) stock shares across European countries using Cumulative
     Survival Probability (CSP) curves. This function performs the full modeling workflow, including input loading,
@@ -26,11 +26,11 @@ def model_european_bev_stock_shares_using_csp_curves():
         None: This function performs the analysis and saves .csv and .pdf results to the 'outputs' folder.
     """
     # Clean and recreate 'outputs' and 'outputs/figures'
-    ensure_clean_directory('outputs')
-    ensure_clean_directory(os.path.join('outputs', 'figures'))
+    ensure_clean_directory(output_path)
+    ensure_clean_directory(os.path.join(output_path, 'figures'))
 
     # Step 1: Load data
-    data, inputs = load_data_and_prepare_inputs()
+    data, inputs = load_data_and_prepare_inputs(input_path=input_path)
 
     # Step 2: Calculate and plot CSPs and stock
     csp_and_stock_calculated_data = calculate_and_plot_csps_and_stock(data, inputs)
@@ -44,6 +44,6 @@ def model_european_bev_stock_shares_using_csp_curves():
 
 # Execute the main function when the script is run
 if __name__ == "__main__":
-    model_european_bev_stock_shares_using_csp_curves()
+    run_model(input_path="inputs", output_path="outputs")
 
 

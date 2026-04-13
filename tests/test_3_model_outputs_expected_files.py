@@ -3,7 +3,7 @@
 
 import os
 import shutil
-from model_european_passenger_car_stock import model_european_bev_stock_shares_using_csp_curves
+from run_model import run_model
 
 
 def test_model_outputs_expected_files():
