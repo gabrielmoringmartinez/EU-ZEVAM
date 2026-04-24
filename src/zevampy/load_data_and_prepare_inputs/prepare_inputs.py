@@ -1,0 +1,65 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
+from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway
+from src.zevampy.part2_survival_rates.input_data import distribution_bounds
+from src.zevampy.part3_stock_calculation.calculate_stock.input_data import initial_simulation_stock_year, historical_csp, \
+    save_options_stock, csp_data_ref_year, csp_available_years, save_fitted_csp_values
+from src.zevampy.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
+from src.zevampy.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
+from src.zevampy.part4_validate_model.graph_inputs import config_validation_step1, config_validation_step2
+from src.zevampy.part4_validate_model.rmse_inputs import config_validation_rmse_step1, config_validation_rmse_step2
+from src.zevampy.part5_sensitivity_analysis.graph_inputs import config_sensitivity_1, config_sensitivity_2, \
+    config_sensitivity_3, config_sensitivity_4
+
+from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+
+
+def prepare_inputs(simulation_end_year):
+    """
+    Prepares the simulation-related parameters and plot configurations required for the modeling process.
+
+    Organizes and combines simulation-related parameters (e.g., reference years, bounds distributions) and plot
+    configuration parameters (e.g., settings for CSP and stock-related graphs).
+
+     Parameters:
+        simulation_end_year (int): The final year of the simulation period. Used together with a fixed initial year
+                                   to define the simulation stock years range. The simulation end year is determined
+                                    based on user inputs provided in CSV files.
+
+    Returns:
+        dict: A consolidated dictionary containing:
+            - Simulation parameters (e.g., `eu_countries_and_norway`, `stock_years`, `bounds_distributions`).
+            - Plot configuration settings for various steps of the analysis.
+    """
+    simulation_stock_years = [initial_simulation_stock_year, simulation_end_year]
+    # Simulation-related parameters
+    inputs_simulation = {
+        eu_countries_and_norway_label: eu_countries_and_norway,
+        simulation_stock_years_label: simulation_stock_years,
+        csp_data_ref_year_label: csp_data_ref_year,
+        csp_available_years_label: csp_available_years,
+        historical_csp_label: historical_csp,
+        save_options_stock_label: save_options_stock,
+        save_fitted_csp_values_label: save_fitted_csp_values,
+        distribution_bounds_label: distribution_bounds
+    }
+    # Plot configuration parameters
+    inputs_plot_configuration = {
+        config_all_label: config_all,
+        config_group_label: config_group,
+        config_bev_reference_scenario_label: config_bev_reference_scenario,
+        config_validation_step1_label: config_validation_step1,
+        config_validation_step2_label: config_validation_step2,
+        config_validation_rmse_step1_label: config_validation_rmse_step1,
+        config_validation_rmse_step2_label: config_validation_rmse_step2,
+        config_sensitivity_1_label: config_sensitivity_1,
+        config_sensitivity_2_label: config_sensitivity_2,
+        config_sensitivity_3_label: config_sensitivity_3,
+        config_sensitivity_4_label: config_sensitivity_4,
+    }
+    inputs = {
+        **inputs_simulation,
+        **inputs_plot_configuration
+    }
+    return inputs

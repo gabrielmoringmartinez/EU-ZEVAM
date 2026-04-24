@@ -3,7 +3,6 @@
 
 import os
 import shutil
-from run_model import run_model
 
 
 def test_model_outputs_expected_files():
@@ -59,7 +58,7 @@ def test_model_outputs_expected_files():
         "validation_step_2_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.pdf",
     ]
 
-    figures_folder = os.path.join("outputs", "figures")
+    figures_folder = os.path.join("../../outputs", "figures")
     assert os.path.exists(figures_folder), "'outputs/figures' folder was not created"
     actual_pdf_files = os.listdir(figures_folder)
 
