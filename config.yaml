@@ -1,0 +1,48 @@
+data:
+  input_path: inputs
+  output_path: outputs
+
+
+model:
+  start_new_registration_year: 1970
+  first_stock_year: 2014
+  end_year: 2050
+  csp_reference_year: 2021
+  csp_available_years: 45
+  historical_csp: false
+
+geography:
+  countries:
+    - Austria
+    - Bulgaria
+    - Norway
+  use_clusters: true
+  cluster_source: clusters
+
+powertrains:
+  - BEV
+  - PHEV
+  - G-PHEV
+  - Diesel
+  - Gasoline
+
+registrations:
+  historical_registrations_source: historical_registrations
+  registration_shares_source: registration_shares_by_cluster
+  actual_registration_shares_source: actual_bev_registration_shares
+  use_country_specific_historical_shares: true
+
+projections:
+  source: registrations_projected
+  method: proportional_by_reference_year
+  reference_year: 2021
+  projection_region: EU-27
+
+stock:
+  stock_by_age_source: stock_by_age_2021
+  stock_year_source: stock_year
+
+outputs:
+  save_figures: true
+  save_csv: true
+  figures_folder: figures

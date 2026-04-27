@@ -3,14 +3,16 @@
 
 # Import required modules
 import os
-from src.zevampy.load_data_and_prepare_inputs import load_data_and_prepare_inputs
-from src.zevampy.load_data_and_prepare_inputs.ensure_clean_directory import ensure_clean_directory
-from src.zevampy.part3_stock_calculation import calculate_and_plot_csps_and_stock
-from src.zevampy.part4_validate_model import compare_model_and_actual_stock_results
-from src.zevampy.part5_sensitivity_analysis import perform_sensitivity_analysis
+from zevampy.load_data_and_prepare_inputs import load_data_and_prepare_inputs
+from zevampy.load_data_and_prepare_inputs.ensure_clean_directory import ensure_clean_directory
+from zevampy.part3_stock_calculation import calculate_and_plot_csps_and_stock
+from zevampy.part4_validate_model import compare_model_and_actual_stock_results
+from zevampy.part5_sensitivity_analysis import perform_sensitivity_analysis
+from zevampy.config import load_config
+import os
 
 
-def run_model(input_path="inputs", output_path="outputs"):
+def run_model(config_path=None, input_path=None, output_path=None):
     """
     Main function to model the Battery Electric Vehicle (BEV) stock shares across European countries using Cumulative
     Survival Probability (CSP) curves. This function performs the full modeling workflow, including input loading,
@@ -25,12 +27,20 @@ def run_model(input_path="inputs", output_path="outputs"):
     Returns:
         None: This function performs the analysis and saves .csv and .pdf results to the 'outputs' folder.
     """
+
+    # Load config (or defaults)
+    config = load_config(config_path)
+
+    # Allow CLI override (optional)
+    input_path = input_path or config["data"]["input_path"]
+    output_path = output_path or config["data"]["output_path"]
+
     # Clean and recreate 'outputs' and 'outputs/figures'
     ensure_clean_directory(output_path)
     ensure_clean_directory(os.path.join(output_path, 'figures'))
 
     # Step 1: Load data
-    data, inputs = load_data_and_prepare_inputs(input_path=input_path)
+    data, inputs = load_data_and_prepare_inputs(input_path=input_path, config=config)
 
     # Step 2: Calculate and plot CSPs and stock
     csp_and_stock_calculated_data = calculate_and_plot_csps_and_stock(data, inputs)

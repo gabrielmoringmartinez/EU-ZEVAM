@@ -22,16 +22,16 @@ def load_data(input_dir):
             - dict: A dictionary containing all loaded datasets, where:
                 - Keys are descriptive dataset names (e.g., 'clusters', 'historical_registrations').
                 - Values are pandas DataFrames containing the loaded data.
-            - int: The maximum year found in the 'registrations_eu_cam_scenario' dataset.
+            - int: The maximum year found in the 'registrations_projected' dataset.
     """
     clusters = pd.read_csv(f'{input_dir}/0_country_clusters.csv', sep=';', decimal=',')
     registration_shares_by_cluster = pd.read_csv(f'{input_dir}/1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv',
                                                  delimiter=';', decimal=',')
     historical_registrations = pd.read_csv(f'{input_dir}/1_2_A_2_new_registrations_data_passenger_cars_eu'
                                            '_countries_1970_2021.csv', delimiter=';', decimal=',')
-    registrations_eu_cam_scenario = pd.read_csv(f'{input_dir}/1_3_new_registrations_2022_2050_cam_scenario.csv',
+    registrations_projected = pd.read_csv(f'{input_dir}/1_3_new_registrations_2022_2050_projected.csv',
                                                 delimiter=';', decimal=',')
-    max_year = registrations_eu_cam_scenario['time'].max()
+    max_year = registrations_projected['time'].max()
 
     stock_by_age_2021 = pd.read_csv(f'{input_dir}/2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv',
                                     delimiter=';', decimal=',')
@@ -47,7 +47,7 @@ def load_data(input_dir):
         clusters_label: clusters,
         registration_shares_by_cluster_label: registration_shares_by_cluster,
         historical_registrations_label: historical_registrations,
-        registrations_eu_cam_scenario_label: registrations_eu_cam_scenario,
+        registrations_projected_label: registrations_projected,
         stock_by_age_2021_label: stock_by_age_2021,
         stock_year_label: stock_year,
         actual_bev_registration_shares_label: actual_bev_registration_shares,

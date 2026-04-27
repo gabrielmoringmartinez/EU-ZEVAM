@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import pandas as pd
+import math
 from src.zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 from src.zevampy.part2_survival_rates.plot_survival_rates.plot_group_of_countries import plot_group_of_countries
 from src.zevampy.part2_survival_rates.plot_survival_rates.get_columns_to_plot import get_columns_to_plot
@@ -39,7 +40,17 @@ def get_csp_plots(survival_rates, fitted_csp_values, config_all, config_group):
     plot_all_countries(merged_df, config_all, columns_to_plot_all, None)
     plot_all_countries(merged_df, config_all, columns_to_plot_weibull, weibull_label)
     plot_all_countries(merged_df, config_all, columns_to_plot_wg, weibull_gaussian_label)
-    if len(merged_df[country_dim].unique()) > 1:
-        for country_group in [1, 2]:
-            plot_group_of_countries(merged_df, country_group, config_group, columns_to_plot_all, None)
+    country_names = merged_df[country_dim].unique()
+    countries_per_group = config_group[plot_params_dim][number_of_countries_group_dim]
+
+    if len(country_names) > 1:
+        number_of_groups = math.ceil(len(country_names) / countries_per_group)
+        for country_group in range(1, number_of_groups + 1):
+            plot_group_of_countries(
+                merged_df,
+                country_group,
+                config_group,
+                columns_to_plot_all,
+                None,
+            )
 

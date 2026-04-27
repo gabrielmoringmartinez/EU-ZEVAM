@@ -15,7 +15,7 @@ from src.zevampy.part5_sensitivity_analysis.graph_inputs import config_sensitivi
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
-def prepare_inputs(simulation_end_year):
+def prepare_inputs(simulation_end_year, config=None):
     """
     Prepares the simulation-related parameters and plot configurations required for the modeling process.
 
@@ -32,17 +32,28 @@ def prepare_inputs(simulation_end_year):
             - Simulation parameters (e.g., `eu_countries_and_norway`, `stock_years`, `bounds_distributions`).
             - Plot configuration settings for various steps of the analysis.
     """
-    simulation_stock_years = [initial_simulation_stock_year, simulation_end_year]
+    model_config = config.get("model", {})
+    geography_config = config.get("geography", {})
+    powertrains = config.get("powertrains", {})
+    initial_year = model_config.get("first_stock_year", initial_simulation_stock_year)
+    end_year = model_config.get("end_year", simulation_end_year)
+    simulation_stock_years = [initial_year, end_year]
+    countries = geography_config.get("countries") or eu_countries_and_norway
+    csp_ref_year = model_config.get("csp_reference_year", csp_data_ref_year)
+    csp_avail_years = model_config.get("csp_available_years", csp_available_years)
+    historical_csp_active = model_config.get("historical_csp", historical_csp)
+
     # Simulation-related parameters
     inputs_simulation = {
-        eu_countries_and_norway_label: eu_countries_and_norway,
+        countries_selected_label: countries,
         simulation_stock_years_label: simulation_stock_years,
-        csp_data_ref_year_label: csp_data_ref_year,
-        csp_available_years_label: csp_available_years,
-        historical_csp_label: historical_csp,
+        csp_data_ref_year_label: csp_ref_year,
+        csp_available_years_label: csp_avail_years,
+        historical_csp_label: historical_csp_active,
         save_options_stock_label: save_options_stock,
         save_fitted_csp_values_label: save_fitted_csp_values,
-        distribution_bounds_label: distribution_bounds
+        distribution_bounds_label: distribution_bounds,
+        powertrain_dim: powertrains,
     }
     # Plot configuration parameters
     inputs_plot_configuration = {

@@ -14,7 +14,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def do_sensitivity_analysis_with_modified_country_registrations(registrations, stock_shares, survival_rates,
-                                                                optimal_distribution_dict, config):
+                                                                optimal_distribution_dict, config, countries_selected):
     """
     Performs a sensitivity analysis by modifying the vehicle registration BEV share to assume it equal to a certain
     country for all countries and recalculating stock shares for each country. The analysis evaluates how changes in
@@ -66,7 +66,7 @@ def do_sensitivity_analysis_with_modified_country_registrations(registrations, s
         updated_registrations = replace_powertrain_share_registrations_with_country(registrations, country, plot_params)
         stock_values, stock_shares = calculate_stock(updated_registrations, survival_rates, optimal_distribution_dict,
                                                      plot_params[simulation_stock_years_label],
-                                                     plot_params[historical_csp_label])
+                                                     plot_params[historical_csp_label], countries_selected)
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, country)
         columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params[countries_selected_label],
                                                    country_adjectives)

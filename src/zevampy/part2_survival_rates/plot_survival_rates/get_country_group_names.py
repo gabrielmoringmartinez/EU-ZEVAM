@@ -4,6 +4,8 @@
 def get_country_group_names(country_names, group_number, number_of_countries_group):
     """
     Returns a subset of country names based on the specified group number.
+    group_number starts at 1.
+
 
     Args:
         country_names (list): A list of all country names.
@@ -13,7 +15,10 @@ def get_country_group_names(country_names, group_number, number_of_countries_gro
     Returns:
     - list: List of country names for the specified group.
     """
-    if group_number == 1:
-        return country_names[:number_of_countries_group]
-    else:
-        return country_names[number_of_countries_group:]
+    if group_number < 1:
+        raise ValueError("group_number must start at 1")
+
+    start = (group_number - 1) * number_of_countries_group
+    end = start + number_of_countries_group
+
+    return country_names[start:end]

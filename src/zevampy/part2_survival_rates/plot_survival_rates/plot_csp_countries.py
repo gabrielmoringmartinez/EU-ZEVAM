@@ -31,6 +31,8 @@ def plot_csp_countries(merged_df, country_names, plot_params, file_info, columns
     Returns:
         None: Saves the figure to a file or performs visualization side effects.
     """
+    if len(country_names) == 0:
+        return
     country_rows, country_columns = get_number_rows_and_columns(len(country_names), plot_params)
     fig = setup_subplot_figure(plot_params)
     subplot_index = 1

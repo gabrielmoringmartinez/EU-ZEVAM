@@ -8,9 +8,10 @@ from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.prepare
     prepare_registrations_data
 from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.obtain_survival_rates import obtain_survival_rates
 from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.save_dataframes import save_dataframes
+from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 
 
-def calculate_empirical_survival_rates(stock, registrations, stock_year):
+def calculate_empirical_survival_rates(stock, registrations, stock_year, countries_to_keep):
     """
         Calculates the empirical survival rates for vehicles by merging and dividing stock data and registrations.
 
@@ -27,8 +28,10 @@ def calculate_empirical_survival_rates(stock, registrations, stock_year):
         """
     # Filter stock data for vehicle age range
     stock = filter_vehicle_age(stock)
+    stock = stock[stock[country_dim].isin(countries_to_keep)]
     # Prepare registrations data and calculate survival rates
     registrations = prepare_registrations_data(registrations, stock_year)
+    registrations = registrations[registrations[country_dim].isin(countries_to_keep)]
     survival_rates = obtain_survival_rates(stock, registrations)
     # Save outputs
     save_dataframes(survival_rates)

@@ -30,7 +30,7 @@ def calculate_and_plot_csps_and_stock(data, inputs):
          data (dict): Dictionary containing input datasets, such as:
              - "historical_registrations" (pd.DataFrame): Historical vehicle registration data for EU countries.
              - "stock_by_age_2021" (pd.DataFrame): Vehicle stock data by age for 2021.
-             - "registrations_eu_cam_scenario" (pd.DataFrame): EU projected vehicle registration scenario data.
+             - "registrations_projected" (pd.DataFrame): EU projected vehicle registration scenario data.
              - "clusters" (pd.DataFrame): Clustering labels for countries based on shared characteristics.
              - "registration_shares_by_cluster" (pd.DataFrame): Registration shares for each cluster.
              - "stock_year" (pd.DataFrame): Stock year information for each country.
@@ -61,19 +61,20 @@ def calculate_and_plot_csps_and_stock(data, inputs):
          KeyError: If required keys are missing in the `data` or `inputs` dictionaries.
          ValueError: If the provided data dimensions or formats are invalid.
      """
-    registrations = calculate_registrations(data[historical_registrations_label], inputs[eu_countries_and_norway_label],
-                                            data[registrations_eu_cam_scenario_label], data[clusters_label],
+    registrations = calculate_registrations(data[historical_registrations_label], inputs[countries_selected_label],
+                                            data[registrations_projected_label], data[clusters_label],
                                             data[registration_shares_by_cluster_label], inputs[csp_data_ref_year_label])
 
     survival_rates_2021 = calculate_empirical_survival_rates(data[stock_by_age_2021_label],
                                                              data[historical_registrations_label],
-                                                             data[stock_year_label])
+                                                             data[stock_year_label],
+                                                             inputs[countries_selected_label])
 
     stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values = \
         compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs[simulation_stock_years_label],
                                              inputs[distribution_bounds_label], inputs[historical_csp_label],
-                                             inputs[csp_available_years_label], inputs[save_options_stock_label],
-                                             inputs[save_fitted_csp_values_label])
+                                             inputs[csp_available_years_label], inputs[countries_selected_label],
+                                             inputs[save_options_stock_label], inputs[save_fitted_csp_values_label])
 
     get_csp_plots(survival_rates_2021, fitted_csp_values, inputs[config_all_label], inputs[config_group_label])
     plot_bev_stock_shares(stock_shares, inputs[config_bev_reference_scenario_label])

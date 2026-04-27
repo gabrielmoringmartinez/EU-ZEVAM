@@ -12,7 +12,8 @@ from src.zevampy.part5_sensitivity_analysis.update_stock_shares import update_st
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates, optimum_parameters_wg,
-                                                          optimal_distribution_dict, config, csp_available_years):
+                                                          optimal_distribution_dict, config, csp_available_years,
+                                                          countries_selected):
     """
     Performs sensitivity analysis by modifying the Country-Specific Parameters (CSPs) for each country
     by increasing or decreasing them by a selected percentage. It recalculates stock shares for each
@@ -64,7 +65,8 @@ def do_sensitivity_analysis_with_increased_decreased_csps(registrations, surviva
         adjusted_parameters = modify_csps(optimum_parameters_wg, percentage)
         fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, csp_available_years, False)
         stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict,
-                                                     plot_params[simulation_stock_years_label], 'non-historical_csp')
+                                                     plot_params[simulation_stock_years_label], 'non-historical_csp',
+                                                     countries_selected,)
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, percentage)
     bev_stock_shares = stock_shares_df[stock_shares_df[powertrain_dim] == plot_params[powertrain_to_plot_label]]
     columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params[percentages_selected_label])

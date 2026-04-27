@@ -5,7 +5,7 @@ from src.zevampy.load_data_and_prepare_inputs.load_data import load_data
 from src.zevampy.load_data_and_prepare_inputs.prepare_inputs import prepare_inputs
 
 
-def load_data_and_prepare_inputs(input_path):
+def load_data_and_prepare_inputs(input_path, config=None):
     """
     Combines the functionality of loading data and preparing inputs for the simulation and plot configurations.
 
@@ -23,5 +23,5 @@ def load_data_and_prepare_inputs(input_path):
             - `inputs` (dict): A dictionary containing simulation parameters and plot configurations.
     """
     data, max_year = load_data(input_path)
-    inputs = prepare_inputs(max_year)
+    inputs = prepare_inputs(max_year, config=config)
     return data, inputs
