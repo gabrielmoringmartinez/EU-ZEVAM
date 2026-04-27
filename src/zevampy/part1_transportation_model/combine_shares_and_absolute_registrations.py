@@ -69,6 +69,42 @@ def combine_shares_and_absolute_registrations(country_registrations, powertrain_
             "- If use_clusters=False: provide country-specific powertrain shares for every selected "
             "country and year.\n"
         )
+    expected_keys = registrations[
+        [country_dim, time_dim]
+    ].drop_duplicates()
+
+    expected_powertrains = powertrain_share_registrations[
+        [powertrain_dim]
+    ].drop_duplicates()
+
+    expected = expected_keys.merge(expected_powertrains, how="cross")
+
+    actual = registrations[
+        [country_dim, time_dim, powertrain_dim]
+    ].drop_duplicates()
+
+    missing_powertrain_rows = expected.merge(
+        actual,
+        on=[country_dim, time_dim, powertrain_dim],
+        how="left",
+        indicator=True,
+    )
+
+    missing_powertrain_rows = missing_powertrain_rows[
+        missing_powertrain_rows["_merge"] == "left_only"
+        ].drop(columns="_merge")
+
+    if not missing_powertrain_rows.empty:
+        raise ValueError(
+            "Missing powertrain share registrations for some country/year/powertrain combinations.\n\n"
+            f"use_clusters = {use_clusters}\n"
+            f"Missing combinations:\n"
+            f"{missing_powertrain_rows.to_string(index=False)}\n\n"
+            "How to fix:\n"
+            "- Add the missing powertrain share rows.\n"
+            "- If use_clusters=True, check the cluster-level shares.\n"
+            "- If use_clusters=False, check the country-level shares.\n"
+        )
     # Sales by powertrain, vehicle size, year and country are obtained
     registrations[registrations_by_powertrain_dim] = (registrations[new_registrations_dim]
                                                       * registrations[relative_sales_dim])
