@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway
+from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway, default_use_clusters
 from src.zevampy.part2_survival_rates.input_data import distribution_bounds
 from src.zevampy.part3_stock_calculation.calculate_stock.input_data import initial_simulation_stock_year, historical_csp, \
     save_options_stock, csp_data_ref_year, csp_available_years, save_fitted_csp_values, initial_registration_year
@@ -40,6 +40,7 @@ def prepare_inputs(simulation_end_year, config=None):
     end_year = model_config.get("end_year", simulation_end_year)
     simulation_stock_years = [initial_stock_year, end_year]
     countries = geography_config.get("countries") or eu_countries_and_norway
+    use_clusters = geography_config.get("use_clusters", default_use_clusters)
     csp_ref_year = model_config.get("csp_reference_year", csp_data_ref_year)
     csp_avail_years = model_config.get("csp_available_years", csp_available_years)
     historical_csp_active = model_config.get("historical_csp", historical_csp)
@@ -55,7 +56,8 @@ def prepare_inputs(simulation_end_year, config=None):
         save_fitted_csp_values_label: save_fitted_csp_values,
         distribution_bounds_label: distribution_bounds,
         powertrain_dim: powertrains,
-        initial_registration_year_label: initial_new_registrations_year
+        initial_registration_year_label: initial_new_registrations_year,
+        use_clusters_label: use_clusters
     }
     # Plot configuration parameters
     inputs_plot_configuration = {
@@ -84,4 +86,29 @@ def prepare_inputs(simulation_end_year, config=None):
         config_sensitivity_4_label,
     ]:
         inputs[plot_config_label]["plot_params"]["x_lim"] = x_lim
+
+    available_registration_history = (initial_stock_year - initial_new_registrations_year)+1
+    if available_registration_history < csp_avail_years:
+        if available_registration_history < csp_avail_years:
+            raise ValueError(
+                "Invalid model configuration: not enough historical registration data "
+                "to calculate stock accurately.\n\n"
+
+                f"start_new_registration_year = {initial_new_registrations_year}\n"
+                f"first_stock_year = {initial_stock_year}\n"
+                f"csp_available_years = {csp_avail_years}\n"
+                f"available history = {available_registration_history} years\n\n"
+
+                "Requirement:\n"
+                "first_stock_year - start_new_registration_year >= csp_available_years\n\n"
+
+                "How to fix:\n"
+                f"- Set first_stock_year >= {initial_new_registrations_year + csp_avail_years-1}\n"
+                f"- OR provide older start_new_registration_year <= {initial_stock_year-csp_avail_years+1}\n"
+                "- OR reduce csp_available_years (⚠ may reduce accuracy of stock estimation)\n\n"
+
+                "Note:\n"
+                "Typical configuration uses ~45 years of CSP data. "
+                "Using fewer years may undercount older vehicle stock."
+            )
     return inputs

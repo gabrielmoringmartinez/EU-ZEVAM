@@ -12,4 +12,4 @@ def cleanup_stock_data(stock_data, drop_columns):
     Returns:
         DataFrame: Cleaned DataFrame with specified columns dropped.
     """
-    return stock_data.drop(columns=drop_columns)
+    return stock_data.drop(columns=drop_columns, errors="ignore")

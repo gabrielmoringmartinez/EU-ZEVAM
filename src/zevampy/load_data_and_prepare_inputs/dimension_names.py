@@ -135,6 +135,7 @@ stock_shares_filename_label = 'stock_shares_filename'
 powertrains_rmse_label = "powertrains"
 timeframes_rmse_label = "timeframes"
 countries_selected_label = "countries_selected"
+use_clusters_label = "use_clusters"
 years_selected_label = "years_selected"
 percentages_selected_label = "percentages_selected"
 powertrain_to_plot_label = "powertrain_to_plot"

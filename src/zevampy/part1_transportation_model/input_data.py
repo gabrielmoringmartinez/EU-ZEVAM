@@ -5,3 +5,5 @@ eu_countries_and_norway = ["Austria", "Belgium", "Bulgaria", "Cyprus", "Czech Re
                            "Estonia", "Finland", "France", "Greece", "Croatia", "Hungary", "Ireland", "Italy",
                            "Lithuania", "Luxembourg", "Latvia", "Malta", "Netherlands", "Norway", "Poland", "Portugal",
                            "Romania", "Slovakia", "Slovenia", "Sweden"]
+default_use_clusters = True
+
