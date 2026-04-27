@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
+import pandas as pd
 from src.zevampy.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
 from src.zevampy.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
 from src.zevampy.part3_stock_calculation.calculate_stock.input_data import historical_csp
@@ -35,6 +36,8 @@ def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, 
     """
     country_names = optimum_parameters_2008[country_dim].unique()
     filtered_survival_rates_2021 = survival_rates_2021[survival_rates_2021[country_dim].isin(country_names)]
+    if filtered_survival_rates_2021.empty:
+        return pd.DataFrame()
     fitted_csp_values_2008 = get_fitted_csp_values(filtered_survival_rates_2021, optimum_parameters_2008,
                                                    csp_available_years, False)
     optimal_distribution_dict_2008 = prepare_optimal_distribution_dict(optimal_distribution_dict)

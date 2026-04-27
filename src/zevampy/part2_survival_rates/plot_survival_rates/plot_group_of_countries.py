@@ -27,6 +27,5 @@ def plot_group_of_countries(merged_df, country_group, config, columns_to_plot_di
     country_names = merged_df[country_dim].unique()
     country_names = get_country_group_names(country_names, country_group, plot_params[number_of_countries_group_dim])
     file_info[group_info_dim] = f'{group_suffix_for_saving_output}{country_group}_'
-    print(country_names)
     plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type)
     return

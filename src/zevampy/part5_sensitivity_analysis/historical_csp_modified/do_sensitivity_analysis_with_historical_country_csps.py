@@ -52,6 +52,11 @@ def do_sensitivity_analysis_with_historical_country_csps(registrations, survival
                                                                 bound_distributions, csp_available_years,
                                                                 simulation_years, countries_selected)
     bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == plot_params["powertrain_to_plot"]]
+    available_years = [
+        year for year in plot_params["years_selected"]
+        if f"{share_dim}_{year}" in bev_stock_shares.columns
+    ]
+    plot_params["years_selected"] = available_years
     columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params["years_selected"])
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)
 

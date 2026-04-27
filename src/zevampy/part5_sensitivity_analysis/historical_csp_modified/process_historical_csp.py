@@ -61,11 +61,18 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
     # Rename columns to match the year-specific share columns
     stock_shares_2021.rename(columns={share_dim: f'{share_dim}_{2021}'}, inplace=True)
     stock_shares_2016.rename(columns={share_dim: f'{share_dim}_{2016}'}, inplace=True)
-    stock_shares_2008.rename(columns={share_dim: f'{share_dim}_{2008}'}, inplace=True)
-
+    if not stock_shares_2008.empty:
+        stock_shares_2008.rename(columns={share_dim: f"{share_dim}_{2008}"}, inplace=True)
     # Merge all stock shares into one DataFrame
-    stock_shares_df = None
-    for stock_shares in [stock_shares_2021, stock_shares_2016, stock_shares_2008]:
-        stock_shares_df = merge_stock_shares(stock_shares_df, stock_shares)
+    stock_share_frames = [
+        stock_shares_2021,
+        stock_shares_2016,
+    ]
+    if stock_shares_2008 is not None and not stock_shares_2008.empty:
+        stock_share_frames.append(stock_shares_2008)
 
+    stock_shares_df = None
+
+    for stock_shares in stock_share_frames:
+        stock_shares_df = merge_stock_shares(stock_shares_df, stock_shares)
     return stock_shares_df
