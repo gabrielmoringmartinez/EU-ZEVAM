@@ -7,7 +7,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 
 
 def preprocess_historical_registrations(historical_registrations, registrations_projected, reference_year,
-                                        countries_to_keep):
+                                        countries_to_keep, start_year, end_year):
     """
         Preprocesses the historical vehicle registration data by filtering, merging, and cleaning the data.
         Parameters:
@@ -23,4 +23,8 @@ def preprocess_historical_registrations(historical_registrations, registrations_
     absolute_registrations = pd.concat([historical_registrations[common_cols], registrations_projected[common_cols]],
                                        ignore_index=True)
     absolute_registrations = absolute_registrations[absolute_registrations[country_dim].isin(countries_to_keep)]
+    absolute_registrations = absolute_registrations[
+        (absolute_registrations[time_dim] >= start_year) &
+        (absolute_registrations[time_dim] <= end_year)
+        ]
     return absolute_registrations

@@ -15,6 +15,8 @@ eu_country_groups = {
     eu_26_plus_norway_label: eu_26_and_norway,
     eu_27_plus_norway_label: eu_countries_and_norway # Assuming this is the full set
 }
+# Initial year on which the new registrations are considered to calculate CSP rates
+initial_registration_year = 1970
 # Initial year on which the stock is modelled
 initial_simulation_stock_year = 2014
 # Year when the empirical CSP data is used

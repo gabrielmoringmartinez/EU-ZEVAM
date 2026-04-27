@@ -4,7 +4,7 @@
 from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway
 from src.zevampy.part2_survival_rates.input_data import distribution_bounds
 from src.zevampy.part3_stock_calculation.calculate_stock.input_data import initial_simulation_stock_year, historical_csp, \
-    save_options_stock, csp_data_ref_year, csp_available_years, save_fitted_csp_values
+    save_options_stock, csp_data_ref_year, csp_available_years, save_fitted_csp_values, initial_registration_year
 from src.zevampy.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
 from src.zevampy.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
 from src.zevampy.part4_validate_model.graph_inputs import config_validation_step1, config_validation_step2
@@ -35,9 +35,10 @@ def prepare_inputs(simulation_end_year, config=None):
     model_config = config.get("model", {})
     geography_config = config.get("geography", {})
     powertrains = config.get("powertrains", {})
-    initial_year = model_config.get("first_stock_year", initial_simulation_stock_year)
+    initial_stock_year = model_config.get("first_stock_year", initial_simulation_stock_year)
+    initial_new_registrations_year = model_config.get("start_new_registration_year", initial_registration_year)
     end_year = model_config.get("end_year", simulation_end_year)
-    simulation_stock_years = [initial_year, end_year]
+    simulation_stock_years = [initial_stock_year, end_year]
     countries = geography_config.get("countries") or eu_countries_and_norway
     csp_ref_year = model_config.get("csp_reference_year", csp_data_ref_year)
     csp_avail_years = model_config.get("csp_available_years", csp_available_years)
@@ -54,6 +55,7 @@ def prepare_inputs(simulation_end_year, config=None):
         save_fitted_csp_values_label: save_fitted_csp_values,
         distribution_bounds_label: distribution_bounds,
         powertrain_dim: powertrains,
+        initial_registration_year_label: initial_new_registrations_year
     }
     # Plot configuration parameters
     inputs_plot_configuration = {
@@ -73,4 +75,13 @@ def prepare_inputs(simulation_end_year, config=None):
         **inputs_simulation,
         **inputs_plot_configuration
     }
+    x_lim = tuple(simulation_stock_years)
+    for plot_config_label in [
+        config_bev_reference_scenario_label,
+        config_sensitivity_1_label,
+        config_sensitivity_2_label,
+        config_sensitivity_3_label,
+        config_sensitivity_4_label,
+    ]:
+        inputs[plot_config_label]["plot_params"]["x_lim"] = x_lim
     return inputs

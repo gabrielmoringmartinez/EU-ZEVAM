@@ -102,6 +102,7 @@ survival_rates_2016_label = "survival_rates_2016"
 # Python Input Labels
 countries_selected_label = "countries_selected"
 simulation_stock_years_label = "stock_years"
+initial_registration_year_label = "initial_registration_year"
 csp_data_ref_year_label = "csp_data_ref_year"
 csp_available_years_label = "csp_available_years"
 historical_csp_label = "historical_csp"

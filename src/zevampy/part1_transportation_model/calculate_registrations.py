@@ -11,7 +11,8 @@ from src.zevampy.part1_transportation_model.combine_shares_and_absolute_registra
 
 
 def calculate_registrations(historical_registrations, countries_selected, registrations_projected,
-                            clusters, registration_shares_by_cluster, reference_year):
+                            clusters, registration_shares_by_cluster, reference_year, simulation_years,
+                            start_registrations_year):
     """
         Calculates and saves the absolute and powertrain-specific vehicle registrations for each country.
         The registrations are derived from historical data and projected future data, combined with powertrain shares.
@@ -31,9 +32,10 @@ def calculate_registrations(historical_registrations, countries_selected, regist
         - pd.DataFrame: A DataFrame with vehicle registrations by powertrain, including historical and projected data.
         Absolute sales and sales share is obtained.
         """
+    end_year = simulation_years[1]
     absolute_registrations = preprocess_historical_registrations(historical_registrations, registrations_projected,
-                                                                   reference_year, countries_selected)
-
+                                                                 reference_year, countries_selected,
+                                                                 start_registrations_year, end_year)
     absolute_registrations.to_csv('outputs/1_1_absolute_registrations.csv', sep=';', index=False, decimal=',')
     registrations_by_powertrain = combine_shares_and_absolute_registrations(absolute_registrations,
                                                                             registration_shares_by_cluster, clusters)
