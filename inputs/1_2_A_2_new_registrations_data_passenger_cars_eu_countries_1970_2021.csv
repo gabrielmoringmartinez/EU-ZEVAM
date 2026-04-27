@@ -51,7 +51,6 @@ Austria;2018;341068
 Austria;2019;329363
 Austria;2020;248740
 Austria;2021;239803
-Austria;2022;0
 Belgium;1970;295701
 Belgium;1971;308140
 Belgium;1972;320579
@@ -104,7 +103,6 @@ Belgium;2018;549632
 Belgium;2019;550003
 Belgium;2020;431491
 Belgium;2021;383123
-Belgium;2022;0
 Bulgaria;1970;30399
 Bulgaria;1971;30581
 Bulgaria;1972;30735
@@ -157,7 +155,6 @@ Bulgaria;2018;37506
 Bulgaria;2019;39419
 Bulgaria;2020;27214
 Bulgaria;2021;24631
-Bulgaria;2022;0
 Switzerland;1970;281833
 Switzerland;1971;282945
 Switzerland;1972;284804
@@ -210,7 +207,6 @@ Switzerland;2018;300887
 Switzerland;2019;312902
 Switzerland;2020;238664
 Switzerland;2021;242263
-Switzerland;2022;0
 Cyprus;1970;13051
 Cyprus;1971;13155
 Cyprus;1972;13287
@@ -263,7 +259,6 @@ Cyprus;2018;13126
 Cyprus;2019;12601
 Cyprus;2020;9995
 Cyprus;2021;10611
-Cyprus;2022;0
 Czech Republic;1970;131276
 Czech Republic;1971;129993
 Czech Republic;1972;130448
@@ -316,7 +311,6 @@ Czech Republic;2018;261437
 Czech Republic;2019;249915
 Czech Republic;2020;202971
 Czech Republic;2021;206876
-Czech Republic;2022;0
 Germany;1970;2107123
 Germany;1971;2106908
 Germany;1972;2106693
@@ -369,7 +363,6 @@ Germany;2018;3435778
 Germany;2019;3607258
 Germany;2020;2917678
 Germany;2021;2622132
-Germany;2022;0
 Denmark;1970;108634
 Denmark;1971;110054
 Denmark;1972;111474
@@ -422,7 +415,6 @@ Denmark;2018;218476
 Denmark;2019;225619
 Denmark;2020;198979
 Denmark;2021;186592
-Denmark;2022;0
 Spain;1970;865587
 Spain;1971;877262
 Spain;1972;886738
@@ -475,7 +467,6 @@ Spain;2018;1321437
 Spain;2019;1258249
 Spain;2020;851210
 Spain;2021;859482
-Spain;2022;0
 Estonia;1970;12886
 Estonia;1971;13047
 Estonia;1972;13208
@@ -528,7 +519,6 @@ Estonia;2018;26310
 Estonia;2019;27584
 Estonia;2020;19285
 Estonia;2021;22626
-Estonia;2022;0
 Finland;1970;91772
 Finland;1971;74997
 Finland;1972;100914
@@ -581,7 +571,6 @@ Finland;2018;120881
 Finland;2019;114578
 Finland;2020;96740
 Finland;2021;98826
-Finland;2022;0
 France;1970;1296240
 France;1971;1333454
 France;1972;1370668
@@ -634,7 +623,6 @@ France;2018;2138600
 France;2019;2172967
 France;2020;1631178
 France;2021;1633180
-France;2022;0
 Greece;1970;94012
 Greece;1971;94275
 Greece;1972;94830
@@ -687,7 +675,6 @@ Greece;2018;103322
 Greece;2019;114007
 Greece;2020;79597
 Greece;2021;100274
-Greece;2022;0
 Croatia;1970;44219
 Croatia;1971;44397
 Croatia;1972;44601
@@ -740,7 +727,6 @@ Croatia;2018;60041
 Croatia;2019;62938
 Croatia;2020;36084
 Croatia;2021;45289
-Croatia;2022;0
 Hungary;1970;163952
 Hungary;1971;164454
 Hungary;1972;164893
@@ -793,7 +779,6 @@ Hungary;2018;136601
 Hungary;2019;157906
 Hungary;2020;128031
 Hungary;2021;121920
-Hungary;2022;0
 Ireland;1970;52947
 Ireland;1971;51803
 Ireland;1972;62603
@@ -846,7 +831,6 @@ Ireland;2018;121157
 Ireland;2019;113305
 Ireland;2020;84309
 Ireland;2021;101853
-Ireland;2022;0
 Iceland;1970;8029
 Iceland;1971;8060
 Iceland;1972;8159
@@ -899,7 +883,6 @@ Iceland;2018;17976
 Iceland;2019;11719
 Iceland;2020;9369
 Iceland;2021;12798
-Iceland;2022;0
 Italy;1970;1363594
 Italy;1971;1434529
 Italy;1972;1470394
@@ -952,7 +935,6 @@ Italy;2018;1911056
 Italy;2019;1917106
 Italy;2020;1381855
 Italy;2021;1458313
-Italy;2022;0
 Liechtenstein;1970;1150
 Liechtenstein;1971;1173
 Liechtenstein;1972;1201
@@ -1005,7 +987,6 @@ Liechtenstein;2018;1849
 Liechtenstein;2019;1953
 Liechtenstein;2020;1510
 Liechtenstein;2021;1627
-Liechtenstein;2022;0
 Lithuania;1970;12298
 Lithuania;1971;12462
 Lithuania;1972;12609
@@ -1111,7 +1092,6 @@ Luxembourg;2018;52811
 Luxembourg;2019;55008
 Luxembourg;2020;45189
 Luxembourg;2021;44372
-Luxembourg;2022;0
 Latvia;1970;11870
 Latvia;1971;11944
 Latvia;1972;12044
@@ -1164,7 +1144,6 @@ Latvia;2018;17185
 Latvia;2019;18529
 Latvia;2020;13720
 Latvia;2021;14652
-Latvia;2022;0
 Malta;1970;4078
 Malta;1971;4082
 Malta;1972;4079
@@ -1217,7 +1196,6 @@ Malta;2018;8175
 Malta;2019;7698
 Malta;2020;4602
 Malta;2021;5250
-Malta;2022;0
 Netherlands;1970;432231
 Netherlands;1971;402708
 Netherlands;1972;432083
@@ -1270,7 +1248,6 @@ Netherlands;2018;443530
 Netherlands;2019;445217
 Netherlands;2020;355431
 Netherlands;2021;322831
-Netherlands;2022;0
 Norway;1970;78958
 Norway;1971;79471
 Norway;1972;80073
@@ -1323,7 +1300,6 @@ Norway;2018;147929
 Norway;2019;142381
 Norway;2020;141405
 Norway;2021;176276
-Norway;2022;0
 Poland;1970;245158
 Poland;1971;245063
 Poland;1972;246947
@@ -1376,7 +1352,6 @@ Poland;2018;531889
 Poland;2019;555598
 Poland;2020;428347
 Poland;2021;446647
-Poland;2022;0
 Portugal;1970;204834
 Portugal;1971;204025
 Portugal;1972;203106
@@ -1429,7 +1404,6 @@ Portugal;2018;228327
 Portugal;2019;223799
 Portugal;2020;145417
 Portugal;2021;146637
-Portugal;2022;0
 Romania;1970;146774
 Romania;1971;148389
 Romania;1972;149852
@@ -1482,7 +1456,6 @@ Romania;2018;130921
 Romania;2019;161564
 Romania;2020;126329
 Romania;2021;121210
-Romania;2022;0
 Slovakia;1970;53655
 Slovakia;1971;53695
 Slovakia;1972;54110
@@ -1588,7 +1561,6 @@ Slovenia;2018;75071
 Slovenia;2019;73471
 Slovenia;2020;53880
 Slovenia;2021;54224
-Slovenia;2022;0
 Sweden;1970;188625
 Sweden;1971;190436
 Sweden;1972;191242
@@ -1641,7 +1613,6 @@ Sweden;2018;353729
 Sweden;2019;356036
 Sweden;2020;292024
 Sweden;2021;301008
-Sweden;2022;0
 United Kingdom;1970;1141119
 United Kingdom;1971;1157683
 United Kingdom;1972;1174246
@@ -1694,4 +1665,3 @@ United Kingdom;2018;2394042
 United Kingdom;2019;2346576
 United Kingdom;2020;1656403
 United Kingdom;2021;1677245
-United Kingdom;2022;0
