@@ -71,7 +71,7 @@ def calculate_and_plot_csps_and_stock(data, inputs):
                                                              data[historical_registrations_label],
                                                              data[stock_year_label],
                                                              inputs[countries_selected_label])
-
+    survival_rates_2021 = survival_rates_2021[survival_rates_2021[age_dim] <= inputs[csp_available_years_label]].copy()
     stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values = \
         compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs[simulation_stock_years_label],
                                              inputs[distribution_bounds_label], inputs[historical_csp_label],

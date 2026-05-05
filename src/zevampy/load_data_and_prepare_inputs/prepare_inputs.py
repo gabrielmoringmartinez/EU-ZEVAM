@@ -13,6 +13,7 @@ from src.zevampy.part5_sensitivity_analysis.graph_inputs import config_sensitivi
     config_sensitivity_3, config_sensitivity_4
 
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+import warnings
 
 
 def prepare_inputs(simulation_end_year, config=None):
@@ -111,4 +112,13 @@ def prepare_inputs(simulation_end_year, config=None):
                 "Typical configuration uses ~45 years of CSP data. "
                 "Using fewer years may undercount older vehicle stock."
             )
+    if csp_avail_years < 45:
+        warnings.warn(
+            "csp_available_years is lower than the typical value of 45 years. "
+            "This truncates the survival function and may lead to systematic "
+            "underestimation of older vehicle cohorts. As a result, absolute "
+            "vehicle stock levels are likely to be underestimated. The shorter "
+            "the CSP time horizon, the stronger this bias becomes.",
+            UserWarning
+        )
     return inputs

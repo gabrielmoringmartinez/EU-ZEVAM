@@ -37,7 +37,7 @@ def run_diff_evol_algorithm_weibull(bounds: list, country_names_number: np.ndarr
     max_rsquared_per_country = []
     for j in country_names_number:
         survival_rates_country = get_value_countries(survival_rates, j)
-        result = differential_evolution(loss_function_weibull, bounds, survival_rates_country)
+        result = differential_evolution(loss_function_weibull, bounds, args=(survival_rates_country,))
         optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country = \
             append_optimum_parameters_weibull(result, optimum_gamma_per_country, optimum_beta_per_country,
                                               max_rsquared_per_country)

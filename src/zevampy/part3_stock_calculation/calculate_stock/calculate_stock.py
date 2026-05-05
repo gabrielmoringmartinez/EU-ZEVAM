@@ -46,8 +46,6 @@ def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_
     stock_data = cleanup_stock_data(stock_data, columns_to_drop)
     stock_shares = compute_stock_shares(stock_data)
     stock_shares = calculate_eu_share(stock_shares, historical_csp, countries_selected)
-    print("stock_shares")
-    print(stock_shares["geo country"].unique())
     if save_options:
         save_outputs(stock_data, stock_shares, save_options)
     return stock_data, stock_shares
