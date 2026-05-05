@@ -8,14 +8,16 @@ from src.zevampy.part5_sensitivity_analysis.country_csp_modified.replace_surviva
     replace_survival_rates_with_country_specific_csp
 from src.zevampy.part5_sensitivity_analysis.country_csp_modified.update_optimal_distribution import \
     update_optimal_distribution_based_on_country_csp
-from src.zevampy.part5_sensitivity_analysis.country_csp_modified.generate_columns_to_plot import generate_columns_to_plot
+from src.zevampy.part5_sensitivity_analysis.country_csp_modified.generate_columns_to_plot import \
+    generate_columns_to_plot
 from src.zevampy.part5_sensitivity_analysis.update_stock_shares import update_stock_shares
 
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, survival_rates,
-                                                      optimal_distribution_dict, config, countries_selected):
+                                                       optimal_distribution_dict, config, countries_selected,
+                                                       output_path):
     """
     Performs sensitivity analysis by modifying country-specific CSPs (Country Survival Probabilities) to other
     countries and keeps the registrations by powertrain constant. Then, it recalculates stock shares
@@ -62,7 +64,7 @@ def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shar
         updated_opt_dist_dict = update_optimal_distribution_based_on_country_csp(country, optimal_distribution_dict)
         stock_values, stock_shares = calculate_stock(registrations, updated_survival_rates, updated_opt_dist_dict,
                                                      plot_params[simulation_stock_years_label],
-                                                     plot_params[historical_csp_label], countries_selected)
+                                                     plot_params[historical_csp_label], countries_selected, output_path)
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, country)
         columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params[countries_selected_label],
                                                    country_adjectives)

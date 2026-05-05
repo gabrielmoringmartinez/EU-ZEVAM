@@ -68,21 +68,24 @@ def perform_sensitivity_analysis(data, calculated_data, inputs):
     survival_rates_2021 = calculated_data[survival_rates_2021_label]
     do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, fitted_csp_values,
                                                        optimal_distribution_dict, inputs[config_sensitivity_1_label],
-                                                       inputs[countries_selected_label])
-    do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021,
-                                                         data[survival_rates_2016_label],
-                                                         data[optimum_parameters_2008_label],
-                                                         optimal_distribution_dict,
-                                                         inputs[config_sensitivity_2_label],
-                                                         inputs[distribution_bounds_label],
-                                                         inputs[csp_available_years_label],
-                                                         inputs[simulation_stock_years_label],
-                                                         inputs[countries_selected_label])
+                                                       inputs[countries_selected_label], inputs[output_path_label])
+    if inputs[historical_csp_label]:
+        do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021,
+                                                             data[survival_rates_2016_label],
+                                                             data[optimum_parameters_2008_label],
+                                                             optimal_distribution_dict,
+                                                             inputs[config_sensitivity_2_label],
+                                                             inputs[distribution_bounds_label],
+                                                             inputs[csp_available_years_label],
+                                                             inputs[simulation_stock_years_label],
+                                                             inputs[countries_selected_label],
+                                                             inputs[output_path_label])
     do_sensitivity_analysis_with_increased_decreased_csps(registrations, survival_rates_2021, optimum_parameters_wg,
                                                           optimal_distribution_dict, inputs[config_sensitivity_3_label],
                                                           inputs[csp_available_years_label],
-                                                          inputs[countries_selected_label])
+                                                          inputs[countries_selected_label], inputs[output_path_label])
     do_sensitivity_analysis_with_modified_country_registrations(registrations, stock_shares, fitted_csp_values,
                                                                 optimal_distribution_dict,
                                                                 inputs[config_sensitivity_4_label],
-                                                                inputs[countries_selected_label])
+                                                                inputs[countries_selected_label],
+                                                                inputs[output_path_label])

@@ -12,7 +12,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 def do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021, survival_rates_2016,
                                                          optimum_parameters_2008, optimal_distribution_dict, config,
                                                          bound_distributions, csp_available_years, simulation_years,
-                                                         countries_selected):
+                                                         countries_selected, output_path):
     """
     Perform sensitivity analysis using historical country-specific CSP data (from 2008 and 2016), processes stock shares
     based on this data, and generates a plot comparing the results.
@@ -50,7 +50,7 @@ def do_sensitivity_analysis_with_historical_country_csps(registrations, survival
                                                                 plot_params[simulation_stock_years_label],
                                                                 optimum_parameters_2008, optimal_distribution_dict,
                                                                 bound_distributions, csp_available_years,
-                                                                simulation_years, countries_selected)
+                                                                simulation_years, countries_selected, output_path)
     bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == plot_params["powertrain_to_plot"]]
     available_years = [
         year for year in plot_params["years_selected"]

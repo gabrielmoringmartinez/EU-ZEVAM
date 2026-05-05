@@ -4,7 +4,7 @@
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import stock_data_filename_label, stock_shares_filename_label
 
 
-def save_outputs(stock_data, stock_shares, save_options):
+def save_outputs(stock_data, stock_shares, save_options, output_path):
     """
     Saves the stock data and stock shares to specified filenames if indicated in save_options.
     Parameters:
@@ -18,5 +18,5 @@ def save_outputs(stock_data, stock_shares, save_options):
     stock_data_filename = save_options.get(stock_data_filename_label)
     stock_shares_filename = save_options.get(stock_shares_filename_label)
     # Save stock data and stock shares if specified
-    stock_data.to_csv(f'outputs/{stock_data_filename}', sep=';', index=False, decimal=',')
-    stock_shares.to_csv(f'outputs/{stock_shares_filename}', sep=';', index=False, decimal=',')
+    stock_data.to_csv(f'{output_path}/{stock_data_filename}', sep=';', index=False, decimal=',')
+    stock_shares.to_csv(f'{output_path}/{stock_shares_filename}', sep=';', index=False, decimal=',')

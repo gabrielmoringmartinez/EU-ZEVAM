@@ -17,7 +17,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_years, historical_csp,
-                    countries_selected, save_options=None):
+                    countries_selected, output_path, save_options=None):
     """
     Calculates stock data for each country over a specified range of years.
 
@@ -47,7 +47,7 @@ def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_
     stock_shares = compute_stock_shares(stock_data)
     stock_shares = calculate_eu_share(stock_shares, historical_csp, countries_selected)
     if save_options:
-        save_outputs(stock_data, stock_shares, save_options)
+        save_outputs(stock_data, stock_shares, save_options, output_path)
     return stock_data, stock_shares
 
 

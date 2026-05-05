@@ -35,6 +35,9 @@ def run_model(config_path=None, input_path=None, output_path=None):
     input_path = input_path or config["data"]["input_path"]
     output_path = output_path or config["data"]["output_path"]
 
+    config["data"]["input_path"] = input_path
+    config["data"]["output_path"] = output_path
+
     # Clean and recreate 'outputs' and 'outputs/figures'
     ensure_clean_directory(output_path)
     ensure_clean_directory(os.path.join(output_path, 'figures'))

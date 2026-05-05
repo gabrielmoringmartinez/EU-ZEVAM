@@ -65,18 +65,22 @@ def calculate_and_plot_csps_and_stock(data, inputs):
                                             data[registrations_projected_label], data[clusters_label],
                                             data[registration_shares_by_cluster_label], inputs[csp_data_ref_year_label],
                                             inputs[simulation_stock_years_label],
-                                            inputs[initial_registration_year_label], inputs[use_clusters_label])
+                                            inputs[initial_registration_year_label], inputs[use_clusters_label],
+                                            inputs[output_path_label])
 
     survival_rates_2021 = calculate_empirical_survival_rates(data[stock_by_age_2021_label],
                                                              data[historical_registrations_label],
                                                              data[stock_year_label],
-                                                             inputs[countries_selected_label])
+                                                             inputs[countries_selected_label],
+                                                             inputs[output_path_label])
     survival_rates_2021 = survival_rates_2021[survival_rates_2021[age_dim] <= inputs[csp_available_years_label]].copy()
     stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values = \
         compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs[simulation_stock_years_label],
                                              inputs[distribution_bounds_label], inputs[historical_csp_label],
                                              inputs[csp_available_years_label], inputs[countries_selected_label],
-                                             inputs[save_options_stock_label], inputs[save_fitted_csp_values_label])
+                                             inputs[output_path_label], inputs[save_options_stock_label],
+                                             inputs[save_fitted_csp_values_label]
+                                             )
 
     get_csp_plots(survival_rates_2021, fitted_csp_values, inputs[config_all_label], inputs[config_group_label])
     plot_bev_stock_shares(stock_shares, inputs[config_bev_reference_scenario_label])

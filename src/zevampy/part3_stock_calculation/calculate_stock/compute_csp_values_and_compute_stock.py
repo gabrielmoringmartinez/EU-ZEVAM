@@ -7,7 +7,7 @@ from src.zevampy.part3_stock_calculation.calculate_stock.calculate_stock import 
 
 
 def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_years, bounds_distributions,
-                                         historical_csp, csp_available_years, countries_selected,
+                                         historical_csp, csp_available_years, countries_selected, output_path="outputs",
                                          save_options=None, save_csp=False):
     """
     Computes the Cumulative Survival Probability (CSP) values and stock estimates for a given set of survival rates,
@@ -43,8 +43,10 @@ def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_ye
          to the specified options.
     """
     optimum_parameters_wg, optimal_distribution_dict = calculate_csp_parameters(survival_rates, bounds_distributions,
-                                                                                save_csp)
-    fitted_csp_values = get_fitted_csp_values(survival_rates, optimum_parameters_wg, csp_available_years, save_csp)
+                                                                                output_path, save_csp)
+    fitted_csp_values = get_fitted_csp_values(survival_rates, optimum_parameters_wg, csp_available_years,
+                                              output_path, save_csp)
     stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict,
-                                                 stock_years, historical_csp, countries_selected, save_options)
+                                                 stock_years, historical_csp, countries_selected,
+                                                 output_path, save_options)
     return stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values

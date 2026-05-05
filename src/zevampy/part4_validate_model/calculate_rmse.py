@@ -7,7 +7,7 @@ from src.zevampy.part4_validate_model.append_values import append_values
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
-def calculate_rmse(df, config):
+def calculate_rmse(df, config, output_path):
     """
        Calculates the Root Mean Squared Error (RMSE) for the stock DataFrame based on the provided configuration.
 
@@ -41,7 +41,7 @@ def calculate_rmse(df, config):
                 append_values(rows_rmse, country, timeframe, powertrain, 'real values', rmse)
 
     rmse_df = pd.DataFrame(rows_rmse)
-    rmse_df.to_csv(f'outputs/{config[title_dim]}.csv', sep=';', index=False, decimal=',')
+    rmse_df.to_csv(f'{output_path}/{config[title_dim]}.csv', sep=';', index=False, decimal=',')
     return
 
 

@@ -9,7 +9,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
     weibull_gaussian_label
 
 
-def get_fitted_csp_values(survival_rates, pdf_parameters, csp_available_years, save_options=False):
+def get_fitted_csp_values(survival_rates, pdf_parameters, csp_available_years, output_path, save_options=False):
     """
     Calculates fitted Cumulative Survival Probability (CSP) values for each country using Weibull and
     Weibull-Gaussian (WG) distribution parameters.
@@ -38,6 +38,6 @@ def get_fitted_csp_values(survival_rates, pdf_parameters, csp_available_years, s
                                  suffixes=(f' {weibull_label}', f' {weibull_gaussian_label}'), how='inner')
     fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[[country_dim, distribution_dim]], on=country_dim)
     if save_options:
-        fitted_csp_values.to_csv('outputs/2_3_fitted_CSP_curves.csv', sep=';', index=False, decimal=',')
+        fitted_csp_values.to_csv(f'{output_path}/2_3_fitted_CSP_curves.csv', sep=';', index=False, decimal=',')
     return fitted_csp_values
 
