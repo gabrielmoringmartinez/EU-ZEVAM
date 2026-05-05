@@ -6,18 +6,21 @@ data:
 model:
   start_new_registration_year: 1970
   first_stock_year: 2014
-  end_year: 2040
+  end_year: 2050
   csp_reference_year: 2021
   csp_available_years: 45
-  historical_csp: false
+  historical_validation: true
+  sensitivity_analysis: true
+  historical_csp: true
+
 
 geography:
   countries:
     - Austria
     - Bulgaria
     - Norway
+    - Belgium
   use_clusters: true
-  cluster_source: clusters
 
 powertrains:
   - BEV

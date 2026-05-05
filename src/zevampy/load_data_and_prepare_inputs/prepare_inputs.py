@@ -49,7 +49,8 @@ def prepare_inputs(simulation_end_year, config=None):
     csp_ref_year = model_config.get("csp_reference_year", csp_data_ref_year)
     csp_avail_years = model_config.get("csp_available_years", csp_available_years)
     historical_csp_active = model_config.get("historical_csp", historical_csp)
-
+    historical_validation_active = model_config.get("historical_validation", historical_csp)
+    sensitivity_analysis_active =  model_config.get("sensitivity_analysis", historical_csp)
     # Simulation-related parameters
     inputs_simulation = {
         countries_selected_label: countries,
@@ -57,6 +58,9 @@ def prepare_inputs(simulation_end_year, config=None):
         csp_data_ref_year_label: csp_ref_year,
         csp_available_years_label: csp_avail_years,
         historical_csp_label: historical_csp_active,
+        historical_validation_label: historical_validation_active,
+        sensitivity_analysis_label: sensitivity_analysis_active,
+
         save_options_stock_label: save_options_stock,
         save_fitted_csp_values_label: save_fitted_csp_values,
         distribution_bounds_label: distribution_bounds,

@@ -2,11 +2,14 @@
 # SPDX-License-Identifier: MIT
 
 import pandas as pd
+import warnings
+from pathlib import Path
 
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
-def load_data(input_dir):
+def load_data(input_dir, historical_validation_active=True, sensitivity_analysis_active=True,
+              historical_csp_active=True, use_clusters_active=True):
     """
     Loads datasets required for modeling European BEV stock shares and performing CSP-based simulations.
 
@@ -24,36 +27,134 @@ def load_data(input_dir):
                 - Values are pandas DataFrames containing the loaded data.
             - int: The maximum year found in the 'registrations_projected' dataset.
     """
-    clusters = pd.read_csv(f'{input_dir}/0_country_clusters.csv', sep=';', decimal=',')
-    registration_shares_by_cluster = pd.read_csv(f'{input_dir}/1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv',
-                                                 delimiter=';', decimal=',')
-    historical_registrations = pd.read_csv(f'{input_dir}/1_2_A_2_new_registrations_data_passenger_cars_eu'
-                                           '_countries_1970_2021.csv', delimiter=';', decimal=',')
-    registrations_projected = pd.read_csv(f'{input_dir}/1_3_new_registrations_2022_2050_projected.csv',
-                                                delimiter=';', decimal=',')
-    max_year = registrations_projected['time'].max()
+    input_dir = Path(input_dir)
+    # --- Check folder exists ---
+    if not input_dir.exists():
+        raise FileNotFoundError(
+            f"Input directory '{input_dir}' does not exist.\n\n"
+            "Fix this by:\n"
+            "1) Updating 'input_path' in config.yaml (under 'data')\n"
+            "2) Or passing a valid path via the CLI (--input-path)\n"
+        )
 
-    stock_by_age_2021 = pd.read_csv(f'{input_dir}/2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv',
-                                    delimiter=';', decimal=',')
-    stock_year = pd.read_csv(f'{input_dir}/2_2_A_1_stock_year.csv', delimiter=';', decimal=',')
-    actual_bev_registration_shares = pd.read_csv(f'{input_dir}/4_1_eafo_ev_new_registration_shares.csv', delimiter=';',
-                                                 decimal=',')
-    actual_bev_stock_shares = pd.read_csv(f'{input_dir}/4_2_eafo_ev_stock_shares.csv', delimiter=';', decimal=',')
-    optimum_parameters_2008 = pd.read_csv(f'{input_dir}/5_1_oguchi_2008_survival_rate_parameters.csv', delimiter=';',
-                                          decimal=',')
-    survival_rates_2016 = pd.read_csv(f'{input_dir}/5_2_held_2016_survival_rates.csv', delimiter=';', decimal=',')
-    # Return all the loaded data as a dictionary or as separate variables if needed
+    # --- Required files ---
+    required_model_files = [
+        "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv",
+        "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv",
+        "1_3_new_registrations_2022_2050_projected.csv",
+        "2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv",
+        "2_2_A_1_stock_year.csv",
+    ]
+
+    cluster_file = "0_country_clusters.csv"
+
+    required_validation_files = [
+        "4_1_eafo_ev_new_registration_shares.csv",
+        "4_2_eafo_ev_stock_shares.csv",
+    ]
+
+    required_historical_csp_files = [
+        "5_1_oguchi_2008_survival_rate_parameters.csv",
+        "5_2_held_2016_survival_rates.csv",
+    ]
+
+    # --- Check files ---
+    check_required_files(input_dir, required_model_files, "running the model")
+
+    if historical_validation_active:
+        check_required_files(
+            input_dir,
+            required_validation_files,
+            "validation against historical data"
+        )
+
+    if sensitivity_analysis_active and historical_csp_active:
+        check_required_files(
+            input_dir,
+            required_historical_csp_files,
+            "historical CSP sensitivity analysis"
+        )
+
+    if use_clusters_active:
+        check_required_files(input_dir, [cluster_file], "country clustering")
+    if not use_clusters_active and (input_dir / cluster_file).exists():
+        warnings.warn(
+            f"'{cluster_file}' was found in '{input_dir}' but will not be used "
+            "because 'use_clusters' is set to False.",
+            UserWarning
+        )
+
+    # --- Load always-needed data ---
+    if use_clusters_active:
+        clusters = pd.read_csv(input_dir / cluster_file, sep=";", decimal=",")
+    else:
+        clusters = None
+    registration_shares_by_cluster = pd.read_csv(
+        input_dir / "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv",
+        sep=";", decimal=","
+    )
+    historical_registrations = pd.read_csv(
+        input_dir / "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv",
+        sep=";", decimal=","
+    )
+    registrations_projected = pd.read_csv(
+        input_dir / "1_3_new_registrations_2022_2050_projected.csv",
+        sep=";", decimal=","
+    )
+
+    max_year = registrations_projected["time"].max()
+
+    stock_by_age_2021 = pd.read_csv(
+        input_dir / "2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv",
+        sep=";", decimal=","
+    )
+    stock_year = pd.read_csv(
+        input_dir / "2_2_A_1_stock_year.csv",
+        sep=";", decimal=","
+    )
+
     data = {
-        clusters_label: clusters,
-        registration_shares_by_cluster_label: registration_shares_by_cluster,
-        historical_registrations_label: historical_registrations,
-        registrations_projected_label: registrations_projected,
-        stock_by_age_2021_label: stock_by_age_2021,
-        stock_year_label: stock_year,
-        actual_bev_registration_shares_label: actual_bev_registration_shares,
-        actual_bev_stock_shares_label: actual_bev_stock_shares,
-        optimum_parameters_2008_label: optimum_parameters_2008,
-        survival_rates_2016_label: survival_rates_2016
+        "clusters": clusters,
+        "registration_shares_by_cluster": registration_shares_by_cluster,
+        "historical_registrations": historical_registrations,
+        "registrations_projected": registrations_projected,
+        "stock_by_age_2021": stock_by_age_2021,
+        "stock_year": stock_year,
     }
 
+    # --- Optional: validation data ---
+    if historical_validation_active:
+        data["actual_bev_registration_shares"] = pd.read_csv(
+            input_dir / "4_1_eafo_ev_new_registration_shares.csv",
+            sep=";", decimal=","
+        )
+        data["actual_bev_stock_shares"] = pd.read_csv(
+            input_dir / "4_2_eafo_ev_stock_shares.csv",
+            sep=";", decimal=","
+        )
+
+    # --- Optional: sensitivity data ---
+    if sensitivity_analysis_active and historical_csp_active:
+        data["optimum_parameters_2008"] = pd.read_csv(
+            input_dir / "5_1_oguchi_2008_survival_rate_parameters.csv",
+            sep=";", decimal=","
+        )
+        data["survival_rates_2016"] = pd.read_csv(
+            input_dir / "5_2_held_2016_survival_rates.csv",
+            sep=";", decimal=","
+        )
+
     return data, max_year
+
+    return data, max_year
+
+
+def check_required_files(input_dir, files, purpose):
+    missing = [file for file in files if not (input_dir / file).exists()]
+
+    if missing:
+        raise FileNotFoundError(
+            f"Missing input files for {purpose} in '{input_dir}':\n\n"
+            + "\n".join(f"- {file}" for file in missing)
+            + "\n\nCheck that the files exist and that their names are spelled correctly."
+        )

@@ -9,6 +9,7 @@ from zevampy.part3_stock_calculation import calculate_and_plot_csps_and_stock
 from zevampy.part4_validate_model import compare_model_and_actual_stock_results
 from zevampy.part5_sensitivity_analysis import perform_sensitivity_analysis
 from zevampy.config import load_config
+from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 import os
 
 
@@ -49,10 +50,12 @@ def run_model(config_path=None, input_path=None, output_path=None):
     csp_and_stock_calculated_data = calculate_and_plot_csps_and_stock(data, inputs)
 
     # Step 3: Compare model results with actual stock results
-    compare_model_and_actual_stock_results(data, csp_and_stock_calculated_data, inputs)
+    if inputs[historical_validation_label]:
+        compare_model_and_actual_stock_results(data, csp_and_stock_calculated_data, inputs)
 
     # Step 4: Perform sensitivity analysis
-    perform_sensitivity_analysis(data, csp_and_stock_calculated_data, inputs)
+    if inputs[sensitivity_analysis_label]:
+        perform_sensitivity_analysis(data, csp_and_stock_calculated_data, inputs)
 
 
 # Execute the main function when the script is run
