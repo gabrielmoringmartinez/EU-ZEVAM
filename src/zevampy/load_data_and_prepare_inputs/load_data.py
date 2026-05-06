@@ -9,7 +9,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def load_data(input_dir, historical_validation_active=True, sensitivity_analysis_active=True,
-              historical_csp_active=True, use_clusters_active=True):
+              historical_csp_active=True, use_clusters_active=True, powertrains=None):
     """
     Loads datasets required for modeling European BEV stock shares and performing CSP-based simulations.
 
@@ -93,6 +93,19 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
         input_dir / "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv",
         sep=";", decimal=","
     )
+    if powertrains:
+        validate_powertrains_in_data(
+            registration_shares_by_cluster,
+            powertrains,
+            "registration shares by cluster"
+        )
+
+        registration_shares_by_cluster = add_rest_of_powertrains_from_selected_shares(
+            registration_shares_by_cluster,
+            powertrains,
+            relative_sales_dim,
+            "registration shares by cluster",
+        )
     historical_registrations = pd.read_csv(
         input_dir / "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv",
         sep=";", decimal=","
@@ -158,3 +171,81 @@ def check_required_files(input_dir, files, purpose):
             + "\n".join(f"- {file}" for file in missing)
             + "\n\nCheck that the files exist and that their names are spelled correctly."
         )
+
+
+def validate_powertrains_in_data(df, selected_powertrains, dataset_name):
+    available_powertrains = set(df[powertrain_dim].dropna().unique())
+    selected_powertrains = set(selected_powertrains)
+
+    missing_powertrains = selected_powertrains - available_powertrains
+
+    if missing_powertrains:
+        raise ValueError(
+            f"Invalid powertrain configuration for {dataset_name}.\n\n"
+            f"Selected powertrains not found in input data: {sorted(missing_powertrains)}\n"
+            f"Available powertrains are: {sorted(available_powertrains)}"
+        )
+
+    unused_powertrains = available_powertrains - selected_powertrains
+
+    if unused_powertrains:
+        warnings.warn(
+            f"The following powertrains exist in {dataset_name} but are not selected "
+            f"and will be ignored: {sorted(unused_powertrains)}",
+            UserWarning
+        )
+
+
+REST_POWERTRAIN = "Rest of powertrains"
+SHARE_TOLERANCE = 1e-3
+
+
+def add_rest_of_powertrains_from_selected_shares(
+    df,
+    selected_powertrains,
+    share_column,
+    dataset_name,
+):
+    df = df.copy()
+    selected_powertrains = list(selected_powertrains)
+
+    available_powertrains = set(df[powertrain_dim].dropna().unique())
+    missing_powertrains = set(selected_powertrains) - available_powertrains
+
+    if missing_powertrains:
+        raise ValueError(
+            f"Invalid powertrain configuration for {dataset_name}.\n\n"
+            f"Selected powertrains not found in input data: {sorted(missing_powertrains)}\n"
+            f"Available powertrains are: {sorted(available_powertrains)}"
+        )
+
+    selected_df = df[df[powertrain_dim].isin(selected_powertrains)].copy()
+
+    group_cols = [
+        col for col in selected_df.columns
+        if col not in [powertrain_dim, share_column]
+    ]
+
+    selected_sum = (
+        selected_df
+        .groupby(group_cols, as_index=False)[share_column]
+        .sum()
+        .rename(columns={share_column: "_selected_share_sum"})
+    )
+
+    rest_df = selected_sum.copy()
+    rest_df[powertrain_dim] = REST_POWERTRAIN
+    rest_df[share_column] = 1 - rest_df["_selected_share_sum"]
+
+    if (rest_df[share_column] < -SHARE_TOLERANCE).any():
+        raise ValueError(
+            f"Invalid shares in {dataset_name}.\n\n"
+            "Selected powertrain shares exceed 1 for at least one group."
+        )
+
+    rest_df[share_column] = rest_df[share_column].clip(lower=0)
+    rest_df = rest_df[group_cols + [powertrain_dim, share_column]]
+
+    result = pd.concat([selected_df, rest_df], ignore_index=True)
+
+    return result

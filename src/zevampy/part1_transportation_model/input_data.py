@@ -6,4 +6,5 @@ eu_countries_and_norway = ["Austria", "Belgium", "Bulgaria", "Cyprus", "Czech Re
                            "Lithuania", "Luxembourg", "Latvia", "Malta", "Netherlands", "Norway", "Poland", "Portugal",
                            "Romania", "Slovakia", "Slovenia", "Sweden"]
 default_use_clusters = True
+default_powertrains = ["BEV", "CNG", "Diesel", "FCEV", "G-HEV", "G-PHEV", "Gasoline", "LPG", "D-HEV"]
 

@@ -30,12 +30,16 @@ def load_data_and_prepare_inputs(input_path, config=None):
     sensitivity_analysis_active = model_config.get("sensitivity_analysis", True)
     use_clusters_active = geography_config.get("use_clusters", True)
 
+    powertrains = config.get("powertrains") if config else None
+
     data, max_year = load_data(
         input_path,
         historical_validation_active=historical_validation_active,
         sensitivity_analysis_active=sensitivity_analysis_active,
         historical_csp_active=historical_csp_active,
         use_clusters_active=use_clusters_active,
+        powertrains=powertrains
     )
     inputs = prepare_inputs(max_year, config=config)
+
     return data, inputs

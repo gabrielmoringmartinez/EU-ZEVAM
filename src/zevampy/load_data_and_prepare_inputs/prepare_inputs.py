@@ -1,7 +1,8 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway, default_use_clusters
+from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway, default_use_clusters, \
+    default_powertrains
 from src.zevampy.part2_survival_rates.input_data import distribution_bounds
 from src.zevampy.part3_stock_calculation.calculate_stock.input_data import initial_simulation_stock_year, \
     historical_csp, \
@@ -39,7 +40,7 @@ def prepare_inputs(simulation_end_year, config=None):
     outputs_config = data_config.get("output_path", "outputs")
     model_config = config.get("model", {})
     geography_config = config.get("geography", {})
-    powertrains = config.get("powertrains", {})
+    powertrains = config.get("powertrains") or default_powertrains
     initial_stock_year = model_config.get("first_stock_year", initial_simulation_stock_year)
     initial_new_registrations_year = model_config.get("start_new_registration_year", initial_registration_year)
     end_year = model_config.get("end_year", simulation_end_year)
@@ -60,7 +61,6 @@ def prepare_inputs(simulation_end_year, config=None):
         historical_csp_label: historical_csp_active,
         historical_validation_label: historical_validation_active,
         sensitivity_analysis_label: sensitivity_analysis_active,
-
         save_options_stock_label: save_options_stock,
         save_fitted_csp_values_label: save_fitted_csp_values,
         distribution_bounds_label: distribution_bounds,
