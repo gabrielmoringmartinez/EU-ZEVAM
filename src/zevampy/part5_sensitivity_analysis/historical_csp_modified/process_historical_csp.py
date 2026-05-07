@@ -48,13 +48,15 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
                                                                                     stock_years, bound_distributions,
                                                                                     historical_csp_label,
                                                                                     csp_available_years,
-                                                                                    countries_selected)
+                                                                                    countries_selected, [country_dim],
+                                                                                    output_path)
     survival_rates_2016 = survival_rates_2016[survival_rates_2016[age_dim] <= csp_available_years].copy()
     stock_values_2016, stock_shares_2016, *_ = compute_csp_values_and_compute_stock(survival_rates_2016, registrations,
                                                                                     stock_years, bound_distributions,
                                                                                     historical_csp_label,
                                                                                     csp_available_years,
-                                                                                    countries_selected)
+                                                                                    countries_selected, [country_dim],
+                                                                                    output_path)
     stock_shares_2008 = calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021,
                                                       optimal_distribution_dict, registrations, csp_available_years,
                                                       simulation_years, countries_selected, output_path)

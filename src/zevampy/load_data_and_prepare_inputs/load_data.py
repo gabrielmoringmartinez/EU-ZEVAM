@@ -9,7 +9,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def load_data(input_dir, historical_validation_active=True, sensitivity_analysis_active=True,
-              historical_csp_active=True, use_clusters_active=True, powertrains=None):
+              historical_csp_active=True, use_clusters_active=True, powertrains=None, survival_grouping=None):
     """
     Loads datasets required for modeling European BEV stock shares and performing CSP-based simulations.
 
@@ -121,6 +121,68 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
         input_dir / "2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv",
         sep=";", decimal=","
     )
+
+    if survival_grouping is None:
+        survival_grouping = [country_dim]
+
+    required_stock_columns = set(
+        survival_grouping + [age_dim, number_registered_vehicles_dim]
+    )
+
+    missing_columns = required_stock_columns - set(stock_by_age_2021.columns)
+
+    if missing_columns:
+        raise ValueError(
+            "Invalid stock-by-age input data.\n\n"
+            "The current configuration requires survival rates to be estimated by:\n"
+            f"{survival_grouping}\n\n"
+            "However, the stock-by-age input file does not contain all required columns.\n\n"
+            f"Missing columns in 2_1 stock-by-age input file: {sorted(missing_columns)}\n\n"
+            "How to fix:\n"
+            "- If you want country-level survival rates only, use:\n"
+            "  survival_rates:\n"
+            "    grouping:\n"
+            "      - geo country\n\n"
+            "- If you want survival rates by country and powertrain, the 2_1 input file must contain:\n"
+            "  geo country;vehicle age;powertrain;number of registered vehicles\n\n"
+            "- If you later add vehicle size to the grouping, the 2_1 input file must also contain "
+            "a corresponding vehicle size column."
+        )
+
+    if powertrains and survival_grouping and powertrain_dim in survival_grouping:
+        stock_by_age_2021 = aggregate_stock_by_selected_powertrains(
+            stock_by_age_2021,
+            powertrains,
+            "stock by age"
+        )
+
+    if survival_grouping is None:
+        survival_grouping = [country_dim]
+
+    required_stock_columns = set(
+        survival_grouping + [age_dim, number_registered_vehicles_dim]
+    )
+
+    missing_columns = required_stock_columns - set(stock_by_age_2021.columns)
+
+    if missing_columns:
+        raise ValueError(
+            "Invalid stock-by-age input data.\n\n"
+            f"Missing columns: {sorted(missing_columns)}\n\n"
+
+            f"Survival rates are configured to be estimated by: {survival_grouping}\n"
+            "However, the input data does not contain all required dimensions.\n\n"
+
+            "Note:\n"
+            "- Country-level survival rates can always be estimated.\n"
+            "- Additional detail (e.g. powertrain) requires disaggregated stock-by-age data.\n\n"
+
+            "How to fix:\n"
+            f"- Remove {sorted(missing_columns)} from the survival grouping in config.yaml\n"
+            "  OR\n"
+            f"- Provide stock-by-age data including: {sorted(required_stock_columns)}\n"
+        )
+
     stock_year = pd.read_csv(
         input_dir / "2_2_A_1_stock_year.csv",
         sep=";", decimal=","
@@ -249,3 +311,33 @@ def add_rest_of_powertrains_from_selected_shares(
     result = pd.concat([selected_df, rest_df], ignore_index=True)
 
     return result
+
+
+def aggregate_stock_by_selected_powertrains(df, selected_powertrains, dataset_name):
+    df = df.copy()
+    selected_powertrains = list(selected_powertrains)
+
+    available_powertrains = set(df[powertrain_dim].dropna().unique())
+    missing_powertrains = set(selected_powertrains) - available_powertrains
+
+    if missing_powertrains:
+        raise ValueError(
+            f"Invalid powertrain configuration for {dataset_name}.\n\n"
+            f"Selected powertrains not found in input data: {sorted(missing_powertrains)}\n"
+            f"Available powertrains are: {sorted(available_powertrains)}"
+        )
+
+    df[powertrain_dim] = df[powertrain_dim].where(
+        df[powertrain_dim].isin(selected_powertrains),
+        REST_POWERTRAIN
+    )
+
+    group_cols = [
+        col for col in df.columns
+        if col != number_registered_vehicles_dim
+    ]
+
+    return (
+        df.groupby(group_cols, as_index=False)[number_registered_vehicles_dim]
+        .sum()
+    )

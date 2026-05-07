@@ -52,6 +52,8 @@ def prepare_inputs(simulation_end_year, config=None):
     historical_csp_active = model_config.get("historical_csp", historical_csp)
     historical_validation_active = model_config.get("historical_validation", historical_csp)
     sensitivity_analysis_active =  model_config.get("sensitivity_analysis", historical_csp)
+    survival_config = config.get("survival_rates", {})
+    survival_grouping = survival_config.get("grouping", [country_dim])
     # Simulation-related parameters
     inputs_simulation = {
         countries_selected_label: countries,
@@ -67,7 +69,8 @@ def prepare_inputs(simulation_end_year, config=None):
         powertrain_dim: powertrains,
         initial_registration_year_label: initial_new_registrations_year,
         use_clusters_label: use_clusters,
-        output_path_label: outputs_config
+        output_path_label: outputs_config,
+        survival_grouping_label: survival_grouping
     }
     # Plot configuration parameters
     inputs_plot_configuration = {

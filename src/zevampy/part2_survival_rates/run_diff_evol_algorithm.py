@@ -3,6 +3,7 @@
 
 from scipy.optimize import differential_evolution
 import numpy as np
+import pandas as pd
 
 from src.zevampy.part2_survival_rates.loss_functions import loss_function_weibull, loss_function_weibull_and_normal
 from src.zevampy.part2_survival_rates.append_optimum_parameters import append_optimum_parameters_weibull, \
@@ -15,7 +16,7 @@ from src.zevampy.part2_survival_rates.get_value_countries import get_value_count
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
-def run_diff_evol_algorithm_weibull(bounds: list, country_names_number: np.ndarray, survival_rates):
+def run_diff_evol_algorithm_weibull(bounds: list, survival_groups: np.ndarray, survival_rates, survival_grouping):
     """
     Runs the differential evolution optimization algorithm to fit Weibull distribution parameters (gamma and beta)
 
@@ -32,23 +33,39 @@ def run_diff_evol_algorithm_weibull(bounds: list, country_names_number: np.ndarr
             - r-squared: Measure of fit quality for the model.
             - country labels: The corresponding country identifier for the parameters.
         """
-    optimum_gamma_per_country = []
-    optimum_beta_per_country = []
-    max_rsquared_per_country = []
-    for j in country_names_number:
-        survival_rates_country = get_value_countries(survival_rates, j)
-        result = differential_evolution(loss_function_weibull, bounds, args=(survival_rates_country,))
-        optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country = \
-            append_optimum_parameters_weibull(result, optimum_gamma_per_country, optimum_beta_per_country,
-                                              max_rsquared_per_country)
-    optimum_parameters_diff_evol_algorithm = save_optimum_parameters_weibull(optimum_gamma_per_country,
-                                                                             optimum_beta_per_country,
-                                                                             max_rsquared_per_country,
-                                                                             country_names_number)
-    return optimum_parameters_diff_evol_algorithm
+    optimum_gamma= []
+    optimum_beta = []
+    max_rsquared = []
+    group_records = []
+
+    for _, group in survival_groups.iterrows():
+        mask = True
+        for dim in survival_grouping:
+            mask = mask & (survival_rates[dim] == group[dim])
+
+        survival_rates_group = survival_rates.loc[mask, survival_rate_dim].to_numpy()
+
+        result = differential_evolution(
+            loss_function_weibull,
+            bounds,
+            args=(survival_rates_group,)
+        )
+
+        optimum_gamma.append(result.x[0])
+        optimum_beta.append(result.x[1])
+        max_rsquared.append(1 - result.fun)
+        group_records.append(group.to_dict())
+
+    result_df = pd.DataFrame(group_records)
+    result_df[gamma_weibull_dim] = optimum_gamma
+    result_df[beta_weibull_dim] = optimum_beta
+    result_df[r_squared_weibull_dim] = max_rsquared
+
+    return result_df
 
 
-def run_diff_evol_algorithm_weibull_gaussian(bounds, country_names_number, survival_rates, optimum_parameters_weibull):
+def run_diff_evol_algorithm_weibull_gaussian(bounds, survival_groups, survival_rates, optimum_parameters_weibull,
+                                             survival_grouping):
     """
     Runs the differential evolution optimization algorithm to fit Weibull-Gaussian parameters (k, mu, sigma, delta)
     for each country. This builds upon the already optimized Weibull parameters.
@@ -68,26 +85,55 @@ def run_diff_evol_algorithm_weibull_gaussian(bounds, country_names_number, survi
             - r-squared: Measure of fit quality for the Weibull-Gaussian model.
             - Country labels: Identifier for the parameters.
     """
-    max_rsquared_per_country_weibull_gaussian = []
-    optimum_k_per_country = []
-    optimum_mu_per_country = []
-    optimum_sigma_per_country = []
-    optimum_delta_per_country = []
-    parameters = [optimum_k_per_country, optimum_mu_per_country, optimum_sigma_per_country, optimum_delta_per_country,
-                  max_rsquared_per_country_weibull_gaussian]
-    for j in country_names_number:
-        survival_rates_country = get_value_countries(survival_rates, j)
-        optimum_parameters_weibull_country = optimum_parameters_weibull[
-            optimum_parameters_weibull[country_dim] == j]
-        gamma_country = optimum_parameters_weibull_country[gamma_weibull_dim].to_numpy()
-        beta_country = optimum_parameters_weibull_country[beta_weibull_dim].to_numpy()
-        args = (gamma_country, beta_country, survival_rates_country)
-        result = differential_evolution(loss_function_weibull_and_normal, bounds, args)
-        parameters = append_optimum_parameters_gaussian(result, optimum_k_per_country, optimum_mu_per_country,
-                                                        optimum_sigma_per_country, optimum_delta_per_country,
-                                                        max_rsquared_per_country_weibull_gaussian)
-    optimum_parameters_diff_evol_algorithm = save_optimum_parameters_gaussian(optimum_parameters_weibull, parameters)
-    return optimum_parameters_diff_evol_algorithm
+    optimum_k = []
+    optimum_mu = []
+    optimum_sigma = []
+    optimum_delta = []
+    max_rsquared = []
+    group_records = []
+
+    for _, group in survival_groups.iterrows():
+        mask = True
+        for dim in survival_grouping:
+            mask = mask & (survival_rates[dim] == group[dim])
+
+        survival_rates_group = survival_rates.loc[mask, survival_rate_dim].to_numpy()
+
+        param_mask = True
+        for dim in survival_grouping:
+            param_mask = param_mask & (optimum_parameters_weibull[dim] == group[dim])
+
+        optimum_parameters_weibull_group = optimum_parameters_weibull.loc[param_mask]
+
+        gamma_group = float(optimum_parameters_weibull_group[gamma_weibull_dim].iloc[0])
+        beta_group = float(optimum_parameters_weibull_group[beta_weibull_dim].iloc[0])
+
+        result = differential_evolution(
+            loss_function_weibull_and_normal,
+            bounds,
+            args=(gamma_group, beta_group, survival_rates_group)
+        )
+
+        optimum_k.append(result.x[0])
+        optimum_mu.append(result.x[1])
+        optimum_sigma.append(result.x[2])
+        optimum_delta.append(
+            result.x[0] / (np.sqrt(np.pi * 2) * result.x[2])
+        )
+        max_rsquared.append(1 - result.fun)
+        group_records.append(group.to_dict())
+
+    result_df = pd.DataFrame(group_records)
+
+    result_df[gamma_weibull_dim] = optimum_parameters_weibull[gamma_weibull_dim].values
+    result_df[beta_weibull_dim] = optimum_parameters_weibull[beta_weibull_dim].values
+    result_df[r_squared_weibull_dim] = optimum_parameters_weibull[r_squared_weibull_dim].values
+    result_df[k_weibull_gaussian_dim] = optimum_k
+    result_df[mu_weibull_gaussian_dim] = optimum_mu
+    result_df[sigma_weibull_gaussian_dim] = optimum_sigma
+    result_df[delta_weibull_gaussian_dim] = optimum_delta
+    result_df[r_squared_weibull_gaussian_dim] = max_rsquared
+    return result_df
 
 
 

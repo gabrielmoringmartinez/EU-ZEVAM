@@ -15,16 +15,14 @@ model:
 
 geography:
   countries:
-    - Austria
-    - Bulgaria
-    - Norway
-    - Belgium
   use_clusters: true
 
 
 powertrains:
   - BEV
-  - Gasoline
-  - G-PHEV
   - Diesel
-  - FCEV
+
+survival_rates:
+  grouping:
+    - geo country
+    - powertrain

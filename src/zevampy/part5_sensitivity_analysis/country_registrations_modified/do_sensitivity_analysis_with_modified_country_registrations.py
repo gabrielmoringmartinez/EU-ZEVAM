@@ -63,13 +63,31 @@ def do_sensitivity_analysis_with_modified_country_registrations(registrations, s
     plot_params = config[plot_params_dim]
     columns_to_plot = {share_dim: share_dim.capitalize()}
     stock_shares_df = stock_shares
-    for country in plot_params[countries_selected_label]:
+    available_registration_countries = set(registrations[country_dim].unique())
+    requested_countries = plot_params[countries_selected_label]
+
+    valid_countries = [
+        country for country in requested_countries
+        if country in available_registration_countries
+    ]
+
+    missing_countries = [
+        country for country in requested_countries
+        if country not in available_registration_countries
+    ]
+
+    for country in missing_countries:
+        print(
+            f"Skipping registration sensitivity for '{country}' because it is not "
+            "available in the registration data."
+        )
+    for country in valid_countries:
         updated_registrations = replace_powertrain_share_registrations_with_country(registrations, country, plot_params)
         stock_values, stock_shares = calculate_stock(updated_registrations, survival_rates, optimal_distribution_dict,
                                                      plot_params[simulation_stock_years_label],
                                                      plot_params[historical_csp_label], countries_selected, output_path)
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, country)
-        columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params[countries_selected_label],
+        columns_to_plot = generate_columns_to_plot(columns_to_plot, [country],
                                                    country_adjectives)
     bev_stock_shares = stock_shares_df[stock_shares_df[powertrain_dim] == plot_params[powertrain_to_plot_label]]
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)

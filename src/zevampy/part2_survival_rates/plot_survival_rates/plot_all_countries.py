@@ -21,6 +21,11 @@ def plot_all_countries(merged_df, config, columns_to_plot_dict, distribution_typ
     """
     plot_params = config[plot_params_dim]
     file_info = config[file_info_dim]
-    country_names = merged_df[country_dim].unique()
-    plot_csp_countries(merged_df, country_names, plot_params, file_info, columns_to_plot_dict, distribution_type)
+    if survival_grouping_label in merged_df.columns:
+        group_column = survival_grouping_label
+    else:
+        group_column = country_dim
+    group_names = merged_df[group_column].unique()
+    plot_csp_countries(merged_df, group_names, plot_params, file_info, columns_to_plot_dict, distribution_type,
+                       group_column)
     return

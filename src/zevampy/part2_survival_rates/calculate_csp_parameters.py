@@ -8,7 +8,7 @@ from src.zevampy.part2_survival_rates.select_optimal_type_of_distribution import
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
-def calculate_csp_parameters(survival_rates, bounds, output_path, save_options=False):
+def calculate_csp_parameters(survival_rates, bounds, output_path, survival_grouping, save_options=False):
     """
     Optimizes CSP (Cumulative Survival Probability) parameters for country-specific survival curves
     using Weibull and Weibull-Gaussian (WG) distributions. The bounds for optimization are based on
@@ -39,13 +39,15 @@ def calculate_csp_parameters(survival_rates, bounds, output_path, save_options=F
     bounds_gaussian = [bounds_gaussian[k_weibull_gaussian_dim], bounds_gaussian[mu_weibull_gaussian_dim],
                        bounds_gaussian[sigma_weibull_gaussian_dim]]
     # Get the unique country names from the survival rates
-    country_names = survival_rates[country_dim].unique()
+    survival_groups = survival_rates[survival_grouping].drop_duplicates()
     # Run the differential evolution algorithm to optimize the Weibull parameters for each country
-    optimum_parameters_weibull = run_diff_evol_algorithm_weibull(bounds_weibull, country_names, survival_rates)
+    optimum_parameters_weibull = run_diff_evol_algorithm_weibull(bounds_weibull, survival_groups, survival_rates,
+                                                                 survival_grouping)
     # Run the differential evolution algorithm to optimize the Weibull-Gaussian parameters for each country
-    optimum_parameters_weibull_gaussian = run_diff_evol_algorithm_weibull_gaussian(bounds_gaussian, country_names,
+    optimum_parameters_weibull_gaussian = run_diff_evol_algorithm_weibull_gaussian(bounds_gaussian, survival_groups,
                                                                                    survival_rates,
-                                                                                   optimum_parameters_weibull)
+                                                                                   optimum_parameters_weibull,
+                                                                                   survival_grouping)
     # Select the optimal distribution type (Weibull or WG) based on the fitted parameters
     optimum_parameters_weibull_gaussian = select_optimal_type_of_distribution(optimum_parameters_weibull_gaussian)
     # Save the optimized parameters and distribution types to a CSV file
@@ -53,7 +55,11 @@ def calculate_csp_parameters(survival_rates, bounds, output_path, save_options=F
         optimum_parameters_weibull_gaussian.to_csv(f'{output_path}/2_1_optimum_parameters_csp_curves.csv', sep=';',
                                                    index=False, decimal=',')
     # Create a dictionary mapping each distribution type to a list of countries
-    country_opt_dist_dict = {dist: optimum_parameters_weibull_gaussian.loc[optimum_parameters_weibull_gaussian
-                                                                           [distribution_dim] == dist, country_dim].tolist()
-                             for dist in optimum_parameters_weibull_gaussian[distribution_dim].unique()}
+    country_opt_dist_dict = {
+        dist: optimum_parameters_weibull_gaussian.loc[
+            optimum_parameters_weibull_gaussian[distribution_dim] == dist,
+            survival_grouping
+        ].to_dict(orient="records")
+        for dist in optimum_parameters_weibull_gaussian[distribution_dim].unique()
+    }
     return optimum_parameters_weibull_gaussian, country_opt_dist_dict

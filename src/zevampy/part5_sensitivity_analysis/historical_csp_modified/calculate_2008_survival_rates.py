@@ -39,12 +39,14 @@ def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, 
     filtered_survival_rates_2021 = survival_rates_2021[survival_rates_2021[country_dim].isin(country_names)]
     if filtered_survival_rates_2021.empty:
         return pd.DataFrame()
+    survival_grouping = [country_dim]
     fitted_csp_values_2008 = get_fitted_csp_values(filtered_survival_rates_2021, optimum_parameters_2008,
-                                                   csp_available_years, False)
+                                                   csp_available_years, output_path, survival_grouping, False)
     optimal_distribution_dict_2008 = prepare_optimal_distribution_dict(optimal_distribution_dict)
     stock_values_2008, stock_shares_2008 = calculate_stock(registrations, fitted_csp_values_2008,
                                                            optimal_distribution_dict_2008, simulation_stock_years,
-                                                           historical_csp, countries_selected, output_path)
+                                                           historical_csp, countries_selected, output_path,
+                                                           survival_grouping)
     stock_shares_2008[country_dim] = stock_shares_2008[country_dim].replace(eu_27_plus_norway_label, eu_9_label)
     return stock_shares_2008
 

@@ -63,10 +63,11 @@ def do_sensitivity_analysis_with_increased_decreased_csps(registrations, surviva
     stock_shares_df = None
     for percentage in plot_params[percentages_selected_label]:
         adjusted_parameters = modify_csps(optimum_parameters_wg, percentage)
-        fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, csp_available_years, False)
+        fitted_csp_values = get_fitted_csp_values(survival_rates, adjusted_parameters, csp_available_years, output_path,
+                                                  [country_dim], False)
         stock_values, stock_shares = calculate_stock(registrations, fitted_csp_values, optimal_distribution_dict,
                                                      plot_params[simulation_stock_years_label], 'non-historical_csp',
-                                                     countries_selected, output_path)
+                                                     countries_selected, output_path, [country_dim])
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, percentage)
     bev_stock_shares = stock_shares_df[stock_shares_df[powertrain_dim] == plot_params[powertrain_to_plot_label]]
     columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params[percentages_selected_label])

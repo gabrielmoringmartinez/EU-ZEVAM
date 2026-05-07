@@ -6,7 +6,7 @@ from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates import 
 from src.zevampy.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import \
     compute_csp_values_and_compute_stock
 from src.zevampy.part2_survival_rates.plot_survival_rates import get_csp_plots
-from src.zevampy.part3_stock_calculation.plot_stock import plot_bev_stock_shares
+from src.zevampy.part3_stock_calculation.plot_stock import plot_stock_shares
 
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
@@ -67,23 +67,37 @@ def calculate_and_plot_csps_and_stock(data, inputs):
                                             inputs[simulation_stock_years_label],
                                             inputs[initial_registration_year_label], inputs[use_clusters_label],
                                             inputs[output_path_label])
+    registrations_for_survival = registrations.copy()
 
+    if powertrain_dim in inputs[survival_grouping_label]:
+        registrations_for_survival = (
+            registrations
+            .drop(columns=[new_registrations_dim])
+            .rename(columns={registrations_by_powertrain_dim: new_registrations_dim})
+        )
+    else:
+        registrations_for_survival = (
+            registrations_for_survival
+            .groupby([country_dim, time_dim], as_index=False)[registrations_by_powertrain_dim]
+            .sum()
+            .rename(columns={registrations_by_powertrain_dim: new_registrations_dim})
+        )
     survival_rates_2021 = calculate_empirical_survival_rates(data[stock_by_age_2021_label],
-                                                             data[historical_registrations_label],
+                                                             registrations_for_survival,
                                                              data[stock_year_label],
                                                              inputs[countries_selected_label],
-                                                             inputs[output_path_label])
+                                                             inputs[output_path_label], inputs[survival_grouping_label])
     survival_rates_2021 = survival_rates_2021[survival_rates_2021[age_dim] <= inputs[csp_available_years_label]].copy()
     stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values = \
         compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs[simulation_stock_years_label],
                                              inputs[distribution_bounds_label], inputs[historical_csp_label],
                                              inputs[csp_available_years_label], inputs[countries_selected_label],
-                                             inputs[output_path_label], inputs[save_options_stock_label],
-                                             inputs[save_fitted_csp_values_label]
+                                             inputs[survival_grouping_label], inputs[output_path_label],
+                                             inputs[save_options_stock_label], inputs[save_fitted_csp_values_label]
                                              )
-
-    get_csp_plots(survival_rates_2021, fitted_csp_values, inputs[config_all_label], inputs[config_group_label])
-    plot_bev_stock_shares(stock_shares, inputs[config_bev_reference_scenario_label])
+    get_csp_plots(survival_rates_2021, fitted_csp_values, inputs[config_all_label], inputs[config_group_label],
+                  inputs[survival_grouping_label])
+    plot_stock_shares(stock_shares, inputs[config_bev_reference_scenario_label], inputs[powertrain_dim])
 
     return {
         registrations_label: registrations,

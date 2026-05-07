@@ -3,7 +3,7 @@
 
 from src.zevampy.load_data_and_prepare_inputs.load_data import load_data
 from src.zevampy.load_data_and_prepare_inputs.prepare_inputs import prepare_inputs
-
+from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 
 def load_data_and_prepare_inputs(input_path, config=None):
     """
@@ -32,13 +32,18 @@ def load_data_and_prepare_inputs(input_path, config=None):
 
     powertrains = config.get("powertrains") if config else None
 
+    survival_config = config.get("survival_rates", {}) if config else {}
+    survival_grouping = survival_config.get("grouping", [country_dim])
+
     data, max_year = load_data(
         input_path,
         historical_validation_active=historical_validation_active,
         sensitivity_analysis_active=sensitivity_analysis_active,
         historical_csp_active=historical_csp_active,
         use_clusters_active=use_clusters_active,
-        powertrains=powertrains
+        powertrains=powertrains,
+        survival_grouping=survival_grouping,
+
     )
     inputs = prepare_inputs(max_year, config=config)
 

@@ -59,14 +59,21 @@ def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shar
     plot_params = config[plot_params_dim]
     columns_to_plot = {share_dim: share_dim.capitalize()}
     stock_shares_df = stock_shares
+    available_csp_countries = set(survival_rates[country_dim].unique())
     for country in plot_params[countries_selected_label]:
+        if country not in available_csp_countries:
+            print(
+                f"Skipping sensitivity CSP replacement for '{country}' because "
+                "it is not available in the fitted CSP data."
+            )
+            continue
+
         updated_survival_rates = replace_survival_rates_with_country_specific_csp(survival_rates, country)
         updated_opt_dist_dict = update_optimal_distribution_based_on_country_csp(country, optimal_distribution_dict)
         stock_values, stock_shares = calculate_stock(registrations, updated_survival_rates, updated_opt_dist_dict,
                                                      plot_params[simulation_stock_years_label],
                                                      plot_params[historical_csp_label], countries_selected, output_path)
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, country)
-        columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params[countries_selected_label],
-                                                   country_adjectives)
+        columns_to_plot = generate_columns_to_plot(columns_to_plot, [country], country_adjectives)
     bev_stock_shares = stock_shares_df[stock_shares_df[powertrain_dim] == plot_params[powertrain_to_plot_label]]
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)

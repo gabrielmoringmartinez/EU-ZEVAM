@@ -17,7 +17,7 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_years, historical_csp,
-                    countries_selected, output_path, save_options=None):
+                    countries_selected, output_path, survival_grouping=None, save_options=None):
     """
     Calculates stock data for each country over a specified range of years.
 
@@ -34,14 +34,16 @@ def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_
         DataFrame: Final stock data by country, powertrain and vehicle age with
          calculation columns (unnecessary) columns removed.
     """
+    if survival_grouping is None:
+        survival_grouping = [country_dim]
     columns_to_drop = [survival_rate_weibull_dim, survival_rate_weibull_gaussian_dim, distribution_dim, cluster_dim,
                        stock_weibull_dim, stock_wg_dim, new_registrations_dim, relative_sales_dim,
                        registrations_by_powertrain_dim]
     survival_rates = repeat_csp_data_for_all_years(csp_values, stock_years)
     survival_rates = calculate_year_of_first_registration(survival_rates)
-    stock_data = merge_survival_rates_with_registrations(survival_rates, registrations)
+    stock_data = merge_survival_rates_with_registrations(survival_rates, registrations, survival_grouping)
     stock_data = compute_stock_values(stock_data)
-    stock_data[stock_dim] = stock_data.apply(select_optimum_distribution, axis=1, optimal_distribution_dict=optimal_distribution_dict)
+    stock_data[stock_dim] = stock_data.apply(select_optimum_distribution, axis=1)
     stock_data = stock_data.rename(columns={time_dim: year_of_first_registration_dim})
     stock_data = cleanup_stock_data(stock_data, columns_to_drop)
     stock_shares = compute_stock_shares(stock_data)

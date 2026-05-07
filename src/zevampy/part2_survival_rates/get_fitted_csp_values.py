@@ -9,7 +9,8 @@ from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
     weibull_gaussian_label
 
 
-def get_fitted_csp_values(survival_rates, pdf_parameters, csp_available_years, output_path, save_options=False):
+def get_fitted_csp_values(survival_rates, pdf_parameters, csp_available_years, output_path, survival_grouping,
+                          save_options=False):
     """
     Calculates fitted Cumulative Survival Probability (CSP) values for each country using Weibull and
     Weibull-Gaussian (WG) distribution parameters.
@@ -26,18 +27,48 @@ def get_fitted_csp_values(survival_rates, pdf_parameters, csp_available_years, o
     - pd.DataFrame: DataFrame containing fitted CSP values for each country by vehicle age, distribution model (Weibull
      and Weibull Gaussian), and the selected distribution type.
     """
-    country_names = survival_rates[country_dim].unique()
+    survival_groups = survival_rates[survival_grouping].drop_duplicates()
     weibull_results = pd.DataFrame()
     wg_results = pd.DataFrame()
-    for country_name in country_names:
-        survival_rates_country = survival_rates[survival_rates[country_dim] == country_name]
-        weibull_results, wg_results = calculate_country_fitted_values(country_name, survival_rates_country,
-                                                                      pdf_parameters, weibull_results, wg_results,
-                                                                      csp_available_years)
-    fitted_csp_values = pd.merge(weibull_results, wg_results, on=[country_dim, age_dim],
-                                 suffixes=(f' {weibull_label}', f' {weibull_gaussian_label}'), how='inner')
-    fitted_csp_values = pd.merge(fitted_csp_values, pdf_parameters[[country_dim, distribution_dim]], on=country_dim)
+    for _, group in survival_groups.iterrows():
+        mask = True
+        for dim in survival_grouping:
+            mask = mask & (survival_rates[dim] == group[dim])
+
+        survival_rates_group = survival_rates.loc[mask].copy()
+
+        weibull_results, wg_results = calculate_country_fitted_values(
+            group,
+            survival_rates_group,
+            pdf_parameters,
+            weibull_results,
+            wg_results,
+            csp_available_years,
+            survival_grouping
+        )
+
+    fitted_csp_values = pd.merge(
+        weibull_results,
+        wg_results,
+        on=survival_grouping + [age_dim],
+        suffixes=(f" {weibull_label}", f" {weibull_gaussian_label}"),
+        how="inner"
+    )
+
+    fitted_csp_values = pd.merge(
+        fitted_csp_values,
+        pdf_parameters[survival_grouping + [distribution_dim]],
+        on=survival_grouping,
+        how="left"
+    )
+
     if save_options:
-        fitted_csp_values.to_csv(f'{output_path}/2_3_fitted_CSP_curves.csv', sep=';', index=False, decimal=',')
+        fitted_csp_values.to_csv(
+            f"{output_path}/2_3_fitted_CSP_curves.csv",
+            sep=";",
+            index=False,
+            decimal=","
+        )
+
     return fitted_csp_values
 

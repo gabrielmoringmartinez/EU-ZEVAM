@@ -7,11 +7,12 @@ from src.zevampy.part2_survival_rates.get_statistical_parameters_of_each_country
 from src.zevampy.part2_survival_rates.get_function_values import get_weibull_function, get_weibull_and_normal_function
 from src.zevampy.part2_survival_rates.get_distribution_function_discrete_points import get_distribution_function_discrete_points
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
+from src.zevampy.load_data_and_prepare_inputs.dimension_names import gamma_weibull_dim, beta_weibull_dim, \
+    k_weibull_gaussian_dim, mu_weibull_gaussian_dim, sigma_weibull_gaussian_dim
 
 
-def calculate_country_fitted_values(country_name, survival_rates, pdf_parameters, weibull_results, wg_results,
-                                    csp_available_years):
+def calculate_country_fitted_values(group, survival_rates, pdf_parameters, weibull_results, wg_results,
+                                    csp_available_years, survival_grouping):
     """
     Helper function to calculate Weibull and Weibull-Gaussian fitted CSP values for a single country.
 
@@ -28,17 +29,49 @@ def calculate_country_fitted_values(country_name, survival_rates, pdf_parameters
         - pd.DataFrame: Updated `weibull_results` with calculated Weibull CSP values.
         - pd.DataFrame: Updated `wg_results` with calculated WG CSP values.
     """
-    survival_rates_country = survival_rates[survival_rates[country_dim] == country_name]
-    gamma, beta, k, mu, sigma = get_statistical_parameters(pdf_parameters)
-    gamma_country, beta_country, k_country, mu_country, sigma_country = \
-        get_statistical_parameters_of_each_country(gamma, beta, k, mu, sigma, country_name)
+    parameter_mask = True
+    for dim in survival_grouping:
+        parameter_mask = parameter_mask & (pdf_parameters[dim] == group[dim])
 
-    predicted_weibull_value = get_weibull_function(gamma_country, beta_country, csp_available_years)
-    predicted_weibull_and_normal_value = get_weibull_and_normal_function(gamma_country, beta_country, k_country,
-                                                                         mu_country, sigma_country, csp_available_years)
-    weibull_results = get_distribution_function_discrete_points(weibull_results, survival_rates_country,
-                                                                predicted_weibull_value)
+    pdf_parameters_group = pdf_parameters.loc[parameter_mask]
 
-    wg_results = get_distribution_function_discrete_points(wg_results, survival_rates_country,
-                                                           predicted_weibull_and_normal_value)
+    if pdf_parameters_group.empty:
+        raise ValueError(
+            "No fitted CSP parameters found for survival group:\n"
+            f"{group.to_dict()}"
+        )
+
+    gamma_group = float(pdf_parameters_group[gamma_weibull_dim].iloc[0])
+    beta_group = float(pdf_parameters_group[beta_weibull_dim].iloc[0])
+    k_group = float(pdf_parameters_group[k_weibull_gaussian_dim].iloc[0])
+    mu_group = float(pdf_parameters_group[mu_weibull_gaussian_dim].iloc[0])
+    sigma_group = float(pdf_parameters_group[sigma_weibull_gaussian_dim].iloc[0])
+
+    predicted_weibull_value = get_weibull_function(
+        gamma_group,
+        beta_group,
+        csp_available_years,
+    )
+
+    predicted_weibull_and_normal_value = get_weibull_and_normal_function(
+        gamma_group,
+        beta_group,
+        k_group,
+        mu_group,
+        sigma_group,
+        csp_available_years,
+    )
+
+    weibull_results = get_distribution_function_discrete_points(
+        weibull_results,
+        survival_rates,
+        predicted_weibull_value,
+    )
+
+    wg_results = get_distribution_function_discrete_points(
+        wg_results,
+        survival_rates,
+        predicted_weibull_and_normal_value,
+    )
+
     return weibull_results, wg_results
