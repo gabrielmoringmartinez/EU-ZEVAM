@@ -70,9 +70,11 @@ def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shar
 
         updated_survival_rates = replace_survival_rates_with_country_specific_csp(survival_rates, country)
         updated_opt_dist_dict = update_optimal_distribution_based_on_country_csp(country, optimal_distribution_dict)
+        stock_shares_are_valid = True
         stock_values, stock_shares = calculate_stock(registrations, updated_survival_rates, updated_opt_dist_dict,
                                                      plot_params[simulation_stock_years_label],
-                                                     plot_params[historical_csp_label], countries_selected, output_path)
+                                                     plot_params[historical_csp_label], countries_selected,
+                                                     stock_shares_are_valid, output_path)
         stock_shares_df = update_stock_shares(stock_shares_df, stock_shares, country)
         columns_to_plot = generate_columns_to_plot(columns_to_plot, [country], country_adjectives)
     bev_stock_shares = stock_shares_df[stock_shares_df[powertrain_dim] == plot_params[powertrain_to_plot_label]]

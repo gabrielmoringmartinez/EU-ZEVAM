@@ -9,7 +9,7 @@ from src.zevampy.part2_survival_rates.plot_survival_rates import get_csp_plots
 from src.zevampy.part3_stock_calculation.plot_stock import plot_stock_shares
 
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
-
+import warnings
 
 def calculate_and_plot_csps_and_stock(data, inputs):
     """
@@ -87,17 +87,45 @@ def calculate_and_plot_csps_and_stock(data, inputs):
                                                              data[stock_year_label],
                                                              inputs[countries_selected_label],
                                                              inputs[output_path_label], inputs[survival_grouping_label])
+
+    registration_powertrains = set(registrations[powertrain_dim].dropna().unique())
+
+    survival_powertrains = (
+        set(survival_rates_2021[powertrain_dim].dropna().unique())
+        if powertrain_dim in survival_rates_2021.columns
+        else registration_powertrains
+    )
+
+    missing_survival_powertrains = registration_powertrains - survival_powertrains
+    stock_shares_are_valid = not missing_survival_powertrains
+
     survival_rates_2021 = survival_rates_2021[survival_rates_2021[age_dim] <= inputs[csp_available_years_label]].copy()
     stock_values, stock_shares, optimum_parameters_wg, optimal_distribution_dict, fitted_csp_values = \
         compute_csp_values_and_compute_stock(survival_rates_2021, registrations, inputs[simulation_stock_years_label],
                                              inputs[distribution_bounds_label], inputs[historical_csp_label],
                                              inputs[csp_available_years_label], inputs[countries_selected_label],
                                              inputs[survival_grouping_label], inputs[output_path_label],
-                                             inputs[save_options_stock_label], inputs[save_fitted_csp_values_label]
+                                             stock_shares_are_valid, inputs[save_options_stock_label],
+                                             inputs[save_fitted_csp_values_label],
                                              )
     get_csp_plots(survival_rates_2021, fitted_csp_values, inputs[config_all_label], inputs[config_group_label],
                   inputs[survival_grouping_label])
-    plot_stock_shares(stock_shares, inputs[config_bev_reference_scenario_label], inputs[powertrain_dim])
+    if not stock_shares_are_valid:
+        warnings.warn(
+            "Stock shares will not be plotted because not all registration powertrains "
+            "have corresponding survival rates.\n\n"
+            f"Missing survival rates for: {sorted(missing_survival_powertrains)}\n\n"
+            "Absolute stock can still be calculated for available powertrains, but stock "
+            "shares would be misleading because the denominator would not include all "
+            "powertrain categories.",
+            UserWarning
+        )
+    else:
+        plot_stock_shares(
+            stock_shares,
+            inputs[config_bev_reference_scenario_label],
+            inputs[powertrain_dim]
+        )
 
     return {
         registrations_label: registrations,

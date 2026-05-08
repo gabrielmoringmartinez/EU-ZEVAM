@@ -125,6 +125,25 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
     if survival_grouping is None:
         survival_grouping = [country_dim]
 
+    if survival_grouping == [country_dim] and powertrain_dim in stock_by_age_2021.columns:
+        raise ValueError(
+            "Invalid stock-by-age input data.\n\n"
+            "The current configuration estimates survival rates only by country:\n"
+            "survival_rates:\n"
+            "  grouping:\n"
+            "    - geo country\n\n"
+            "However, the stock-by-age input file contains a 'powertrain' column.\n\n"
+            "How to fix:\n"
+            "- Remove the 'powertrain' column from the stock-by-age input file, and\n"
+            "- provide total stock by country and vehicle age only:\n"
+            "  geo country;vehicle age;number of registered vehicles\n\n"
+            "If you want country- and powertrain-specific survival rates, use:\n"
+            "survival_rates:\n"
+            "  grouping:\n"
+            "    - geo country\n"
+            "    - powertrain"
+        )
+
     required_stock_columns = set(
         survival_grouping + [age_dim, number_registered_vehicles_dim]
     )
@@ -155,6 +174,26 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
             powertrains,
             "stock by age"
         )
+
+    if powertrain_dim in survival_grouping:
+        registration_powertrains = set(
+            registration_shares_by_cluster[powertrain_dim].dropna().unique()
+        )
+        stock_powertrains = set(
+            stock_by_age_2021[powertrain_dim].dropna().unique()
+        )
+
+        missing_stock_powertrains = registration_powertrains - stock_powertrains
+
+        if missing_stock_powertrains:
+            warnings.warn(
+                "Some powertrain categories exist in the registration shares but not in the "
+                "stock-by-age input data.\n\n"
+                f"Missing from stock-by-age data: {sorted(missing_stock_powertrains)}\n\n"
+                "Survival rates cannot be estimated for these categories, so stock will not "
+                "be calculated for them. Total stock by country may therefore be incomplete.",
+                UserWarning
+            )
 
     if survival_grouping is None:
         survival_grouping = [country_dim]
@@ -218,8 +257,6 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
             input_dir / "5_2_held_2016_survival_rates.csv",
             sep=";", decimal=","
         )
-
-    return data, max_year
 
     return data, max_year
 
