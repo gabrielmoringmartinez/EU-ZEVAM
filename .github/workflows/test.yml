@@ -18,6 +18,7 @@ jobs:
         run: |
           pip install -r stock_model_requirements.txt
           pip install pytest pytest-cov
+          pip install -e .
 
       - name: Run tests via run_tests.py
         run: python run_tests.py
