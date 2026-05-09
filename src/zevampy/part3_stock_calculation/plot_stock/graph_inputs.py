@@ -3,10 +3,10 @@
 
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
-TITLE = "Estimated Battery Electric Vehicle (BEV) stock shares for EU-27+Norway up to 2050"
+TITLE = "estimated stock shares for selected countries"
 X_COLUMN = stock_year_dim
 X_LABEL = "year"
-Y_LABEL = "Battery Electric Vehicle (BEV) stock share (in %)"
+Y_LABEL = "stock share (in %)"
 X_LIM = (2014, 2050)
 #X_TICKS_VALUES = [2015, 2017, 2019, 2021, 2023]
 Y_LIM = (0, 1)
@@ -29,7 +29,7 @@ SHARE = True
 file_info = {
     save_figure_dim: True,
     folder_dim: "outputs/figures/",
-    main_title_dim: "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario",
+    main_title_dim: "stock_shares_model_reference_scenario",
     additional_info_dim: '',
     group_info_dim: '',  # Can update this dynamically if needed
     comparison_type_dim: '',  # Optional: e.g., 'comparison' for side-by-side analyses

@@ -26,7 +26,7 @@ X_AXIS_TITLE_VERTICAL_POSITION = 0.075
 file_info = {
     save_figure_dim: True,
     folder_dim: "outputs/figures/",
-    main_title_dim: "CSP 2021",
+    main_title_dim: "empirical_cumulative_survival_probability_curves",
     additional_info_dim: 'all_countries',
     group_info_dim: '',  # Can update this dynamically if needed
     comparison_type_dim: '',  # Optional: e.g., 'comparison' for side-by-side analyses

@@ -20,11 +20,16 @@ def plot_stock_shares(stock_shares, config_scenario, powertrains):
         # Optional: add label for filename
         config_local = config_scenario.copy()
         config_local[file_info_dim] = config_local[file_info_dim].copy()
+        config_local[plot_params_dim] = config_scenario[plot_params_dim].copy()
+        # Update title dynamically
+        pt_title = pt.replace("_", " ")
+        existing_title = config_local[plot_params_dim][title_dim]
+        config_local[plot_params_dim][title_dim] = f"{pt_title} {existing_title}"
+        existing_ylabel =  config_local[plot_params_dim][y_label_dim]
+        config_local[plot_params_dim][y_label_dim] = f"{pt_title} {existing_ylabel}"
         pt_file = pt.replace(" ", "_")
-        config_local[file_info_dim][additional_info_dim] = (
-                config_local[file_info_dim].get(additional_info_dim, "") + f"_{pt_file}"
-        )
-
+        existing_info = config_local[file_info_dim].get(additional_info_dim, "").rstrip("_")
+        config_local[file_info_dim][additional_info_dim] = (f"{existing_info}{pt_file}")
         plot_all_countries(
             stock_subset,
             config_local,
