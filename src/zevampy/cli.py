@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
+# SPDX-License-Identifier: MIT
+
 import argparse
 from zevampy.run_model import run_model
 
