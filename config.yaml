@@ -19,8 +19,6 @@ geography:
 
 
 powertrains:
-  - BEV
-  - Diesel
 
 survival_rates:
   grouping:
