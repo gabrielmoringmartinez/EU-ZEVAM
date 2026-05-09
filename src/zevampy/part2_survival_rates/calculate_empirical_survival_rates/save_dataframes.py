@@ -3,5 +3,5 @@
 
 def save_dataframes(survival_rates, output_path):
     """Saves the empirical survival rates to CSV files."""
-    survival_rates.to_csv(f'{output_path}/2_2_empirical_survival_rates_eu_countries_2021.csv', sep=';', index=False,
+    survival_rates.to_csv(f'{output_path}/2_2_empirical_survival_rates.csv', sep=';', index=False,
                           decimal=',')

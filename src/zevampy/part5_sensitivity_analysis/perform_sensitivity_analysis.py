@@ -65,7 +65,7 @@ def perform_sensitivity_analysis(data, calculated_data, inputs):
     fitted_csp_values = calculated_data[fitted_csp_values_label]
     optimal_distribution_dict = calculated_data[optimal_distribution_dict_label]
     optimum_parameters_wg = calculated_data[optimum_parameters_wg_label]
-    survival_rates_2021 = calculated_data[survival_rates_2021_label]
+    survival_rates_2021 = calculated_data[empirical_survival_rates_label]
     do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shares, fitted_csp_values,
                                                        optimal_distribution_dict, inputs[config_sensitivity_1_label],
                                                        inputs[countries_selected_label], inputs[output_path_label])

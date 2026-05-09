@@ -45,9 +45,8 @@ def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, 
     optimal_distribution_dict_2008 = prepare_optimal_distribution_dict(optimal_distribution_dict)
     stock_shares_are_valid = True
     stock_values_2008, stock_shares_2008 = calculate_stock(registrations, fitted_csp_values_2008,
-                                                           optimal_distribution_dict_2008, simulation_stock_years,
-                                                           historical_csp, countries_selected, stock_shares_are_valid,
-                                                           output_path, survival_grouping)
+                                                           simulation_stock_years, historical_csp, countries_selected,
+                                                           stock_shares_are_valid, output_path, survival_grouping)
     stock_shares_2008[country_dim] = stock_shares_2008[country_dim].replace(eu_27_plus_norway_label, eu_9_label)
     return stock_shares_2008
 

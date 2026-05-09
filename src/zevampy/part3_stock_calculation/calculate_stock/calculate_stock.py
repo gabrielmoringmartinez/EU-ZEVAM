@@ -16,7 +16,7 @@ from src.zevampy.part3_stock_calculation.calculate_stock.save_outputs import sav
 from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
-def calculate_stock(registrations, csp_values, optimal_distribution_dict, stock_years, historical_csp,
+def calculate_stock(registrations, csp_values, stock_years, historical_csp,
                     countries_selected, output_path, calculate_stock_shares, survival_grouping=None, save_options=None):
     """
     Calculates stock data for each country over a specified range of years.

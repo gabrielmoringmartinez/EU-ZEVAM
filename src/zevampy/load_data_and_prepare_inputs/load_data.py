@@ -39,10 +39,10 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
 
     # --- Required files ---
     required_model_files = [
-        "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv",
-        "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv",
-        "1_3_new_registrations_2022_2050_projected.csv",
-        "2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv",
+        "1_1_new_registrations_by_fuel_type_clusters.csv",
+        "1_2_A_2_historical_new_registrations_data_passenger_cars.csv",
+        "1_3_new_registrations_projected.csv",
+        "2_1_A_1_age_resolved_data_passenger_car_stock_fleet.csv",
         "2_2_A_1_stock_year.csv",
     ]
 
@@ -90,7 +90,7 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
     else:
         clusters = None
     registration_shares_by_cluster = pd.read_csv(
-        input_dir / "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv",
+        input_dir / "1_1_new_registrations_by_fuel_type_clusters.csv",
         sep=";", decimal=","
     )
     if powertrains:
@@ -107,25 +107,25 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
             "registration shares by cluster",
         )
     historical_registrations = pd.read_csv(
-        input_dir / "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv",
+        input_dir / "1_2_A_2_historical_new_registrations_data_passenger_cars.csv",
         sep=";", decimal=","
     )
     registrations_projected = pd.read_csv(
-        input_dir / "1_3_new_registrations_2022_2050_projected.csv",
+        input_dir / "1_3_new_registrations_projected.csv",
         sep=";", decimal=","
     )
 
     max_year = registrations_projected["time"].max()
 
-    stock_by_age_2021 = pd.read_csv(
-        input_dir / "2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv",
+    stock_by_age = pd.read_csv(
+        input_dir / "2_1_A_1_age_resolved_data_passenger_car_stock_fleet.csv",
         sep=";", decimal=","
     )
 
     if survival_grouping is None:
         survival_grouping = [country_dim]
 
-    if survival_grouping == [country_dim] and powertrain_dim in stock_by_age_2021.columns:
+    if survival_grouping == [country_dim] and powertrain_dim in stock_by_age.columns:
         raise ValueError(
             "Invalid stock-by-age input data.\n\n"
             "The current configuration estimates survival rates only by country:\n"
@@ -148,7 +148,7 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
         survival_grouping + [age_dim, number_registered_vehicles_dim]
     )
 
-    missing_columns = required_stock_columns - set(stock_by_age_2021.columns)
+    missing_columns = required_stock_columns - set(stock_by_age.columns)
 
     if missing_columns:
         raise ValueError(
@@ -169,8 +169,8 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
         )
 
     if powertrains and survival_grouping and powertrain_dim in survival_grouping:
-        stock_by_age_2021 = aggregate_stock_by_selected_powertrains(
-            stock_by_age_2021,
+        stock_by_age = aggregate_stock_by_selected_powertrains(
+            stock_by_age,
             powertrains,
             "stock by age"
         )
@@ -180,7 +180,7 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
             registration_shares_by_cluster[powertrain_dim].dropna().unique()
         )
         stock_powertrains = set(
-            stock_by_age_2021[powertrain_dim].dropna().unique()
+            stock_by_age[powertrain_dim].dropna().unique()
         )
 
         missing_stock_powertrains = registration_powertrains - stock_powertrains
@@ -202,7 +202,7 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
         survival_grouping + [age_dim, number_registered_vehicles_dim]
     )
 
-    missing_columns = required_stock_columns - set(stock_by_age_2021.columns)
+    missing_columns = required_stock_columns - set(stock_by_age.columns)
 
     if missing_columns:
         raise ValueError(
@@ -232,7 +232,7 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
         "registration_shares_by_cluster": registration_shares_by_cluster,
         "historical_registrations": historical_registrations,
         "registrations_projected": registrations_projected,
-        "stock_by_age_2021": stock_by_age_2021,
+        "stock_by_age": stock_by_age,
         "stock_year": stock_year,
     }
 

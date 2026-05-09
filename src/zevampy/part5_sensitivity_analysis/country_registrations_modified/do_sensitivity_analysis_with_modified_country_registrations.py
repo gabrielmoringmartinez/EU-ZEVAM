@@ -84,7 +84,7 @@ def do_sensitivity_analysis_with_modified_country_registrations(registrations, s
     for country in valid_countries:
         updated_registrations = replace_powertrain_share_registrations_with_country(registrations, country, plot_params)
         stock_shares_are_valid = True
-        stock_values, stock_shares = calculate_stock(updated_registrations, survival_rates, optimal_distribution_dict,
+        stock_values, stock_shares = calculate_stock(updated_registrations, survival_rates,
                                                      plot_params[simulation_stock_years_label],
                                                      plot_params[historical_csp_label], countries_selected,
                                                      stock_shares_are_valid, output_path)

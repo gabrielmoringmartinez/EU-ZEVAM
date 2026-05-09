@@ -48,9 +48,9 @@ def compare_model_and_actual_stock_results(data, calculated_data, inputs):
     registrations_with_real_bev_shares = update_bev_registration_shares_with_real_values(registrations,
                                                                                          actual_bev_registration_shares)
     stock_values_with_real_registrations, stock_shares_with_real_registrations = calculate_stock\
-        (registrations_with_real_bev_shares, fitted_csp_values, optimal_distribution_dict,
-         inputs[simulation_stock_years_label], inputs[historical_csp_label], inputs[countries_selected_label],
-         inputs[output_path_label], inputs[survival_grouping_label])
+        (registrations_with_real_bev_shares, fitted_csp_values, inputs[simulation_stock_years_label],
+         inputs[historical_csp_label], inputs[countries_selected_label], inputs[output_path_label],
+         inputs[survival_grouping_label])
     keys_columns_stock = [country_dim, stock_year_dim, powertrain_dim]
     column_to_update_stock = share_dim
     # Update stock shares with actual BEV values
