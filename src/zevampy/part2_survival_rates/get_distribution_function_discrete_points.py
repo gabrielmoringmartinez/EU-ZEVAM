@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import survival_rate_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import survival_rate_dim
 
 
 def get_distribution_function_discrete_points(survival_rate_distribution_function, survival_rates_country,

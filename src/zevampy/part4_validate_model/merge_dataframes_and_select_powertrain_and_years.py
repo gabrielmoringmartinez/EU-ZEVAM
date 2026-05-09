@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def merge_dataframes_and_select_powertrain_and_years(df1, df2, powertrain=["BEV"], years=(2014, 2023)):

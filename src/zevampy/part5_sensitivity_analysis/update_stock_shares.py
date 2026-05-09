@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
+from zevampy.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def update_stock_shares(stock_shares_df, new_stock_shares, column_suffix):

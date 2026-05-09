@@ -3,12 +3,12 @@
 
 import pandas as pd
 
-from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.filter_vehicle_age import filter_vehicle_age
-from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.prepare_registrations_data import \
+from zevampy.part2_survival_rates.calculate_empirical_survival_rates.filter_vehicle_age import filter_vehicle_age
+from zevampy.part2_survival_rates.calculate_empirical_survival_rates.prepare_registrations_data import \
     prepare_registrations_data
-from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.obtain_survival_rates import obtain_survival_rates
-from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.save_dataframes import save_dataframes
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
+from zevampy.part2_survival_rates.calculate_empirical_survival_rates.obtain_survival_rates import obtain_survival_rates
+from zevampy.part2_survival_rates.calculate_empirical_survival_rates.save_dataframes import save_dataframes
+from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 
 
 def calculate_empirical_survival_rates(stock, registrations, stock_year, countries_to_keep, output_path,

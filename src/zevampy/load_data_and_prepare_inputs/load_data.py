@@ -5,7 +5,7 @@ import pandas as pd
 import warnings
 from pathlib import Path
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def load_data(input_dir, historical_validation_active=True, sensitivity_analysis_active=True,

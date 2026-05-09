@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, time_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, time_dim
 
 
 def preprocess_historical_registrations(historical_registrations, registrations_projected, reference_year,

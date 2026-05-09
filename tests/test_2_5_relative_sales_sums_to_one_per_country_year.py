@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 
 INPUT_DIR = "inputs"
-FILENAME = "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv"
+FILENAME = "1_1_new_registrations_by_fuel_type_clusters.csv"
 
 def test_relative_sales_sums_to_one_per_country_year():
     """

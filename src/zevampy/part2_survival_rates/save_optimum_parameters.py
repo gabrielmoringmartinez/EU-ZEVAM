@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def save_optimum_parameters_weibull(optimum_gamma_per_country, optimum_beta_per_country, max_rsquared_per_country,

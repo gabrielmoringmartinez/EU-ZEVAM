@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import pandas as pd
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import age_dim, country_dim, new_registrations_dim, \
+from zevampy.load_data_and_prepare_inputs.dimension_names import age_dim, country_dim, new_registrations_dim, \
     survival_rate_dim, number_registered_vehicles_dim
 
 

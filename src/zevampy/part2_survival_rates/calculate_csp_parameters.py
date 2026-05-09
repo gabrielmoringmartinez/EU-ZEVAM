@@ -1,11 +1,11 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part2_survival_rates.run_diff_evol_algorithm import run_diff_evol_algorithm_weibull, \
+from zevampy.part2_survival_rates.run_diff_evol_algorithm import run_diff_evol_algorithm_weibull, \
     run_diff_evol_algorithm_weibull_gaussian
-from src.zevampy.part2_survival_rates.select_optimal_type_of_distribution import select_optimal_type_of_distribution
+from zevampy.part2_survival_rates.select_optimal_type_of_distribution import select_optimal_type_of_distribution
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_csp_parameters(survival_rates, bounds, output_path, survival_grouping, save_options=False):

@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part2_survival_rates.get_statistical_parameters import get_statistical_parameters
-from src.zevampy.part2_survival_rates.get_statistical_parameters_of_each_country import \
+from zevampy.part2_survival_rates.get_statistical_parameters import get_statistical_parameters
+from zevampy.part2_survival_rates.get_statistical_parameters_of_each_country import \
     get_statistical_parameters_of_each_country
-from src.zevampy.part2_survival_rates.get_function_values import get_weibull_function, get_weibull_and_normal_function
-from src.zevampy.part2_survival_rates.get_distribution_function_discrete_points import get_distribution_function_discrete_points
+from zevampy.part2_survival_rates.get_function_values import get_weibull_function, get_weibull_and_normal_function
+from zevampy.part2_survival_rates.get_distribution_function_discrete_points import get_distribution_function_discrete_points
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import gamma_weibull_dim, beta_weibull_dim, \
+from zevampy.load_data_and_prepare_inputs.dimension_names import gamma_weibull_dim, beta_weibull_dim, \
     k_weibull_gaussian_dim, mu_weibull_gaussian_dim, sigma_weibull_gaussian_dim
 
 

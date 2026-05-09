@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import \
+from zevampy.part3_stock_calculation.calculate_stock.compute_csp_values_and_compute_stock import \
     compute_csp_values_and_compute_stock
-from src.zevampy.part5_sensitivity_analysis.historical_csp_modified.calculate_2008_survival_rates import \
+from zevampy.part5_sensitivity_analysis.historical_csp_modified.calculate_2008_survival_rates import \
     calculate_2008_survival_rates
-from src.zevampy.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
+from zevampy.part5_sensitivity_analysis.merge_stock_shares import merge_stock_shares
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def process_stock_shares_with_historical_csps(registrations, survival_rates_2021, survival_rates_2016, stock_years,

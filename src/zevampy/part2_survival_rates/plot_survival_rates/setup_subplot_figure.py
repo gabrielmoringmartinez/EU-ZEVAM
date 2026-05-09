@@ -3,7 +3,7 @@
 
 import matplotlib.pyplot as plt
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def setup_subplot_figure(plot_params):

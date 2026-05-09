@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import eu_9_label, eu_26_plus_norway_label, \
+from zevampy.part1_transportation_model.input_data import eu_countries_and_norway
+from zevampy.load_data_and_prepare_inputs.dimension_names import eu_9_label, eu_26_plus_norway_label, \
     eu_27_plus_norway_label
 
 # Other geographical EU groups for comparing with 2008, and 2016, where less empirical country data is available

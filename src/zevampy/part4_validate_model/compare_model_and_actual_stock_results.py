@@ -2,16 +2,16 @@
 # SPDX-License-Identifier: MIT
 
 # Functions
-from src.zevampy.part4_validate_model.update_bev_registration_shares import update_bev_registration_shares_with_real_values
-from src.zevampy.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
-from src.zevampy.part4_validate_model.use_bev_and_phev_actual_values import use_bev_and_phev_actual_values
-from src.zevampy.part4_validate_model.merge_dataframes_and_select_powertrain_and_years import \
+from zevampy.part4_validate_model.update_bev_registration_shares import update_bev_registration_shares_with_real_values
+from zevampy.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
+from zevampy.part4_validate_model.use_bev_and_phev_actual_values import use_bev_and_phev_actual_values
+from zevampy.part4_validate_model.merge_dataframes_and_select_powertrain_and_years import \
     merge_dataframes_and_select_powertrain_and_years
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
-from src.zevampy.part4_validate_model.calculate_rmse import calculate_rmse
+from zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
+from zevampy.part4_validate_model.calculate_rmse import calculate_rmse
 
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def compare_model_and_actual_stock_results(data, calculated_data, inputs):

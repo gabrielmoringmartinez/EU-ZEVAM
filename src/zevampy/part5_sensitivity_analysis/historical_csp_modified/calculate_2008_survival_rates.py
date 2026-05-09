@@ -2,11 +2,11 @@
 # SPDX-License-Identifier: MIT
 
 import pandas as pd
-from src.zevampy.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
-from src.zevampy.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
-from src.zevampy.part3_stock_calculation.calculate_stock.input_data import historical_csp
+from zevampy.part2_survival_rates.get_fitted_csp_values import get_fitted_csp_values
+from zevampy.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
+from zevampy.part3_stock_calculation.calculate_stock.input_data import historical_csp
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, optimal_distribution_dict,

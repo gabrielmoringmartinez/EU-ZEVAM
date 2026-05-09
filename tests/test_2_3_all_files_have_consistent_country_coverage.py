@@ -9,8 +9,8 @@ INPUT_DIR = "inputs"
 REFERENCE_FILE = os.path.join(INPUT_DIR, "0_country_clusters.csv")
 
 FILES_TO_CHECK = {
-    "1_2_A_2_new_registrations...": "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv",
-    "2_1_A_1_age_resolved_data...": "2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv",
+    "1_2_A_2_new_registrations...": "1_2_A_2_historical_new_registrations_data_passenger_cars.csv",
+    "2_1_A_1_age_resolved_data...": "2_1_A_1_age_resolved_data_passenger_car_stock_fleet.csv",
     "2_2_A_1_stock_year": "2_2_A_1_stock_year.csv"
 }
 

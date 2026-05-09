@@ -11,7 +11,7 @@ def test_country_cluster_combinations_are_correct():
        are valid according to the reference country-cluster labels.
 
        This test compares unique pairs of (geo country, cluster) from:
-       - '1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv' (registrations data)
+       - '1_1_new_registrations_by_fuel_type_clusters.csv' (registrations data)
        - '0_country_clusters.csv' (reference labels)
 
        It asserts that every pair in the registrations file exists in the labels file.
@@ -22,7 +22,7 @@ def test_country_cluster_combinations_are_correct():
                            is not found in the reference labels.
        """
     # File paths
-    registrations_file = os.path.join("inputs", "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv")
+    registrations_file = os.path.join("inputs", "1_1_new_registrations_by_fuel_type_clusters.csv")
     labels_file = os.path.join("inputs", "0_country_clusters.csv")
 
     # Load both CSVs
@@ -44,5 +44,5 @@ def test_country_cluster_combinations_are_correct():
     if missing_pairs:
         missing_str = "\n".join([f"- {country}, cluster {cluster}" for country, cluster in sorted(missing_pairs)])
         raise AssertionError(
-            f"The following (geo country, cluster) combinations in '1_1_new_registrations_by_fuel_type_1970_2050_clusters' are incorrect based on '0_country_clusters.csv':\n{missing_str}"
+            f"The following (geo country, cluster) combinations in '1_1_new_registrations_by_fuel_type_clusters' are incorrect based on '0_country_clusters.csv':\n{missing_str}"
         )

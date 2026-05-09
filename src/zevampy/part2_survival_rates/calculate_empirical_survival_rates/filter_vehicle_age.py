@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import age_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import age_dim
 
 
 def filter_vehicle_age(df, min_age=1, max_age=45):

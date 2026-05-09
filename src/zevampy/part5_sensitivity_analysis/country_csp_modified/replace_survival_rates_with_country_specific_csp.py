@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def replace_survival_rates_with_country_specific_csp(survival_rates, country_label):

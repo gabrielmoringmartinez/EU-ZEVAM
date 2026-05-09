@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 import matplotlib.pyplot as plt
-from src.zevampy.part2_survival_rates.plot_survival_rates.customize_axes import customize_axes
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.part2_survival_rates.plot_survival_rates.customize_axes import customize_axes
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def plot_survival_rate_country(ax, label, x, y, country_name, plot_params):

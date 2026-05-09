@@ -1,20 +1,20 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part1_transportation_model.input_data import eu_countries_and_norway, default_use_clusters, \
+from zevampy.part1_transportation_model.input_data import eu_countries_and_norway, default_use_clusters, \
     default_powertrains
-from src.zevampy.part2_survival_rates.input_data import distribution_bounds
-from src.zevampy.part3_stock_calculation.calculate_stock.input_data import initial_simulation_stock_year, \
+from zevampy.part2_survival_rates.input_data import distribution_bounds
+from zevampy.part3_stock_calculation.calculate_stock.input_data import initial_simulation_stock_year, \
     historical_csp, \
     save_options_stock, csp_data_ref_year, csp_available_years, save_fitted_csp_values, initial_registration_year
-from src.zevampy.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
-from src.zevampy.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
-from src.zevampy.part4_validate_model.graph_inputs import config_validation_step1, config_validation_step2
-from src.zevampy.part4_validate_model.rmse_inputs import config_validation_rmse_step1, config_validation_rmse_step2
-from src.zevampy.part5_sensitivity_analysis.graph_inputs import config_sensitivity_1, config_sensitivity_2, \
+from zevampy.part2_survival_rates.plot_survival_rates.graph_inputs import config_all, config_group
+from zevampy.part3_stock_calculation.plot_stock.graph_inputs import config_bev_reference_scenario
+from zevampy.part4_validate_model.graph_inputs import config_validation_step1, config_validation_step2
+from zevampy.part4_validate_model.rmse_inputs import config_validation_rmse_step1, config_validation_rmse_step2
+from zevampy.part5_sensitivity_analysis.graph_inputs import config_sensitivity_1, config_sensitivity_2, \
     config_sensitivity_3, config_sensitivity_4
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 import warnings
 import os
 
@@ -39,7 +39,7 @@ def prepare_inputs(simulation_end_year, config=None):
     data_config = config.get("data", {})
     outputs_config = data_config.get("output_path", "outputs")
     model_config = config.get("model", {})
-    geography_config = config.get("geography", {})
+    geography_config = config.get("geography") or {}
     powertrains = config.get("powertrains") or default_powertrains
     initial_stock_year = model_config.get("first_stock_year", initial_simulation_stock_year)
     initial_new_registrations_year = model_config.get("start_new_registration_year", initial_registration_year)

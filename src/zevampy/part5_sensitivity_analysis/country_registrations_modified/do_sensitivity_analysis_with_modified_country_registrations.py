@@ -1,16 +1,16 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
-from src.zevampy.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
-from src.zevampy.part5_sensitivity_analysis.country_adjectives import country_adjectives
-from src.zevampy.part5_sensitivity_analysis.country_registrations_modified.generate_columns_to_plot import \
+from zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
+from zevampy.part3_stock_calculation.calculate_stock.calculate_stock import calculate_stock
+from zevampy.part5_sensitivity_analysis.country_adjectives import country_adjectives
+from zevampy.part5_sensitivity_analysis.country_registrations_modified.generate_columns_to_plot import \
     generate_columns_to_plot
-from src.zevampy.part5_sensitivity_analysis.country_registrations_modified.replace_powertrain_share_registrations_with_country \
+from zevampy.part5_sensitivity_analysis.country_registrations_modified.replace_powertrain_share_registrations_with_country \
     import replace_powertrain_share_registrations_with_country
-from src.zevampy.part5_sensitivity_analysis.update_stock_shares import update_stock_shares
+from zevampy.part5_sensitivity_analysis.update_stock_shares import update_stock_shares
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def do_sensitivity_analysis_with_modified_country_registrations(registrations, stock_shares, survival_rates,

@@ -3,11 +3,11 @@
 
 import pandas as pd
 import math
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_group_of_countries import plot_group_of_countries
-from src.zevampy.part2_survival_rates.plot_survival_rates.get_columns_to_plot import get_columns_to_plot
+from zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
+from zevampy.part2_survival_rates.plot_survival_rates.plot_group_of_countries import plot_group_of_countries
+from zevampy.part2_survival_rates.plot_survival_rates.get_columns_to_plot import get_columns_to_plot
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def get_csp_plots(survival_rates, fitted_csp_values, config_all, config_group, survival_grouping):

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 # distribution_bounds defines the parameter bounds for fitting Weibull and Gaussian distributions
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 distribution_bounds = {
     weibull_label: [(5, 40),  # Bounds for Weibull average lifetime (gamma): [min, max]

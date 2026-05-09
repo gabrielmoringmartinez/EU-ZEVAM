@@ -1,10 +1,10 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part2_survival_rates.plot_survival_rates.get_country_group_names import get_country_group_names
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_csp_countries import plot_csp_countries
+from zevampy.part2_survival_rates.plot_survival_rates.get_country_group_names import get_country_group_names
+from zevampy.part2_survival_rates.plot_survival_rates.plot_csp_countries import plot_csp_countries
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def plot_group_of_countries(merged_df, group, config, columns_to_plot_dict, distribution_type):

@@ -6,10 +6,10 @@ import os
 import pytest
 
 
-from src.zevampy.load_data_and_prepare_inputs import load_data_and_prepare_inputs
-from src.zevampy.load_data_and_prepare_inputs.ensure_clean_directory import ensure_clean_directory
-from src.zevampy.part3_stock_calculation import calculate_and_plot_csps_and_stock
-from src.zevampy.part4_validate_model import compare_model_and_actual_stock_results
+from zevampy.load_data_and_prepare_inputs import load_data_and_prepare_inputs
+from zevampy.load_data_and_prepare_inputs.ensure_clean_directory import ensure_clean_directory
+from zevampy.part3_stock_calculation import calculate_and_plot_csps_and_stock
+from zevampy.part4_validate_model import compare_model_and_actual_stock_results
 
 
 @pytest.mark.parametrize("input_dir", [

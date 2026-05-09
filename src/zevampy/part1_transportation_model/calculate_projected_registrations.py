@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 
 import pandas as pd
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import time_dim, new_registrations_dim, share_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import time_dim, new_registrations_dim, share_dim
 
 
 def calculate_projected_registrations(country_registration_shares, registrations_projected):

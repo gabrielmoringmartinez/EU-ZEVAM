@@ -9,9 +9,8 @@ INPUT_DIR = "inputs"
 # Define files and their grouping columns
 GROUPED_FILES = {
     "0_country_clusters.csv": ["geo country"],
-    "1_1_new_registrations_by_fuel_type_1970_2050_clusters.csv": ["geo country", "powertrain"],
-    "1_2_A_2_new_registrations_data_passenger_cars_eu_countries_1970_2021.csv": ["geo country", "powertrain"],
-    "2_1_A_1_age_resolved_data_passenger_car_stock_fleet_eu_countries_2021.csv": ["geo country", "powertrain"],
+    "1_1_new_registrations_by_fuel_type_clusters.csv": ["geo country", "powertrain"],
+    "2_1_A_1_age_resolved_data_passenger_car_stock_fleet.csv": ["geo country", "powertrain"],
 }
 
 

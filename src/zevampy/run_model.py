@@ -9,7 +9,7 @@ from zevampy.part3_stock_calculation import calculate_and_plot_csps_and_stock
 from zevampy.part4_validate_model import compare_model_and_actual_stock_results
 from zevampy.part5_sensitivity_analysis import perform_sensitivity_analysis
 from zevampy.config import load_config
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 import os
 
 

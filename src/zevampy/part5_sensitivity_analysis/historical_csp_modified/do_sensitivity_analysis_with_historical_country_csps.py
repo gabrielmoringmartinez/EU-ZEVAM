@@ -1,12 +1,12 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part5_sensitivity_analysis.historical_csp_modified.process_historical_csp import \
+from zevampy.part5_sensitivity_analysis.historical_csp_modified.process_historical_csp import \
     process_stock_shares_with_historical_csps
-from src.zevampy.part5_sensitivity_analysis.historical_csp_modified.generate_columns_to_plot import generate_columns_to_plot
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
+from zevampy.part5_sensitivity_analysis.historical_csp_modified.generate_columns_to_plot import generate_columns_to_plot
+from zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def do_sensitivity_analysis_with_historical_country_csps(registrations, survival_rates_2021, survival_rates_2016,

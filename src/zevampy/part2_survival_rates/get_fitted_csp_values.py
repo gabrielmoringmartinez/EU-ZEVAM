@@ -4,8 +4,8 @@
 import pandas as pd
 
 
-from src.zevampy.part2_survival_rates.calculate_country_fitted_values import calculate_country_fitted_values
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, age_dim, distribution_dim, weibull_label, \
+from zevampy.part2_survival_rates.calculate_country_fitted_values import calculate_country_fitted_values
+from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, age_dim, distribution_dim, weibull_label, \
     weibull_gaussian_label
 
 

@@ -4,14 +4,14 @@
 import matplotlib.pyplot as plt
 
 
-from src.zevampy.part2_survival_rates.plot_survival_rates.setup_subplot_figure import setup_subplot_figure
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_subplot import plot_survival_rate_country
-from src.zevampy.part2_survival_rates.plot_survival_rates.save_figure import save_figure
-from src.zevampy.part2_survival_rates.plot_survival_rates.fill_area import fill_area_based_on_label
-from src.zevampy.part2_survival_rates.plot_survival_rates.add_figure_legend import add_figure_legend
-from src.zevampy.part2_survival_rates.plot_survival_rates.get_number_rows_and_columns import get_number_rows_and_columns
+from zevampy.part2_survival_rates.plot_survival_rates.setup_subplot_figure import setup_subplot_figure
+from zevampy.part2_survival_rates.plot_survival_rates.plot_subplot import plot_survival_rate_country
+from zevampy.part2_survival_rates.plot_survival_rates.save_figure import save_figure
+from zevampy.part2_survival_rates.plot_survival_rates.fill_area import fill_area_based_on_label
+from zevampy.part2_survival_rates.plot_survival_rates.add_figure_legend import add_figure_legend
+from zevampy.part2_survival_rates.plot_survival_rates.get_number_rows_and_columns import get_number_rows_and_columns
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def plot_csp_countries(merged_df, groups, plot_params, file_info, columns_to_plot_dict, distribution_type,

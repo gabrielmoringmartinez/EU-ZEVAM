@@ -1,9 +1,9 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.load_data import load_data
-from src.zevampy.load_data_and_prepare_inputs.prepare_inputs import prepare_inputs
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
+from zevampy.load_data_and_prepare_inputs.load_data import load_data
+from zevampy.load_data_and_prepare_inputs.prepare_inputs import prepare_inputs
+from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 
 def load_data_and_prepare_inputs(input_path, config=None):
     """
@@ -22,8 +22,9 @@ def load_data_and_prepare_inputs(input_path, config=None):
             - `data` (dict): A dictionary containing loaded datasets with their names as keys.
             - `inputs` (dict): A dictionary containing simulation parameters and plot configurations.
     """
-    model_config = config.get("model", {}) if config else {}
-    geography_config = config.get("geography", {}) if config else {}
+    config = config or {}
+    model_config = config.get("model") or {}
+    geography_config = config.get("geography") or {}
 
     historical_csp_active = model_config.get("historical_csp", False)
     historical_validation_active = model_config.get("historical_validation", True)
@@ -46,5 +47,4 @@ def load_data_and_prepare_inputs(input_path, config=None):
 
     )
     inputs = prepare_inputs(max_year, config=config)
-
     return data, inputs

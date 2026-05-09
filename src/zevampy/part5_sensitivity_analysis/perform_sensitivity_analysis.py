@@ -2,14 +2,14 @@
 # SPDX-License-Identifier: MIT
 
 # Functions
-from src.zevampy.part5_sensitivity_analysis.country_csp_modified import do_sensitivity_analysis_with_modified_country_csps
-from src.zevampy.part5_sensitivity_analysis.country_registrations_modified import \
+from zevampy.part5_sensitivity_analysis.country_csp_modified import do_sensitivity_analysis_with_modified_country_csps
+from zevampy.part5_sensitivity_analysis.country_registrations_modified import \
     do_sensitivity_analysis_with_modified_country_registrations
-from src.zevampy.part5_sensitivity_analysis.historical_csp_modified import do_sensitivity_analysis_with_historical_country_csps
-from src.zevampy.part5_sensitivity_analysis.relative_increase_decrease_csp_modified import \
+from zevampy.part5_sensitivity_analysis.historical_csp_modified import do_sensitivity_analysis_with_historical_country_csps
+from zevampy.part5_sensitivity_analysis.relative_increase_decrease_csp_modified import \
     do_sensitivity_analysis_with_increased_decreased_csps
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def perform_sensitivity_analysis(data, calculated_data, inputs):

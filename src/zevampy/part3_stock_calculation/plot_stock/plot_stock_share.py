@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.part2_survival_rates.plot_survival_rates.plot_all_countries import plot_all_countries
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def plot_stock_shares(stock_shares, config_scenario, powertrains):

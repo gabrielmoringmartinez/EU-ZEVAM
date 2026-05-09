@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import stock_year_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import stock_year_dim
 
 
 def repeat_csp_data_for_all_years(original_df, stock_years):

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def use_bev_and_phev_actual_values(df_model, df_actual, keys=[country_dim, time_dim, powertrain_dim],

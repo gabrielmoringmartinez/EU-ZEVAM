@@ -4,7 +4,7 @@
 import math
 import numpy as np
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import num_rows_dim, num_columns_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import num_rows_dim, num_columns_dim
 
 
 def get_number_rows_and_columns(number_of_countries, plot_params):

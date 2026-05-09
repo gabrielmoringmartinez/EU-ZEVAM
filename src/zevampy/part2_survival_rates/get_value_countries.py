@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, survival_rate_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, survival_rate_dim
 
 
 def get_value_countries(survival_rates, country_name):

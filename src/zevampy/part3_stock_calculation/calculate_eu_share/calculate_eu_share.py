@@ -1,10 +1,10 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part3_stock_calculation.calculate_eu_share.filter_calculate_and_add_eu_share import add_eu_stock_share
-from src.zevampy.part3_stock_calculation.calculate_stock.input_data import eu_9, eu_26_and_norway, \
+from zevampy.part3_stock_calculation.calculate_eu_share.filter_calculate_and_add_eu_share import add_eu_stock_share
+from zevampy.part3_stock_calculation.calculate_stock.input_data import eu_9, eu_26_and_norway, \
     eu_countries_and_norway
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_eu_share(stock_share, historical_csp, countries_selected):

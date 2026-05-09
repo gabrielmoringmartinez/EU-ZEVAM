@@ -1,19 +1,19 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part3_stock_calculation.calculate_stock.repeat_csp_data_for_all_years import repeat_csp_data_for_all_years
-from src.zevampy.part3_stock_calculation.calculate_stock.calculate_year_of_first_registration import \
+from zevampy.part3_stock_calculation.calculate_stock.repeat_csp_data_for_all_years import repeat_csp_data_for_all_years
+from zevampy.part3_stock_calculation.calculate_stock.calculate_year_of_first_registration import \
     calculate_year_of_first_registration
-from src.zevampy.part3_stock_calculation.calculate_stock.merge_survival_rates_with_registrations import \
+from zevampy.part3_stock_calculation.calculate_stock.merge_survival_rates_with_registrations import \
     merge_survival_rates_with_registrations
-from src.zevampy.part3_stock_calculation.calculate_stock.compute_stock_values import compute_stock_values
-from src.zevampy.part3_stock_calculation.calculate_stock.select_optimum_distribution import select_optimum_distribution
-from src.zevampy.part3_stock_calculation.calculate_stock.cleanup_stock_data import cleanup_stock_data
-from src.zevampy.part3_stock_calculation.calculate_stock.compute_stock_shares import compute_stock_shares
-from src.zevampy.part3_stock_calculation.calculate_eu_share.calculate_eu_share import calculate_eu_share
-from src.zevampy.part3_stock_calculation.calculate_stock.save_outputs import save_outputs
+from zevampy.part3_stock_calculation.calculate_stock.compute_stock_values import compute_stock_values
+from zevampy.part3_stock_calculation.calculate_stock.select_optimum_distribution import select_optimum_distribution
+from zevampy.part3_stock_calculation.calculate_stock.cleanup_stock_data import cleanup_stock_data
+from zevampy.part3_stock_calculation.calculate_stock.compute_stock_shares import compute_stock_shares
+from zevampy.part3_stock_calculation.calculate_eu_share.calculate_eu_share import calculate_eu_share
+from zevampy.part3_stock_calculation.calculate_stock.save_outputs import save_outputs
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_stock(registrations, csp_values, stock_years, historical_csp,

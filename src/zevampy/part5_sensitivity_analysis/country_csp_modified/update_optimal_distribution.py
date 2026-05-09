@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import weibull_label, weibull_gaussian_label
+from zevampy.load_data_and_prepare_inputs.dimension_names import weibull_label, weibull_gaussian_label
 
 
 def update_optimal_distribution_based_on_country_csp(country, opt_dist):

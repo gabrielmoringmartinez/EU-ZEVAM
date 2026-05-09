@@ -3,8 +3,8 @@
 
 import pandas as pd
 import numpy as np
-from src.zevampy.part4_validate_model.append_values import append_values
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.part4_validate_model.append_values import append_values
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def calculate_rmse(df, config, output_path):

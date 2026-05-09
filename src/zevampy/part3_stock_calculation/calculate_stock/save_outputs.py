@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import stock_data_filename_label, stock_shares_filename_label
+from zevampy.load_data_and_prepare_inputs.dimension_names import stock_data_filename_label, stock_shares_filename_label
 
 
 def save_outputs(stock_data, stock_shares, save_options, output_path):

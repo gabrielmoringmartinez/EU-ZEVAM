@@ -2,9 +2,9 @@
 # SPDX-License-Identifier: MIT
 
 import pandas as pd
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import age_dim, country_dim, time_dim, \
+from zevampy.load_data_and_prepare_inputs.dimension_names import age_dim, country_dim, time_dim, \
     stock_year_empirical_csp_data_dim
-from src.zevampy.part2_survival_rates.calculate_empirical_survival_rates.filter_vehicle_age import filter_vehicle_age
+from zevampy.part2_survival_rates.calculate_empirical_survival_rates.filter_vehicle_age import filter_vehicle_age
 
 
 def prepare_registrations_data(registrations, stock_year):

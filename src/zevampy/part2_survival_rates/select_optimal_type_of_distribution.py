@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import distribution_dim
-from src.zevampy.part2_survival_rates.get_distribution_type import get_distribution_type
+from zevampy.load_data_and_prepare_inputs.dimension_names import distribution_dim
+from zevampy.part2_survival_rates.get_distribution_type import get_distribution_type
 
 
 def select_optimal_type_of_distribution(optimal_parameters):

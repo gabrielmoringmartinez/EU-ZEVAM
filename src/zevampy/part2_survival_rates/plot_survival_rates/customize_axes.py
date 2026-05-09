@@ -4,7 +4,7 @@
 import matplotlib.ticker as ticker
 import matplotlib.pyplot as plt
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def customize_axes(ax, plot_params):

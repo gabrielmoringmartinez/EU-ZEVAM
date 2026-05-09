@@ -5,15 +5,15 @@ from scipy.optimize import differential_evolution
 import numpy as np
 import pandas as pd
 
-from src.zevampy.part2_survival_rates.loss_functions import loss_function_weibull, loss_function_weibull_and_normal
-from src.zevampy.part2_survival_rates.append_optimum_parameters import append_optimum_parameters_weibull, \
+from zevampy.part2_survival_rates.loss_functions import loss_function_weibull, loss_function_weibull_and_normal
+from zevampy.part2_survival_rates.append_optimum_parameters import append_optimum_parameters_weibull, \
     append_optimum_parameters_gaussian
-from src.zevampy.part2_survival_rates.save_optimum_parameters import save_optimum_parameters_weibull, \
+from zevampy.part2_survival_rates.save_optimum_parameters import save_optimum_parameters_weibull, \
     save_optimum_parameters_gaussian
-from src.zevampy.part2_survival_rates.get_value_countries import get_value_countries
+from zevampy.part2_survival_rates.get_value_countries import get_value_countries
 
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import *
+from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def run_diff_evol_algorithm_weibull(bounds: list, survival_groups: np.ndarray, survival_rates, survival_grouping):

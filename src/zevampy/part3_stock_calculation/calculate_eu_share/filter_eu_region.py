@@ -1,8 +1,8 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.part3_stock_calculation.calculate_stock.input_data import eu_country_groups
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
+from zevampy.part3_stock_calculation.calculate_stock.input_data import eu_country_groups
+from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 
 
 def filter_eu_region(df, eu_region):

@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from src.zevampy.load_data_and_prepare_inputs.dimension_names import stock_year_dim, age_dim, time_dim
+from zevampy.load_data_and_prepare_inputs.dimension_names import stock_year_dim, age_dim, time_dim
 
 
 def calculate_year_of_first_registration(survival_rates):
