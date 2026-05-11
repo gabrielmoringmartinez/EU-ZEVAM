@@ -1,3 +1,4 @@
+"""Calculate country-level shares of vehicle registrations."""
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,16 +7,26 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import time_dim, new_r
 
 def calculate_country_shares(data, year):
     """
-        Calculates the share of vehicle registrations for each country for the last historical year available.
+    Calculate vehicle-registration shares for each country in a given year.
 
-        Parameters:
-        - data (pd.DataFrame): DataFrame containing the cleaned and processed historical registration data.
-        - year (int): The year for which the share of registrations should be calculated. the last historical
-        year available
+    The function filters the historical registration dataset for the
+    specified year, computes the total number of registrations across all
+    countries, and calculates the relative registration share of each
+    country.
 
-        Returns:
-        - pd.DataFrame: A DataFrame with country labels and their respective shares of vehicle registrations.
-        """
+    Parameters:
+        data (pandas.DataFrame):
+            Historical registration dataset containing country-level
+            registration values.
+
+        year (int):
+            Year for which the registration shares should be calculated.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing country labels and their corresponding
+            registration shares for the selected year.
+    """
     # Step 1: Filter for the given year
     data_year = data[data[time_dim] == year].copy()
     # Step 2: Calculate the total registrations for the given year

@@ -1,3 +1,5 @@
+"""Calculate projected vehicle registrations by country."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -7,18 +9,27 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import time_dim, new_r
 
 def calculate_projected_registrations(country_registration_shares, registrations_projected):
     """
-        Calculates the projected vehicle registrations for each country based on the country shares
-        and registration scenario.
+    Calculate projected vehicle registrations for each country.
 
-        Parameters:
-        - country_registration_shares (pd.DataFrame): DataFrame containing the share of vehicle registrations
-        for each country.
-        - registrations_projected (pd.DataFrame): DataFrame containing projected registration data
-        for various years.
+    The function combines country-level registration shares with projected
+    total vehicle registrations and estimates future registrations for each
+    country by multiplying the projected totals by the corresponding
+    country shares.
 
-        Returns:
-        - pd.DataFrame: A DataFrame containing the projected vehicle registrations for each country and year.
-        """
+    Parameters:
+        country_registration_shares (pandas.DataFrame):
+            DataFrame containing the share of vehicle registrations for
+            each country.
+
+        registrations_projected (pandas.DataFrame):
+            DataFrame containing projected total vehicle registrations for
+            future years.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing projected vehicle registrations for each
+            country and year.
+    """
     # Perform cross join between country shares and vehicle registrations by year
     projected_registrations = pd.merge(country_registration_shares,
                                        registrations_projected[[time_dim, new_registrations_dim]], how='cross')

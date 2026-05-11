@@ -1,3 +1,5 @@
+"""Compute fitted CSP curves and vehicle stock values."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -11,37 +13,61 @@ def compute_csp_values_and_compute_stock(survival_rates, registrations, stock_ye
                                          output_path="outputs", calculate_stock_shares=True,
                                          save_options=None, save_csp=False):
     """
-    Computes the Cumulative Survival Probability (CSP) values and stock estimates for a given set of survival rates,
-    vehicle registrations, and other relevant parameters.
+    Compute fitted CSP values and vehicle stock estimates.
 
-    This function performs the following:
-        - Calculates optimal statistical parameters for the Weibull and Weibull-Gaussian (WG) distributions.
-        - Computes the fitted CSP values based on the survival rates.
-        - Calculates the stock values and stock shares for each year based on registrations and the fitted CSP values.
+    This function fits Weibull and Weibull-Gaussian CSP curves, calculates fitted CSP values, and computes vehicle stock
+    values and stock shares based on registrations and survival rates.
 
     Parameters:
-        - survival_rates (pd.DataFrame): DataFrame containing survival rates for each country and year.
-        - registrations (DataFrame): A DataFrame with vehicle registrations by powertrain, including historical
-          and projected data.
-        - stock_years (list): List of years over which to compute stock values.
-        - bounds_distributions (dict): Dictionary defining the bounds for the distribution fitting process.
-        - historical_csp (str): identifier for activating the historical CSP data.
-        - csp_available_years (int): Number of years for which CSP values are available or need to be computed.
-        - save_options (dict, optional): Dictionary containing options for saving the results, such as file paths or flags. Default is None.
-        - save_csp (bool, optional): Bool defining if results should be saved or not
-    Returns:
-        - tuple: A tuple containing the following values:
-            1. stock_values (pd.DataFrame): DataFrame with the computed stock values for each country and year.
-            2. stock_shares (pd.DataFrame): DataFrame with the computed stock shares for each country and year.
-            3. optimum_parameters_wg (pd.DataFrame): Optimized CSP parameters for each country, including
-            distribution type.
-            4. optimal_distribution_dict (dict): Dictionary with the distribution parameters used for fitting the
-            CSP values.
-            5. fitted_csp_values (pd.DataFrame): DataFrame with the fitted CSP values for each country and year.
+        survival_rates (pandas.DataFrame):
+            Empirical survival-rate data.
 
-    Notes:
-        - If `save_options` is provided, the results (such as stock values or fitted CSP values) will be saved according
-         to the specified options.
+        registrations (pandas.DataFrame):
+            Vehicle registrations by country, year, and powertrain.
+
+        stock_years (list[int]):
+            Simulation start and end years.
+
+        bounds_distributions (dict):
+            Parameter bounds used for CSP optimization.
+
+        historical_csp (str):
+            Flag indicating whether historical CSP calculations are
+            enabled.
+
+        csp_available_years (int):
+            Number of CSP years used in the calculations.
+
+        countries_selected (list[str]):
+            Countries included in the simulation.
+
+        survival_grouping (list[str]):
+            Columns defining the survival-rate grouping.
+
+        output_path (str, optional):
+            Directory used for saving outputs.
+
+        calculate_stock_shares (bool, optional):
+            If True, stock shares are calculated.
+
+        save_options (bool, optional):
+            If True, stock outputs are saved.
+
+        save_csp (bool, optional):
+            If True, fitted CSP outputs are saved.
+
+    Returns:
+        tuple:
+            - pandas.DataFrame:
+              Calculated stock values.
+            - pandas.DataFrame or None:
+              Calculated stock shares.
+            - pandas.DataFrame:
+              Optimized CSP parameters.
+            - dict:
+              Optimal distribution assignments.
+            - pandas.DataFrame:
+              Fitted CSP values.
     """
     optimum_parameters_wg, optimal_distribution_dict = calculate_csp_parameters(survival_rates, bounds_distributions,
                                                                                 output_path, survival_grouping,

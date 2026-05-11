@@ -1,3 +1,5 @@
+"""Sensitivity analysis using modified country-specific CSP curves."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -19,43 +21,36 @@ def do_sensitivity_analysis_with_modified_country_csps(registrations, stock_shar
                                                        optimal_distribution_dict, config, countries_selected,
                                                        output_path):
     """
-    Performs sensitivity analysis by modifying country-specific CSPs (Country Survival Probabilities) to other
-    countries and keeps the registrations by powertrain constant. Then, it recalculates stock shares
-    to assess the impact of changes.
+    Perform sensitivity analysis with modified country-specific CSPs.
+
+    This function replaces cumulative survival probability (CSP) curves with country-specific alternatives,
+    recalculates stock shares, and evaluates the resulting impact on stock-share projections.
 
     Parameters:
-        - registrations (pd.DataFrame): Registration data by year, powertrain and country.
-        - stock_shares (pd.DataFrame): Stock share data calculated over time, country and powertrain.
-        - survival_rates (pd.DataFrame): Fitted survival rates for each country and vehicle age.
-        - optimal_distribution_dict (dict): Dictionary containing the optimal CSP distribution
-        (e.g., Weibull or Weibull-Gaussian) for each country.
-        - config (dict): Configuration dictionary that contains plotting parameters and sensitivity analysis options:
-          - `plot_params` (dict): Plotting settings including:
-            - `countries_selected` (list): Country CSP are modified to the countries selected
-            - `simulation_stock_years_label` (list): Years over which the stock analysis is computed.
-            - `historical_csp_label` (str): Indicates if historical CSP data is used.
-            - `powertrain_to_plot_label` (str): Powertrain type (e.g., 'BEV') to plot.
+        registrations (pandas.DataFrame):
+            Vehicle registration data.
 
-        Returns:
-        - None: Generates plots and updates dataframes as part of the sensitivity analysis.
+        stock_shares (pandas.DataFrame):
+            Calculated stock-share data.
 
-        Description:
-        1. **Country-Specific CSP Replacement**:
-           - Replaces survival rates to all countries with the selected countries.
-           - Updates optimal distribution parameters for each country based on the optimal distribution of the selected
-           country.
+        survival_rates (pandas.DataFrame):
+            Fitted CSP values by country and vehicle age.
 
-        2. **Stock Calculation**:
-           - Recalculates stock values and shares using the modified CSPs and updated distributions.
-           - Updates the stock shares dataframe for each country.
+        optimal_distribution_dict (dict):
+            Mapping between countries and selected CSP distributions.
 
-        3. **Plot Generation**:
-           - Filters BEV (Battery Electric Vehicle) stock shares for the selected powertrain.
-           - Plots the recalculated stock shares for all countries using `plot_all_countries`.
+        config (dict):
+            Configuration settings for plotting and sensitivity analysis.
 
-        This analysis evaluates how country-specific CSP adjustments affect stock share projections,
-        enabling insights into sensitivity across different CSP assumptions.
-        """
+        countries_selected (list[str]):
+            Countries included in the stock simulation.
+
+        output_path (str):
+            Directory where outputs are saved.
+
+    Returns:
+        None
+    """
     plot_params = config[plot_params_dim]
     columns_to_plot = {share_dim: share_dim.capitalize()}
     stock_shares_df = stock_shares

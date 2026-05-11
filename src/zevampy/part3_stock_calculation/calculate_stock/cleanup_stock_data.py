@@ -1,15 +1,22 @@
+"""Clean and simplify calculated stock datasets."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
+
 def cleanup_stock_data(stock_data, drop_columns):
     """
-    Removes calculation columns from the stock data.
+    Remove intermediate calculation columns from stock data.
 
     Parameters:
-        stock_data (DataFrame): Stock data containing all calculations.
-        drop_columns (list): List of column names to be removed from the DataFrame.
+        stock_data (pandas.DataFrame):
+            DataFrame containing calculated stock data.
+
+        drop_columns (list[str]):
+            Column names to remove.
 
     Returns:
-        DataFrame: Cleaned DataFrame with specified columns dropped.
+        pandas.DataFrame:
+            Cleaned stock DataFrame with intermediate columns removed.
     """
     return stock_data.drop(columns=drop_columns, errors="ignore")

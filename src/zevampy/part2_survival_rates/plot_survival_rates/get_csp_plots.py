@@ -1,3 +1,5 @@
+"""Generate CSP plots for all survival-rate groups."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -12,23 +14,29 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def get_csp_plots(survival_rates, fitted_csp_values, config_all, config_group, survival_grouping):
     """
-    Generates and displays Cumulative Survival Probability (CSP) curve plots for all countries,
-    as well as specific groups of countries, based on the given survival rates and fitted CSP values.
-    The function produces three types of plots for all countries and then generates plots for
-    groups of countries.
+    Generate CSP plots for all survival-rate groups.
+
+    This function merges empirical and fitted CSP values, creates labels for the selected survival-rate grouping, and
+    generates plots for all groups and selected subsets of groups.
 
     Parameters:
-    - survival_rates (pd.DataFrame): DataFrame containing survival rate data for each country,
-                                      including vehicle age and survival rate values.
-    - fitted_csp_values (pd.DataFrame): DataFrame containing the fitted CSP values based on Weibull
-                                        and Weibull-Gaussian distributions.
-    - config_all (dict): Dictionary containing configuration settings for plotting CSP curves for all countries.
-                         This includes plot settings such as figure size, title, labels, etc.
-    - config_group (dict): Dictionary containing configuration settings for plotting CSP curves for specific
-                           groups of countries. Similar to `config_all` but used for group-specific plotting.
+        survival_rates (pandas.DataFrame):
+            DataFrame containing empirical survival-rate data.
+
+        fitted_csp_values (pandas.DataFrame):
+            DataFrame containing fitted CSP values.
+
+        config_all (dict):
+            Plot configuration for all survival-rate groups.
+
+        config_group (dict):
+            Plot configuration for grouped survival-rate plots.
+
+        survival_grouping (list[str]):
+            Column names defining the survival-rate grouping.
 
     Returns:
-    - None: The function generates and saves the plots.
+        None
     """
     merged_df = pd.merge(survival_rates, fitted_csp_values, on=survival_grouping + [age_dim], how='left')
     merged_df = add_survival_group_label(merged_df, survival_grouping)
@@ -57,6 +65,23 @@ def get_csp_plots(survival_rates, fitted_csp_values, config_all, config_group, s
 
 
 def add_survival_group_label(df, survival_grouping):
+    """
+    Add readable labels for survival-rate groups.
+
+    This function creates a combined label column used for plotting
+    and grouping survival-rate results.
+
+    Parameters:
+        df (pandas.DataFrame):
+            DataFrame containing survival-group columns.
+
+        survival_grouping (list[str]):
+            Column names defining the survival-rate grouping.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing the added survival-group label column.
+    """
     df = df.copy()
 
     if survival_grouping == [country_dim]:

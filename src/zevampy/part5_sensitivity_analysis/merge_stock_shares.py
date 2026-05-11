@@ -1,3 +1,5 @@
+"""Merge stock-share datasets for comparative scenario analysis."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,22 +8,20 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def merge_stock_shares(all_shares_df, stock_shares):
     """
-    Merge the provided stock_shares DataFrame into all_shares_df on specified columns.
+    Merge stock-share datasets into a combined DataFrame.
 
-    Args:
-        all_shares_df (pd.DataFrame or None): The main DataFrame to merge into. If None,
-                                              this will be initialized with stock_shares.
-        stock_shares (pd.DataFrame): The stock shares DataFrame to merge.
+    This function combines stock-share results from multiple scenarios using a shared set of merge columns.
+
+    Parameters:
+        all_shares_df (pandas.DataFrame or None):
+            Existing combined stock-share DataFrame.
+
+        stock_shares (pandas.DataFrame):
+            Stock-share DataFrame to merge.
 
     Returns:
-        pd.DataFrame: Updated DataFrame containing merged stock shares.
-
-    Notes:
-        - If `all_shares_df` is `None`, it is initialized to be the same as `stock_shares`.
-        - The function merges the DataFrames using an outer join on the columns `country_dim`, `stock_year_dim`, and
-        `powertrain_dim`.
-        - The `stock_dim` column is dropped from the `stock_shares` DataFrame before merging if it exists, ensuring no
-        redundant columns remain.
+        pandas.DataFrame:
+            Combined DataFrame containing merged stock-share results.
     """
     # Ensure stock_shares only contains relevant columns
     if stock_dim in stock_shares.columns:

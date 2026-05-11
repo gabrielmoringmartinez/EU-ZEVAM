@@ -1,3 +1,5 @@
+"""Run the full ZEVAMPY modeling workflow."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -14,21 +16,23 @@ import os
 
 
 def run_model(config_path=None, input_path=None, output_path=None):
-    """
-    Main function to model the Battery Electric Vehicle (BEV) stock shares across European countries using Cumulative
-    Survival Probability (CSP) curves. This function performs the full modeling workflow, including input loading,
-    CSP curve generation, stock modeling, comparison with historical BEV data, and a sensitivity analysis.
+    """Run the full ZEVAMPY modeling workflow.
 
-    Steps:
-    1. Load data and creates a dictionary for the user inputs.
-    2. Calculates and plots CSPs and the stock share of BEVs across European countries.
-    3. Compares the modeled results with actual BEV stock shares to evaluate the model's accuracy.
-    4. Conducts a sensitivity analysis to explore how changes in input variables affect the model's results.
+    Load the model configuration, prepare input data, calculate empirical
+    survival rates and stock values, generate plots, optionally validate the
+    results against historical data, and optionally run sensitivity analyses.
+
+    Parameters:
+        config_path (str, optional):
+            Path to a YAML configuration file.
+        input_path (str, optional):
+            Optional input folder override.
+        output_path (str, optional):
+            Optional output folder override.
 
     Returns:
-        None: This function performs the analysis and saves .csv and .pdf results to the 'outputs' folder.
+        None.
     """
-
     # Load config (or defaults)
     config = load_config(config_path)
 

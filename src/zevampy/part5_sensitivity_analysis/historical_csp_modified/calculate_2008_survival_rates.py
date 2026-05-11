@@ -1,3 +1,5 @@
+"""Sensitivity analysis using historical 2008 CSP distributions."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -13,27 +15,39 @@ def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, 
                                   registrations, csp_available_years, simulation_stock_years, countries_selected,
                                   output_path):
     """
-    Calculate the stock shares for 2008 based on the CSP optimal parameters defining the survival rates from year 2008.
+    Calculate stock shares using CSP parameters derived from 2008 data.
+
+    This function computes fitted cumulative survival probability (CSP) curves based on historical 2008 parameters
+    and uses them to estimate stock shares.
 
     Parameters:
-        - optimum_parameters_2008 (pd.DataFrame): The optimal parameters from the empirical 2008 CSP data.
-        - survival_rates_2021 (pd.DataFrame): 2021 empirical survival rates for vehicles by country.
-        - optimal_distribution_dict (dict): A dictionary specifying the optimal distribution per country
-          (Weibull or Weibull-Gaussian).
-        - registrations (pd.DataFrame): Registration data by year, powertrain, and country.
-        - csp_available_years (int): Number of years for which CSP data is available (e.g., 45 years).
-        - simulation_stock_years (list of int): List of years for which the stock simulation is performed,
-        e.g., [2014, 2050].
+        optimum_parameters_2008 (pandas.DataFrame):
+            Optimized CSP parameters derived from 2008 data.
+
+        survival_rates_2021 (pandas.DataFrame):
+            Empirical 2021 survival-rate data.
+
+        optimal_distribution_dict (dict):
+            Mapping between countries and CSP distributions.
+
+        registrations (pandas.DataFrame):
+            Vehicle registration data.
+
+        csp_available_years (int):
+            Number of available CSP years.
+
+        simulation_stock_years (list[int]):
+            Simulation year range for stock calculations.
+
+        countries_selected (list[str]):
+            Countries included in the stock simulation.
+
+        output_path (str):
+            Directory where outputs are saved.
 
     Returns:
-        pd.DataFrame: Stock shares DataFrame for the year 2008
-
-    Notes:
-        - The function first filters survival rates for the countries included in the 2008 optimum parameters.
-        - It then calculates the fitted CSP values for 2008 using the provided 2008 optimal parameters.
-        - The optimal distribution dictionary is prepared for 2008, combining Weibull and Weibull-Gaussian
-         distributions.
-        - The stock shares for 2008 are computed using these fitted CSP values, and the registrations.
+        pandas.DataFrame:
+            Stock-share estimates using historical 2008 CSP parameters.
     """
     country_names = optimum_parameters_2008[country_dim].unique()
     filtered_survival_rates_2021 = survival_rates_2021[survival_rates_2021[country_dim].isin(country_names)]
@@ -53,23 +67,19 @@ def calculate_2008_survival_rates(optimum_parameters_2008, survival_rates_2021, 
 
 def prepare_optimal_distribution_dict(distribution_dict):
     """
-    Prepare the optimal distribution dictionary for 2008 by defining all countries as Weibull distributions. The model
-    developed by (Oguchi, 2014) was only measuring CSPs using Weibull distributions.
+    Convert all CSP distributions to Weibull distributions.
 
-    This function updates the provided distribution dictionary by appending all elements from the Weibull-Gaussian list
-    into the Weibull list and then clearing the Weibull-Gaussian list. This is done to combine the two distributions
-    for the 2008 analysis.
+    This function merges Weibull-Gaussian country assignments into the Weibull distribution group for historical 2008
+    CSP analyses.
 
     Parameters:
-        - distribution_dict (dict): Dictionary containing the distribution types for each country
-        (Weibull or Weibull-Gaussian).
+        distribution_dict (dict):
+            Dictionary mapping distribution labels to country lists.
 
     Returns:
-        dict: Updated dictionary where the Weibull-Gaussian list is merged into the Weibull list, and the
-                Weibull-Gaussian list is cleared.
-
+        dict:
+            Updated dictionary containing only Weibull distribution assignments.
     """
-
     updated_dict = distribution_dict.copy()
 
     weibull_countries = updated_dict.get(weibull_label, [])

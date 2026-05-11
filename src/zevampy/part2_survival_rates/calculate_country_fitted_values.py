@@ -1,9 +1,9 @@
+"""Calculate fitted CSP values for Weibull and Weibull-Gaussian models."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
-from zevampy.part2_survival_rates.get_statistical_parameters import get_statistical_parameters
-from zevampy.part2_survival_rates.get_statistical_parameters_of_each_country import \
-    get_statistical_parameters_of_each_country
+
 from zevampy.part2_survival_rates.get_function_values import get_weibull_function, get_weibull_and_normal_function
 from zevampy.part2_survival_rates.get_distribution_function_discrete_points import get_distribution_function_discrete_points
 
@@ -14,20 +14,44 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import gamma_weibull_d
 def calculate_country_fitted_values(group, survival_rates, pdf_parameters, weibull_results, wg_results,
                                     csp_available_years, survival_grouping):
     """
-    Helper function to calculate Weibull and Weibull-Gaussian fitted CSP values for a single country.
+    Calculate fitted CSP values for a survival-rate group.
+
+    The function retrieves fitted distribution parameters for the selected survival group, calculates Weibull and
+    Weibull-Gaussian CSP values, and appends the resulting discrete CSP curves to the corresponding result DataFrames.
 
     Parameters:
-    - country_name (str): Name of the country to calculate fitted values for.
-    - survival_rates (pd.DataFrame): DataFrame with survival rates.
-    - pdf_parameters (pd.DataFrame): DataFrame with distribution parameters.
-    - weibull_results (pd.DataFrame): DataFrame to store Weibull CSP results.
-    - wg_results (pd.DataFrame): DataFrame to store WG CSP results.
-    - csp_available_years (int): Number of years (vehicle ages) for which CSP values are calculated.
+        group (dict or pandas.Series):
+            Survival-group identifier containing grouping dimensions such as country or powertrain.
+
+        survival_rates (pandas.DataFrame):
+            DataFrame containing empirical survival-rate data.
+
+        pdf_parameters (pandas.DataFrame):
+            DataFrame containing fitted distribution parameters.
+
+        weibull_results (pandas.DataFrame):
+            DataFrame used to store fitted Weibull CSP values.
+
+        wg_results (pandas.DataFrame):
+            DataFrame used to store fitted Weibull-Gaussian CSP values.
+
+        csp_available_years (int):
+            Number of years for which CSP values are calculated.
+
+        survival_grouping (list[str]):
+            List of dimensions defining the survival-rate grouping.
 
     Returns:
-    - tuple:
-        - pd.DataFrame: Updated `weibull_results` with calculated Weibull CSP values.
-        - pd.DataFrame: Updated `wg_results` with calculated WG CSP values.
+        tuple:
+            - pandas.DataFrame:
+                Updated Weibull CSP results.
+
+            - pandas.DataFrame:
+                Updated Weibull-Gaussian CSP results.
+
+    Raises:
+        ValueError:
+            If no fitted CSP parameters are found for the selected survival group.
     """
     parameter_mask = True
     for dim in survival_grouping:

@@ -1,3 +1,5 @@
+"""Fill plot areas between CSP curves for visual comparisons."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,17 +8,27 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def fill_area_based_on_label(ax, merged_df_country, x_column, columns_to_plot_keys, fill_between_label):
     """
-    Fills the area under the CSP curve based on the specified fill-between label.
+    Fill plot areas according to the selected comparison type.
 
     Parameters:
-        - ax (matplotlib.axes): The axes object for the plot.
-        - merged_df_country (pd.DataFrame): DataFrame filtered for a specific country.
-        - x_column (str): The column name for the x-axis.
-        - columns_to_plot_keys (list): List of column names to fill areas for.
-        - fill_between_label (str): The label indicating the type of fill area operation to perform.
+        ax (matplotlib.axes.Axes):
+            Axes object where filled areas are drawn.
+
+        merged_df_country (pandas.DataFrame):
+            DataFrame containing data for one plotted country or group.
+
+        x_column (str):
+            Column name used for the x-axis.
+
+        columns_to_plot_keys (list[str]):
+            Column names used for the compared y-axis values.
+
+        fill_between_label (str):
+            Label defining which fill-area logic should be applied.
 
     Returns:
-        - ax (matplotlib.axes): The updated axes object.
+        matplotlib.axes.Axes:
+            Updated axes object.
     """
     if fill_between_label == country_csp_label:
         ax = fill_area(ax, merged_df_country, x_column, columns_to_plot_keys)
@@ -29,16 +41,24 @@ def fill_area_based_on_label(ax, merged_df_country, x_column, columns_to_plot_ke
 
 def fill_area(ax, df, x_label, y_label):
     """
-    Fills the area between two CSP curves for a given country  with predefined rules.
+    Fill areas between two CSP curves.
 
     Parameters:
-        - ax (matplotlib.axes): The axes object for the plot.
-        - df (pd.DataFrame): DataFrame containing the x and y data to plot.
-        - x_label (str): The column name for the x-axis.
-        - y_label (list): A list of column names specifying the y-values to plot and compare.
+        ax (matplotlib.axes.Axes):
+            Axes object where filled areas are drawn.
+
+        df (pandas.DataFrame):
+            DataFrame containing x-axis and y-axis values.
+
+        x_label (str):
+            Column name used for the x-axis.
+
+        y_label (list[str]):
+            Column names used for the compared y-axis values.
 
     Returns:
-        - ax (matplotlib.axes): The updated axes object with the filled area.
+        matplotlib.axes.Axes:
+            Updated axes object with filled areas.
     """
     ax.fill_between(
         df[x_label], df[y_label[0]], df[y_label[1]], where=(df[y_label[0]] > df[y_label[1]]),
@@ -52,17 +72,25 @@ def fill_area(ax, df, x_label, y_label):
 
 def fill_area_historical_values(ax, df, x_label, y_label):
     """
-    Fills the area under the historical CSP curve for a given country with predefined rules.
+    Fill areas between historical CSP comparison curves.
 
     Parameters:
-        - ax (matplotlib.axes): The axes object for the plot.
-        - df (pd.DataFrame): DataFrame containing the x and y data to plot.
-        - x_label (str): The column name for the x-axis.
-        - y_label (list): A list of column names specifying the y-values to plot and compare.
+        ax (matplotlib.axes.Axes):
+            Axes object where filled areas are drawn.
+
+        df (pandas.DataFrame):
+            DataFrame containing x-axis and y-axis values.
+
+        x_label (str):
+            Column name used for the x-axis.
+
+        y_label (list[str]):
+            Column names used for the compared y-axis values.
 
     Returns:
-        - ax (matplotlib.axes): The updated axes object with the filled area under historical CSP curves.
-        """
+        matplotlib.axes.Axes:
+            Updated axes object with filled historical comparison areas.
+    """
     ax.fill_between(
         df[x_label], df[y_label[0]], df[y_label[1]], where=(df[y_label[0]] <= df[y_label[1]]),
         interpolate=True, color="red", alpha=0.25)
@@ -83,17 +111,25 @@ def fill_area_historical_values(ax, df, x_label, y_label):
 
 def fill_area_increase_decrease(ax, df, x_label, y_label):
     """
-    Fills areas between CSP curves to indicate increases or decreases in survival probabilities.
+    Fill areas indicating increases or decreases relative to a reference curve.
 
     Parameters:
-        - ax (matplotlib.axes): The axes object for the plot.
-        - df (pd.DataFrame): DataFrame containing the x and y data to plot.
-        - x_label (str): The column name for the x-axis.
-        - y_label (list): A list of column names specifying the y-values to plot and compare.
-                          The middle column is treated as the reference line.
+        ax (matplotlib.axes.Axes):
+            Axes object where filled areas are drawn.
+
+        df (pandas.DataFrame):
+            DataFrame containing x-axis and y-axis values.
+
+        x_label (str):
+            Column name used for the x-axis.
+
+        y_label (list[str]):
+            Column names used for the compared y-axis values. The middle
+            column is treated as the reference curve.
 
     Returns:
-        - ax (matplotlib.axes): The updated axes object with areas filled to indicate changes.
+        matplotlib.axes.Axes:
+            Updated axes object with filled increase/decrease areas.
     """
     ref_line_pos = len(y_label) // 2
     ax.fill_between(

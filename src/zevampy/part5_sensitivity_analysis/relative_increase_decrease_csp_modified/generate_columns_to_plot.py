@@ -1,25 +1,31 @@
+"""Generate legend mappings for CSP increase and reduction scenarios."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
+
 def generate_columns_to_plot(columns_to_plot, increase_selected):
     """
-    Updates and returns a dictionary mapping column names to their display labels for plot legends, based on the
-    selected percentage increase or reduction.
+    Generate plot-column mappings for CSP adjustment scenarios.
+
+    This function creates legend labels for stock-share
+    sensitivity analyses using increased or decreased cumulative
+    survival probability (CSP) values.
 
     Parameters:
-          - columns_to_plot (dict): A dictionary where keys are column names and values are the corresponding
-            labels for the plot legend.
-          - increase_selected (list of float): A list of percentage changes to apply to the CSP values. These values
-            can be positive (for increases), negative (for reductions), or zero (for the empirical CSP). Each value
-            represents the percentage change applied (e.g., 0.2 for a 20% increase, -0.1 for a 10% decrease, or 0 for
-            empirical CSP).
+        columns_to_plot (dict):
+            Dictionary storing plot-column and legend-label
+            mappings.
+
+        increase_selected (list[float]):
+            Relative CSP adjustments applied during the
+            sensitivity analysis.
 
     Returns:
-        - dict: Updated `columns_to_plot` dictionary where new entries are added with keys in the form `share_<increase>
-        ` (e.g., `share_0.2`, `share_-0.1`) and values as descriptions like  "Share with a <increase_in_percentage>%
-         increase", when values are higher than 0, "Share with a <increase_in_percentage>% reduction", when values are
-         lower than 0 or "Share with empirical CSP" if the value is zero.
-      """
+        dict:
+            Updated dictionary containing plot-column mappings
+            for CSP adjustment scenarios.
+    """
     for increase in increase_selected:
         increase_in_percentage = int(increase * 100)
         column_name = f"share_{increase}"

@@ -1,3 +1,5 @@
+"""Load and validate input datasets used by the ZEVAMPY model."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -11,21 +13,49 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 def load_data(input_dir, historical_validation_active=True, sensitivity_analysis_active=True,
               historical_csp_active=True, use_clusters_active=True, powertrains=None, survival_grouping=None):
     """
-    Loads datasets required for modeling European BEV stock shares and performing CSP-based simulations.
+    Load datasets required for modeling vehicle stock shares and performing CSP-based simulations.
 
-    This function reads data from several CSV files stored in the `inputs` folder. The datasets include cluster groups,
-    historical and projected vehicle registrations, survival rates, and other related parameters. If additional files
-    should be loaded, it can be added a new csv file with data, and define in the dictionary a label for this data.
+    This function reads input CSV files containing:
+    - Historical and projected vehicle registrations.
+    - Vehicle stock-by-age data.
+    - Country cluster information.
+    - Validation datasets.
+    - Historical CSP sensitivity datasets.
+
+    The function also validates:
+    - Required file availability.
+    - Powertrain consistency.
+    - Survival-rate grouping compatibility.
+    - Required stock-by-age dimensions.
 
     Parameters:
-        input_dir (str): Path to the directory containing input CSV files.
+        input_dir (str):
+            Path to the directory containing input CSV files.
+
+        historical_validation_active (bool, optional):
+            Whether validation datasets should be loaded.
+
+        sensitivity_analysis_active (bool, optional):
+            Whether sensitivity-analysis datasets should be loaded.
+
+        historical_csp_active (bool, optional):
+            Whether historical CSP datasets should be loaded.
+
+        use_clusters_active (bool, optional):
+            Whether country clustering should be used.
+
+        powertrains (list[str] | None, optional):
+            Selected powertrain categories to include.
+
+        survival_grouping (list[str] | None, optional):
+            Dimensions used for survival-rate estimation.
 
     Returns:
         tuple:
-            - dict: A dictionary containing all loaded datasets, where:
-                - Keys are descriptive dataset names (e.g., 'clusters', 'historical_registrations').
-                - Values are pandas DataFrames containing the loaded data.
-            - int: The maximum year found in the 'registrations_projected' dataset.
+            - dict:
+                Dictionary containing loaded datasets as pandas DataFrames.
+            - int:
+                Maximum year found in the projected registrations dataset.
     """
     input_dir = Path(input_dir)
     # --- Check folder exists ---
@@ -261,7 +291,29 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
     return data, max_year
 
 
+"""
+Check that all required input files exist.
+"""
+
+
 def check_required_files(input_dir, files, purpose):
+    """
+    Check that all required input files exist.
+
+    Parameters:
+        input_dir (Path):
+            Directory containing the input files.
+
+        files (list[str]):
+            List of required file names.
+
+        purpose (str):
+            Description of the modeling step requiring the files.
+
+    Raises:
+        FileNotFoundError:
+            If one or more required files are missing.
+    """
     missing = [file for file in files if not (input_dir / file).exists()]
 
     if missing:
@@ -271,8 +323,37 @@ def check_required_files(input_dir, files, purpose):
             + "\n\nCheck that the files exist and that their names are spelled correctly."
         )
 
+"""
+Validate that selected powertrains exist in the dataset.
+"""
+
 
 def validate_powertrains_in_data(df, selected_powertrains, dataset_name):
+    """
+    Validate that selected powertrains exist in the input dataset.
+
+    The function checks whether all user-selected powertrain categories
+    are available in the provided dataset. It also warns if additional
+    powertrain categories exist in the dataset but are not selected.
+
+    Parameters:
+        df (pandas.DataFrame):
+            Input dataset containing a powertrain column.
+
+        selected_powertrains (list[str]):
+            Powertrain categories selected by the user.
+
+        dataset_name (str):
+            Name of the dataset used for error and warning messages.
+
+    Raises:
+        ValueError:
+            If one or more selected powertrains are not found in the dataset.
+
+    Warns:
+        UserWarning:
+            If unused powertrain categories exist in the dataset.
+    """
     available_powertrains = set(df[powertrain_dim].dropna().unique())
     selected_powertrains = set(selected_powertrains)
 
@@ -298,13 +379,48 @@ def validate_powertrains_in_data(df, selected_powertrains, dataset_name):
 REST_POWERTRAIN = "Rest of powertrains"
 SHARE_TOLERANCE = 1e-3
 
+"""
+Add a residual powertrain category from remaining shares.
+"""
+
 
 def add_rest_of_powertrains_from_selected_shares(
-    df,
-    selected_powertrains,
-    share_column,
-    dataset_name,
+        df,
+        selected_powertrains,
+        share_column,
+        dataset_name,
 ):
+    """
+    Add a residual powertrain category from remaining shares.
+
+    The function keeps the selected powertrain categories and computes
+    an additional category representing the remaining share not covered
+    by the selected powertrains. The residual category is labeled
+    `REST_POWERTRAIN`.
+
+    Parameters:
+        df (pandas.DataFrame):
+            Input dataset containing powertrain shares.
+
+        selected_powertrains (list[str]):
+            Powertrain categories selected by the user.
+
+        share_column (str):
+            Name of the column containing share values.
+
+        dataset_name (str):
+            Name of the dataset used for error messages.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing the selected powertrains and the
+            additional residual powertrain category.
+
+    Raises:
+        ValueError:
+            If selected powertrains are missing from the dataset or if
+            selected shares exceed 1 for any group.
+    """
     df = df.copy()
     selected_powertrains = list(selected_powertrains)
 
@@ -350,7 +466,39 @@ def add_rest_of_powertrains_from_selected_shares(
     return result
 
 
+"""
+Aggregate non-selected powertrains into a residual category.
+"""
+
+
 def aggregate_stock_by_selected_powertrains(df, selected_powertrains, dataset_name):
+    """
+    Aggregate non-selected powertrains into a residual category.
+
+    The function replaces all powertrains that are not explicitly selected
+    with the residual category `REST_POWERTRAIN`. The stock values of the
+    non-selected powertrains are then aggregated by summing the number of
+    registered vehicles across all remaining grouping dimensions.
+
+    Parameters:
+        df (pandas.DataFrame):
+            Input stock-by-age dataset containing powertrain categories.
+
+        selected_powertrains (list[str]):
+            Powertrain categories selected by the user.
+
+        dataset_name (str):
+            Name of the dataset used for error messages.
+
+    Returns:
+        pandas.DataFrame:
+            Aggregated DataFrame in which all non-selected powertrains are
+            combined into the residual category `REST_POWERTRAIN`.
+
+    Raises:
+        ValueError:
+            If selected powertrains are not found in the input dataset.
+    """
     df = df.copy()
     selected_powertrains = list(selected_powertrains)
 

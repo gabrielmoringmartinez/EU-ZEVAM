@@ -1,21 +1,28 @@
+"""Generate legend mappings for registration sensitivity-analysis plots."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
+
 def generate_columns_to_plot(columns_to_plot, countries_selected, country_adjectives):
     """
-    Updates and returns a dictionary mapping column names to their display labels for plot legends.
+    Generate plot-column mappings for registration scenarios.
+
+    This function creates legend labels for stock-share sensitivity analyses using country-specific registration shares.
 
     Parameters:
-        - columns_to_plot (dict): A dictionary where keys are column names and values are the corresponding labels for
-         the plot legend.
-        - countries_selected (list of str): list of countries for which new registration shares are selected and
-         substituted in all countries to observe the effect.
-        - country_adjectives (dict): A dictionary mapping each country to its descriptive adjective.
-        Example: {"Germany": "German", "France": "French"}.
+        columns_to_plot (dict):
+            Dictionary storing plot-column and legend-label mappings.
+
+        countries_selected (list[str]):
+            Countries whose registration shares are applied in the sensitivity analysis.
+
+        country_adjectives (dict[str, str]):
+            Mapping between country names and adjective forms.
 
     Returns:
-        - dict: Updated `columns_to_plot` dictionary where new entries are added with keys in the form `share_<country>`
-            and values as "Share with <adjective> BEV new registrations".
+        dict:
+            Updated dictionary containing plot-column mappings for registration sensitivity scenarios.
     """
     for country in countries_selected:
         column_name = f"share_{country}"

@@ -1,3 +1,5 @@
+"""Merge survival-rate data with vehicle registrations."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,15 +10,21 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, ti
 
 def merge_survival_rates_with_registrations(survival_rates_df, registrations_df, survival_grouping):
     """
-    Merges survival rates with vehicle registration data based on common columns.
+    Merge survival-rate data with vehicle registrations.
 
     Parameters:
-        survival_rates_df (DataFrame): Survival rates data.
-        registrations_df (DataFrame): Vehicle registration data.
+        survival_rates_df (pandas.DataFrame):
+            DataFrame containing survival-rate data.
+
+        registrations_df (pandas.DataFrame):
+            DataFrame containing vehicle registrations.
+
+        survival_grouping (str or list[str]):
+            Columns used to define the survival-rate grouping.
 
     Returns:
-        DataFrame: Merged DataFrame containing survival rates and new vehicle registration data by powertrain and
-        country.
+        pandas.DataFrame:
+            Merged DataFrame containing survival rates and registration data.
     """
     if isinstance(survival_grouping, str):
         survival_grouping = [survival_grouping]

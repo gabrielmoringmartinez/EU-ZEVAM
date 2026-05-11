@@ -1,3 +1,5 @@
+"""Define plotting configurations for CSP visualizations."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 

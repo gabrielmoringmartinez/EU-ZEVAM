@@ -1,3 +1,5 @@
+"""Sensitivity analysis using modified country-specific registration shares."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -17,48 +19,36 @@ def do_sensitivity_analysis_with_modified_country_registrations(registrations, s
                                                                 optimal_distribution_dict, config, countries_selected,
                                                                 output_path):
     """
-    Performs a sensitivity analysis by modifying the vehicle registration BEV share to assume it equal to a certain
-    country for all countries and recalculating stock shares for each country. The analysis evaluates how changes in
-    country registrations affect stock projections, with comparisons across different countries.
+    Perform sensitivity analysis with modified country registrations.
+
+    This function replaces country-specific registration shares, recalculates stock shares, and evaluates the resulting
+    impact on vehicle stock-share projections.
 
     Parameters:
-        - registrations (pd.DataFrame): A DataFrame containing registration data by year, powertrain, and country.
-        - stock_shares (pd.DataFrame): Stock share data calculated over time, country and powertrain.
-        - survival_rates (pd.DataFrame): Fitted survival rates for each country and vehicle age.
-        - optimal_distribution_dict (dict): A dictionary containing the optimal CSP (Country-Specific Parameter)
-          distribution for each country, used to calculate the stock shares.
-        - config (dict): A configuration dictionary that contains settings for the sensitivity analysis, including:
-          - `plot_params` (dict): Parameters related to plotting and analysis settings, including:
-            - `countries_selected` (list of str): The list of countries for which vehicle registrations are modified.
-            - `simulation_stock_years_label` (list of int): The range of years over which the stock calculation is done.
-            - `historical_csp_label` (str): Indicator to use historical CSP data or not.
-            - `powertrain_to_plot_label` (str): The type of powertrain (e.g., 'BEV') for which stock shares are plotted.
+        registrations (pandas.DataFrame):
+            Vehicle registration data.
+
+        stock_shares (pandas.DataFrame):
+            Calculated stock-share data.
+
+        survival_rates (pandas.DataFrame):
+            Fitted CSP values by country and vehicle age.
+
+        optimal_distribution_dict (dict):
+            Mapping between countries and selected CSP
+            distributions.
+
+        config (dict):
+            Configuration settings for plotting and sensitivity analysis.
+
+        countries_selected (list[str]):
+            Countries included in the stock simulation.
+
+        output_path (str):
+            Directory where outputs are saved.
 
     Returns:
-        None: The function updates the stock shares DataFrame and generates a plot comparing stock shares for the
-        selected countries, showing how the modified registrations impact the stock projections.
-
-    Description:
-    1. **Modified Registrations**:
-       - For each country in the `countries_selected` list, the function replaces the country-specific registration
-         data with a modified version that reflects the selected country's share of registrations.
-
-    2. **Stock Calculation**:
-       - For each modified set of registrations, the function calculates the stock values and stock shares using
-         the `calculate_stock` function, based on the survival rates and optimal CSP distribution.
-
-    3. **Stock Shares Update**:
-       - The function updates the stock shares DataFrame with the recalculated stock shares for each country.
-
-    4. **Plot Generation**:
-       - The stock shares for the selected powertrain (e.g., BEV) are filtered from the stock shares DataFrame.
-       - The `generate_columns_to_plot` function is used to generate the column names and labels for the plot legend.
-       - The results are plotted using the `plot_all_countries` function, visualizing the impact of modified registrations
-         on stock shares across different countries.
-
-    This analysis provides insights into how changes in BEV vehicle registration share across countries can affect
-    the stock shares of different powertrain types, helping to assess the sensitivity of stock projections to
-    country-specific registration data.
+        None
     """
     plot_params = config[plot_params_dim]
     columns_to_plot = {share_dim: share_dim.capitalize()}

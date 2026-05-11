@@ -1,3 +1,5 @@
+"""Define parameter bounds for Weibull and Weibull-Gaussian distributions."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 

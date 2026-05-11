@@ -1,3 +1,5 @@
+"""Default plotting configuration for stock-share validation figures."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 

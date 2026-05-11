@@ -1,3 +1,5 @@
+"""Customize matplotlib plot axes and formatting."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -9,15 +11,20 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def customize_axes(ax, plot_params):
     """
-    Customizes the grid, limits, and ticks for a given plot axis.
+    Customize plot axes and formatting.
+
+    This function configures grid visibility, axis limits, tick formatting, and tick positions for a matplotlib axis.
 
     Parameters:
-    - ax (plt.Axes): Axis object to customize.
-    - plot_params (dict): A dictionary containing plot settings such as grid visibility, axis limits, and
-                          tick formatting.
+        ax (matplotlib.axes.Axes):
+            Axis object to customize.
+
+        plot_params (dict):
+            Dictionary containing axis and formatting settings.
 
     Returns:
-    - ax (plt.Axes): Customized axis object.
+        matplotlib.axes.Axes:
+            Customized axis object.
     """
     ax.grid(plot_params[show_grid_dim])
     if share_dim in plot_params:

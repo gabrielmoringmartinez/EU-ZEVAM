@@ -1,3 +1,5 @@
+"""Select the optimal CSP distribution type based on fit quality."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -7,17 +9,18 @@ from zevampy.part2_survival_rates.get_distribution_type import get_distribution_
 
 def select_optimal_type_of_distribution(optimal_parameters):
     """
-     Adds a column indicating the optimal distribution type for each row based on
-     the R-squared values of different distribution models (Weibull or Weibull-Gaussian).
+    Determine the optimal distribution type for each survival group.
 
-     Parameters:
-         optimal_parameters (pd.DataFrame): DataFrame containing R-squared values and parameters
-                                            for each distribution (e.g., Weibull, Weibull-Gaussian).
-         dist_column (str): The name of the new column to add, which will store the optimal
-                            distribution type for each row.
+    The function compares Weibull and Weibull-Gaussian model fits using their R-squared values and assigns the preferred
+    distribution type.
 
-     Returns:
-         pd.DataFrame: The input DataFrame with an added column specifying the optimal distribution type.
-     """
+    Parameters:
+        optimal_parameters (pandas.DataFrame):
+            DataFrame containing fitted distribution parameters and R-squared values.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame with an additional column indicating the selected optimal distribution type.
+    """
     optimal_parameters[distribution_dim] = optimal_parameters.apply(get_distribution_type, axis=1)
     return optimal_parameters

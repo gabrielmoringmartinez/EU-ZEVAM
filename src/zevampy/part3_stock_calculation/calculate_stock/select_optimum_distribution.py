@@ -1,3 +1,5 @@
+"""Select stock values based on the optimal CSP distribution."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,15 +8,22 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def select_optimum_distribution(row):
     """
-    Determines the stock value based on the optimal distribution for each country.
+    Select the stock value corresponding to the optimal distribution.
+
+    This function returns the stock value calculated from either the Weibull or Weibull-Gaussian distribution,
+    depending on the selected distribution type.
 
     Parameters:
-        row (Series): A row of stock data.
-        optimal_distribution_dict (dict): Dictionary specifying which distribution (Weibull or WG)
-                                              to use per country.
+        row (pandas.Series):
+            Row containing stock values and distribution labels.
 
     Returns:
-        float: Stock value based on the optimal distribution, or None if no match is found.
+        float:
+            Selected stock value corresponding to the optimal distribution.
+
+    Raises:
+        ValueError:
+            If the distribution type is unknown.
     """
     if row[distribution_dim] == weibull_label:
         return row[stock_weibull_dim]

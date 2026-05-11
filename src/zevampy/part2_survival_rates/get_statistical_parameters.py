@@ -1,3 +1,5 @@
+"""Extract statistical distribution parameters for CSP calculations."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,18 +8,22 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def get_statistical_parameters(pdf_parameters):
     """
-       Extracts the statistical parameters for the Weibull and Gaussian distributions from the provided DataFrame.
+    Extract Weibull and Gaussian distribution parameters.
 
-       Parameters:
-       - pdf_parameters (pd.DataFrame): DataFrame containing the parameters for the Weibull and Gaussian distributions.
+    Parameters:
+        pdf_parameters (pandas.DataFrame):
+            DataFrame containing fitted Weibull and
+            Weibull-Gaussian distribution parameters.
 
-       Returns:
-       - gamma (pd.DataFrame): Extracted gamma values for the Weibull distribution.
-       - beta (pd.DataFrame): Extracted beta values for the Weibull distribution.
-       - k (pd.DataFrame): Extracted k values for the Gaussian distribution.
-       - mu (pd.DataFrame): Extracted mu values for the Gaussian distribution.
-       - sigma (pd.DataFrame): Extracted sigma values for the Gaussian distribution.
-       """
+    Returns:
+        tuple:
+            Tuple containing DataFrames for:
+            - gamma Weibull parameters
+            - beta Weibull parameters
+            - k Gaussian parameters
+            - mu Gaussian parameters
+            - sigma Gaussian parameters
+    """
     gamma_variable = pdf_parameters[[gamma_weibull_dim, country_dim]]
     beta_variable = pdf_parameters[[beta_weibull_dim, country_dim]]
     k_variable = pdf_parameters[[k_weibull_gaussian_dim, country_dim]]

@@ -1,3 +1,5 @@
+"""Plot vehicle stock-share results for different powertrains."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,6 +8,25 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 
 def plot_stock_shares(stock_shares, config_scenario, powertrains):
+    """
+    Generate stock-share plots for each powertrain.
+
+    This function filters stock-share data by powertrain and generates country-level stock-share plots using the
+    provided plotting configuration.
+
+    Parameters:
+        stock_shares (pandas.DataFrame):
+            DataFrame containing calculated stock shares.
+
+        config_scenario (dict):
+            Plot configuration dictionary.
+
+        powertrains (list[str]):
+            Powertrain categories included in the analysis.
+
+    Returns:
+        None
+    """
     columns_to_plot = {share_dim: share_dim.capitalize()}
 
     for pt in stock_shares[powertrain_dim].unique():

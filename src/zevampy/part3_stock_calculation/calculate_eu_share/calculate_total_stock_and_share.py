@@ -1,3 +1,5 @@
+"""Calculate aggregated stock shares for EU regions."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,18 +10,21 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import share_dim, stoc
 
 def calculate_total_stock_and_share(df, eu_region):
     """
-       Calculates the total stock and share for each powertrain and stock year within the specified EU region.
+    Calculate total stock and stock shares for an EU region.
 
-       Parameters:
-       - df (pd.DataFrame): Filtered DataFrame for a specific EU region.
-       - eu_region (str): The EU region identifier ('EU-9', 'EU-26+Norway' or 'EU-27+Norway') to filter and calculate.
+    This function aggregates vehicle stock values across countries for a specified EU region and computes stock shares
+    by powertrain and stock year.
 
-       Returns:
-       - pd.DataFrame: Grouped DataFrame with calculated new share values, labeled by EU region.
+    Parameters:
+        df (pandas.DataFrame):
+            Filtered stock-share DataFrame for the selected EU region.
 
-       Notes:
-       - Sets 'total stock' to 0 if 'share' is 0 to avoid division errors.
-       - Drops 'total stock' after calculating the share.
+        eu_region (str):
+            Name of the EU region to assign to the aggregated results.
+
+    Returns:
+        pandas.DataFrame:
+            Aggregated stock-share DataFrame containing stock values and calculated shares by powertrain and stock year.
     """
     df['total stock'] = np.where(df[share_dim] != 0, df[stock_dim] / df[share_dim], 0)
     df = df.groupby([powertrain_dim, stock_year_dim])[['total stock', stock_dim]].sum().reset_index()

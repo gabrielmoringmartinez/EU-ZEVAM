@@ -1,3 +1,5 @@
+"""Combine absolute registrations with powertrain registration shares."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -9,21 +11,33 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, ti
 def combine_shares_and_absolute_registrations(country_registrations, powertrain_share_registrations, clusters,
                                               use_clusters):
     """
-        Combines the country-level vehicle registrations with the powertrain-specific share data, and calculates
-        the registrations by powertrain for each country.
-        If use_clusters=True, shares are matched by cluster.
-        If use_clusters=False, shares are matched directly by country.
+    Combine absolute registrations with powertrain registration shares.
 
-        Parameters:
-        - country_registrations (pd.DataFrame): DataFrame containing the absolute registrations by country and year.
-        - powertrain_share_registrations (pd.DataFrame): DataFrame containing the share of registrations for different
-        powertrains for each cluster.
-        - clusters (pd.DataFrame): DataFrame containing clusters assigned to each country.
+    The function assigns powertrain shares to country-level absolute registrations and calculates registrations by
+    powertrain. If clustering is enabled, powertrain shares are matched through country clusters. If clustering is
+    disabled, powertrain shares are matched directly by country.
 
-        Returns:
-        - pd.DataFrame: A DataFrame with the historical and projected registrations by powertrain
-        for each country and year.
-        """
+    Parameters:
+        country_registrations (pandas.DataFrame):
+            DataFrame containing absolute vehicle registrations by country and year.
+
+        powertrain_share_registrations (pandas.DataFrame):
+            DataFrame containing powertrain registration shares by year and either cluster or country.
+
+        clusters (pandas.DataFrame):
+            DataFrame containing country-cluster assignments.
+
+        use_clusters (bool):
+            Whether powertrain shares should be matched by cluster instead of directly by country.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing vehicle registrations by country, year, and powertrain.
+
+    Raises:
+        ValueError:
+            If powertrain shares are missing for any required country, year, or powertrain combination.
+    """
     if use_clusters:
         absolute_registrations = pd.merge(
             country_registrations,

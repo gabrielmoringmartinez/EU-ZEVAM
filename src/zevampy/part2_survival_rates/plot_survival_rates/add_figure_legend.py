@@ -1,3 +1,5 @@
+"""Add legends to matplotlib figures."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,12 +8,17 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def add_figure_legend(fig, ax, plot_params):
     """
-    Adds a legend when desired to the figure based on the provided plot parameters.
+    Add a legend to a matplotlib figure.
 
     Parameters:
-        - fig (matplotlib.figure.Figure): The figure object where the legend will be added.
-        - ax (matplotlib.axes.Axes): The axes object to retrieve handles and labels for the legend.
-        - plot_params (dict): Dictionary containing legend-related parameters, such as location and font size.
+        fig (matplotlib.figure.Figure):
+            Figure object where the legend is added.
+
+        ax (matplotlib.axes.Axes):
+            Axes object used to retrieve legend handles and labels.
+
+        plot_params (dict):
+            Dictionary containing legend configuration parameters.
 
     Returns:
         None

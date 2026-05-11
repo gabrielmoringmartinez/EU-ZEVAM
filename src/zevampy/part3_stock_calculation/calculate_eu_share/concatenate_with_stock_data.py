@@ -1,3 +1,5 @@
+"""Combine stock-share data with aggregated EU-region results."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,13 +8,17 @@ import pandas as pd
 
 def concatenate_with_stock_data(stock_share, eu_data):
     """
-        Concatenates the main stock share DataFrame with calculated total EU region data.
+    Concatenate stock-share data with aggregated EU-region data.
 
-        Parameters:
-        - stock_share (pd.DataFrame): Original stock share DataFrame.
-        - eu_data (pd.DataFrame): DataFrame containing calculated EU region stock data to append.
+    Parameters:
+        stock_share (pandas.DataFrame):
+            Original stock-share DataFrame.
 
-        Returns:
-        - pd.DataFrame: Concatenated DataFrame containing both the original stock data and the EU region data.
-        """
+        eu_data (pandas.DataFrame):
+            Aggregated EU-region stock-share data.
+
+    Returns:
+        pandas.DataFrame:
+            Combined DataFrame containing country-level and EU-region stock-share results.
+    """
     return pd.concat([stock_share, eu_data], ignore_index=True)

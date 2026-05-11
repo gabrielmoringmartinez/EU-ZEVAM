@@ -1,3 +1,5 @@
+"""Calculate vehicle stock values from registrations and CSP curves."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -19,20 +21,47 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 def calculate_stock(registrations, csp_values, stock_years, historical_csp,
                     countries_selected, output_path, calculate_stock_shares, survival_grouping=None, save_options=None):
     """
-    Calculates stock data for each country over a specified range of years.
+    Calculate vehicle stock values and stock shares.
+
+    This function combines vehicle registrations with fitted CSP curves to estimate vehicle stock values by country,
+    stock year, vehicle age, and powertrain. Optionally, stock shares and aggregated EU-region shares are also
+    calculated.
 
     Parameters:
-        - registrations (DataFrame): A DataFrame with vehicle registrations by powertrain, including historical
-        - and projected data.
-        - csp_values (DataFrame): DataFrame containing fitted CSP values for each country by vehicle age,
-        - optimal_distribution_dict (dict): Dictionary specifying the optimal distribution type per country.
-        - stock_years (list): List with start and end year, specifying the range of years to expand data.
-        - historical_csp (str): identifier for activating the historical CSP data.
-        - save_options (dict, optional): Dictionary containing paths for saving the results.
+        registrations (pandas.DataFrame):
+            Vehicle registrations by country, year, and powertrain.
+
+        csp_values (pandas.DataFrame):
+            Fitted CSP values by survival group and vehicle age.
+
+        stock_years (list[int]):
+            Simulation start and end years.
+
+        historical_csp (str):
+            Flag indicating whether historical CSP calculations are
+            enabled.
+
+        countries_selected (list[str]):
+            Countries included in the simulation.
+
+        output_path (str):
+            Directory used for saving outputs.
+
+        calculate_stock_shares (bool):
+            If True, stock shares are calculated.
+
+        survival_grouping (list[str], optional):
+            Columns defining the survival-rate grouping.
+
+        save_options (bool, optional):
+            If True, calculated outputs are saved.
 
     Returns:
-        DataFrame: Final stock data by country, powertrain and vehicle age with
-         calculation columns (unnecessary) columns removed.
+        tuple:
+            - pandas.DataFrame:
+              Calculated vehicle stock values.
+            - pandas.DataFrame or None:
+              Calculated stock shares if enabled, otherwise None.
     """
     if survival_grouping is None:
         survival_grouping = [country_dim]

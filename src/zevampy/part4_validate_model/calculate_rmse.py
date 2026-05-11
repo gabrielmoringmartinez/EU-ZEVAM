@@ -1,3 +1,5 @@
+"""Calculate RMSE metrics for stock-share model validation."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -9,16 +11,24 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def calculate_rmse(df, config, output_path):
     """
-       Calculates the Root Mean Squared Error (RMSE) for the stock DataFrame based on the provided configuration.
+    Calculate RMSE values for stock-share validation results.
 
-       Parameters:
-           df (pd.DataFrame): DataFrame containing the predicted and actual share values.
-           config (dict): Configuration dictionary containing powertrains, timeframes, and title. Config can be edited
-           in rmse_inputs.py
+    This function compares predicted and actual stock shares and calculates root mean squared error (RMSE) values
+    for selected countries, powertrains, and timeframes.
 
-       Returns:
-           None: Outputs the RMSE results to a CSV file.
-       """
+    Parameters:
+        df (pandas.DataFrame):
+            DataFrame containing predicted and actual stock shares.
+
+        config (dict):
+            Configuration dictionary containing RMSE settings, including powertrains and timeframes.
+
+        output_path (str):
+            Directory where RMSE results are saved.
+
+    Returns:
+        None
+    """
     df = df.copy()
     df['error'] = df[share_dim] - df[f'actual {share_dim}']
     df['squared_error'] = df['error'] ** 2

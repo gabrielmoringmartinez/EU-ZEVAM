@@ -1,3 +1,5 @@
+"""Prepare model inputs and plot configuration settings for ZEVAMPY."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -21,20 +23,36 @@ import os
 
 def prepare_inputs(simulation_end_year, config=None):
     """
-    Prepares the simulation-related parameters and plot configurations required for the modeling process.
+    Prepare simulation parameters and plot configurations.
 
-    Organizes and combines simulation-related parameters (e.g., reference years, bounds distributions) and plot
-    configuration parameters (e.g., settings for CSP and stock-related graphs).
+    This function combines default settings with optional user-defined
+    configuration values. It prepares model parameters such as selected
+    countries, powertrains, stock simulation years, CSP settings, validation
+    options, sensitivity-analysis options, output paths, and plot
+    configurations.
 
-     Parameters:
-        simulation_end_year (int): The final year of the simulation period. Used together with a fixed initial year
-                                   to define the simulation stock years range. The simulation end year is determined
-                                    based on user inputs provided in CSV files.
+    Parameters:
+        simulation_end_year (int):
+            Final year available in the projected registrations dataset.
+
+        config (dict, optional):
+            Configuration dictionary loaded from a YAML file. If None or
+            empty, default model settings are used.
 
     Returns:
-        dict: A consolidated dictionary containing:
-            - Simulation parameters (e.g., `eu_countries_and_norway`, `stock_years`, `bounds_distributions`).
-            - Plot configuration settings for various steps of the analysis.
+        dict:
+            Dictionary containing simulation parameters and plot
+            configuration settings.
+
+    Raises:
+        ValueError:
+            If the available registration history is shorter than the
+            configured CSP time horizon.
+
+    Warns:
+        UserWarning:
+            If `csp_available_years` is lower than the typical value of
+            45 years.
     """
     data_config = config.get("data", {})
     outputs_config = data_config.get("output_path", "outputs")

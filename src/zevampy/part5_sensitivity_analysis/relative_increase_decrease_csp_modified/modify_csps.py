@@ -1,3 +1,5 @@
+"""Modify CSP distribution parameters for sensitivity analyses."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,19 +8,20 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def modify_csps(optimum_parameters, percentage):
     """
-    Adjusts the optimum parameters based on the given percentage adjustment and returns the updated parameters.
+    Adjust CSP parameters by a relative percentage.
+
+    This function modifies Weibull and Weibull-Gaussian CSP parameters for sensitivity-analysis scenarios.
 
     Parameters:
-        - optimum_parameters (dict): A dictionary containing the original optimum parameters. These should
-          include keys like `gamma_weibull_dim` and `mu_weibull_gaussian_dim`, representing specific CSP
-          distribution parameters.
-        - percentage (float): The percentage adjustment to apply to the parameters. This value can be positive
-          (for an increase) or negative (for a decrease). For example, `-0.2` would decrease the parameters by 20%,
-          and `0.1` would increase them by 10%.
+        optimum_parameters (pandas.DataFrame):
+            Optimized CSP parameter dataset.
+
+        percentage (float):
+            Relative adjustment applied to the CSP parameters.
 
     Returns:
-        - dict: A new dictionary with the same keys as `optimum_parameters`, but with the specified parameters
-          (`gamma_weibull_dim`, `mu_weibull_gaussian_dim`) adjusted by the given percentage.
+        pandas.DataFrame:
+            Adjusted CSP parameter dataset.
     """
     adjusted_parameters = optimum_parameters.copy()
     percentage_value = 1 + percentage

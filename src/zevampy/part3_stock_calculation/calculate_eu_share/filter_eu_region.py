@@ -1,3 +1,5 @@
+"""Filter stock-share data for predefined EU regions."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -7,14 +9,18 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 
 def filter_eu_region(df, eu_region):
     """
-       Filters the input DataFrame to include only rows for the specified EU region.
+    Filter data for a predefined EU region.
 
-       Parameters:
-       - df (pd.DataFrame): DataFrame containing stock data with columns like 'geo country', 'stock',
-                            and 'share'.
-       - eu_region (str): The EU region identifier ('EU-9', 'EU-26+Norway' or 'EU-27+Norway') to filter and calculate.
+    Parameters:
+        df (pandas.DataFrame):
+            DataFrame containing stock-share data.
 
-       Returns:
-       - pd.DataFrame: DataFrame containing only the rows that match the specified EU region.
-       """
+        eu_region (str):
+            Identifier of the EU region used for filtering.
+
+    Returns:
+        pandas.DataFrame:
+            Filtered DataFrame containing only rows belonging
+            to the selected EU region.
+    """
     return df[df[country_dim].isin(eu_country_groups[eu_region])].copy()

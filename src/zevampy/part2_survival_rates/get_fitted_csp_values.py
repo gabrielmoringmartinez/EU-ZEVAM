@@ -1,3 +1,5 @@
+"""Calculate fitted CSP values using Weibull and Weibull-Gaussian models."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -12,20 +14,34 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim, ag
 def get_fitted_csp_values(survival_rates, pdf_parameters, csp_available_years, output_path, survival_grouping,
                           save_options=False):
     """
-    Calculates fitted Cumulative Survival Probability (CSP) values for each country using Weibull and
-    Weibull-Gaussian (WG) distribution parameters.
+    Calculate fitted CSP values for all survival groups.
+
+    The function computes fitted cumulative survival probability (CSP) curves using Weibull and Weibull-Gaussian (WG)
+    distribution parameters. The fitted CSP values are generated for each survival group and vehicle age, combined into
+    a single DataFrame, and optionally saved as a CSV file.
 
     Parameters:
-    - survival_rates (pd.DataFrame): DataFrame containing survival rates by country and vehicle age.
-    - pdf_parameters (pd.DataFrame): Parameters of Weibull and WG distributions for each country.
-    - save_options (bool): If `True`, saves the fitted CSP values to a CSV file.
-    - csp_available_years (int): Number of years (vehicle ages) for which CSP values are calculated.
-    - save_options (bool, optional): Bool defining if results should be saved or not
+        survival_rates (pandas.DataFrame):
+            DataFrame containing empirical survival rates.
 
+        pdf_parameters (pandas.DataFrame):
+            DataFrame containing fitted Weibull and Weibull-Gaussian distribution parameters.
+
+        csp_available_years (int):
+            Number of vehicle ages (years) for which CSP values are calculated.
+
+        output_path (str):
+            Directory where fitted CSP outputs are saved.
+
+        survival_grouping (list):
+            List of column names defining the survival-rate grouping dimensions (e.g. country or powertrain).
+
+        save_options (bool, optional):
+            If True, save the fitted CSP values to a CSV file. Defaults to False.
 
     Returns:
-    - pd.DataFrame: DataFrame containing fitted CSP values for each country by vehicle age, distribution model (Weibull
-     and Weibull Gaussian), and the selected distribution type.
+        pandas.DataFrame:
+            DataFrame containing fitted CSP values for all survival groups, vehicle ages, and distribution types.
     """
     survival_groups = survival_rates[survival_grouping].drop_duplicates()
     weibull_results = pd.DataFrame()

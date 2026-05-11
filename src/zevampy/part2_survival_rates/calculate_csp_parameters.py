@@ -1,3 +1,5 @@
+"""Calculate optimized CSP distribution parameters."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -10,28 +12,44 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def calculate_csp_parameters(survival_rates, bounds, output_path, survival_grouping, save_options=False):
     """
-    Optimizes CSP (Cumulative Survival Probability) parameters for country-specific survival curves
-    using Weibull and Weibull-Gaussian (WG) distributions. The bounds for optimization are based on
-    Held (2021) and can be found specifically in the Appendix F.
+    Optimize CSP distribution parameters for survival-rate groups.
 
-    This function performs the following steps:
-    1. Optimize Weibull distribution parameters for each country using a differential evolution algorithm.
-    2. Optimize Weibull-Gaussian distribution parameters using initial Weibull parameters.
-    3. Select the optimal distribution type (Weibull or WG) for each country.
-    4. Save the optimized parameters and distribution types to a CSV file.
-    5. Return the optimized parameters and a dictionary mapping countries to their selected distribution types.
+    This function fits Weibull and Weibull-Gaussian distributions to
+    empirical cumulative survival probability (CSP) data. It first
+    estimates Weibull parameters, then estimates Weibull-Gaussian
+    parameters using the fitted Weibull values as a basis. Finally, it
+    selects the preferred distribution type for each survival-rate group
+    and optionally saves the optimized parameters to a CSV file.
 
     Parameters:
-        - survival_rates (DataFrame): Contains survival rate data by country with columns including country and
-        survival rates.
-        - bounds (dict): Dictionary defining optimization parameter bounds for 'weibull' and 'gaussian' distributions.
-        - save_options (bool, optional): Bool defining if results should be saved or not
+        survival_rates (pandas.DataFrame):
+            DataFrame containing empirical survival-rate data.
+
+        bounds (dict):
+            Dictionary defining optimization bounds for the Weibull and
+            Weibull-Gaussian distribution parameters.
+
+        output_path (str):
+            Directory where optimized CSP parameters are saved if
+            `save_options` is True.
+
+        survival_grouping (list[str]):
+            Column names defining the grouping used for survival-rate
+            estimation, such as country or powertrain.
+
+        save_options (bool, optional):
+            If True, save the optimized CSP parameters to a CSV file.
+            Defaults to False.
 
     Returns:
         tuple:
-            - DataFrame: Optimized CSP parameters for each country, including distribution type.
-            - dict: Dictionary where keys are distribution types ('Weibull' or 'WG') and values
-                    are lists of countries categorized by their optimal distribution type.
+            - pandas.DataFrame:
+                Optimized CSP parameters for each survival-rate group,
+                including the selected distribution type.
+
+            - dict:
+                Dictionary mapping each selected distribution type to the
+                survival-rate groups assigned to it.
     """
     # Extract bounds for Weibull and Gaussian distributions
     bounds_weibull = bounds[weibull_label]

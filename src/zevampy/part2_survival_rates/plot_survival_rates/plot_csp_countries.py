@@ -1,3 +1,5 @@
+"""Plot CSP curves for selected survival-rate groups."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -16,21 +18,37 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def plot_csp_countries(merged_df, groups, plot_params, file_info, columns_to_plot_dict, distribution_type,
                        group_column=country_dim):
-
     """
-    Plots cumulative survival probability (CSP) curves for the specified countries with optional Weibull
-    and/or Weibull-Gaussian fits.
+    Plot CSP curves for selected survival-rate groups.
+
+    This function creates subplot figures containing empirical CSP values and optional fitted Weibull or
+    Weibull-Gaussian curves for multiple groups.
 
     Parameters:
-        - merged_df (pd.DataFrame): DataFrame containing columns to plot for all countries
-        - country_names (list): List of country names to be plotted.
-        - plot_params (dict): Dictionary containing the settings for the subplot, including font sizes,
-                              spacing, figure size, and titles.
-        - file_info (dict): Dictionary containing file information, such as file name and save options.
-        - columns_to_plot_dict (dict): Name of the columns to be plotted and its corresponding name in the legend graph
-        - distribution_type (string): It indicates the distribution type which is plot (None, Weibull, WG)
+        merged_df (pandas.DataFrame):
+            DataFrame containing empirical and fitted CSP values.
+
+        groups (list[str]):
+            List of group labels to plot.
+
+        plot_params (dict):
+            Dictionary containing subplot and formatting settings.
+
+        file_info (dict):
+            Dictionary containing figure output settings.
+
+        columns_to_plot_dict (dict):
+            Dictionary mapping dataframe column names to legend labels.
+
+        distribution_type (str or None):
+            Distribution type to plot. Supported values are "Weibull", "WG", or None.
+
+        group_column (str, optional):
+            Column containing group labels.
+            Defaults to `country_dim`.
+
     Returns:
-        None: Saves the figure to a file or performs visualization side effects.
+        None
     """
     if len(groups) == 0:
         return

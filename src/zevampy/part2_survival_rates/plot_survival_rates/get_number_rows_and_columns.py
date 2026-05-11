@@ -1,3 +1,5 @@
+"""Determine subplot grid dimensions for CSP plots."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -9,18 +11,21 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import num_rows_dim, n
 
 def get_number_rows_and_columns(number_of_countries, plot_params):
     """
-    Determines the optimal number of rows and columns for the plot grid based on the number of countries to be plotted.
+    Determine subplot grid dimensions for country plots.
+
+    This function calculates the number of rows and columns used for subplot layouts. If no layout is explicitly defined
+    in the plot configuration, a square-like grid is generated automatically.
 
     Parameters:
-    - number_of_countries (int): The total number of countries to be plotted.
-    - plot_params (dict): A dictionary containing plot configuration parameters.
-                          Expected keys: 'num_rows_dim' and 'num_columns_dim' which may specify
-                          the number of rows and columns respectively.
+        number_of_countries (int):
+            Total number of countries or groups to plot.
+
+        plot_params (dict):
+            Dictionary containing subplot layout settings.
 
     Returns:
-    - tuple: A tuple containing two integers, (num_rows, num_columns), which specify the number of rows
-             and columns for the plot grid. If no specific values are provided in `plot_params`,
-             the function calculates a square grid based on the square root of the number of countries.
+        tuple[int, int]:
+            Number of subplot rows and columns.
     """
     default_num_rows = None
     default_num_columns = None

@@ -1,3 +1,5 @@
+"""Adjust non-BEV powertrain shares after updating observed BEV shares."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,18 +8,18 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def update_other_powertrain_shares(df):
     """
-    Processes the 'registrations_with_real_bev_shares' DataFrame by:
-    1. Setting 'relative sales' to 0 for excluded powertrains.
-    2. Calculating the fraction of BEV and PHEV sales by 'geo country' and 'time'.
-    3. Updating 'relative sales' for gasoline powertrain.
-    4. Calculating 'registrations by powertrain' absolute value based on updated 'relative sales'.
+    Update non-BEV powertrain registration shares.
+
+    This function recalculates powertrain shares after replacing BEV and PHEV registration shares with observed values.
+    The remaining share is assigned to gasoline vehicles, while selected powertrains are set to zero.
 
     Parameters:
-    - df (pd.DataFrame): The registrations DataFrame.
-    Powertrains available are: ["BEV", "CNG", "D-HEV", "Diesel", "FCEV", "Gasoline", "G-HEV", "G-PHEV", "LPG"]
+        df (pandas.DataFrame):
+            DataFrame containing vehicle registrations and relative sales shares.
 
     Returns:
-    - pd.DataFrame: Processed registrations DataFrame.
+        pandas.DataFrame:
+            Updated registration DataFrame containing adjusted powertrain shares and registration values.
     """
     excluded_powertrains = ["CNG", "D-HEV", "Diesel", "FCEV", "G-HEV", "LPG"]
     # Step 1: Set 'relative sales' to 0 for excluded powertrains

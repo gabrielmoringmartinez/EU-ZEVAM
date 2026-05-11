@@ -1,3 +1,5 @@
+"""Replace modelled BEV and PHEV values with observed registration data."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -7,17 +9,28 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 def use_bev_and_phev_actual_values(df_model, df_actual, keys=[country_dim, time_dim, powertrain_dim],
                                    column_to_update=relative_sales_dim):
     """
-    Updates the registrations with actual BEV and PHEV registration values where rows match on the specified keys.
+    Update modelled values using observed BEV and PHEV data.
+
+    This function replaces selected modelled values with observed
+    values for rows matching the specified keys.
 
     Parameters:
-    df_model (pd.DataFrame): The main DataFrame to update.
-    df_actual (pd.DataFrame): The DataFrame with actual values that are used for updating. This includes BEV and PHEV
-    data.
-    keys (list): List of columns to match between the two DataFrames.
-    column_to_update (str): The name of the column in df_model to update.
+        df_model (pandas.DataFrame):
+            DataFrame containing modelled values.
+
+        df_actual (pandas.DataFrame):
+            DataFrame containing observed values used for updates.
+
+        keys (list[str], optional):
+            Columns used to match rows between both DataFrames.
+
+        column_to_update (str, optional):
+            Column name containing values to update.
 
     Returns:
-    pd.DataFrame: The updated df_model with values from df_actual.
+        pandas.DataFrame:
+            Updated DataFrame containing observed values where
+            matches were found.
     """
     df1 = df_model.copy()
     df2 = df_actual.copy()

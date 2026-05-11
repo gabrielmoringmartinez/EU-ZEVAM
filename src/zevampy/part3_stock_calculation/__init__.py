@@ -1,3 +1,5 @@
+"""Calculate CSP curves and vehicle stock results."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 

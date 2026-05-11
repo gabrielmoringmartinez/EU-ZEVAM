@@ -1,3 +1,5 @@
+"""Compute vehicle stock shares by country and powertrain."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,15 +10,18 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def compute_stock_shares(stock_df):
     """
-    Computes the share of stock for each powertrain by country and year.
+    Calculate vehicle stock shares by country and powertrain.
+
+    This function aggregates vehicle stock values by country, stock year, and powertrain, and computes the corresponding
+    stock shares.
 
     Parameters:
-        stock_df (DataFrame): Input DataFrame containing 'geo country', 'stock year', 'vehicle age', 'powertrain',
-        and 'stock' columns.
+        stock_df (pandas.DataFrame):
+            DataFrame containing calculated vehicle stock data.
 
     Returns:
-        DataFrame: DataFrame containing 'geo country', 'stock_year', 'powertrain', 'vehicle age' 'stock', and
-                  'share' columns.
+        pandas.DataFrame:
+            DataFrame containing stock values and stock shares by country, stock year, and powertrain.
     """
     # Step 1: Aggregate stock by country, year, and powertrain
     stock_grouped = stock_df.groupby([country_dim, stock_year_dim, powertrain_dim]).sum().reset_index()

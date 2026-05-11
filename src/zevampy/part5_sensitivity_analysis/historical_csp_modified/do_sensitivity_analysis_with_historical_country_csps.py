@@ -1,3 +1,5 @@
+"""Sensitivity analysis using historical country-specific CSP curves."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -14,35 +16,48 @@ def do_sensitivity_analysis_with_historical_country_csps(registrations, survival
                                                          bound_distributions, csp_available_years, simulation_years,
                                                          countries_selected, output_path):
     """
-    Perform sensitivity analysis using historical country-specific CSP data (from 2008 and 2016), processes stock shares
-    based on this data, and generates a plot comparing the results.
+    Perform sensitivity analysis with historical CSP curves.
+
+    This function compares stock-share projections based on
+    historical CSP datasets from different reference years and
+    generates validation plots for the selected powertrain.
 
     Parameters:
-        - registrations (pd.DataFrame): Registration data by year, powertrain and country.
-        - survival_rates_2021 (pd.DataFrame):2021 empirical survival rates for vehicles by country.
-        - survival_rates_2016 (pd.DataFrame): 2016 empirical survival rates for vehicles by country.
-            Extracted from (Held, 2021)
-        - optimum_parameters_2008 (dict): Optimal parameters from 2008 CSP analysis. Extracted from (Oguchi, 2014).
-        - optimal_distribution_dict (dict): Dictionary specifying the optimal distribution per country
-            (Weibull or Weibull-Gaussian).
-        - config (dict): A dictionary containing configuration settings for the sensitivity analysis and plotting,
-        including:
-          - "plot_params": A dictionary containing settings related to plotting such as selected years, countries,
-            and powertrain types.
-            - simulation_stock_years_label (list): Range of years for stock simulation.
-            - csp_available_years_label (int): Number of years for which CSP data is available (e.g 45 years)
-            - years_selected_label (list): CSP historical data which is available and used (e.g [2021, 2016, 2008])
-            - powertrain_to_plot_label (str): Powertrain type (e.g., 'BEV') to plot.
-        - bound_distributions (dict): Bounds for the parameters of the CSP distributions.
-        - csp_available_years (int): Number of years for which CSP data is available (e.g 45 years)
-        - simulation_years (list of int): List of years for which the stock simulation is performed, e.g., [2014, 2050].
+        registrations (pandas.DataFrame):
+            Vehicle registration data.
+
+        survival_rates_2021 (pandas.DataFrame):
+            Empirical survival-rate data for 2021.
+
+        survival_rates_2016 (pandas.DataFrame):
+            Empirical survival-rate data for 2016.
+
+        optimum_parameters_2008 (pandas.DataFrame):
+            Optimized CSP parameters derived from 2008 data.
+
+        optimal_distribution_dict (dict):
+            Mapping between countries and selected CSP distributions.
+
+        config (dict):
+            Configuration settings for plotting and sensitivity analysis.
+
+        bound_distributions (dict):
+            Parameter bounds used for CSP fitting.
+
+        csp_available_years (int):
+            Number of CSP years used in the calculations.
+
+        simulation_years (list[int]):
+            Simulation year range for stock calculations.
+
+        countries_selected (list[str]):
+            Countries included in the simulation.
+
+        output_path (str):
+            Directory where outputs are saved.
 
     Returns:
-        None: Generates plots and updates dataframes as part of the sensitivity analysis.
-
-    This analysis provides insights into how the historical CSPs are evolving and how they affect the stock share
-    projections, enabling insights into the effect of the fleet turnover dynamics in the last 20 years
-    in the whole fleet electrification.
+        None
     """
     plot_params = config[plot_params_dim]
     columns_to_plot = {}
@@ -51,12 +66,12 @@ def do_sensitivity_analysis_with_historical_country_csps(registrations, survival
                                                                 optimum_parameters_2008, optimal_distribution_dict,
                                                                 bound_distributions, csp_available_years,
                                                                 simulation_years, countries_selected, output_path)
-    bev_stock_shares = stock_shares_df[stock_shares_df['powertrain'] == plot_params["powertrain_to_plot"]]
+    bev_stock_shares = stock_shares_df[stock_shares_df[powertrain_dim] == plot_params[powertrain_to_plot_label]]
     available_years = [
-        year for year in plot_params["years_selected"]
+        year for year in plot_params[years_selected_label]
         if f"{share_dim}_{year}" in bev_stock_shares.columns
     ]
-    plot_params["years_selected"] = available_years
-    columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params["years_selected"])
+    plot_params[years_selected_label] = available_years
+    columns_to_plot = generate_columns_to_plot(columns_to_plot, plot_params[years_selected_label])
     plot_all_countries(bev_stock_shares, config, columns_to_plot, None)
 

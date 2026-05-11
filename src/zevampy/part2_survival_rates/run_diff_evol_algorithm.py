@@ -1,3 +1,5 @@
+"""Run differential-evolution optimization for CSP distribution fitting (Weibull)."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,11 +8,6 @@ import numpy as np
 import pandas as pd
 
 from zevampy.part2_survival_rates.loss_functions import loss_function_weibull, loss_function_weibull_and_normal
-from zevampy.part2_survival_rates.append_optimum_parameters import append_optimum_parameters_weibull, \
-    append_optimum_parameters_gaussian
-from zevampy.part2_survival_rates.save_optimum_parameters import save_optimum_parameters_weibull, \
-    save_optimum_parameters_gaussian
-from zevampy.part2_survival_rates.get_value_countries import get_value_countries
 
 
 from zevampy.load_data_and_prepare_inputs.dimension_names import *
@@ -18,21 +15,28 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def run_diff_evol_algorithm_weibull(bounds: list, survival_groups: np.ndarray, survival_rates, survival_grouping):
     """
-    Runs the differential evolution optimization algorithm to fit Weibull distribution parameters (gamma and beta)
+    Fit Weibull distribution parameters using differential evolution.
+
+    The function optimizes Weibull gamma and beta parameters for each survival-rate group and returns the fitted
+    parameters together with the corresponding R-squared values.
 
     Parameters:
-        bounds (list): Bounds for the Weibull distribution parameters [gamma, beta]. Each element of the list
-                       represents the range for a parameter: [(gamma_min, gamma_max), (beta_min, beta_max)].
-        country_names_number (np.ndarray): Array of unique country labels
-        survival_rates (pd.DataFrame): DataFrame containing survival rates for each country.
+        bounds (list):
+            Bounds for the Weibull parameters.
+
+        survival_groups (pandas.DataFrame):
+            Unique survival-rate groups used for parameter fitting.
+
+        survival_rates (pandas.DataFrame):
+            DataFrame containing empirical survival-rate values.
+
+        survival_grouping (list[str]):
+            Column names defining the survival-rate grouping.
 
     Returns:
-        pd.DataFrame: Optimized Weibull parameters for each country, including:
-            - gamma: Scale parameter of the Weibull distribution.
-            - beta: Shape parameter of the Weibull distribution.
-            - r-squared: Measure of fit quality for the model.
-            - country labels: The corresponding country identifier for the parameters.
-        """
+        pandas.DataFrame:
+            DataFrame containing optimized Weibull parameters and R-squared values for each survival-rate group.
+    """
     optimum_gamma= []
     optimum_beta = []
     max_rsquared = []
@@ -64,26 +68,39 @@ def run_diff_evol_algorithm_weibull(bounds: list, survival_groups: np.ndarray, s
     return result_df
 
 
+"""
+Run differential-evolution optimization for CSP distribution fitting. (Weibull-Gaussian)
+"""
+
+
 def run_diff_evol_algorithm_weibull_gaussian(bounds, survival_groups, survival_rates, optimum_parameters_weibull,
                                              survival_grouping):
     """
-    Runs the differential evolution optimization algorithm to fit Weibull-Gaussian parameters (k, mu, sigma, delta)
-    for each country. This builds upon the already optimized Weibull parameters.
+    Fit Weibull-Gaussian distribution parameters using differential evolution.
+
+    The function uses previously optimized Weibull parameters and optimizes
+    the Gaussian component for each survival-rate group.
 
     Parameters:
-        bounds (list): Bounds for the Gaussian distribution parameters:
-                      [(k_min, k_max), (mu_min, mu_max), (sigma_min, sigma_max)].
-        country_names_number (np.ndarray): Array of unique country labels
-        survival_rates (pd.DataFrame): DataFrame containing survival rates for each country.
-        optimum_parameters_weibull (pd.DataFrame): DataFrame containing the optimized Weibull parameters
-                                                   (gamma and beta) for each country.
+        bounds (list):
+            Bounds for the Gaussian parameters.
+
+        survival_groups (pandas.DataFrame):
+            Unique survival-rate groups used for parameter fitting.
+
+        survival_rates (pandas.DataFrame):
+            DataFrame containing empirical survival-rate values.
+
+        optimum_parameters_weibull (pandas.DataFrame):
+            DataFrame containing previously optimized Weibull parameters.
+
+        survival_grouping (list[str]):
+            Column names defining the survival-rate grouping.
 
     Returns:
-        pd.DataFrame: Combined DataFrame containing:
-            - Weibull parameters (gamma, beta).
-            - Optimized Weibull-Gaussian parameters (k, mu, sigma, delta).
-            - r-squared: Measure of fit quality for the Weibull-Gaussian model.
-            - Country labels: Identifier for the parameters.
+        pandas.DataFrame:
+            DataFrame containing optimized Weibull and Weibull-Gaussian
+            parameters and R-squared values for each survival-rate group.
     """
     optimum_k = []
     optimum_mu = []

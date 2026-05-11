@@ -1,19 +1,28 @@
+"""Generate plot-legend mappings for selected data columns."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
+
 def generate_columns_to_plot(columns_to_plot, items_selected, general_legend_text):
     """
-    Generates the columns_to_plot dictionary for the plot legend based on selected items
-    and a customizable text template.
+    Generate plot-column and legend-label mappings.
 
-    Args:
-        columns_to_plot (dict): Dictionary to populate with plot legend mappings.
-        items_selected (list): List of items (e.g., years or countries) to process.
-        general_legend_text (str): General text, and also'{item}' is replaced
-                                   with each item from items_selected.
+    This function creates entries mapping column names to corresponding legend labels for plotting.
+
+    Parameters:
+        columns_to_plot (dict):
+            Dictionary storing plot-column and legend-label mappings.
+
+        items_selected (list):
+            List of selected items used to generate column names.
+
+        general_legend_text (str):
+            Base legend text appended to each selected item.
 
     Returns:
-        dict: Updated columns_to_plot dictionary.
+        dict:
+            Updated dictionary containing plot-column mappings.
     """
     for item in items_selected:
         column_name = f"share_{item}"

@@ -1,3 +1,5 @@
+"""Provide the command-line interface for running the ZEVAMPY model."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,6 +8,30 @@ from zevampy.run_model import run_model
 
 
 def main():
+    """
+    Run the command-line interface for the ZEVAMPY model.
+
+    This function parses optional command-line arguments that allow users to:
+    - Provide a custom configuration YAML file.
+    - Override the default input data directory.
+    - Override the default output directory.
+
+    After parsing the arguments, the function executes the full modeling workflow
+    through the `run_model` function.
+
+    Command-line arguments:
+        --config : str, optional
+            Path to a YAML configuration file containing model settings.
+
+        --input : str, optional
+            Path to the folder containing input datasets.
+
+        --output : str, optional
+            Path to the folder where model outputs will be saved.
+
+    Returns:
+        None
+    """
     parser = argparse.ArgumentParser(
         description="ZEVAMPY: Zero-Emission Vehicle Adoption Model"
     )

@@ -1,3 +1,5 @@
+"""Plot CSP curves for all survival-rate groups."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,16 +10,26 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def plot_all_countries(merged_df, config, columns_to_plot_dict, distribution_type):
     """
-    Plots data for all countries. When printing CSPs, optionally with Weibull and/or Weibull-Gaussian fits.
+    Plot CSP curves for all survival-rate groups.
+
+    This function generates CSP plots for all available groups, optionally including Weibull and Weibull-Gaussian
+    fitted curves.
 
     Parameters:
-       - merged_df (pd.DataFrame): DataFrame containing columns to plot for all countries
-       - config (dict): Dictionary containing configuration settings for the plot.
-       - columns_to_plot_dict (dict): Name of the columns to be plot and its corresponding name in the legend graph
-       - distribution_type (string): It indicates the distribution type which is plot (None, Weibull, WG)
+        merged_df (pandas.DataFrame):
+            DataFrame containing empirical and fitted CSP values.
+
+        config (dict):
+            Plot configuration dictionary.
+
+        columns_to_plot_dict (dict):
+            Dictionary mapping dataframe column names to legend labels.
+
+        distribution_type (str or None):
+            Distribution type to plot. Supported values are "Weibull", "WG", or None.
 
     Returns:
-       - None
+        None
     """
     plot_params = config[plot_params_dim]
     file_info = config[file_info_dim]

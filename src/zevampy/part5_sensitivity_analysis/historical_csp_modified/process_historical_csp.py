@@ -1,3 +1,5 @@
+"""Process stock shares using historical CSP sensitivity scenarios."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -14,34 +16,48 @@ def process_stock_shares_with_historical_csps(registrations, survival_rates_2021
                                               optimum_parameters_2008, optimal_distribution_dict, bound_distributions,
                                               csp_available_years, simulation_years, countries_selected, output_path):
     """
-    Compute stock shares using different empirical survival rates (2008, 2016, 2021) and merge them into a
-    single DataFrame for further analysis and plotting.
+    Compute stock shares using historical CSP datasets.
+
+    This function calculates stock shares based on historical cumulative survival probability (CSP) curves from multiple
+    reference years and merges the results into a single dataset.
 
     Parameters:
-        - registrations (pd.DataFrame): Registration data by year, powertrain, and country.
-        - survival_rates_2021 (pd.DataFrame): Empirical survival rates for vehicles by country for the year 2021.
-        - survival_rates_2016 (pd.DataFrame): Empirical survival rates for vehicles by country for the year 2016.
-            Extracted from (Held, 2021).
-        - stock_years (list of int): Range of years for stock modelling (e.g., [2014, 2050]).
-        - optimum_parameters_2008 (dict): Optimal parameters from the 2008 CSP analysis. Extracted from (Oguchi, 2014).
-        - optimal_distribution_dict (dict): Dictionary specifying the optimal distribution (Weibull or Weibull-Gaussian)
-          for each country.
-        - bound_distributions (dict): Bounds for the parameters of the CSP distributions used in the analysis.
-        - csp_available_years (int): Number of years for which country-specific CSP data is available
-        (e.g., [45] years).
-        - simulation_stock_years (list of int): List of years for which the stock simulation is performed,
-        e.g., [2014, 2050].
+        registrations (pandas.DataFrame):
+            Vehicle registration data.
+
+        survival_rates_2021 (pandas.DataFrame):
+            Empirical survival-rate data for 2021.
+
+        survival_rates_2016 (pandas.DataFrame):
+            Empirical survival-rate data for 2016.
+
+        stock_years (list[int]):
+            Simulation year range for stock calculations.
+
+        optimum_parameters_2008 (pandas.DataFrame):
+            Optimized CSP parameters derived from 2008 data.
+
+        optimal_distribution_dict (dict):
+            Mapping between countries and selected CSP distributions.
+
+        bound_distributions (dict):
+            Parameter bounds used for CSP fitting.
+
+        csp_available_years (int):
+            Number of CSP years used in the calculations.
+
+        simulation_years (list[int]):
+            Simulation year range for stock calculations.
+
+        countries_selected (list[str]):
+            Countries included in the simulation.
+
+        output_path (str):
+            Directory where outputs are saved.
 
     Returns:
-        pd.DataFrame: Merged DataFrame containing stock shares using CSP data from 2008, 2016, and 2021,
-        ready for plotting or further analysis.
-
-    Notes:
-        - The function computes the stock shares using empirical survival rates from three historical years
-        (2008, 2016, 2021). 2021 is the reference year used for the analysis.
-        - The stock shares are renamed according to the year (e.g., `share_2021`, `share_2016`, `share_2008`).
-        - The stock shares DataFrames for the different years are then merged into a single DataFrame for further
-        analysis.
+        pandas.DataFrame:
+            Combined stock-share dataset for historical CSP sensitivity analyses.
     """
     # Compute stock shares for different years
     stock_values_2021, stock_shares_2021, *_ = compute_csp_values_and_compute_stock(survival_rates_2021, registrations,

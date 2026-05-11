@@ -1,3 +1,5 @@
+"""Calculate empirical vehicle survival rates from stock data."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,16 +10,25 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import age_dim, countr
 
 def obtain_survival_rates(stock, registrations, survival_grouping):
     """
-        Calculates survival rates by merging and dividing stock and registrations data on country_dim
-        and age_dim.
+    Calculate empirical vehicle survival rates.
 
-        Args:
-            stock (pd.DataFrame): DataFrame containing country_dim, age_dim, and number_registered_vehicles_dim.
-            registrations (pd.DataFrame): DataFrame with country_dim,age_dim, and new_registrations dim.
+    This function estimates survival rates by dividing the number of registered vehicles in the stock dataset by the
+    corresponding historical vehicle registrations.
 
-        Returns:
-            pd.DataFrame: A DataFrame containing country_dim, age_dim, and the empirical survival_rate_dim.
-        """
+    Parameters:
+        stock (pandas.DataFrame):
+            DataFrame containing vehicle stock data.
+
+        registrations (pandas.DataFrame):
+            DataFrame containing historical vehicle registrations.
+
+        survival_grouping (list[str]):
+            Column names defining the grouping used for survival-rate estimation.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing empirical survival rates by survival group and vehicle age.
+    """
     # Merge with selected columns and calculate survival rate
 
     merge_cols = survival_grouping + [age_dim]

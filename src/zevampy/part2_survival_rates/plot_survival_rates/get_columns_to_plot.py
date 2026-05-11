@@ -1,3 +1,5 @@
+"""Define CSP plot columns and legend labels."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,13 +8,19 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def get_columns_to_plot(distribution_type=None):
     """
-    Returns a dictionary mapping column names to legend labels based on the distribution type.
+    Return plot-column mappings for CSP visualizations.
+
+    This function maps CSP-related dataframe columns to the legend labels used in plots. The returned mapping depends
+    on the selected distribution type.
 
     Parameters:
-    - distribution_type (str or None): Type of distribution ('Weibull', 'WG', or None for all).
+        distribution_type (str or None, optional):
+            Distribution type used for filtering plotted curves. Supported values are "Weibull", "WG", or None.
+            Defaults to None.
 
     Returns:
-    - dict: Mapping of column names to legend labels.
+        dict:
+            Dictionary mapping dataframe column names to plot legend labels.
     """
     base_dict = {survival_rate_dim: data_points_plot_label}
     if distribution_type is None:

@@ -1,3 +1,5 @@
+"""Create subplot figures for CSP visualizations."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,26 +10,18 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def setup_subplot_figure(plot_params):
     """
-    Configures and sets up a subplot figure with the specified parameters, including figure size, spacing, and axis
-    labels.
+    Create and configure a subplot figure.
+
+    This function initializes a Matplotlib figure and applies global subplot formatting settings such as spacing,
+    figure size, titles, and axis labels.
 
     Parameters:
-    - plot_params (dict): A dictionary containing the settings for the subplot configuration, including:
-        - 'tick_fontsize_dim': Font size for the tick labels.
-        - 'space_between_plots_dim': Space between subplots (horizontal and vertical).
-        - 'figure_height_dim': Height of the figure.
-        - 'figure_width_dim': Width of the figure.
-        - 'title_dim': Title for the entire figure.
-        - 'title_font_dim': Font size for the title.
-        - 'title_vertical_position_dim': Vertical position for the title.
-        - 'x_label_dim': Label for the x-axis.
-        - 'x_axis_title_vertical_position_dim': Vertical position for the x-axis label.
-        - 'y_label_dim': Label for the y-axis.
-        - 'y_axis_title_horizontal_position_dim': Horizontal position for the y-axis label.
-        - 'axis_title_font_dim': Font size for the axis labels.
+        plot_params (dict):
+            Dictionary containing figure and subplot formatting settings.
 
     Returns:
-    - fig (plt.Figure): The configured Matplotlib figure object that contains the subplots.
+        matplotlib.figure.Figure:
+            Configured Matplotlib figure object.
     """
     plt.rc('xtick', labelsize=plot_params[tick_fontsize_dim])
     plt.rc('ytick', labelsize=plot_params[tick_fontsize_dim])

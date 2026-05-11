@@ -1,3 +1,5 @@
+"""Replace registration shares with country-specific registration scenarios."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,22 +10,25 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def replace_powertrain_share_registrations_with_country(registrations, country, plot_params):
     """
-    Modifies the powertrain-specific share of vehicle registrations for a specified country from a given year onward.
-    This function replaces the relative sales and registration values for all countries with the values from the
-    selected country starting from a specified year.
+    Replace powertrain registration shares with values from one country.
+
+    This function applies the selected country's powertrain-specific registration shares to all countries from a
+    configured year onward.
 
     Parameters:
-        - registrations (pd.DataFrame): A DataFrame containing registration data by year, powertrain, and country.
-        - country (str): The name of the country whose powertrain-specific registration shares will be used to
-          replace those for all other countries from the specified year onward.
-        - plot_params (dict): A dictionary containing plotting and analysis parameters, including:
-          - `year_to_modify_registrations_label` (int): The year from which the registrations for all countries
-            will be replaced by the values from the selected country.
+        registrations (pandas.DataFrame):
+            Vehicle registration data by country, year, and powertrain.
+
+        country (str):
+            Country whose registration shares are used as replacement values.
+
+        plot_params (dict):
+            Dictionary containing sensitivity-analysis settings, including the year from which registrations are
+            modified.
 
     Returns:
-        - pd.DataFrame: A modified copy of the `registrations` DataFrame, where the powertrain registration shares
-          and relative sales for all countries have been replaced by those of the specified country from the given
-          year onward.
+        pandas.DataFrame:
+            Updated registration DataFrame containing modified powertrain shares and registration values.
     """
     year_country_replied = plot_params[year_to_modify_registrations_label]
     registrations = registrations.copy()

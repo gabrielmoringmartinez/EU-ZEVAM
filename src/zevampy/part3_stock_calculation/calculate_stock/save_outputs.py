@@ -1,3 +1,5 @@
+"""Save calculated stock datasets to disk."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -6,13 +8,25 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import stock_data_file
 
 def save_outputs(stock_data, stock_shares, save_options, output_path):
     """
-    Saves the stock data and stock shares to specified filenames if indicated in save_options.
+    Save calculated stock outputs to CSV files.
+
+    This function saves vehicle stock data and, if available, stock-share data to the specified output directory.
+
     Parameters:
-        stock_data (DataFrame): The DataFrame containing stock data.
-        stock_shares (DataFrame): The DataFrame containing stock share data.
-        save_options (dict): Dictionary with settings for saving outputs. Expected keys:
-            - "stock_data_filename" (str): Filename for saving stock data.
-            - "stock_shares_filename" (str): Filename for saving stock shares.
+        stock_data (pandas.DataFrame):
+            DataFrame containing calculated vehicle stock data.
+
+        stock_shares (pandas.DataFrame or None):
+            DataFrame containing calculated stock shares.
+
+        save_options (dict):
+            Dictionary containing output filenames.
+
+        output_path (str):
+            Directory where output files are saved.
+
+    Returns:
+        None
     """
     # Set default save options
     stock_data_filename = save_options.get(stock_data_filename_label)

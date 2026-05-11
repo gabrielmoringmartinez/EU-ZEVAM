@@ -1,3 +1,5 @@
+"""Validate modelled stock shares against observed vehicle-stock data."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -16,27 +18,28 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def compare_model_and_actual_stock_results(data, calculated_data, inputs):
     """
-    Compares model-generated stock results with actual stock data and plots the comparison.
+    Compare modelled and observed vehicle stock-share results.
+
+    This function validates modelled stock shares against observed vehicle stock-share data by:
+    - updating registrations with observed BEV shares,
+    - recalculating stock values,
+    - comparing modelled and observed stock shares,
+    - generating validation plots, and
+    - calculating RMSE metrics.
 
     Parameters:
-        - data (dict): Dictionary containing actual BEV registration and stock shares.
-            - actual_bev_registration_shares (pd.DataFrame): Actual BEV registration shares by country and year.
-            - actual_bev_stock_shares (pd.DataFrame): Actual BEV stock shares by country and year.
-        - calculated_data (dict): Dictionary containing model-generated data.
-            - registrations (pd.DataFrame): Vehicle registrations by powertrain, including historical and
-                                            projected data.
-            - stock_shares (pd.DataFrame): Estimated stock data by country, powertrain, and vehicle age.
-            - fitted_csp_values (pd.DataFrame): Fitted CSP values by country, vehicle age, and distribution type.
-            - optimal_distribution_dict (dict): Optimal distribution type for each country (Weibull or Weibull-Gaussian).
-    - inputs (dict): Configuration settings and additional inputs for stock calculations and plotting.
-        - simulation_stock_years (list): Range of years for stock simulation.
-        - historical_csp (str): Indicator for whether historical CSP data (e.g., from 2021) is used.
-        - config_validation_step1 (dict): Plot configuration for validation step 1
-        - config_validation_step2 (dict): Plot configuration for validation step 2
-        - config_validation_rmse_step1 (dict): Settings for RMSE calculation in step 1.
-        - config_validation_rmse_step2 (dict): Settings for RMSE calculation in step 2.
+        data (dict):
+            Dictionary containing observed registration and stock-share datasets.
+
+        calculated_data (dict):
+            Dictionary containing model-calculated registrations, stock shares, fitted CSP values, and distribution
+            assignments.
+
+        inputs (dict):
+            Dictionary containing simulation settings, plotting configurations, and RMSE-validation settings.
+
     Returns:
-    - None: Outputs plots comparing model and actual data and RMSE calculations saved in CSV for validation purposes.
+        None
     """
     registrations = calculated_data[registrations_label]
     stock_shares = calculated_data[stock_shares_label]

@@ -1,3 +1,5 @@
+"""Add aggregated EU-region stock shares to stock datasets."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -9,17 +11,22 @@ from zevampy.part3_stock_calculation.calculate_eu_share.concatenate_with_stock_d
 
 def add_eu_stock_share(stock_share, eu_region):
     """
-        Adds stock share data for a specified EU region to the main stock share DataFrame.
+    Add aggregated stock shares for an EU region.
 
-        Parameters:
-        - stock_share (pd.DataFrame): DataFrame containing stock data with columns like 'geo country', 'stock',
-                                      and 'share'.
-        - share_label (str): Label for the share column to be added to the resulting DataFrame.
-        - eu_region (str): The EU region identifier ('EU-9', 'EU-26+Norway' or 'EU-27+Norway') to filter and calculate.
+    This function filters stock-share data for a selected EU region, calculates aggregated stock shares, and appends
+    the regional results to the original dataset.
 
-        Returns:
-        - pd.DataFrame: The original stock share data concatenated with the calculated EU region data.
-        """
+    Parameters:
+        stock_share (pandas.DataFrame):
+            DataFrame containing vehicle stock-share data.
+
+        eu_region (str):
+            Identifier of the EU region to aggregate.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing original and aggregated EU-region stock-share results.
+    """
     regional_df = filter_eu_region(stock_share, eu_region)
     regional_df = calculate_total_stock_and_share(regional_df, eu_region)
     return concatenate_with_stock_data(stock_share, regional_df)

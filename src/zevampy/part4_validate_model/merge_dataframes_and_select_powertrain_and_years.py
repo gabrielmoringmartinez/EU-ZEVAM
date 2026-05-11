@@ -1,3 +1,5 @@
+"""Merge and filter validation datasets for stock-share comparisons."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,18 +10,27 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def merge_dataframes_and_select_powertrain_and_years(df1, df2, powertrain=["BEV"], years=(2014, 2023)):
     """
-    Filters two DataFrames by powertrain and year range, merges them on common columns,
-    and prepares the resulting DataFrame for analysis.
+    Merge modelled and observed stock-share datasets.
+
+    This function filters two datasets by powertrain and year range, renames observed share values, and merges both
+    datasets for validation analysis.
 
     Parameters:
-       - df1 (pd.DataFrame): The first DataFrame containing model-generated data (e.g., stock shares).
-       - df2 (pd.DataFrame): The second DataFrame containing actual observed data (e.g., actual stock shares).
-       - powertrain (list, optional): List of powertrain types to filter by. Default is ["BEV"].
-       - years (tuple, optional): A tuple specifying the start and end years for filtering. Default is (2014, 2023).
+        df1 (pandas.DataFrame):
+            DataFrame containing modelled stock-share data.
+
+        df2 (pandas.DataFrame):
+            DataFrame containing observed stock-share data.
+
+        powertrain (list[str], optional):
+            Powertrain categories included in the comparison.
+
+        years (tuple[int, int], optional):
+            Start and end years used for filtering.
 
     Returns:
-        pd.DataFrame: A merged and filtered DataFrame containing both model-generated and actual data for the specified
-         powertrain and year range.
+        pandas.DataFrame:
+            Merged DataFrame containing modelled and observed stock-share data.
     """
     # Apply filtering conditions to both DataFrames
     df1 = df1[df1[powertrain_dim].isin(powertrain)]

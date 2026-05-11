@@ -1,3 +1,5 @@
+"""Define loss functions for Weibull CSP fitting."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -7,22 +9,24 @@ from scipy.special import gamma
 
 def loss_function_weibull(x: list, *args) -> float:
     """
-        Calculates the error (loss) between the predicted survival rates from a Weibull distribution
-        and the actual survival rate data. The error is computed using normalized mean squared error (NMSE),
-        which indicates how well the Weibull model fits the observed data.
+    Calculate the normalized mean squared error for a Weibull fit.
 
-        Parameters:
-            x (list): Parameters for the Weibull distribution.
-                - x[0] (float): gamma (scale parameter) – defines the scale parameter of the weibull or the
-                                weibull average lifespan.
-                - x[1] (float): beta (shape parameter) – defines the shape of the Weibull curve.
-            actual_data (np.ndarray): Array of observed survival rates, representing the actual data
-                                      the Weibull model is trying to fit.
+    The function compares Weibull-predicted survival rates with observed survival-rate data.
 
-        Returns:
-            float: Normalized mean squared error (NMSE), where lower values indicate a better fit
-                   between the Weibull model and the actual data.
-        """
+    Parameters:
+        x (list):
+            Weibull distribution parameters:
+            - x[0]: gamma (scale parameter)
+            - x[1]: beta (shape parameter)
+
+        *args:
+            args[0] (numpy.ndarray):
+                Observed survival-rate data.
+
+    Returns:
+        float:
+            Normalized mean squared error (NMSE) between the Weibull model and observed data.
+    """
     actual = np.asarray(args[0], dtype=float)
     csp_years = len(actual)
     year = np.linspace(1, csp_years, csp_years)
@@ -35,28 +39,38 @@ def loss_function_weibull(x: list, *args) -> float:
         return np.inf
     return np.sum((predict - actual) ** 2) / denominator
 
+"""
+Define loss functions for Weibull-Gaussian CSP fitting.
+"""
+
 
 def loss_function_weibull_and_normal(x: list, *args) -> float:
     """
-        Calculates the error (loss) between the predicted survival rates from a combined
-        Weibull-Gaussian model and the actual survival rate data. The error is computed using
-        normalized mean squared error (NMSE), showing how well this composite model fits
-        the observed data.
+    Calculate the normalized mean squared error for a Weibull-Gaussian fit.
 
-        Parameters:
-            x (list): Parameters for the Gaussian (normal) component.
-                - x[0] (float): k – scales the Gaussian component.
-                - x[1] (float): mu – mean of the Gaussian distribution (controls the location).
-                - x[2] (float): sigma – standard deviation of the Gaussian (controls the spread).
-            gamma (float): Gamma (scale parameter) for the Weibull distribution.
-            beta (float): Beta (shape parameter) for the Weibull distribution.
-            actual_data (np.ndarray): Array of observed survival rates, representing the actual data
-                                      the Weibull-Gaussian model is trying to fit.
+    The function compares combined Weibull-Gaussian predicted survival rates with observed survival-rate data.
 
-        Returns:
-            float: Normalized mean squared error (NMSE), where lower values indicate a better fit
-                   between the Weibull-Gaussian model and the actual data.
-        """
+    Parameters:
+        x (list):
+            Gaussian distribution parameters:
+            - x[0]: k (scaling parameter)
+            - x[1]: mu (mean parameter)
+            - x[2]: sigma (standard deviation parameter)
+
+        *args:
+            args[0] (float):
+                Weibull gamma parameter.
+
+            args[1] (float):
+                Weibull beta parameter.
+
+            args[2] (numpy.ndarray):
+                Observed survival-rate data.
+
+    Returns:
+        float:
+            Normalized mean squared error (NMSE) between the Weibull-Gaussian model and observed data.
+    """
     gamma_country = float(args[0])
     beta_country = float(args[1])
     actual = np.asarray(args[2], dtype=float)

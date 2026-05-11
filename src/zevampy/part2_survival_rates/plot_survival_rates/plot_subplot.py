@@ -1,3 +1,5 @@
+"""Plot empirical and fitted CSP curves for individual groups."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,20 +10,30 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def plot_survival_rate_country(ax, label, x, y, country_name, plot_params):
     """
-        Plots survival rate data for a single country on a given subplot axis.
+    Plot survival-rate data for a single group.
 
-        Parameters:
-        - ax (plt.Axes): The axis object where the plot will be drawn.
-        - label (str): Label for the plot legend.
-        - x (list or np.array): Data for the x-axis (e.g., vehicle age).
-        - y (list or np.array): Data for the y-axis (e.g., survival rate).
-        - country_name (str): Name of the country being plotted.
-        - plot_params (dict): Dictionary containing the settings for the subplot, including font sizes,
-                              spacing, figure size, and titles.
+    Parameters:
+        ax (matplotlib.axes.Axes):
+            Axis object used for plotting.
 
-        Returns:
-        - None
-        """
+        label (str):
+            Legend label for the plotted curve.
+
+        x (list or numpy.ndarray):
+            X-axis values, typically vehicle ages.
+
+        y (list or numpy.ndarray):
+            Y-axis values, typically survival probabilities.
+
+        country_name (str):
+            Name of the plotted group or country.
+
+        plot_params (dict):
+            Dictionary containing plot formatting settings.
+
+    Returns:
+        None
+    """
     ax.plot(x, y, '-o', markersize=plot_params[marker_size_dim], linewidth=plot_params[line_width_dim], label=label)
     ax.set_title(country_name, fontsize=plot_params[title_fontsize_dim])
     plt.style.use('seaborn-v0_8-white')

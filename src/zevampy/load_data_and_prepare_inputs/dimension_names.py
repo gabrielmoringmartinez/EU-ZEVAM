@@ -1,3 +1,5 @@
+"""Define shared dimension names, labels, and configuration keys used across ZEVAMPY."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 

@@ -1,3 +1,5 @@
+"""Utilities for loading input datasets and preparing model inputs."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 

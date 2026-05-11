@@ -1,3 +1,5 @@
+"""Calculate historical and projected vehicle registrations by powertrain."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -14,24 +16,48 @@ def calculate_registrations(historical_registrations, countries_selected, regist
                             clusters, registration_shares_by_cluster, reference_year, simulation_years,
                             start_registrations_year, use_clusters, output_path):
     """
-        Calculates and saves the absolute and powertrain-specific vehicle registrations for each country.
-        The registrations are derived from historical data and projected future data, combined with powertrain shares.
+    Calculate and save vehicle registrations by powertrain.
 
-        Parameters:
-        - historical_registrations (pd.DataFrame): Historical vehicle registration data for EU countries.
-        - eu_countries_and_norway (list): List of country labels (e.g., countries in the EU and Norway).
-        - registrations_projected (pd.DataFrame): Projected vehicle registrations scenario data
-        for the EU countries.
-        - clusters (pd.DataFrame): DataFrame containing clusters for each country (Möring et al., 2024).
-        - registration_shares_by_cluster (pd.DataFrame): Share of registrations for each cluster and powertrain.
-        - reference_year (int): The reference year used to calculate country-level EU registration shares
-          (e.g., 2021 for historical data).
+    This function combines historical registration data, projected registrations, and powertrain registration shares
+    to estimate vehicle registrations by country, year, and powertrain category. The resulting datasets are saved as
+     CSV files in the specified output directory.
 
+    Parameters:
+        historical_registrations (pandas.DataFrame):
+            Historical vehicle registration dataset.
 
-        Returns:
-        - pd.DataFrame: A DataFrame with vehicle registrations by powertrain, including historical and projected data.
-        Absolute sales and sales share is obtained.
-        """
+        countries_selected (list[str]):
+            List of countries included in the simulation.
+
+        registrations_projected (pandas.DataFrame):
+            Projected total vehicle registrations by year.
+
+        clusters (pandas.DataFrame):
+            Country-cluster assignment dataset.
+
+        registration_shares_by_cluster (pandas.DataFrame):
+            Powertrain registration shares for each cluster.
+
+        reference_year (int):
+            Reference year used to calculate country-level registration shares.
+
+        simulation_years (list[int]):
+            Simulation start and end years.
+
+        start_registrations_year (int):
+            First year included in the historical registration dataset.
+
+        use_clusters (bool):
+            Whether country clusters should be used to estimate
+            powertrain shares.
+
+        output_path (str):
+            Directory where output CSV files will be saved.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing historical and projected vehicle registrations by country, year, and powertrain.
+    """
     end_year = simulation_years[1]
     absolute_registrations = preprocess_historical_registrations(historical_registrations, registrations_projected,
                                                                  reference_year, countries_selected,

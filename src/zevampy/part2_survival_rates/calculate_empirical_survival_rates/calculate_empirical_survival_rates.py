@@ -1,3 +1,5 @@
+"""Calculate empirical vehicle survival rates."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -14,19 +16,36 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import country_dim
 def calculate_empirical_survival_rates(stock, registrations, stock_year, countries_to_keep, output_path,
                                        survival_grouping):
     """
-        Calculates the empirical survival rates for vehicles by merging and dividing stock data and registrations.
+    Calculate empirical vehicle survival rates.
 
-        Args:
-            stock (pd.DataFrame): DataFrame containing vehicle stock data, including 'vehicle age' and
-                                  number_registered_vehicles_dim.
-            registrations (pd.DataFrame): DataFrame containing vehicle registration data with 'year' and
-                                          new_registrations_dim.
-            stock_year (pd.DataFrame): DataFrame containing the stock_year_dim information by country.
+    This function estimates empirical survival rates by combining vehicle stock data with historical registration data.
+    The workflow includes filtering vehicle ages, preparing registration data, calculating survival rates, and saving
+    the resulting datasets.
 
-        Returns:
-            pd.DataFrame: A DataFrame containing the calculated survival rates with columns ['geo country',
-                          'vehicle age', 'survival rate'].
-        """
+    Parameters:
+        stock (pandas.DataFrame):
+            DataFrame containing vehicle stock data.
+
+        registrations (pandas.DataFrame):
+            DataFrame containing historical vehicle registration data.
+
+        stock_year (pandas.DataFrame):
+            DataFrame containing stock-year information.
+
+        countries_to_keep (list[str]):
+            List of countries included in the analysis.
+
+        output_path (str):
+            Directory where output files are saved.
+
+        survival_grouping (list[str]):
+            Column names defining the grouping used for survival-rate
+            estimation.
+
+    Returns:
+        pandas.DataFrame:
+            DataFrame containing calculated empirical survival rates.
+    """
     # Filter stock data for vehicle age range
     stock = filter_vehicle_age(stock)
     stock = stock[stock[country_dim].isin(countries_to_keep)]

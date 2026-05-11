@@ -1,3 +1,5 @@
+"""Replace CSP curves with country-specific survival-rate distributions."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
@@ -8,23 +10,21 @@ from zevampy.load_data_and_prepare_inputs.dimension_names import *
 
 def replace_survival_rates_with_country_specific_csp(survival_rates, country_label):
     """
-    Replaces the survival rates for a specified country in the DataFrame with its country-specific CSP values.
+    Replace CSP values with country-specific survival-rate curves.
+
+    This function applies the fitted cumulative survival probability (CSP) curves from a selected country to all
+    countries in the dataset.
 
     Parameters:
-        - survival_rates (pd.DataFrame):
-            A DataFrame containing survival rates for multiple countries, with the following columns:
-              - country_dim (str): Identifier for each country (e.g., 'geo country').
-              - age_dim (str): Age of vehicles (e.g., 'vehicle age').
-              - survival_rate_weibull_dim (str): Weibull survival rates.
-              - survival_rate_weibull_gaussian_dim (str): Weibull-Gaussian survival rates.
-              - distribution_dim (str): Type of distribution used.
+        survival_rates (pandas.DataFrame):
+            DataFrame containing fitted survival-rate values.
 
-        - country_label (str):
-            The specific country for which survival rates should be replaced.
+        country_label (str):
+            Country whose CSP curves are applied to all countries.
 
     Returns:
-        - pd.DataFrame: Updated DataFrame where the survival rates for `country_label` replace the general survival
-        rates for all countries.
+        pandas.DataFrame:
+            DataFrame containing updated survival-rate values.
     """
     # Selecting rows for the specific country label
     country_data = survival_rates[survival_rates[country_dim] == country_label]

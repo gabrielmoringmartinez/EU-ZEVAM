@@ -1,19 +1,29 @@
+"""Split country lists into plotting groups."""
+
 # SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 # SPDX-License-Identifier: MIT
 
 def get_country_group_names(country_names, group_number, number_of_countries_group):
     """
-    Returns a subset of country names based on the specified group number.
-    group_number starts at 1.
+    Return a subset of country names for a plotting group.
 
+    Parameters:
+        country_names (list[str]):
+            List of country names.
 
-    Args:
-        country_names (list): A list of all country names.
-        group_number (int): The group number to select. Valid values are `1` (first group) or `2` (second group).
-        number_of_countries_group (int): The number of countries per group.
+        group_number (int):
+            Group index starting at 1.
+
+        number_of_countries_group (int):
+            Number of countries included in each group.
 
     Returns:
-    - list: List of country names for the specified group.
+        list[str]:
+            Subset of country names belonging to the selected group.
+
+    Raises:
+        ValueError:
+            If `group_number` is smaller than 1.
     """
     if group_number < 1:
         raise ValueError("group_number must start at 1")
