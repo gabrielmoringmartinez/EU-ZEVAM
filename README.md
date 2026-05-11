@@ -21,10 +21,11 @@ SPDX-License-Identifier: CC-BY-4.0
        alt="EU-ZEVAM logo" />
 </a>
 
-# 🚗 EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python
-**Integrating transport simulation and fleet survival analysis to forecast Europe’s electric vehicle transition**
+# 🚗 ZEVAMPY: European Zero-Emission Vehicle Adoption Model in Python
+**A flexible Python framework for vehicle stock modelling, fleet survival analysis, and zero-emission vehicle adoption projections**
 
-**The model allows to project the future European passenger car fleet composition by powertrain up to 2050.**
+**ZEVAMPY estimates future vehicle fleet composition by powertrain using empirical survival rates and vehicle registration scenarios.**
+
 
 ## Table of Contents
 - [About](#-about)
@@ -40,42 +41,48 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ## 🔋 About
 
-This repository presents a European passenger car stock model. It is based on the EU clustering model presented in [(Möring-Martínez et al., 2024)](https://doi.org/10.1016/j.trd.2024.104372) and in the empirical survivality rates approach presented in [(Held et al., 2021)](https://doi.org/10.1186/s12544-020-00464-0). This code is used to analyze the European BEV stock fleet up to 2050 in the publication: (Möring-Martínez et al., 2025 - under review).
+ZEVAMPY is an open-source Python framework for modelling vehicle fleet evolution using empirical survival rates and new vehicle registration scenarios. The framework estimates cumulative survival probability (CSP) curves, calculates vehicle stock by powertrain, and projects future fleet composition over user-defined time horizons.
+
+Although ZEVAMPY was originally developed and validated for European passenger-car fleets, it is designed to be reusable for other countries, powertrain categories, and projection periods when suitable stock and registration data are available. Survival rates can be estimated at different aggregation levels, including country-level, powertrain-level, or combined country–powertrain groupings.
+
+The repository includes a default European passenger-car application based on country-specific survival rates and registration scenarios for EU-27 countries and Norway. The methodological foundations draw on the transport-demand modelling framework presented in [Möring-Martínez et al., 2024](https://doi.org/10.1016/j.trd.2024.104372) and on the empirical survival-rate methodology described in [Held et al., 2021](https://doi.org/10.1186/s12544-020-00464-0). The framework has been applied to analyse future BEV fleet evolution in Europe in [Möring-Martínez et al., 2025](https://doi.org/10.1016/j.trd.2025.104945).
 
 <div align="center">
   <img src="battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_model_reference_scenario_.png" alt="Process Diagram" width="600" style="margin-bottom: 5px;">
-  <p style="margin-top: 0;"><b>Figure 1:</b> Estimated BEV stock shares for EU-27+Norway up to 2050 using [(Möring-Martínez et al., 2024)](https://doi.org/10.1016/j.trd.2024.104372) and 2021 country-specific empirical survival rates .</p>
+  <p style="margin-top: 0;"><b>Figure 1:</b> Example output from ZEVAMPY showing projected BEV stock shares for EU-27 countries and Norway up to 2050 using country-specific empirical survival rates.</p>
 </div>
 
 ## 📜 Statement of need
 
-The European Passenger Car Stock Model is a model designed to project the composition of the passenger car fleet by powertrain type up to the year 2050 or later if desired, using the projection of new vehicle registrations and empirical survival rates as inputs. Built on country-specific data from 2021, the model enables researchers and policymakers to project future fleet compositions under varying new vehicle registration scenarios and/or varying empirical survival rates.
+Vehicle fleet models are used to explore how passenger-car fleets evolve under different technology, policy, and market assumptions. However, many existing tools are difficult to reproduce, not openly available, or tightly coupled to a specific dataset or case study.
+
+ZEVAMPY addresses this gap by providing a reusable and modular Python framework for vehicle stock modelling. It separates the modelling workflow into transparent components for data loading, survival-rate estimation, CSP fitting, stock calculation, validation, plotting, and sensitivity analysis. This structure allows users to adapt the framework to different countries, powertrain classifications, vehicle categories, and time horizons.
+
 
 **Core features**
 
-- **Scenario Exploration:**
-Users can provide as input different new vehicle registration secenarios or modify the survival rates. Different new vehicle registration scenarios can have:
-  - Technology advancements
-  - Current and progressive policy implementations
-  - Changes in energy prices
+- **Flexible stock projections:**  
+  Users can project vehicle fleet composition by powertrain using custom registration scenarios and user-defined projection periods.
 
-  Different survival rates can define:
-  - Restrictions on vehicle drivability after a certain age based on survival rates.
-  - Dynamic survival rates analyzing the effect of slower or faster stock turnover rates.
+- **Empirical survival-rate estimation:**  
+  Survival rates can be estimated from stock and registration data at different years and aggregation levels, including country-level, powertrain-level, or combined country–powertrain groupings.
 
-- **Survival Rate Analysis:**
-The model incorporates historical survival rates from 2008, 2016, and 2021, allowing for detailed exploration of how changing lifespans influence fleet dynamics. Alternatively, assumptions about using other countries' survival rates can be used also to assess the impact.
+- **CSP fitting and stock modelling:**  
+  The framework fits cumulative survival probability curves and combines them with new registration data to estimate future vehicle stock.
+
+- **Reusable and extensible design:**  
+  The model can be coupled with external transportation models or scenario datasets, enabling applications beyond the default European passenger-car case.
+
+- **Research-oriented analysis workflows:**  
+  The repository includes example workflows for validation, sensitivity analysis, and comparative scenario exploration based on alternative survival-rate and registration assumptions.
 
 **Contribution to the state of the art**
 
-Unlike most existing tools in the field, which are proprietary, the European Passenger Car Stock Model is an open-source contribution, enabling transparency and accessibility. It offers the flexibility to integrate external transportation models, such as those described by [(Domarchi and Cherchi, 2023)](https://doi.org/10.1080/01441647.2023.2195687), to enhance the accuracy and applicability of fleet projections.
+Unlike many fleet-modelling tools, ZEVAMPY is open source, modular, and designed for reuse. It enables transparent analysis of how vehicle registrations and survival rates influence future fleet composition. While the default application focuses on European battery-electric passenger cars, the framework can be adapted to other regions, powertrain groups, and modelling horizons when the required input data are available.
 
 **Explorative, not prescriptive**
 
-
-The model does not optimize fleet composition but instead explores the effects of different assumptions and scenarios. This allows users to study the emerging impacts of policy, technology, and economic changes on the European passenger car market.
-
-In doing so, the model serves as a valuable tool for decision-making, enabling stakeholders to anticipate and plan for the future of passenger transportation systems across Europe.
+ZEVAMPY does not optimize fleet composition. Instead, it helps users explore how different assumptions about vehicle registrations and fleet turnover affect future stock shares. This makes it useful for researchers, policymakers, and analysts who want to assess long-term fleet dynamics under alternative scenarios.
 
 ## 🔧 Recommended skills
 
