@@ -90,70 +90,166 @@ The European Passenger Car Stock Model is implemented in Python. While no progra
 
 ## 📦 Installation
 
-⚠️ Note: This setup has been **tested only on Windows 10/11 using WSL2 (Ubuntu)**.
-The same steps should work on macOS and most Linux distributions, but have not been officially tested.
+ZEVAMPY can be installed in two ways:
 
-To ensure consistent execution across systems, the model uses Python 3.12.6 managed by [pyenv](https://github.com/pyenv/pyenv) and isolated in a virtual environment via `venv`.
+1. **As a user**: install the released package from PyPI.
+2. **As a developer**: clone the repository and install it in editable mode.
 
-### 🔧 Prerequisites
-**On Windows:**
-- WSL2 with Ubuntu installed (recommended version: Ubuntu 22.04 or later)
-- `git`, `build-essential`, `pyenv`, and `python-build` installed inside WSL
+### Requirements
 
-Install pyenv following the official guide: https://github.com/pyenv/pyenv
+ZEVAMPY requires:
 
-**On macOS/Linux:**
-- Xcode Command Line Tools (macOS) or `build-essential` (Linux)
+- Python 3.12 or later
+- `pip`
+- input data in CSV format
+- a configuration file defining paths, countries, powertrains, and model settings
 
-- `git`, `pyenv`, and required Python build dependencies installed
+The package has been developed and tested primarily on Windows 10/11 using WSL2 Ubuntu. It should also work on Linux and macOS, but these systems have not yet been fully tested.
 
-See [pyenv wiki](https://github.com/pyenv/pyenv/wiki) for OS-specific setup instructions.
+---
 
-### 📂 How to Open WSL in a Specific Folder (Windows only)
-If you're using Windows with WSL installed:
+### Installation for users
 
-Navigate to the folder in File Explorer (e.g., where you want to clone the project).
+Use this option if you want to run ZEVAMPY without modifying the source code.
 
-Click the address bar, type `wsl`, and press Enter.
-This opens WSL directly in that folder.
+#### 1. Create and activate a virtual environment
 
-💡 macOS/Linux users: Open Terminal and use cd to move into the desired folder.
-
-### 🚀 Setup Steps
-
-1. Clone the project in the folder you want to store it
-```bash
-git clone https://github.com/gabrielmoringmartinez/EU-ZEVAM.git
-```
-2. Change your working directory  to the folder where the repository was cloned
-```bash
-cd EU-ZEVAM
-```
-3. Install Python 3.12.6 using `pyenv`
-```bash
-pyenv install 3.12.6
-```
-4. Set Python 3.12.6 as python in your environment
-```bash
-pyenv local 3.12.6
-```
-5. Create a virtual environment
 ```bash
 python -m venv venv
 ```
-6. Activate the virtual environment.
-
+On Windows PowerShell:
+```powershell
+venv\Scripts\Activate.ps1
+```
+On Linux/macOS/WSL:
 ```bash
 source venv/bin/activate
 ```
-7. Install dependencies (libraries):
+#### 2. Install ZEVAMPY from PyPI
+```bash
+pip install zevampy
+```
+#### 3. Prepare your input folder
+Create a project folder containing:
+```bash
+my_zevampy_project/
+├── config.yaml
+├── inputs/
+└── outputs/
+```
+The `inputs` folder should contain the required CSV input files.
+#### 4. Configure the model
+Edit `config.yaml` to define the model setup, for example:
+```yaml
+data:
+  input_path: inputs
+  output_path: outputs
+  
+geography:
+  countries:
+    - Germany
+    - France
+  use_clusters: true
+
+powertrains:
+  - BEV
+  - Gasoline
+  - Diesel
+
+model:
+  start_new_registration_year: 1970
+  first_stock_year: 2014
+  end_year: 2050
+  csp_reference_year: 2021
+  csp_available_years: 45
+  historical_validation: true
+  historical_csp: true
+  sensitivity_analysis: false
+
+survival_rates:
+  grouping:
+    - geo country
+```
+To estimate survival rates by both country and powertrain, use:
+```yaml
+survival_rates:
+  grouping:
+    - geo country
+    - powertrain
+```
+This requires stock-by-age input data that also contains a `powertrain` column.
+
+#### 5. Run ZEVAMPY
+```yaml
+zevampy --config config.yaml
+```
+Alternatively:
+```yaml
+python -m zevampy.cli --config config.yaml
+```
+---
+### Installation for developers
+Use this option if you want to modify the codebase or contribute to ZEVAMPY.
+#### 1. Clone the repository
+```bash
+git clone https://github.com/gabrielmoringmartinez/zevampy.git
+cd zevampy
+```
+#### 2. Create and activate a virtual environment
+```bash
+python -m venv venv
+```
+On Windows PowerShell:
+```bash
+venv\Scripts\Activate.ps1
+```
+On Linux/macOS/WSL:
+```bash
+source venv/bin/activate
+```
+#### 3. Install the package in editable mode
+```bash
+pip install -e .
+```
+If you keep a separate requirements file for development tools, install it as well:
 ```bash
 pip install -r stock_model_requirements.txt
 ```
-8. Run the model:
+#### 4. Run the model locally
 ```bash
-python run_model.py
+zevampy --config config.yaml
 ```
+or:
+```bash
+python -m zevampy.cli --config config.yaml
+```
+---
+### Adapting ZEVAMPY to new use cases
+ZEVAMPY is designed to be reusable beyond the default European passenger-car case.
+
+Users can adapt:
+- Countries or regions by changing the geography.countries section in config.yaml
+- Powertrains by changing the powertrains list
+- Projection horizon by changing model.end_year
+- Input and output folders through the data section
+- Survival-rate grouping through survival_rates.grouping
+
+For example, to model country- and powertrain-specific survival rates:
+```yaml
+survival_rates:
+  grouping:
+    - geo country
+    - powertrain
+```
+The input stock-by-age file must then include at least:
+```yaml
+geo country;vehicle age;powertrain;number of registered vehicles
+```
+For country-level survival rates only, the stock-by-age input file should include:
+```yaml
+geo country;vehicle age;number of registered vehicles
+```
+This makes it possible to extend ZEVAMPY to additional countries, powertrain categories, vehicle classes, or projection horizons when suitable input data are available.
 
 ## 🧪 Testing
 [![CI](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml)
