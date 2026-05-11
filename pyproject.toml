@@ -7,14 +7,31 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zevampy"
-version = "0.1.0"
+version = "1.2.0"
 authors = [
   { name="Gabriel Möring-Martínez", email="gabriel.moeringmartinez@dlr.de" },
 ]
-description = "zevampy: Zero Emission Vehicle Adoption model in Python"
+description = "ZEVAMPY: Zero Emission Vehicle Adoption model in Python"
+readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
+
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+
+keywords = [
+    "vehicle-stock-model",
+    "electric-vehicles",
+    "transport-model",
+    "survival-analysis",
+    "fleet-modelling",
+    "energy-transition",
+]
 
 [project.urls]
 Homepage = "https://github.com/gabrielmoringmartinez/EU-ZEVAM"
