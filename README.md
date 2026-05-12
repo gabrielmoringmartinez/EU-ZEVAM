@@ -101,12 +101,113 @@ ZEVAMPY requires:
 
 - Python 3.12 or later
 - `pip`
-- input data in CSV format
-- a configuration file defining paths, countries, powertrains, and model settings
+- input datasets in CSV format
+- a YAML configuration file defining model settings and file paths
 
 The package has been developed and tested primarily on Windows 10/11 using WSL2 Ubuntu. It should also work on Linux and macOS, but these systems have not yet been fully tested.
 
 ---
+
+### What users need
+To run ZEVAMPY, users provide a set of CSV input files together with a YAML configuration file describing the modelling setup.
+#### Required input datasets
+At the current stage, ZEVAMPY expects the following filenames inside the folder defined by `data.input_path` in `config.yaml`. The folder path can be modified, but the filenames are currently fixed.
+##### Country clusters (optional)
+- `inputs/0_country_clusters.csv`: 
+
+Defines optional country clusters used to reduce the number of independent registration forecasts required. Countries assigned to the same cluster are assumed to share the same projected powertrain registration shares.
+
+This file is optional and can be disabled in `config.yaml` by setting:
+
+```yaml
+geography:
+  use_clusters: false
+```
+
+---
+
+##### Historical and projected vehicle registrations by powertrain
+
+- `inputs/1_1_new_registrations_by_fuel_type_clusters.csv`
+
+Contains historical and projected vehicle-registration shares by powertrain for the defined countries or clusters.
+
+---
+
+##### Historical total vehicle registrations
+
+- `inputs/1_2_A_2_historical_new_registrations_data_passenger_cars.csv`
+
+Contains historical absolute vehicle-registration numbers by country up to the latest available historical year.
+
+---
+##### Projected total vehicle registrations
+
+- `inputs/1_3_new_registrations_projected.csv`
+
+Contains projected total vehicle-registrations for future years up to the selected simulation horizon.
+
+---
+
+##### Stock-by-age datasets
+
+- `inputs/2_1_A_1_age_resolved_data_passenger_car_stock_fleet.csv`
+
+Contains the vehicle stock resolved by vehicle age. This dataset is used to estimate empirical cumulative survival probability (CSP) curves.
+
+The dataset can optionally include additional dimensions such as:
+- `geo country`
+- `powertrain`
+
+This allows empirical survival rates to be estimated at different aggregation levels.
+
+Meaningful survival-rate estimation and subsequent stock projections require sufficiently high goodness-of-fit values for the fitted CSP curves (e.g., high R² values in `outputs/2_1_optimum_parameters_csp_curves.csv`).
+
+---
+
+##### CSP reference year
+
+- `inputs/2_2_A_1_stock_year.csv`
+
+Defines the reference year associated with the stock-by-age dataset used for CSP estimation.
+
+For example, the configuration file `config.yaml` may define:
+```yaml
+csp_reference_year: 2021
+```
+However, some countries may only provide stock-by-age data for neighbouring years such as 2020 or 2022. This file specifies the actual stock-reference year used for each country or dataset during CSP estimation.
+
+---
+
+##### Optional validation and sensitivity-analysis datasets
+Files in the default inputs beginning with:
+- `4_*`
+- `5_*`
+
+are optional and mainly used for:
+- historical validation,
+- sensitivity analysis,
+- and reproduction of the default European case study.
+
+These files are not required for running custom ZEVAMPY applications.
+
+---
+
+### Configuration file
+- `config.yaml`
+
+The configuration file acts as the main user interface of ZEVAMPY and controls the complete modelling workflow. It defines:
+- input and output paths
+- countries or regions
+  - If `countries` is left empty, all available countries found in the input datasets are used.
+- powertrains
+  - If `powertrains` is left empty, all available powertrain categories found in the input datasets are used.
+- projection horizon
+- Cumulative Survival Probability (CSP) settings
+- validation settings
+- and optional sensitivity-analysis options.
+
+A complete example configuration file is provided with the default ZEVAMPY example dataset.
 
 ### Installation for users
 
@@ -180,11 +281,11 @@ survival_rates:
 This requires stock-by-age input data that also contains a `powertrain` column.
 
 #### 5. Run ZEVAMPY
-```yaml
+```bash
 zevampy --config config.yaml
 ```
 Alternatively:
-```yaml
+```bash
 python -m zevampy.cli --config config.yaml
 ```
 ---
@@ -225,6 +326,9 @@ python -m zevampy.cli --config config.yaml
 ```
 ---
 ### Adapting ZEVAMPY to new use cases
+
+ZEVAMPY separates model logic from input datasets and configuration settings, allowing users to adapt the framework to new applications without modifying the core source code.
+
 ZEVAMPY is designed to be reusable beyond the default European passenger-car case.
 
 Users can adapt:
@@ -242,11 +346,11 @@ survival_rates:
     - powertrain
 ```
 The input stock-by-age file must then include at least:
-```yaml
+```text
 geo country;vehicle age;powertrain;number of registered vehicles
 ```
 For country-level survival rates only, the stock-by-age input file should include:
-```yaml
+```text
 geo country;vehicle age;number of registered vehicles
 ```
 This makes it possible to extend ZEVAMPY to additional countries, powertrain categories, vehicle classes, or projection horizons when suitable input data are available.
