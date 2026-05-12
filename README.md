@@ -109,9 +109,13 @@ The package has been developed and tested primarily on Windows 10/11 using WSL2 
 ---
 
 ### What users need
+
 To run ZEVAMPY, users provide a set of CSV input files together with a YAML configuration file describing the modelling setup.
+
 #### Required input datasets
-At the current stage, ZEVAMPY expects the following filenames inside the folder defined by `data.input_path` in `config.yaml`. The folder path can be modified, but the filenames are currently fixed.
+
+At the current stage, ZEVAMPY expects the following filenames inside the folder defined by `data.input_path` in `config.yaml`. The input-folder path can be modified, but the filenames are currently fixed.
+
 ##### Country clusters (optional)
 - `inputs/0_country_clusters.csv`: 
 
@@ -265,9 +269,9 @@ model:
   end_year: 2050
   csp_reference_year: 2021
   csp_available_years: 45
-  historical_validation: true
-  historical_csp: true
-  sensitivity_analysis: false
+  historical_validation: false
+  historical_csp: false
+  sensitivity_analysis: true
 
 survival_rates:
   grouping:

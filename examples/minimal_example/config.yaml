@@ -14,8 +14,8 @@ model:
   end_year: 2040
   csp_reference_year: 2021
   csp_available_years: 45
-  historical_validation: false
-  historical_csp: false
+  historical_validation: true
+  historical_csp: true
   sensitivity_analysis: true
 
 survival_rates:
