@@ -1,0 +1,23 @@
+data:
+  input_path: inputs
+  output_path: outputs
+
+geography:
+  countries:
+  use_clusters: true
+
+powertrains:
+
+model:
+  start_new_registration_year: 1976
+  first_stock_year: 2020
+  end_year: 2040
+  csp_reference_year: 2021
+  csp_available_years: 45
+  historical_validation: false
+  historical_csp: false
+  sensitivity_analysis: true
+
+survival_rates:
+  grouping:
+    - geo country

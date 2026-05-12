@@ -291,6 +291,20 @@ Alternatively:
 python -m zevampy.cli --config config.yaml
 ```
 ---
+
+#### 🚀 Quick start example
+
+A minimal runnable example is available in:
+
+[`examples/minimal_example/`](https://github.com/gabrielmoringmartinez/zevampy/tree/main/examples/minimal_example)
+
+You can download the example inputs and configuration files directly from the repository and run:
+
+```bash
+zevampy --config config.yaml
+```
+
+
 ### Installation for developers
 Use this option if you want to modify the codebase or contribute to ZEVAMPY.
 #### 1. Clone the repository
