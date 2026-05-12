@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "zevampy"
-version = "1.2.1"
+version = "1.2.2"
 authors = [
   { name="Gabriel Möring-Martínez", email="gabriel.moeringmartinez@dlr.de" },
 ]
@@ -24,6 +24,10 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
 ]
 
+requires-python = ">=3.12"
+
+
+
 keywords = [
     "vehicle-stock-model",
     "electric-vehicles",
@@ -34,8 +38,10 @@ keywords = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/gabrielmoringmartinez/EU-ZEVAM"
-Issues = "https://github.com/gabrielmoringmartinez/EU-ZEVAM/issues"
+Homepage = "https://github.com/gabrielmoringmartinez/zevampy"
+Issues = "https://github.com/gabrielmoringmartinez/zevampy/issues"
+Repository = "https://github.com/gabrielmoringmartinez/zevampy/zevampy.git"
+
 
 [tool.setuptools]
 package-dir = {"" = "src"}
