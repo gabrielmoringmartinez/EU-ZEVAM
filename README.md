@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2025 German Aerospace Center, Gabriel Möring-Martínez
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
-![EU-ZEVAM Banner](fk_eu_stock_model_banner.png)
+![zevampy Banner](fk_stock_model_banner.png)
 
 [![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
@@ -21,7 +21,7 @@ SPDX-License-Identifier: CC-BY-4.0
        alt="EU-ZEVAM logo" />
 </a>
 
-# 🚗 ZEVAMPY: European Zero-Emission Vehicle Adoption Model in Python
+# 🚗 ZEVAMPY: Zero-Emission Vehicle Adoption Model in Python
 **A flexible Python framework for vehicle stock modelling, fleet survival analysis, and zero-emission vehicle adoption projections**
 
 **ZEVAMPY estimates future vehicle fleet composition by powertrain using empirical survival rates and vehicle registration scenarios.**
@@ -208,6 +208,8 @@ The configuration file acts as the main user interface of ZEVAMPY and controls t
 - and optional sensitivity-analysis options.
 
 A complete example configuration file is provided with the default ZEVAMPY example dataset.
+
+---
 
 ### Installation for users
 
