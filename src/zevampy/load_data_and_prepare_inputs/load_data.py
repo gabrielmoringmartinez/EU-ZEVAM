@@ -62,9 +62,13 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
     if not input_dir.exists():
         raise FileNotFoundError(
             f"Input directory '{input_dir}' does not exist.\n\n"
-            "Fix this by:\n"
-            "1) Updating 'input_path' in config.yaml (under 'data')\n"
-            "2) Or passing a valid path via the CLI (--input-path)\n"
+            "Possible causes:\n"
+            "- The configured input path is incorrect.\n"
+            "- The input folder has not been created yet.\n\n"
+            "How to fix:\n"
+            "1) Create the input folder and add the required CSV files.\n"
+            "2) Or update 'data.input_path' in config.yaml.\n"
+            "3) Or pass the correct path via '--input'.\n"
         )
 
     # --- Required files ---
@@ -95,14 +99,26 @@ def load_data(input_dir, historical_validation_active=True, sensitivity_analysis
         check_required_files(
             input_dir,
             required_validation_files,
-            "validation against historical data"
+            "validation against historical data",
+            hint=(
+                "If validation data are not available or validation is not needed, "
+                "disable it in config.yaml by setting:\n\n"
+                "model:\n"
+                "  historical_validation: false"
+            ),
         )
 
     if sensitivity_analysis_active and historical_csp_active:
         check_required_files(
             input_dir,
             required_historical_csp_files,
-            "historical CSP sensitivity analysis"
+            "historical CSP sensitivity analysis",
+            hint=(
+                "If historical CSP sensitivity analysis is not needed, "
+                "disable it in config.yaml by setting:\n\n"
+                "model:\n"
+                "  historical_csp: false"
+            ),
         )
 
     if use_clusters_active:
@@ -296,7 +312,7 @@ Check that all required input files exist.
 """
 
 
-def check_required_files(input_dir, files, purpose):
+def check_required_files(input_dir, files, purpose, hint=None):
     """
     Check that all required input files exist.
 
@@ -317,11 +333,18 @@ def check_required_files(input_dir, files, purpose):
     missing = [file for file in files if not (input_dir / file).exists()]
 
     if missing:
-        raise FileNotFoundError(
-            f"Missing input files for {purpose} in '{input_dir}':\n\n"
-            + "\n".join(f"- {file}" for file in missing)
-            + "\n\nCheck that the files exist and that their names are spelled correctly."
+        message = (
+                f"Missing input files for {purpose} in '{input_dir}':\n\n"
+                + "\n".join(f"- {file}" for file in missing)
+                + "\n\nCheck that the files exist and that their names are spelled correctly."
         )
+
+        if hint:
+            message += f"\n\n{hint}"
+
+        raise FileNotFoundError(message)
+
+
 
 """
 Validate that selected powertrains exist in the dataset.
