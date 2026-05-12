@@ -11,16 +11,14 @@ model:
   end_year: 2050
   csp_reference_year: 2021
   csp_available_years: 45
-  historical_validation: true
+  historical_validation: false
   sensitivity_analysis: true
-  historical_csp: true
+  historical_csp: false
 
 
 geography:
   countries:
-    - Poland
-    - Netherlands
-  use_clusters: false
+  use_clusters: true
 
 
 powertrains:
