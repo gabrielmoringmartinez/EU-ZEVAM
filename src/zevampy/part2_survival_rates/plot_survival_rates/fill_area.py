@@ -30,6 +30,8 @@ def fill_area_based_on_label(ax, merged_df_country, x_column, columns_to_plot_ke
         matplotlib.axes.Axes:
             Updated axes object.
     """
+    if not fill_between_label or len(columns_to_plot_keys) < 2:
+        return ax
     if fill_between_label == country_csp_label:
         ax = fill_area(ax, merged_df_country, x_column, columns_to_plot_keys)
     elif fill_between_label == historical_csp_label:
