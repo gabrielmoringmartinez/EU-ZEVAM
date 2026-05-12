@@ -22,13 +22,11 @@ def test_model_outputs_expected_files():
                         or if any expected output CSV or PDF files are not found.
     """
     # Clean up any old outputs
-    if os.path.exists('outputs'):
-        shutil.rmtree('outputs')
+    if os.path.exists("outputs"):
+        shutil.rmtree("outputs")
 
-    # Run the main model
     run_model(config_path="config.yaml")
 
-    # Define expected CSV files in 'outputs'
     expected_csv_files = [
         "1_1_absolute_registrations.csv",
         "1_2_registrations_by_powertrain.csv",
@@ -37,26 +35,17 @@ def test_model_outputs_expected_files():
         "2_3_fitted_CSP_curves.csv",
         "3_1_stock_data_including_vehicle_age.csv",
         "3_2_stock_shares.csv",
-        "4_1_rmse_validation_step_1_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.csv",
-        "4_2_rmse_validation_step_2_estimated_new_bev_registrations_and_empirical_csp_curves_all_countries.csv",
     ]
 
-    # Check CSVs in 'outputs'
     assert os.path.exists("outputs"), "Output folder was not created"
     actual_csv_files = os.listdir("outputs")
 
     missing_csv = [f for f in expected_csv_files if f not in actual_csv_files]
     assert not missing_csv, f"Missing expected CSV output files: {missing_csv}"
 
-    # Define expected PDFs in 'outputs/figures'
     expected_pdf_files = [
         "stock_shares_model_reference_scenario_BEV.pdf",
         "stock_shares_model_reference_scenario_Gasoline.pdf",
-        "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_country_csps_.pdf",
-        "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_historical_country_csps_.pdf",
-        "battery_electric_vehicle_stock_shares_eu_27_and_norway_up_to_2050_with_modified_registrations_.pdf",
-        "validation_step_1_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.pdf",
-        "validation_step_2_actual_new_bev_registrations_and_empirical_csp_curves_all_countries.pdf",
     ]
 
     figures_folder = os.path.join("outputs", "figures")

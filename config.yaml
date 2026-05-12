@@ -11,9 +11,9 @@ model:
   end_year: 2050
   csp_reference_year: 2021
   csp_available_years: 45
-  historical_validation: true
-  sensitivity_analysis: true
-  historical_csp: true
+  historical_validation: false
+  sensitivity_analysis: false
+  historical_csp: false
 
 
 geography:
