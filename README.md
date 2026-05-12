@@ -6,11 +6,16 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ![zevampy Banner](fk_stock_model_banner.png)
 
+[![PyPI version](https://img.shields.io/pypi/v/zevampy.svg)](https://pypi.org/project/zevampy/)
+[![Latest release](https://img.shields.io/github/v/release/gabrielmoringmartinez/zevampy)](https://github.com/gabrielmoringmartinez/zevampy/releases)
+[![Dependency](https://img.shields.io/badge/dependency-Python-orange)](https://www.python.org/)
+
+[![CI](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml)
+[![codecov](https://codecov.io/github/gabrielmoringmartinez/zevampy/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/zevampy)
+
 [![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/zevampy)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/zevampy)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
 [![Data License: CC BY-SA 4.0](https://img.shields.io/badge/data%20license-CC%20BY--SA%204.0-blue.svg)](LICENSES/CC-BY-SA-4.0.txt)
-[![CI](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml)
-[![codecov](https://codecov.io/github/gabrielmoringmartinez/zevampy/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/zevampy)
 
 
 <a href="https://github.com/gabrielmoringmartinez/zevampy">
