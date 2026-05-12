@@ -6,15 +6,15 @@ SPDX-License-Identifier: CC-BY-4.0
 
 ![zevampy Banner](fk_stock_model_banner.png)
 
-[![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)
+[![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/zevampy)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/zevampy)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
 [![Data License: CC BY-SA 4.0](https://img.shields.io/badge/data%20license-CC%20BY--SA%204.0-blue.svg)](LICENSES/CC-BY-SA-4.0.txt)
-[![CI](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml)
-[![codecov](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model)
+[![CI](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml)
+[![codecov](https://codecov.io/github/gabrielmoringmartinez/zevampy/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/zevampy)
 
 
-<a href="https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model">
-  <img src="https://raw.githubusercontent.com/gabrielmoringmartinez/European-passenger-car-stock-model/main/dlr_logo.png"
+<a href="https://github.com/gabrielmoringmartinez/zevampy">
+  <img src="https://raw.githubusercontent.com/gabrielmoringmartinez/zevampy/main/dlr_logo.png"
        align="right"
        height="120"
        width="120"
@@ -104,7 +104,7 @@ ZEVAMPY requires:
 - input datasets in CSV format
 - a YAML configuration file defining model settings and file paths
 
-The package has been developed and tested primarily on Windows 10/11 using WSL2 Ubuntu. It should also work on Linux and macOS, but these systems have not yet been fully tested.
+The package has primarily been developed and tested on Windows 10/11 using WSL2 Ubuntu. It should also work on Linux and macOS, but these systems have not yet been fully tested.
 
 ---
 
@@ -376,27 +376,26 @@ geo country;vehicle age;number of registered vehicles
 This makes it possible to extend ZEVAMPY to additional countries, powertrain categories, vehicle classes, or projection horizons when suitable input data are available.
 
 ## 🧪 Testing
-[![CI](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model/actions/workflows/test.yml)
-[![codecov](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/European-passenger-car-stock-model)
+[![CI](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml/badge.svg)](https://github.com/gabrielmoringmartinez/zevampy/actions/workflows/test.yml)
+[![codecov](https://codecov.io/github/gabrielmoringmartinez/zevampy/graph/badge.svg?token=Z1RUTSJLSY)](https://codecov.io/github/gabrielmoringmartinez/zevampy)
 
-This repository includes unit tests to ensure consistent and reliable behavior of the European passenger car stock model.
+This repository includes unit tests to ensure consistent and reliable behavior of ZEVAMPY.
 
-To run all automated tests:
+To run all tests:
 
 ```bash
 python run_tests.py
 ```
 This will:
 
-- Discover and execute all tests in the tests/folder using pytest
-
-- Print outputs to the terminal (due to the -s flag in use) and save outputs in the outputs folder
-
-- Exit with a status code indicating test success or failure
+- Discover and execute all tests in the `tests/` folder using `pytest`
+- Print outputs to the terminal
+- Save generated model outputs in the `outputs/` folder
+- Exit with a status code indicating success or failure
 
 ### Optional: Run a specific test
 
-To run an individual test instead, modify the run_tests.py script. For example:
+To run an individual test, modify the `run_tests.py` script. For example:
 ```
 # Uncomment and adapt one of the lines below in run_tests.py
 
@@ -406,29 +405,36 @@ To run an individual test instead, modify the run_tests.py script. For example:
 # Example:
 # sys.exit(pytest.main(["tests/test_4_model_runs_on_minimal_input_single_country.py::test_model_runs_on_minimal_input"]))
 ```
-**Note:** The tests assume the model environment is already set up. The tests assume the model environment is already set up. Make sure you’ve installed the required dependencies with:
+**Note:** The tests assume the Python environment is already set up and all required dependencies are installed:
 ```bash
-pip install -r stock_model_requirements.txt.
+pip install -r stock_model_requirements.txt
 ```
 ## 🤝 Acknowledgements
 
-Development of the European passenger car stock model was funded by the NDC ASPECTS project. It received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 101003866.  Additional funding for this research was provided by the MoDa project of the German Aerospace Center (DLR). We express our gratitude to all contributors.
+Development of the Zero-Emission Vehicle Adoption Model in Python (ZEVAMPY) was funded through the NDC ASPECTS project, which received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 101003866.
+
+Additional support for this research was provided through the MoDa project of the German Aerospace Center (DLR).
+
+The authors gratefully acknowledge all contributors, collaborators, and reviewers who supported the development and testing of the model.
 
 ## ✍️ Authorship
 
-This model is developed by [Gabriel Möring-Martínez](https://orcid.org/0009-0003-4380-3081) in the DLR's Institute of Vehicle concepts. Special thanks to the DLR members [Stephan Schmid](https://orcid.org/0000-0002-3081-8749), [Isheeka Dasgupta](https://www.linkedin.com/in/isheeka644/), [Murat Senzeybek](https://orcid.org/0000-0003-1769-3539) and [Samuel Hasselwander](https://orcid.org/0000-0002-0805-9061) which helped in the model conceptualization.
+ZEVAMPY was developed by [Gabriel Möring-Martínez](https://orcid.org/0009-0003-4380-3081) at the DLR's Institute of Vehicle concepts. Special thanks to the DLR members [Stephan Schmid](https://orcid.org/0000-0002-3081-8749), [Isheeka Dasgupta](https://www.linkedin.com/in/isheeka644/), [Murat Senzeybek](https://orcid.org/0000-0003-1769-3539) and [Samuel Hasselwander](https://orcid.org/0000-0002-0805-9061) for their contributions to the model conceptualization and development.
+
+Additional thanks to [Fabia Miorelli](https://orcid.org/0000-0001-5095-5401) for contributions that improved the reusability and software engineering practices of ZEVAMPY.
 
 ## 📝 Citation
 
+If you use ZEVAMPY in academic work, please cite the software publication below.
 
-For work involving the EU-ZEVAM model in your work, please cite the following:
+### Software citation
 
-Möring-Martínez, G. (2025). "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python." *Journal of Open Source Software*, XX(XXX), XXXX. [doi:XX.XXXXX/joss.XXXXX](doi:XX.XXXXX/joss.XXXXX), [https://doi:XX.XXXXX/joss.XXXXX](https://doi:XX.XXXXX/joss.XXXXX)
+Möring-Martínez, G. (2026). "ZEVAMPY: Zero-Emission Vehicle Adoption Model in Python." *Journal of Open Source Software*, XX(XXX), XXXX. [doi:XX.XXXXX/joss.XXXXX](doi:XX.XXXXX/joss.XXXXX), [https://doi:XX.XXXXX/joss.XXXXX](https://doi:XX.XXXXX/joss.XXXXX)
 ```bibtex
-@article{MoringMartinez2025EUZEVAM,
+@article{MoringMartinez2025ZEVAMPY,
   author = {M{\"o}ring-Martínez, Gabriel},
-  title = {{EU-ZEVAM}: {European} zero-emission vehicle adoption model in {Python}},
-  year = {2025},
+  title = {{ZEVAMPY}: Zero-Emission Vehicle Adoption Model in {Python}},
+  year = {2026},
   doi = {10.21105/joss.XXXXX},
   url = {https://doi.org/XX.XXXXX/joss.XXXXX},
   journal = {Journal of Open Source Software},
@@ -438,32 +444,33 @@ Möring-Martínez, G. (2025). "EU-ZEVAM: European Zero-Emission Vehicle Adoption
   publisher = {The Open Journal}
 }
 ```
-Möring-Martínez, G., Senzeybek, M., Hasselwander, S., Schmid, S. (2025).  "Quantifying the impact of fleet turnover on electric vehicle uptake in Europe."  *Transportation Research Part D: Transport and Environment*, **XXX**, XXXXXX. [https://doi.org/10.1016/j.trd.2025.XXXXXX](doi.org/10.1016/j.trd.2025.XXXXXX), [https://doi.org/10.1016/j.trd.2025.XXXXXX](https://doi.org/10.1016/j.trd.2025.XXXXXX)
+
+### Related research article
+
+The following article presents an early scientific application of the modelling framework and discusses the impact of fleet turnover on vehicle electrification in Europe:
+
+Möring-Martínez, G., Senzeybek, M., Hasselwander, S., & Schmid, S. (2025). Quantifying the impact of fleet turnover on electric vehicle uptake in Europe. Transportation Research Part D: Transport and Environment, 147, 104945. [https://doi.org/10.1016/j.trd.2025.104945](https://doi.org/10.1016/j.trd.2025.104945)
 
 ```bibtex
-@article{MoringMartinez2025Paper,
-   author={M{\"o}ring-Martínez, Gabriel and Senzeybek, Murat and Hasselwander, Samuel and Schmid, Stephan},
-   title={Quantifying the impact of fleet turnover on electric vehicle uptake in Europe},
-   journal={Transportation Research Part D: Transport and Environment},
-   volume={X},
-   number={X},
-   year={2025},
-   URL={https://doi.org/XX.XXXX/XXXXXX},
-   doi={XX.XXXX/XXXXXXXXX},
-   publisher={Elsevier}
+@article{MoringMartinez2025TRD,
+  author = {Gabriel M{\"o}ring-Mart{\'i}nez and Murat Senzeybek and Samuel Hasselwander and Stephan Schmid},
+  year = {2025},
+  title = {Quantifying the impact of fleet turnover on electric vehicle uptake in Europe},
+  url = {https://www.sciencedirect.com/science/article/pii/S1361920925003554},
+  pages = {104945},
+  volume = {147},
+  issn = {13619209},
+  journal = {Transportation Research Part D: Transport and Environment},
+  doi = {10.1016/j.trd.2025.104945}
 }
-
 ```
-
-You can also find machine-readable citation metadata for the EU-ZEVAM Python model in the [CITATION.cff](./CITATION.cff) file for use with citation tools like GitHub’s citation button or Zotero.
+You can also find machine-readable citation metadata in the [CITATION.cff](https://github.com/gabrielmoringmartinez/zevampy/blob/main/CITATION.cff) file for use with GitHub’s citation button, Zotero, and other citation tools.
 
 ## 📃 License
 
-[![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/European-passenger-car-stock-model)
+[![REUSE status](https://api.reuse.software/badge/github.com/gabrielmoringmartinez/zevampy)](https://api.reuse.software/info/github.com/gabrielmoringmartinez/zevampy)
 [![MIT License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSES/MIT.txt)
 [![Data License: CC BY-SA 4.0](https://img.shields.io/badge/data%20license-CC%20BY--SA%204.0-blue.svg)](LICENSES/CC-BY-SA-4.0.txt)
-
-
 
 This project is REUSE compliant and licensed under multiple open licenses depending on content type:
 
@@ -478,12 +485,12 @@ For full licensing details and exceptions, see the [LICENSE.md](./LICENSE.md) fi
 
 ## 🗨️ Contacts
 
-For any general information, further questions or future collaborations regarding the European passenger car stock model, feel free to reach out to us. We are here to provide support and answer any questions you may have. Below are the best ways to contact our team:
+For questions, collaborations, or support related to ZEVAMPY, please contact:
 
-- **Email**: Send us your inquiries, proposals or support requests to [gabriel.moeringmartinez@dlr.de](mailto:gabriel.moeringmartinez@dlr.de).
-- **Website**: Visit the official DLR-FK website for more information about the DLR-FK institute projects and publications: [DLR-FK (Institute of Vehicle Concepts)](https://www.dlr.de/en/fk).
+- **Email:** [gabriel.moeringmartinez@dlr.de](mailto:gabriel.moeringmartinez@dlr.de)
+- **DLR Institute of Vehicle Concepts:** https://www.dlr.de/en/fk
 
-For having the latest news about the DLR Institute of Vehicle Concepts, subscribe to our LinkedIn:
+Follow the DLR Institute of Vehicle Concepts on LinkedIn for updates and publications:
 
 [![LinkedIn](https://img.shields.io/badge/subscribe-white.svg?logo=data:image/svg%2bxml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwLjQ0NyAyMC40NTJoLTMuNTU0di01LjU2OWMwLTEuMzI4LS4wMjctMy4wMzctMS44NTItMy4wMzctMS44NTMgMC0yLjEzNiAxLjQ0NS0yLjEzNiAyLjkzOXY1LjY2N0g5LjM1MVY5aDMuNDE0djEuNTYxaC4wNDZjLjQ3Ny0uOSAxLjYzNy0xLjg1IDMuMzctMS44NSAzLjYwMSAwIDQuMjY3IDIuMzcgNC4yNjcgNS40NTV2Ni4yODZ6TTUuMzM3IDcuNDMzYTIuMDYyIDIuMDYyIDAgMCAxLTIuMDYzLTIuMDY1IDIuMDY0IDIuMDY0IDAgMSAxIDIuMDYzIDIuMDY1em0xLjc4MiAxMy4wMTlIMy41NTVWOWgzLjU2NHYxMS40NTJ6TTIyLjIyNSAwSDEuNzcxQy43OTIgMCAwIC43NzQgMCAxLjcyOXYyMC41NDJDMCAyMy4yMjcuNzkyIDI0IDEuNzcxIDI0aDIwLjQ1MUMyMy4yIDI0IDI0IDIzLjIyNyAyNCAyMi4yNzFWMS43MjlDMjQgLjc3NCAyMy4yIDAgMjIuMjIyIDBoLjAwM3oiIGZpbGw9IiMwQTY2QzIiLz48cGF0aCBzdHlsZT0iZmlsbDojZmZmO3N0cm9rZS13aWR0aDouMDIwOTI0MSIgZD0iTTQuOTE3IDcuMzc3YTIuMDUyIDIuMDUyIDAgMCAxLS4yNC0zLjk0OWMxLjEyNS0uMzg0IDIuMzM5LjI3NCAyLjY1IDEuNDM3LjA2OC4yNS4wNjguNzY3LjAwMSAxLjAxYTIuMDg5IDIuMDg5IDAgMCAxLTEuNjIgMS41MSAyLjMzNCAyLjMzNCAwIDAgMS0uNzktLjAwOHoiLz48cGF0aCBzdHlsZT0iZmlsbDojZmZmO3N0cm9rZS13aWR0aDouMDIwOTI0MSIgZD0iTTQuOTE3IDcuMzc3YTIuMDU2IDIuMDU2IDAgMCAxLTEuNTItMi42NyAyLjA0NyAyLjA0NyAwIDAgMSAzLjQxOS0uNzU2Yy4yNC4yNTQuNDIuNTczLjUxMi45MDguMDY1LjI0LjA2NS43OCAwIDEuMDItLjA1MS4xODYtLjE5Ny41MDQtLjMuNjUyLS4wOS4xMzItLjMxLjM2Mi0uNDQzLjQ2NC0uNDYzLjM1Ny0xLjEuNTAzLTEuNjY4LjM4MlpNMy41NTcgMTQuNzJWOS4wMDhoMy41NTd2MTEuNDI0SDMuNTU3Wk05LjM1MyAxNC43MlY5LjAwOGgzLjQxMXYuNzg1YzAgLjYxNC4wMDUuNzg0LjAyNi43ODMuMDE0IDAgLjA3LS4wNzMuMTI0LS4xNjIuNTI0LS44NjUgMS41MDgtMS40NzggMi42NS0xLjY1LjI3NS0uMDQyIDEtLjA0NyAxLjMzMi0uMDA5Ljc5LjA5IDEuNDUxLjMxNiAxLjk0LjY2NC4yMi4xNTcuNTU3LjQ5My43MTQuNzEzLjQyLjU5Mi42OSAxLjQxMi44MDggMi40NjQuMDc0LjY2My4wODQgMS4yMTUuMDg1IDQuNTc4djMuMjU4aC0zLjUzNnYtMi45ODZjMC0yLjk3LS4wMS0zLjQ3NC0uMDc0LTMuOTA4LS4wOS0uNjA2LS4zMTQtMS4wODItLjYzNC0xLjM0Mi0uMzk1LS4zMjItMS4wMjktLjQzNy0xLjcwMy0uMzA5LS44NTguMTYzLTEuMzU1Ljc1LTEuNTIzIDEuNzk3LS4wNzYuNDcxLS4wODQuODQ1LS4wODQgMy44MzR2Mi45MTRIOS4zNTN6Ii8+PC9zdmc+)](https://www.linkedin.com/showcase/dlr-institut-fuer-fahrzeugkonzepte/posts/?feedView=all)
 
