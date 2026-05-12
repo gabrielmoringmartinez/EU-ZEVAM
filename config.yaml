@@ -18,7 +18,9 @@ model:
 
 geography:
   countries:
-  use_clusters: true
+    - Poland
+    - Netherlands
+  use_clusters: false
 
 
 powertrains:
