@@ -91,7 +91,7 @@ ZEVAMPY does not optimize fleet composition. Instead, it helps users explore how
 
 ## 🔧 Recommended skills
 
-The European Passenger Car Stock Model is implemented in Python. While no programming skills are strictly required to configure and run the model, experience with transportation modeling and Python is beneficial. Developers wishing to modify the model's functionality or enhance its capabilities should have at least a basic understanding of Python.
+ZEVAMPY is implemented in Python. While no programming skills are strictly required to configure and run the model, experience with transportation modeling and Python is beneficial. Developers wishing to modify the model's functionality or enhance its capabilities should have at least a basic understanding of Python.
 
 ## 📦 Installation
 
