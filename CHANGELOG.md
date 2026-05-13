@@ -11,6 +11,32 @@ All notable changes to this project will be documented in this file, following [
 
 - Improvements, bug fixes or planned features will be listed here before the next release.
 
+## [1.2.5] – 2026-05-13
+
+### Added
+
+- Added command-line interface (CLI) support for running ZEVAMPY through configuration files
+- Added YAML-based configuration workflow for defining modelling assumptions, input paths, and projection settings
+- Added minimal runnable example for external users
+- Added improved installation and PyPI usage documentation
+- Added reusable workflow documentation for adapting ZEVAMPY to new regions, vehicle categories, and powertrain classifications
+- Added improved validation messages and optional input-file guidance
+- Added updated JOSS paper draft reflecting the generalized ZEVAMPY framework structure
+
+### Changed
+
+- Refactored documentation and README to emphasize reusable framework capabilities beyond the default European passenger-car application
+- Improved testing workflows and output validation
+- Improved package metadata and PyPI readiness
+- Improved configuration guidance and example configuration structure
+- Improved terminology and software structure for broader transportation-modelling applications
+
+### Fixed
+
+- Fixed optional validation and sensitivity-analysis file handling
+- Fixed multiple documentation inconsistencies and outdated references
+- Fixed badge and repository references after repository renaming
+
 
 ## [1.1.2] – 2025-07-28
 

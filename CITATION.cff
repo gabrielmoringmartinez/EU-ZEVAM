@@ -5,7 +5,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python"
+title: "ZEVAMPY: A Python framework for vehicle stock turnover and zero-emission vehicle adoption modelling"
 message: >
   If you use this software, please cite it using the
   metadata from this file.
@@ -16,20 +16,20 @@ authors:
     email: gabriel.moeringmartinez@dlr.de
     affiliation: DLR
     orcid: https://orcid.org/0009-0003-4380-3081
-repository-code: https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model
+repository-code: https://github.com/gabrielmoringmartinez/zevampy
 identifiers:
   - type: url
-    value: https://github.com/gabrielmoringmartinez/European-passenger-car-stock-model
+    value: https://github.com/gabrielmoringmartinez/zevampy
 abstract: >
-  This repository presents a European passenger car stock model. It is based on the EU clustering model presented in Möring-Martínez et al. (2024) and on the empirical survival rates approach presented in Held et al. (2021). This code is used to analyze the European BEV stock fleet up to 2050 in the publication Möring-Martínez et al. (2025, under review).
+  ZEVAMPY is an open-source Python framework for modelling vehicle fleet evolution using empirical survival rates and new vehicle registration scenarios. The framework estimates cumulative survival probability (CSP) curves, calculates vehicle stock by powertrain, and projects future fleet composition over user-defined time horizons.
 keywords:
-  - passenger car stock
-  - vehicle fleet
-  - fleet electrification
-  - European Union
-  - stock turnover
-  - survival rates
+  - zero-emission vehicles
   - electric vehicles
+  - vehicle adoption model
+  - transportation modelling
+  - fleet turnover
+  - survival analysis
+  - Python
 license: MIT
 version: "1.0.0"
 commit: 44cf21cb
