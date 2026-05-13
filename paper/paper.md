@@ -1,66 +1,77 @@
 ---
-title: "EU-ZEVAM: European Zero-Emission Vehicle Adoption Model in Python"
+title: "ZEVAMPY: A Python framework for vehicle stock turnover and zero-emission vehicle adoption modelling"
+
 tags:
   - zero-emission vehicles
   - electric vehicles
-  - Europe
   - vehicle adoption model
-  - modelling framework
+  - transportation modelling
+  - fleet turnover
+  - survival analysis
   - Python
+
 authors:
-  - name: Gabriel Möring-Martínez
+  - name: "Gabriel Möring-Martínez"
     orcid: 0009-0003-4380-3081
     affiliation: 1 # (Multiple affiliations must be quoted)
 affiliations:
  - name: German Aerospace Center (DLR), Institute of Vehicle Concepts, Pfaffenwaldring 38-40, Stuttgart, 70569, Germany
    index: 1
    ror: 04bwf3e34
-date: 16 July 2025
+date: 13th May 2026
 bibliography: paper.bib
 ---
 
 # Summary
 
-Vehicle adoption models are essential tools for a wide range of stakeholders. Governments and policymakers use them to assess the alignment of existing policies with long-term decarbonization targets, guide infrastructure development, and evaluate the achievability of climate objectives [@Ellingsen.2016; @GomezVilchez.2020]. Meanwhile, original equipment manufacturers (OEMs) and industry players rely on these models to forecast future production demand, identify investment needs, and align their strategies with anticipated market shifts [@BloombergNEF.2021].
-
-The core objective of vehicle adoption models is to simulate how the vehicle fleet will evolve under different policy, market, and technological scenarios. These models help to identify the key drivers of vehicle electrification and support decision-making by offering insight into long-term fleet composition trends [@Maybury.2022; @Kumar.2020].
-
-However, many existing vehicle adoption models lack a strong theoretical foundation, leading to reduced transparency and reproducibility. This modeling flexibility can introduce inconsistencies across studies and hinder comparability. In contrast, approaches grounded in econometric theory offer greater methodological transparency and empirical robustness but typically require large, high-quality datasets [@jochem2018methods].
-
-To address these limitations, we introduce `EU-ZEVAM`, a fully open-source framework that combines the outcome of a bottom-up transportation model—specifically, an agent-based model (ABM)—with a cohort model [@MoringMartinez.2025b]. The ABM simulates individual vehicle adoption decisions across heterogeneous agents in the population using the transportation model Vector21 [@InstituteofVehicleConcepts.2023] at an EU-level [@MoringMartinez.2024], while the cohort component incorporates cumulative survival probability curves to represent the longevity and phase-out of vehicles within national fleets [@Held.2021]. This hybrid architecture enables a dynamic and disaggregated representation of fleet evolution over time, capturing both behavioral and technical aspects of the transition.
-
-`EU-ZEVAM` features a user-friendly interface for estimating electric vehicle stock adoption rates across EU countries through 2050. It uses new vehicle registration data under the STATS scenario from [@MoringMartinez.2024], though it remains flexible to alternative input scenarios or transportation models. Survival rates are computed empirically following the methodology in [@Held.2021], with default values provided for the base year 2021 [@MoringMartinez.2025b]. While updates to these rates are possible, they require considerable data collection and processing effort. A summary of the modelling framework can be found in the graphical abstract (cf.  \autoref{figure1}).
-
-![Graphical abstract of the electric vehicle adoption model for European Union countries. The framework combines a transportation model for estimating electric vehicle new registrations [@MoringMartinez.2024] with a country-based cohort model [@Held.2021]. Figure extracted from [@MoringMartinez.2025b], licensed under CC BY 4.0.\label{figure1}](figures/CSP_Paper_Stock_Validation_Illustration_SH_GM.jpg)
-
-
-The model outputs national electric vehicle stock projections under various assumptions, and includes two validation steps and several sensitivity analyses to assess the impact of survival rates. By integrating empirical data with a flexible modeling structure, `EU-ZEVAM` offers a transparent and extensible platform for analyzing electric vehicle adoption in line with climate and mobility goals.
+Vehicle stock turnover models are widely used to analyze the long-term evolution of vehicle fleets under different technological, economic, and policy assumptions [@jochem2018methods]. These models support applications such as estimating future energy and infrastructure demand, evaluating decarbonization pathways, and assessing zero-emission vehicle adoption [@Ellingsen.2016; @GomezVilchez.2020]. ZEVAMPY (Zero-Emission Vehicle Adoption Model in Python) is an open-source Python framework for modelling vehicle stock evolution using empirical survival rates and vehicle registration scenarios. The framework estimates cumulative survival probability (CSP) curves from stock-by-age datasets and combines them with historical or projected vehicle registrations to estimate future vehicle stock composition by powertrain. The model supports configurable aggregation levels, including country-level, powertrain-level, and combined country–powertrain survival-rate estimation, enabling analyses at different levels of technological and geographic detail. ZEVAMPY allows users to analyze how vehicle-registration scenarios and empirically estimated fleet turnover dynamics influence long-term vehicle stock composition. The framework supports applications across different geographic regions, vehicle categories, and powertrain classifications, including passenger cars, buses, and trucks. The software additionally includes workflows for validation, sensitivity analysis, and comparative scenario exploration within the default European passenger-car application. Although ZEVAMPY includes a default application for European passenger-car fleet modelling, the framework is designed to support broader vehicle stock modelling applications when suitable stock and registration data are available.
 
 # Statement of need
 
-Numerous electric vehicle adoption models have been developed [@Kumar.2020], varying in geographic focus, explanatory variables, modeling approaches, and data sources [@Maybury.2022]. Yet most remain not transparent, hard to reproduce and difficult to adapt [@jochem2018methods], and—so far as we are aware—no fully open‑source implementation is publicly available.
+Numerous vehicle adoption and fleet-transition models have been developed differing in geographic scope, modelling assumptions, explanatory variables, and data sources [@Kumar.2020;@Maybury.2022]. These models are widely used to analyse transportation decarbonization pathways, future energy demand, and the diffusion of alternative vehicle technologies. However, many existing modelling approaches remain difficult to reproduce, are not openly available, or are tightly coupled to specific datasets and case-study assumptions, limiting their transparency, adaptability, and reuse across transportation-modelling applications [@jochem2018methods].
 
-We address this gap by introducing a transparent, EU‑wide electric vehicle adoption modelling framework, whose methodological foundation is supported by a peer‑reviewed article [@MoringMartinez.2025b]. The code is openly available and can be coupled either with the transport-demand outputs from [@MoringMartinez.2024], also included here, or with any alternative transportation model. The framework:
+In addition, vehicle stock turnover dynamics are often represented using simplified or fixed vehicle survival assumptions, despite their strong influence on projected fleet composition and electrification rates [@Held.2021]. Estimating empirical cumulative survival probability (CSP) curves across different countries, vehicle categories, or powertrain groups typically requires substantial data processing and methodological harmonization, which can hinder reproducible and extensible transportation-modelling workflows.
 
-- estimates electric vehicle adoption rates using empirical survival rates
-- supports sensitivity analyses on fleet-turnover assumptions and possible scenarios
-- allows users to define alternative EV-registration trajectories to assess their impact on the vehicle fleet.
+ZEVAMPY addresses these limitations by providing an open-source Python framework for modelling vehicle fleet evolution using empirical survival-rate estimation and configurable registration scenarios. The framework separates modelling logic, configuration settings, and input datasets, enabling users to adapt workflows to different geographic regions, vehicle categories, powertrain classifications, and projection horizons without modifying the core model structure. ZEVAMPY additionally supports configurable aggregation levels for survival-rate estimation, including country-level, powertrain-level, and combined country–powertrain analyses.
 
-By providing open-source code and a modular structure, `EU-ZEVAM` facilitates reproducibility, transparency, and flexible exploration of policy scenarios.
 
-Zero-emission vehicle adoption is a key objective of the European Union. To this end, the EU has implemented binding CO$_2$ emission standards that manufacturers must meet to avoid financial penalties [@EuropeanCommision.2022]. In addition, individual EU Member States support the deployment of zero-emission vehicles through varying national policies, including tax incentives, infrastructure development, and other supportive measures [@Neshat.2023].
+The framework includes reusable workflows for cumulative survival probability (CSP) estimation, vehicle stock projection, validation, and sensitivity analysis. Although the default application focuses on European passenger-car fleet modelling, the software is designed to support broader transportation-modelling applications when suitable stock-by-age and vehicle-registration datasets are available. By providing an openly available and extensible implementation of empirical vehicle stock turnover modelling, ZEVAMPY contributes to improving transparency, reproducibility, and reuse in transportation-system analysis.
 
-Despite these EU-wide targets, most vehicle adoption models remain country-specific [@Maybury.2022]. Among the limited number of EU-wide models, several rely on strong simplifying assumptions—for example, applying Germany’s vehicle survival rates uniformly across all countries [@Ntziachristos.2008]. However, multi-country analyses of future fleet compositions require country-specific survival modeling due to significant differences in used vehicle import and export dynamics [@Held.2021].
+The ZEVAMPY model is fully developed in Python and is openly available on Github at <https://github.com/gabrielmoringmartinez/zevampy>.
 
-Furthermore, several studies have highlighted the lack of comprehensive datasets needed to compute country-specific cumulative survival probabilities. To address this, we present a country-level modeling framework using updated cumulative survival rates up to the year 2021. This builds upon earlier work by [@Held.2021] for 2016 and [@Oguchi.2015] for 2008.
+# Modelling approach
 
-By adopting a country-level approach, EU-ZEVAM enables the estimation of electric vehicle adoption rates at both national and EU-wide levels (cf. \autoref{figure2}). It supports evaluation of whether fleet electrification and decarbonization targets are on track, while facilitating cross-country coordination and compliance planning. This is particularly relevant because scrappage schemes can accelerate fleet renewal [@Marin.2020b; @Svoboda.2023], while insufficient infrastructure or incentives may slow it down—leading to increased demand for second-hand internal combustion engine vehicles [@Maybury.2022].
+ZEVAMPY is designed as a flexible and reusable framework for vehicle stock turnover and fleet-composition modelling using empirical survival rates and configurable vehicle-registration scenarios. Although the default application focuses on European passenger-car fleets, the framework is adaptable to different geographic regions, vehicle categories, and powertrain classifications when suitable stock-by-age and vehicle-registration datasets are available. The software supports modelling applications for passenger cars, buses, and trucks, at different levels of technological and geographic aggregation.
 
-![Battery electric passenger car fleet shares estimated using country-level empirical cumulative survival rate probability curves for all EU-27 countries and Norway. The sensitivity analysis varies the survival rates from 2008 and 2016 to illustrate how changes in vehicle lifespan assumptions affect fleet share projections. Figure extracted from [@MoringMartinez.2025b], licensed under CC BY 4.0.\label{figure2}](figures/sensitivity_analysis_with_historical_csp.jpg)
+The framework is based on the main workflow components illustrated in  \autoref{figure1}. Starting from user-provided stock-by-age datasets, historical vehicle registrations, projected registration scenarios, and a YAML configuration file, ZEVAMPY performs data loading, validation, and preprocessing. The configuration system allows users to define modelling assumptions such as the projection horizon, selected countries or regions, powertrain classifications, aggregation levels for survival-rate estimation, and optional validation or sensitivity-analysis workflows. 
+
+Following data preparation, the framework estimates empirical survival rates from stock-by-age and registrations datasets and derives cumulative survival probability (CSP) curves. Survival rates can be estimated at different aggregation levels, including country-level, powertrain-level, or combined country–powertrain groupings, depending on the structure and resolution of the available input data. The software additionally supports optional country clustering and configurable powertrain aggregation to simplify modelling workflows and improve adaptability to different datasets.
+
+The estimated empirical CSP curves are subsequently fitted using parameterized survival functions to derive continuous representations of fleet turnover dynamics. The resulting fitted CSP curves are then combined with historical and projected vehicle-registration data within a cohort-based stock modelling framework to estimate future vehicle stock composition by powertrain and vehicle age over user-defined projection horizons.
+
+The framework generates multiple modelling outputs, including estimated vehicle stock by powertrain and age, projected stock shares, fitted CSP parameters, empirical survival rates, and graphical outputs for comparative scenario analysis. The default European passenger-car application additionally includes reusable workflows for validation and sensitivity analysis using alternative historical survival-rate assumptions and vehicle-registration trajectories.
+
+By separating modelling logic, configuration settings, and input datasets, ZEVAMPY enables transparent and reproducible vehicle stock turnover modelling while facilitating adaptation to new transportation-modelling applications and scenario analyses.
+
+![Structure of ZEVAMPY\label{figure1}](figures/zevampy_structure.png)
+
+
+
+# Projects and publications
+
+Earlier versions of the ZEVAMPY framework have already been applied in several transportation-modelling studies and ongoing research projects.
+
+The framework was first applied to estimate future battery-electric vehicle (BEV) stock shares across EU-27 countries and Norway using country-specific empirical survival rates and projected vehicle-registration scenarios [@MoringMartinez.2025b]. This application analysed how fleet turnover dynamics influence long-term electrification pathways under alternative survival-rate assumptions.
+
+The modelling workflow has additionally been adapted for a Germany-focused case study investigating future BEV fleet evolution under different battery chemistries and bidirectional-charging assumptions [@Hasselwander.2025]. In this application, the framework was coupled with alternative technology-specific vehicle-registration scenarios to analyse future stock composition and charging-related implications.
+
+Current ongoing work further extends the framework toward powertrain-specific empirical survival-rate estimation using newly available stock-by-age datasets. This extension enables differentiated survival modelling across technologies such as battery-electric, plug-in hybrid, gasoline, and diesel vehicles. The approach is currently being demonstrated for a German case study and is intended to support future analyses of heterogeneous fleet-turnover dynamics across powertrain groups.
+
+These applications demonstrate the flexibility of ZEVAMPY for analysing vehicle stock evolution across different geographic scopes, vehicle categories, technology assumptions, and transportation-modelling questions.
 
 # Acknowledgements
 
-This research was funded by the NDC ASPECTS project, which has received funding from the European Union’s Horizon 2020 Research and Innovation Programme under grant agreement No. 101003866. Additional funding for this research was provided by the MoDa project of the German Aerospace Center.
+Development of ZEVAMPY was supported through the NDC ASPECTS project, which received funding from the European Union’s Horizon 2020 Research and Innovation Programme under grant agreement No. 101003866. Additional support was provided through the MoDa project of the German Aerospace Center (DLR).
 
 # References
 
